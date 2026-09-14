@@ -1,9 +1,0 @@
-Com fa l'aplicacio de fmradio del movil per a escoltar radio si no te receptor de radio.
-L'aplicació no capta ones de ràdio reals, sinó que reprodueix l'emissió a través d'Internet (streaming) utilitzant la teva connexió Wi-Fi o dades mòbils.
-
-
-el movil es connecta a un wifi router (wireless)
-el wifi router esta connectat (wired) a un altre router que entra a la xarxa global
-
-el movil es connecta a una base station (wireless)
-base station esta connectat (wired) a un router
