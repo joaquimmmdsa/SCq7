@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>07-09-26.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1 id="com-funciona-la-ràdio-al-mòbil-sense-receptor-fm">Com funciona
+la ràdio al mòbil sense receptor FM?</h1>
+<h2 id="avaluació-de-lassignatura">Avaluació de l’assignatura</h2>
+<table>
+<thead>
+<tr>
+<th>Concepte</th>
+<th>Percentatge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quizzes (cada 2 setmanes)</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Examen final</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Pràctiques de laboratori</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Projecte en equip</td>
+<td>20%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="concepte-principal">1. Concepte principal</h2>
+<p>L’aplicació <strong>no capta ones de ràdio reals (FM)</strong>, sinó
+que reprodueix l’emissió a través d’Internet
+(<strong>streaming</strong>) utilitzant la teva connexió Wi-Fi o de
+dades mòbils.</p>
+<hr />
+<h2 id="rutes-de-connexió-a-la-xarxa">2. Rutes de connexió a la
+xarxa</h2>
+<h3 id="opció-a-connexió-via-wi-fi-a-casa-o-oficines">Opció A: Connexió
+via Wi-Fi (a casa o oficines)</h3>
+<ul>
+<li><strong>Tram 1 (Sense fils / <em>Wireless</em>):</strong> El mòbil
+es connecta al router Wi-Fi mitjançant radiofreqüència local.</li>
+<li><strong>Tram 2 (Cablejat / <em>Wired</em>):</strong> El router Wi-Fi
+està connectat per cable (Ethernet / fibra òptica) al router d’accés de
+l’ISP (proveïdor d’Internet).</li>
+<li><strong>Tram 3 (Internet Global):</strong> El senyal viatja per la
+xarxa global fins arribar al servidor d’<em>streaming</em> de
+l’emissora.</li>
+</ul>
+<pre class="text"><code>[ Mòbil ]
+   │
+   │ (Sense fils / Wi-Fi)
+   ▼
+[ Router Wi-Fi ]
+   │
+   │ (Cablejat / Ethernet - Fibra)
+   ▼
+[ Router d&#39;accés / ISP ]
+   │
+   ▼
+[ Internet Global (Servidor d&#39;àudio de l&#39;emissora) ]</code></pre>
+<hr />
+<h3 id="opció-b-connexió-via-dades-mòbils-4g-5g-al-carrer">Opció B:
+Connexió via Dades Mòbils (4G / 5G al carrer)</h3>
+<ul>
+<li><strong>Tram 1 (Sense fils / <em>Wireless</em>):</strong> El mòbil
+es connecta a l’antena o estació base (<em>Base Station</em> / eNodeB /
+gNodeB) mitjançant la xarxa cel·lular.</li>
+<li><strong>Tram 2 (Cablejat / <em>Wired</em>):</strong> L’estació base
+està connectada per una xarxa cablejada (<em>backhaul</em> de fibra
+òptica) als routers centrals de la companyia telefònica (<em>Core
+Network</em>).</li>
+<li><strong>Tram 3 (Internet Global):</strong> La xarxa de l’operadora
+dóna sortida cap a Internet fins al servidor de l’emissora.</li>
+</ul>
+<pre class="text"><code>[ Mòbil ]
+   │
+   │ (Sense fils / 4G-5G)
+   ▼
+[ Estació Base (Torre de telefonia) ]
+   │
+   │ (Cablejat / Fibra òptica de retorn)
+   ▼
+[ Routers centrals de l&#39;operadora ]
+   │
+   ▼
+[ Internet Global (Servidor d&#39;àudio de l&#39;emissora) ]</code></pre>
+<hr />
+<h2 id="conclusió">3. Conclusió</h2>
+<p>El contingut d’àudio es transmet exclusivament en format de paquets
+de dades digitals (IP) a través d’infraestructura d’Internet cablejada
+durant la major part del trajecte, utilitzant només connexió sense fils
+en el tram final entre el dispositiu (mòbil) i el punt d’accés (router o
+antena).</p>
+<hr />
+<h2 id="dades-curioses">4. Dades curioses</h2>
+<h3 id="voyager-1-1977">Voyager 1 (1977)</h3>
+<p>Primer objecte que ha estat fet per l’esser humà que és fora del
+sistema solar. Encara hi ha comunicació <em>wireless</em> amb aquest
+objecte.</p>
+<h3 id="evolució-de-la-tecnologia-sense-fils">Evolució de la tecnologia
+sense fils</h3>
+<table>
+<thead>
+<tr>
+<th>Estandar</th>
+<th>Any</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802.11</td>
+<td>1997</td>
+<td>Primer estàndard de Wi-Fi</td>
+</tr>
+<tr>
+<td>802.11ax</td>
+<td>2020</td>
+<td>Estàndard actual (Wi-Fi 6)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="increment-de-la-velocitat-de-dades">Increment de la velocitat de
+dades</h3>
+<ul>
+<li>Més de <strong>5000x</strong> d’increment</li>
+<li>De <strong>2 Mbps</strong> a <strong>11 Gbps</strong></li>
+<li>Com s’ha aconseguit això?</li>
+</ul>
+<hr />
+<h2 id="temes-del-curs-de-xarxes-sense-fils">5. Temes del curs de xarxes
+sense fils</h2>
+<ul>
+<li>Fonaments de les xarxes sense fils (<em>wireless network
+fundamentals</em>)</li>
+<li>Tipus i arquitectures de xarxes sense fils (<em>wireless network
+types and architectures</em>)</li>
+<li>L’evolució de les xarxes sense fils (<em>the evolution…</em>)</li>
+</ul>
+<p>What is wireless communication? communication that does not require
+the trasmitter and reciever: to be in physical contact, or,
+communicating through a guided media.</p>
+<p>Usos: Electromagneric waves, RF, Radar, IR, Optical…, Acoustic waves,
+Molecules.</p>
+<p>Early forms of wireless communication: Primitive ones: Sound (beating
+drums), Sight(smoke signals),</p>
+
+</body>
+</html>
