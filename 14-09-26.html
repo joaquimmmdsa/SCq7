@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>14-09-26.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(','\\)'],['$','$']], displayMath: [['\\[','\\]'],['$$','$$']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<h1
+id="apunts-com-viatja-un-missatge-de-whatsapp-capes-de-xarxa">Apunts:
+Com viatja un missatge de WhatsApp (capes de xarxa)</h1>
+<h2 id="escenari">1. Escenari</h2>
+<p>En Josep envia un missatge per WhatsApp. Seguim el recorregut de les
+dades des que escriu el missatge fins que arriba als servidors de
+WhatsApp i torna.</p>
+<h2 id="models-de-referència">2. Models de referència</h2>
+<h3 id="model-osi-7-capes">2.1 Model OSI (7 capes)</h3>
+<ol type="1">
+<li><strong>Física</strong> – senyals</li>
+<li><strong>Enllaç de dades</strong> – trames, MAC</li>
+<li><strong>Xarxa</strong> – paquets, IP</li>
+<li><strong>Transport</strong> – segments, TCP/UDP</li>
+<li><strong>Sessió</strong></li>
+<li><strong>Presentació</strong></li>
+<li><strong>Aplicació</strong> – WhatsApp</li>
+</ol>
+<h3 id="model-tcpip">2.2 Model TCP/IP</h3>
+<ul>
+<li><strong>Aplicació</strong> (OSI 5-7)</li>
+<li><strong>Transport</strong> (OSI 4)</li>
+<li><strong>Xarxa</strong> (OSI 3)</li>
+<li><strong>Enllaç</strong> (OSI 2)</li>
+<li><strong>Física</strong> (OSI 1)</li>
+</ul>
+<h3 id="correspondència-entre-models">2.3 Correspondència entre
+models</h3>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 28%" />
+<col style="width: 17%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>OSI</th>
+<th>TCP/IP</th>
+<th>PDU</th>
+<th>Exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aplicació, Presentació, Sessió</td>
+<td>Aplicació</td>
+<td>Dades</td>
+<td>WhatsApp, HTTP, DNS</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>Transport</td>
+<td>Segment</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>Xarxa</td>
+<td>Xarxa</td>
+<td>Paquet</td>
+<td>IP, ICMP</td>
+</tr>
+<tr>
+<td>Enllaç de dades</td>
+<td>Enllaç</td>
+<td>Trama</td>
+<td>Ethernet, Wi-Fi</td>
+</tr>
+<tr>
+<td>Física</td>
+<td>Física</td>
+<td>Bits</td>
+<td>Cable, ràdio</td>
+</tr>
+</tbody>
+</table>
+<h2 id="encapsulament-i-desencapsulament">3. Encapsulament i
+desencapsulament</h2>
+<ul>
+<li><strong>Encapsulament</strong>: baixant capes, cada capa afegeix la
+seva capçalera (i de vegades tràiler).</li>
+<li><strong>Desencapsulament</strong>: pujant capes, cada capa treu la
+seva capçalera.</li>
+<li>Cada capa només entén la seva part i passa la resta a la capa
+superior o inferior.</li>
+</ul>
+<h2 id="baixant-capes-enviament-des-del-mòbil-den-josep">4. Baixant
+capes: enviament des del mòbil d’en Josep</h2>
+<h3 id="capa-daplicació">4.1 Capa d’aplicació</h3>
+<ul>
+<li>WhatsApp genera el missatge.</li>
+<li>Utilitza protocols propis sobre <strong>TCP</strong> i
+<strong>TLS</strong>.</li>
+<li>WhatsApp també aplica <strong>xifrat d’extrem a extrem</strong>
+(E2E), habitualment amb el protocol Signal.</li>
+<li>PDU: <strong>dades</strong>.</li>
+</ul>
+<h3 id="capa-de-transport-tcp">4.2 Capa de transport (TCP)</h3>
+<ul>
+<li><strong>TCP</strong> segmenta les dades en segments.</li>
+<li>Afegeix ports d’origen i destí.</li>
+<li>Gestiona control de flux, control de congestió i retransmissió.</li>
+<li>ACKs: si un segment no arriba, es retransmet <strong>només aquell
+segment</strong>, no tot el missatge.</li>
+<li>PDU: <strong>segment TCP</strong>.</li>
+</ul>
+<h3 id="capa-de-xarxa-ip">4.3 Capa de xarxa (IP)</h3>
+<ul>
+<li><strong>IP</strong> decideix la ruta fins al servidor de
+WhatsApp.</li>
+<li>Afegeix adreces IP d’origen i destí.</li>
+<li>Els routers encaminen els paquets salt a salt.</li>
+<li>PDU: <strong>paquet IP</strong>.</li>
+</ul>
+<h3 id="capa-denllaç-de-dades">4.4 Capa d’enllaç de dades</h3>
+<ul>
+<li>Subcapa <strong>MAC</strong> (<em>Medium Access Control</em>):
+controla l’accés al medi.
+<ul>
+<li>Exemples: <strong>ALOHA</strong>, <strong>CSMA/CD</strong>
+(Ethernet), <strong>CSMA/CA</strong> (Wi-Fi).</li>
+</ul></li>
+<li>Afegeix adreces <strong>MAC</strong> d’origen i destí.</li>
+<li>Afegeix <strong>CRC</strong> per detectar errors.</li>
+<li>Wi-Fi: cada trama unicast s’ACKja. Si falla, es retransmet la trama,
+no tot el fitxer.</li>
+<li>Wi-Fi també <strong>encripta</strong> les trames a nivell d’enllaç
+amb WPA2/WPA3.</li>
+<li>PDU: <strong>trama</strong>.</li>
+</ul>
+<h3 id="capa-física">4.5 Capa física</h3>
+<ul>
+<li>Converteix bits en senyals físics: voltatge, llum, ones de
+ràdio.</li>
+<li>Modulació i codificació de línia.</li>
+<li>**Channel</li>
+<li><strong>VLAN</strong>: segmenta xarxes a nivell d’enllaç.</li>
+<li><strong>IPv4/IPv6</strong>: versions del protocol IP.</li>
+</ul>
+<h2 id="glossari-bàsic">13. Glossari bàsic</h2>
+<table>
+<thead>
+<tr>
+<th>Terme</th>
+<th>Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDU</td>
+<td>Unitat de dades del protocol</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Adreça física de la targeta de xarxa</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>Adreça lògica de xarxa</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>Confirmació de recepció</td>
+</tr>
+<tr>
+<td>CRC</td>
+<td>Codi de detecció d’errors</td>
+</tr>
+<tr>
+<td>CSMA/CA</td>
+<td>Accés múltiple amb escolta i evitació de col·lisions</td>
+</tr>
+<tr>
+<td>CSMA/CD</td>
+<td>Accés múltiple amb escolta i detecció de col·lisions</td>
+</tr>
+</tbody>
+</table>
+<p>TDD (Time Division Duplexing) vs FDD (Frequency Division
+Duplexing)</p>
+<p>Data (information) vs Signal</p>
+<p>digital data: you can encrypt, compress the data, error protection,
+lower cost, smaller processors Analog signals: You can use diferent
+frequencies.</p>
+<p>Which layer does this: Channel coding, modulation physical layer</p>
+
+</body>
+</html>
