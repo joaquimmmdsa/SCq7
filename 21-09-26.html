@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>21-09-26.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(','\\)'],['$','$']], displayMath: [['\\[','\\]'],['$$','$$']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<h1 id="propagació-i-impairments-en-transmissions-sense-fil">Propagació
+i impairments en transmissions sense fil</h1>
+<h2 id="modes-de-propagació">1. Modes de propagació</h2>
+<p>La propagació depèn de la freqüència utilitzada per transmetre.
+Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a
+la ionosfera o necessitar visió directa.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 25%" />
+<col style="width: 44%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Banda</th>
+<th style="text-align: left;">Freqüència</th>
+<th style="text-align: left;">Mecanisme principal</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Onda de terra (<em>ground wave</em>)</td>
+<td style="text-align: left;">&lt; 2 MHz</td>
+<td style="text-align: left;">Segueix el contorn de la Terra</td>
+<td style="text-align: left;">Permet arribar més enllà de
+l’horitzó.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Onda ionosfèrica (<em>skywave</em>)</td>
+<td style="text-align: left;">2–30 MHz</td>
+<td style="text-align: left;">Reflexió/refracció a la ionosfera</td>
+<td style="text-align: left;">En AM: de dia no; de nit sí.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Línia de visió (<em>line of sight</em>,
+LOS)</td>
+<td style="text-align: left;">&gt; 30 MHz</td>
+<td style="text-align: left;">Transmissor i receptor s’han de
+“veure”</td>
+<td style="text-align: left;">Usat per la majoria de tecnologies
+actuals.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detalls">Detalls</h3>
+<ul>
+<li><strong>&lt; 2 MHz</strong>: les freqüències més baixes segueixen el
+contorn de la Terra.</li>
+<li><strong>2–30 MHz (AM)</strong>:
+<ul>
+<li>De dia, la ionosfera no reflecteix prou o absorbeix el senyal; no hi
+ha propagació ionosfèrica útil.</li>
+<li>De nit, els senyals reboten a la ionosfera i permeten transmissions
+a llarga distància.</li>
+</ul></li>
+<li><strong>&gt; 30 MHz</strong>: propagació per línia de visió (LOS).
+Cal que no hi hagi obstacles entre transmissor (TX) i receptor (RX). És
+el mode dominant en tecnologies actuals.</li>
+</ul>
+<blockquote>
+<p><strong>Nota:</strong> Els límits de 2 MHz i 30 MHz són aproximats i
+depenen de les condicions atmosfèriques, l’hora, l’estació de l’any i la
+potència.</p>
+</blockquote>
+<hr />
+<h2 id="wireless-transmission-impairments-pèrdues-i-soroll">2. Wireless
+transmission impairments (pèrdues i soroll)</h2>
+<h3 id="path-loss-atenuació">2.1 Path loss (atenuació)</h3>
+<ul>
+<li>Pèrdua de potència del senyal a mesura que es propaga.</li>
+<li>Normalment, com més alta és la freqüència, més atenuació.</li>
+<li>Depèn de la distància, freqüència, obstacles, medi, etc.</li>
+</ul>
+<h3 id="soroll-noise">2.2 Soroll (<em>noise</em>)</h3>
+<ul>
+<li><strong>Soroll intrínsec (<em>white noise</em>)</strong>: originat
+pel maquinari del transmissor (TX) i del receptor (RX).</li>
+<li><strong>Soroll extrínsec</strong>: radiofreqüència externa,
+interferències, motors de cotxes, explosions solars, etc.</li>
+</ul>
+<h3 id="efectes-dobstacles">2.3 Efectes d’obstacles</h3>
+<ul>
+<li>No només importa un obstacle al mig del camí.</li>
+<li>Un obstacle proper pot fer que el senyal reboti i es combini amb el
+senyal directe al receptor, modificant-lo (multipath, fading,
+interferència).</li>
+</ul>
+<h3 id="sensibilitat-del-receptor-receiver-sensitivity">2.4 Sensibilitat
+del receptor (<em>receiver sensitivity</em>)</h3>
+<ul>
+<li>Si la potència rebuda és massa baixa, el receptor no pot interpretar
+correctament el missatge o la informació.</li>
+<li>Cada receptor té un llindar de sensibilitat.</li>
+</ul>
+<hr />
+<h2 id="càlcul-de-potència-rebuda">3. Càlcul de potència rebuda</h2>
+<p>Fórmula bàsica en dB:</p>
+<p><span class="math display">\[
+P_{Rx}(\text{dBm}) = P_{Tx}(\text{dBm}) + Gains(\text{dB}) -
+Losses(\text{dB})
+\]</span></p>
+<p>On:</p>
+<ul>
+<li><span class="math inline">\(P_{Rx}\)</span>: potència rebuda.</li>
+<li><span class="math inline">\(P_{Tx}\)</span>: potència
+transmesa.</li>
+<li><span class="math inline">\(Gains\)</span>: guanys (antenes,
+amplificadors, etc.).</li>
+<li><span class="math inline">\(Losses\)</span>: pèrdues (path loss,
+cables, connectors, etc.).</li>
+</ul>
+<hr />
+<h2 id="qui-necessita-calcular-el-path-loss">4. Qui necessita calcular
+el path loss?</h2>
+<ul>
+<li>Els instal·ladors d’antenes o els qui organitzen la
+instal·lació.</li>
+<li>Fan el càlcul per saber:
+<ul>
+<li>On col·locar les antenes.</li>
+<li>Quantes antenes calen.</li>
+<li>Quina potència i guanys són necessaris.</li>
+</ul></li>
+<li>Objectiu: garantir <strong>coverage</strong> (cobertura) a tot arreu
+on es vol donar servei.</li>
+</ul>
+<hr />
+
+</body>
+</html>
