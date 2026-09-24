@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-09-24 jue 10:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Joaquim" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf876e56">1. Propagació i impairments en transmissions sense fil</a>
+<ul>
+<li><a href="#org34ad21b">1.1. 1. Modes de propagació</a>
+<ul>
+<li><a href="#org61997cc">1.1.1. Detalls</a></li>
+</ul>
+</li>
+<li><a href="#org5b891eb">1.2. 2. Wireless transmission impairments (pèrdues i soroll)</a>
+<ul>
+<li><a href="#orgefb6aeb">1.2.1. 2.1 Path loss (atenuació)</a></li>
+<li><a href="#org4f02486">1.2.2. 2.2 Soroll (<i>noise</i>)</a></li>
+<li><a href="#org4e11261">1.2.3. 2.3 Efectes d'obstacles</a></li>
+<li><a href="#org6e63ac5">1.2.4. 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</a></li>
+</ul>
+</li>
+<li><a href="#org609151a">1.3. 3. Càlcul de potència rebuda</a></li>
+<li><a href="#org794c685">1.4. 4. Qui necessita calcular el path loss?</a></li>
+<li><a href="#org6d78460">1.5. 5. Models de càlcul de pèrdues</a>
+<ul>
+<li><a href="#org8cd9d26">1.5.1. Analytical way</a></li>
+<li><a href="#org0d22366">1.5.2. Empirical Models</a></li>
+<li><a href="#org2d55f37">1.5.3. Friis free-space equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf876e56" class="outline-2">
+<h2 id="orgf876e56"><span class="section-number-2">1.</span> Propagació i impairments en transmissions sense fil</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org34ad21b" class="outline-3">
+<h3 id="org34ad21b"><span class="section-number-3">1.1.</span> 1. Modes de propagació</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+La propagació depèn de la freqüència utilitzada per transmetre. Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a la ionosfera o necessitar visió directa.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Banda</th>
+<th scope="col" class="org-left">Freqüència</th>
+<th scope="col" class="org-left">Mecanisme principal</th>
+<th scope="col" class="org-left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Onda de terra (<i>ground wave</i>)</td>
+<td class="org-left">&lt; 2 MHz</td>
+<td class="org-left">Segueix el contorn de la Terra</td>
+<td class="org-left">Permet arribar més enllà de l'horitzó.</td>
+</tr>
+
+<tr>
+<td class="org-left">Onda ionosfèrica (<i>skywave</i>)</td>
+<td class="org-left">2–30 MHz</td>
+<td class="org-left">Reflexió/refracció a la ionosfera</td>
+<td class="org-left">En AM: de dia no; de nit sí.</td>
+</tr>
+
+<tr>
+<td class="org-left">Línia de visió (<i>line of sight</i>, LOS)</td>
+<td class="org-left">&gt; 30 MHz</td>
+<td class="org-left">Transmissor i receptor s'han de "veure"</td>
+<td class="org-left">Usat per la majoria de tecnologies actuals.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org61997cc" class="outline-4">
+<h4 id="org61997cc"><span class="section-number-4">1.1.1.</span> Detalls</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li><b>&lt; 2 MHz</b>: les freqüències més baixes segueixen el contorn de la Terra.</li>
+<li><b>2–30 MHz (AM)</b>:
+<ul class="org-ul">
+<li>De dia, la ionosfera no reflecteix prou o absorbeix el senyal; no hi ha propagació ionosfèrica útil.</li>
+<li>De nit, els senyals reboten a la ionosfera i permeten transmissions a llarga distància.</li>
+</ul></li>
+<li><b>&gt; 30 MHz</b>: propagació per línia de visió (LOS). Cal que no hi hagi obstacles entre transmissor (TX) i receptor (RX). És el mode dominant en tecnologies actuals.</li>
+</ul>
+
+<blockquote>
+<p>
+<b>Nota:</b> Els límits de 2 MHz i 30 MHz són aproximats i depenen de les condicions atmosfèriques, l'hora, l'estació de l'any i la potència.
+</p>
+</blockquote>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org5b891eb" class="outline-3">
+<h3 id="org5b891eb"><span class="section-number-3">1.2.</span> 2. Wireless transmission impairments (pèrdues i soroll)</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgefb6aeb" class="outline-4">
+<h4 id="orgefb6aeb"><span class="section-number-4">1.2.1.</span> 2.1 Path loss (atenuació)</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>Pèrdua de potència del senyal a mesura que es propaga.</li>
+<li>Normalment, com més alta és la freqüència, més atenuació.</li>
+<li>Depèn de la distància, freqüència, obstacles, medi, etc.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4f02486" class="outline-4">
+<h4 id="org4f02486"><span class="section-number-4">1.2.2.</span> 2.2 Soroll (<i>noise</i>)</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li><b>Soroll intrínsec</b> (<i>white noise</i>): originat pel maquinari del transmissor (TX) i del receptor (RX).</li>
+<li><b>Soroll extrínsec</b>: radiofreqüència externa, interferències, motors de cotxes, explosions solars, etc.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4e11261" class="outline-4">
+<h4 id="org4e11261"><span class="section-number-4">1.2.3.</span> 2.3 Efectes d'obstacles</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>No només importa un obstacle al mig del camí.</li>
+<li>Un obstacle proper pot fer que el senyal reboti i es combini amb el senyal directe al receptor, modificant-lo (multipath, fading, interferència).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6e63ac5" class="outline-4">
+<h4 id="org6e63ac5"><span class="section-number-4">1.2.4.</span> 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>Si la potència rebuda és massa baixa, el receptor no pot interpretar correctament el missatge o la informació.</li>
+<li>Cada receptor té un llindar de sensibilitat.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org609151a" class="outline-3">
+<h3 id="org609151a"><span class="section-number-3">1.3.</span> 3. Càlcul de potència rebuda</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Fórmula bàsica en dB:
+</p>
+
+<p>
+\[
+P_{Rx}(\text{dBm}) = P_{Tx}(\text{dBm}) + Gains(\text{dB}) - Losses(\text{dB})
+\]
+</p>
+
+<p>
+On:
+</p>
+
+<ul class="org-ul">
+<li>\(P_{Rx}\): potència rebuda.</li>
+<li>\(P_{Tx}\): potència transmesa.</li>
+<li>\(Gains\): guanys (antenes, amplificadors, etc.).</li>
+<li>\(Losses\): pèrdues (path loss, cables, connectors, etc.).</li>
+</ul>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org794c685" class="outline-3">
+<h3 id="org794c685"><span class="section-number-3">1.4.</span> 4. Qui necessita calcular el path loss?</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Els instal·ladors d'antenes o els qui organitzen la instal·lació.</li>
+<li>Fan el càlcul per saber:
+<ul class="org-ul">
+<li>On col·locar les antenes.</li>
+<li>Quantes antenes calen.</li>
+<li>Quina potència i guanys són necessaris.</li>
+</ul></li>
+<li>Objectiu: garantir <b>coverage</b> (cobertura) a tot arreu on es vol donar servei.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org6d78460" class="outline-3">
+<h3 id="org6d78460"><span class="section-number-3">1.5.</span> 5. Models de càlcul de pèrdues</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org8cd9d26" class="outline-4">
+<h4 id="org8cd9d26"><span class="section-number-4">1.5.1.</span> Analytical way</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>\(P_r = f(P_t, G_{tx}, G_{rx}, d)\): funció que et dona \(P_r\) (model de Friis free space).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0d22366" class="outline-4">
+<h4 id="org0d22366"><span class="section-number-4">1.5.2.</span> Empirical Models</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<ul class="org-ul">
+<li>Pots mesurar quina potència es perd en certs punts i fer la mitjana de la pèrdua per veure quines pèrdues hi ha.</li>
+<li>Amb line fitting pots obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.</li>
+<li>Amb aquest mètode saps la mitjana de quina distància arriba el threshold, però no saps on has de posar el threshold en la pitjor de les direccions.</li>
+<li>Pots fer la mitjana i veure la probabilitat que arribi a tots llocs i posar el threshold a una probabilitat alta (variància de la potència mitjana).</li>
+<li>Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.</li>
+
+<li>Variance path loss coefficient.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2d55f37" class="outline-4">
+<h4 id="org2d55f37"><span class="section-number-4">1.5.3.</span> Friis free-space equation</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<p>
+\[
+P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
+\]
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Joaquim</p>
+<p class="date">Created: 2026-09-24 jue 10:16</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

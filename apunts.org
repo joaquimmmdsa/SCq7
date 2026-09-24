@@ -1,0 +1,100 @@
+* Propagació i impairments en transmissions sense fil
+
+** 1. Modes de propagació
+
+La propagació depèn de la freqüència utilitzada per transmetre. Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a la ionosfera o necessitar visió directa.
+
+| Banda | Freqüència | Mecanisme principal | Notes |
+|-------+------------+---------------------+-------|
+| Onda de terra (/ground wave/) | < 2 MHz | Segueix el contorn de la Terra | Permet arribar més enllà de l'horitzó. |
+| Onda ionosfèrica (/skywave/) | 2–30 MHz | Reflexió/refracció a la ionosfera | En AM: de dia no; de nit sí. |
+| Línia de visió (/line of sight/, LOS) | > 30 MHz | Transmissor i receptor s'han de "veure" | Usat per la majoria de tecnologies actuals. |
+
+*** Detalls
+
+- *< 2 MHz*: les freqüències més baixes segueixen el contorn de la Terra.
+- *2–30 MHz (AM)*:
+  - De dia, la ionosfera no reflecteix prou o absorbeix el senyal; no hi ha propagació ionosfèrica útil.
+  - De nit, els senyals reboten a la ionosfera i permeten transmissions a llarga distància.
+- *> 30 MHz*: propagació per línia de visió (LOS). Cal que no hi hagi obstacles entre transmissor (TX) i receptor (RX). És el mode dominant en tecnologies actuals.
+
+#+begin_quote
+*Nota:* Els límits de 2 MHz i 30 MHz són aproximats i depenen de les condicions atmosfèriques, l'hora, l'estació de l'any i la potència.
+#+end_quote
+
+-----
+
+** 2. Wireless transmission impairments (pèrdues i soroll)
+
+*** 2.1 Path loss (atenuació)
+
+- Pèrdua de potència del senyal a mesura que es propaga.
+- Normalment, com més alta és la freqüència, més atenuació.
+- Depèn de la distància, freqüència, obstacles, medi, etc.
+
+*** 2.2 Soroll (/noise/)
+
+- *Soroll intrínsec* (/white noise/): originat pel maquinari del transmissor (TX) i del receptor (RX).
+- *Soroll extrínsec*: radiofreqüència externa, interferències, motors de cotxes, explosions solars, etc.
+
+*** 2.3 Efectes d'obstacles
+
+- No només importa un obstacle al mig del camí.
+- Un obstacle proper pot fer que el senyal reboti i es combini amb el senyal directe al receptor, modificant-lo (multipath, fading, interferència).
+
+*** 2.4 Sensibilitat del receptor (/receiver sensitivity/)
+
+- Si la potència rebuda és massa baixa, el receptor no pot interpretar correctament el missatge o la informació.
+- Cada receptor té un llindar de sensibilitat.
+
+-----
+
+** 3. Càlcul de potència rebuda
+
+Fórmula bàsica en dB:
+
+\[
+P_{Rx}(\text{dBm}) = P_{Tx}(\text{dBm}) + Gains(\text{dB}) - Losses(\text{dB})
+\]
+
+On:
+
+- \(P_{Rx}\): potència rebuda.
+- \(P_{Tx}\): potència transmesa.
+- \(Gains\): guanys (antenes, amplificadors, etc.).
+- \(Losses\): pèrdues (path loss, cables, connectors, etc.).
+
+-----
+
+** 4. Qui necessita calcular el path loss?
+
+- Els instal·ladors d'antenes o els qui organitzen la instal·lació.
+- Fan el càlcul per saber:
+  - On col·locar les antenes.
+  - Quantes antenes calen.
+  - Quina potència i guanys són necessaris.
+- Objectiu: garantir *coverage* (cobertura) a tot arreu on es vol donar servei.
+
+-----
+
+** 5. Models de càlcul de pèrdues
+
+*** Analytical way
+
+- \(P_r = f(P_t, G_{tx}, G_{rx}, d)\): funció que et dona \(P_r\) (model de Friis free space).
+
+*** Empirical Models
+
+- Pots mesurar quina potència es perd en certs punts i fer la mitjana de la pèrdua per veure quines pèrdues hi ha.
+- Amb line fitting pots obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.
+- Amb aquest mètode saps la mitjana de quina distància arriba el threshold, però no saps on has de posar el threshold en la pitjor de les direccions.
+- Pots fer la mitjana i veure la probabilitat que arribi a tots llocs i posar el threshold a una probabilitat alta (variància de la potència mitjana).
+- Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.
+
+- Variance path loss coefficient.
+
+*** Friis free-space equation
+
+\[
+P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
+\]

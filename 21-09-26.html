@@ -147,6 +147,34 @@ instal·lació.</li>
 on es vol donar servei.</li>
 </ul>
 <hr />
+<h2 id="models-de-càlcul-de-pèrdues">5. Models de càlcul de pèrdues</h2>
+<h3 id="analytical-way">Analytical way</h3>
+<ul>
+<li><span class="math inline">\(P_r = f(P_t, G_{tx}, G_{rx},
+d)\)</span>: funció que et dona <span class="math inline">\(P_r\)</span>
+(model de Friis free space).</li>
+</ul>
+<h3 id="empirical-models">Empirical Models</h3>
+<ul>
+<li><p>Pots mesurar quina potència es perd en certs punts i fer la
+mitjana de la pèrdua per veure quines pèrdues hi ha.</p></li>
+<li><p>Amb line fitting pots obtenir una funció (aproximada) amb els
+mateixos paràmetres que el model de Friis free space.</p></li>
+<li><p>Amb aquest mètode saps la mitjana de quina distància arriba el
+threshold, però no saps on has de posar el threshold en la pitjor de les
+direccions.</p></li>
+<li><p>Pots fer la mitjana i veure la probabilitat que arribi a tots
+llocs i posar el threshold a una probabilitat alta (variància de la
+potència mitjana).</p></li>
+<li><p>Així obtens la probabilitat d’estar dins del coverage, és a dir,
+de poder llegir el senyal que reps.</p></li>
+<li><p>Variance path loss coefficient.</p></li>
+</ul>
+<h3 id="friis-free-space-equation">Friis free-space equation</h3>
+<p><span class="math display">\[
+P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d}
+\right)^2
+\]</span></p>
 
 </body>
 </html>
