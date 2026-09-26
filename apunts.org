@@ -1,5 +1,6 @@
 * Propagació i impairments en transmissions sense fil
 
+
 ** 1. Modes de propagació
 
 La propagació depèn de la freqüència utilitzada per transmetre. Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a la ionosfera o necessitar visió directa.
@@ -79,22 +80,96 @@ On:
 
 ** 5. Models de càlcul de pèrdues
 
-*** Analytical way
+*** 5.1 Analytical way
 
 - \(P_r = f(P_t, G_{tx}, G_{rx}, d)\): funció que et dona \(P_r\) (model de Friis free space).
 
-*** Empirical Models
-
-- Pots mesurar quina potència es perd en certs punts i fer la mitjana de la pèrdua per veure quines pèrdues hi ha.
-- Amb line fitting pots obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.
-- Amb aquest mètode saps la mitjana de quina distància arriba el threshold, però no saps on has de posar el threshold en la pitjor de les direccions.
-- Pots fer la mitjana i veure la probabilitat que arribi a tots llocs i posar el threshold a una probabilitat alta (variància de la potència mitjana).
-- Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.
-
-- Variance path loss coefficient.
-
-*** Friis free-space equation
+*** 5.2 Friis free-space equation
 
 \[
 P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
 \]
+
+- Vàlid en espai lliure, sense obstacles ni reflexions.
+- El path loss creix amb \(d^2\) i amb \(f^2\) (perquè \(\lambda = c/f\)).
+
+*** 5.3 Empirical models
+
+- Es mesura la potència perduda en certs punts i es fa la mitjana per veure quines pèrdues hi ha.
+- Amb line fitting es pot obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.
+- Amb aquest mètode saps la mitjana de a quina distància s'arriba al threshold, però no saps on has de posar el threshold en la pitjor de les direccions.
+- Es pot fer la mitjana i veure la probabilitat que arribi a tot arreu, i posar el threshold a una probabilitat alta (variància de la potència mitjana).
+- Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.
+- S'afegeix el *variance path loss coefficient* (shadowing log-normal): la potència mitjana varia aleatòriament al voltant del valor predit.
+
+**** Okumura model
+
+Coses que s'han tingut en compte:
+
+- *Altura de les antenes*: es va considerar com varia el senyal amb l'altura de l'antena base i la mòbil. Okumura va determinar que el guany de l'antena base varia a 20 dB/dècada i el de la mòbil a 10 dB/dècada per altures inferiors a 3 m.
+- *Freqüència de la portadora*: el model és sensible a la freqüència utilitzada.
+- *Tipus d'entorn*: es van definir correccions per a àrees suburbanes, quasi-obertes, obertes (rurals) i terrenys muntanyosos.
+- *Pèrdues per difracció*: causades per muntanyes o obstacles aïllats.
+- *Superfícies d'aigua*: com ara mars o llacs.
+- *Pendent de la carretera*: la inclinació del terreny per on es propaga el senyal.
+- *Orientació dels carrers*: en entorns urbans, la direcció dels carrers respecte a la línia de visió també es va tenir en compte.
+
+Fórmula:
+
+\[
+L(dB) = L_{free\_space} + A_{mu}(f,d) - G(h_{te}) - G(h_{re}) - G_{area}
+\]
+
+On \(A_{mu}(f,d)\) és l'atenuació mediana urbana, \(G(h_{te})\), \(G(h_{re})\) els guanys per altura efectiva, i \(G_{area}\) la correcció d'entorn.
+
+**** Hata model
+
+Aquest dona una fórmula, no és un gràfic que has de seguir (és la versió tancada d'Okumura).
+
+\[
+PL_{urban} = 69.55 + 26.16\log_{10}(f_c) - 13.82\log_{10}(h_{te}) - a(h_{re}) + (44.9 - 6.55\log_{10}(h_{te}))\log_{10}(d)
+\]
+
+On \(f_c\) és en MHz, \(h_{te}\) i \(h_{re}\) altures en m, \(d\) distància en km, i \(a(h_{re})\) factor de correcció de l'antena mòbil.
+
+-----
+
+** 6. Multipath: senyal directe i còpia reflectida
+
+- El transmissor (TX) transmet i el receptor (RX) rep dos senyals:
+  - el senyal directe (LOS),
+  - una còpia del senyal que rebota amb el terra o algun obstacle i arriba més tard (overlap de senyals).
+- La còpia arriba atenuada (al reflectir-se s'absorbeix una part de la potència) i amb un retard / desfasament.
+- Aquesta còpia és *bona* si el senyal és periòdic i arriba en fase (interferència constructiva): se suma al directe.
+- Si arriba desfasada és *dolenta* (interferència destructiva): degrada o fins i tot cancel·la el senyal rebut -> fading.
+- Què es pot fer per remediar-ho?
+  - Antenes directives / bona orientació per reduir reflexions.
+  - Diversitat espacial (múltiples antenes).
+  - Equalització al receptor i tècniques com OFDM amb guard interval.
+
+-----
+
+** 7. Noise and interference
+
+*** 7.1 Thermal noise (soroll tèrmic)
+
+- És el soroll blanc intrínsec del maquinari.
+- Depèn de la temperatura del receptor i del transmissor (agitació tèrmica dels electrons).
+- Potència de soroll:
+
+\[
+N = k \cdot T \cdot B
+\]
+
+  On \(k\) és la constant de Boltzmann, \(T\) la temperatura equivalent en Kelvin i \(B\) l'ample de banda en Hz.
+- A més \(T\) i a més \(B\), més soroll. Per això el receptor defineix el límit d'SNR.
+
+*** 7.2 Interference (interferència)
+
+- *Extrínseca*: altres transmissions a la mateixa banda (co-channel), canals adjacents, motors, microones, tempestes solars, etc.
+- A diferència del soroll tèrmic, la interferència normalment no és blanca ni gaussiana i depèn de l'entorn.
+- La qualitat final es mesura amb SINR: senyal útil dividit per soroll + interferència.
+
+
+
+MIMO technology (multiple input multiple output)

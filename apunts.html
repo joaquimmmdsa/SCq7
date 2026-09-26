@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-24 jue 10:16 -->
+<!-- 2026-09-24 jue 11:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -232,28 +232,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf876e56">1. Propagació i impairments en transmissions sense fil</a>
+<li><a href="#org0e71fa1">1. Propagació i impairments en transmissions sense fil</a>
 <ul>
-<li><a href="#org34ad21b">1.1. 1. Modes de propagació</a>
+<li><a href="#orga1fb457">1.1. 1. Modes de propagació</a>
 <ul>
-<li><a href="#org61997cc">1.1.1. Detalls</a></li>
+<li><a href="#org2e426f6">1.1.1. Detalls</a></li>
 </ul>
 </li>
-<li><a href="#org5b891eb">1.2. 2. Wireless transmission impairments (pèrdues i soroll)</a>
+<li><a href="#org73156d7">1.2. 2. Wireless transmission impairments (pèrdues i soroll)</a>
 <ul>
-<li><a href="#orgefb6aeb">1.2.1. 2.1 Path loss (atenuació)</a></li>
-<li><a href="#org4f02486">1.2.2. 2.2 Soroll (<i>noise</i>)</a></li>
-<li><a href="#org4e11261">1.2.3. 2.3 Efectes d'obstacles</a></li>
-<li><a href="#org6e63ac5">1.2.4. 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</a></li>
+<li><a href="#orgb026063">1.2.1. 2.1 Path loss (atenuació)</a></li>
+<li><a href="#org7947d35">1.2.2. 2.2 Soroll (<i>noise</i>)</a></li>
+<li><a href="#org0d25d90">1.2.3. 2.3 Efectes d'obstacles</a></li>
+<li><a href="#orgac663d7">1.2.4. 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</a></li>
 </ul>
 </li>
-<li><a href="#org609151a">1.3. 3. Càlcul de potència rebuda</a></li>
-<li><a href="#org794c685">1.4. 4. Qui necessita calcular el path loss?</a></li>
-<li><a href="#org6d78460">1.5. 5. Models de càlcul de pèrdues</a>
+<li><a href="#org8bf610b">1.3. 3. Càlcul de potència rebuda</a></li>
+<li><a href="#orgd734e68">1.4. 4. Qui necessita calcular el path loss?</a></li>
+<li><a href="#org797b236">1.5. 5. Models de càlcul de pèrdues</a>
 <ul>
-<li><a href="#org8cd9d26">1.5.1. Analytical way</a></li>
-<li><a href="#org0d22366">1.5.2. Empirical Models</a></li>
-<li><a href="#org2d55f37">1.5.3. Friis free-space equation</a></li>
+<li><a href="#org86b498e">1.5.1. 5.1 Analytical way</a></li>
+<li><a href="#orgc86c7d0">1.5.2. 5.2 Friis free-space equation</a></li>
+<li><a href="#orgeb62a7f">1.5.3. 5.3 Empirical models</a></li>
+</ul>
+</li>
+<li><a href="#org823667f">1.6. 6. Multipath: senyal directe i còpia reflectida</a></li>
+<li><a href="#orgcd92232">1.7. 7. Noise and interference</a>
+<ul>
+<li><a href="#org5cc4921">1.7.1. 7.1 Thermal noise (soroll tèrmic)</a></li>
+<li><a href="#orgd573fc3">1.7.2. 7.2 Interference (interferència)</a></li>
 </ul>
 </li>
 </ul>
@@ -261,12 +268,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf876e56" class="outline-2">
-<h2 id="orgf876e56"><span class="section-number-2">1.</span> Propagació i impairments en transmissions sense fil</h2>
+<div id="outline-container-org0e71fa1" class="outline-2">
+<h2 id="org0e71fa1"><span class="section-number-2">1.</span> Propagació i impairments en transmissions sense fil</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org34ad21b" class="outline-3">
-<h3 id="org34ad21b"><span class="section-number-3">1.1.</span> 1. Modes de propagació</h3>
+<div id="outline-container-orga1fb457" class="outline-3">
+<h3 id="orga1fb457"><span class="section-number-3">1.1.</span> 1. Modes de propagació</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 La propagació depèn de la freqüència utilitzada per transmetre. Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a la ionosfera o necessitar visió directa.
@@ -316,8 +323,8 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </tbody>
 </table>
 </div>
-<div id="outline-container-org61997cc" class="outline-4">
-<h4 id="org61997cc"><span class="section-number-4">1.1.1.</span> Detalls</h4>
+<div id="outline-container-org2e426f6" class="outline-4">
+<h4 id="org2e426f6"><span class="section-number-4">1.1.1.</span> Detalls</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li><b>&lt; 2 MHz</b>: les freqüències més baixes segueixen el contorn de la Terra.</li>
@@ -339,12 +346,12 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </div>
 </div>
 </div>
-<div id="outline-container-org5b891eb" class="outline-3">
-<h3 id="org5b891eb"><span class="section-number-3">1.2.</span> 2. Wireless transmission impairments (pèrdues i soroll)</h3>
+<div id="outline-container-org73156d7" class="outline-3">
+<h3 id="org73156d7"><span class="section-number-3">1.2.</span> 2. Wireless transmission impairments (pèrdues i soroll)</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orgefb6aeb" class="outline-4">
-<h4 id="orgefb6aeb"><span class="section-number-4">1.2.1.</span> 2.1 Path loss (atenuació)</h4>
+<div id="outline-container-orgb026063" class="outline-4">
+<h4 id="orgb026063"><span class="section-number-4">1.2.1.</span> 2.1 Path loss (atenuació)</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Pèrdua de potència del senyal a mesura que es propaga.</li>
@@ -353,8 +360,8 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f02486" class="outline-4">
-<h4 id="org4f02486"><span class="section-number-4">1.2.2.</span> 2.2 Soroll (<i>noise</i>)</h4>
+<div id="outline-container-org7947d35" class="outline-4">
+<h4 id="org7947d35"><span class="section-number-4">1.2.2.</span> 2.2 Soroll (<i>noise</i>)</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li><b>Soroll intrínsec</b> (<i>white noise</i>): originat pel maquinari del transmissor (TX) i del receptor (RX).</li>
@@ -362,8 +369,8 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </ul>
 </div>
 </div>
-<div id="outline-container-org4e11261" class="outline-4">
-<h4 id="org4e11261"><span class="section-number-4">1.2.3.</span> 2.3 Efectes d'obstacles</h4>
+<div id="outline-container-org0d25d90" class="outline-4">
+<h4 id="org0d25d90"><span class="section-number-4">1.2.3.</span> 2.3 Efectes d'obstacles</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>No només importa un obstacle al mig del camí.</li>
@@ -371,8 +378,8 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </ul>
 </div>
 </div>
-<div id="outline-container-org6e63ac5" class="outline-4">
-<h4 id="org6e63ac5"><span class="section-number-4">1.2.4.</span> 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</h4>
+<div id="outline-container-orgac663d7" class="outline-4">
+<h4 id="orgac663d7"><span class="section-number-4">1.2.4.</span> 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li>Si la potència rebuda és massa baixa, el receptor no pot interpretar correctament el missatge o la informació.</li>
@@ -383,8 +390,8 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </div>
 </div>
 </div>
-<div id="outline-container-org609151a" class="outline-3">
-<h3 id="org609151a"><span class="section-number-3">1.3.</span> 3. Càlcul de potència rebuda</h3>
+<div id="outline-container-org8bf610b" class="outline-3">
+<h3 id="org8bf610b"><span class="section-number-3">1.3.</span> 3. Càlcul de potència rebuda</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Fórmula bàsica en dB:
@@ -410,8 +417,8 @@ On:
 <hr />
 </div>
 </div>
-<div id="outline-container-org794c685" class="outline-3">
-<h3 id="org794c685"><span class="section-number-3">1.4.</span> 4. Qui necessita calcular el path loss?</h3>
+<div id="outline-container-orgd734e68" class="outline-3">
+<h3 id="orgd734e68"><span class="section-number-3">1.4.</span> 4. Qui necessita calcular el path loss?</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Els instal·ladors d'antenes o els qui organitzen la instal·lació.</li>
@@ -427,40 +434,157 @@ On:
 <hr />
 </div>
 </div>
-<div id="outline-container-org6d78460" class="outline-3">
-<h3 id="org6d78460"><span class="section-number-3">1.5.</span> 5. Models de càlcul de pèrdues</h3>
+<div id="outline-container-org797b236" class="outline-3">
+<h3 id="org797b236"><span class="section-number-3">1.5.</span> 5. Models de càlcul de pèrdues</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org8cd9d26" class="outline-4">
-<h4 id="org8cd9d26"><span class="section-number-4">1.5.1.</span> Analytical way</h4>
+<div id="outline-container-org86b498e" class="outline-4">
+<h4 id="org86b498e"><span class="section-number-4">1.5.1.</span> 5.1 Analytical way</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>\(P_r = f(P_t, G_{tx}, G_{rx}, d)\): funció que et dona \(P_r\) (model de Friis free space).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0d22366" class="outline-4">
-<h4 id="org0d22366"><span class="section-number-4">1.5.2.</span> Empirical Models</h4>
+<div id="outline-container-orgc86c7d0" class="outline-4">
+<h4 id="orgc86c7d0"><span class="section-number-4">1.5.2.</span> 5.2 Friis free-space equation</h4>
 <div class="outline-text-4" id="text-1-5-2">
-<ul class="org-ul">
-<li>Pots mesurar quina potència es perd en certs punts i fer la mitjana de la pèrdua per veure quines pèrdues hi ha.</li>
-<li>Amb line fitting pots obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.</li>
-<li>Amb aquest mètode saps la mitjana de quina distància arriba el threshold, però no saps on has de posar el threshold en la pitjor de les direccions.</li>
-<li>Pots fer la mitjana i veure la probabilitat que arribi a tots llocs i posar el threshold a una probabilitat alta (variància de la potència mitjana).</li>
-<li>Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.</li>
-
-<li>Variance path loss coefficient.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org2d55f37" class="outline-4">
-<h4 id="org2d55f37"><span class="section-number-4">1.5.3.</span> Friis free-space equation</h4>
-<div class="outline-text-4" id="text-1-5-3">
 <p>
 \[
 P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
 \]
 </p>
+
+<ul class="org-ul">
+<li>Vàlid en espai lliure, sense obstacles ni reflexions.</li>
+<li>El path loss creix amb \(d^2\) i amb \(f^2\) (perquè \(\lambda = c/f\)).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeb62a7f" class="outline-4">
+<h4 id="orgeb62a7f"><span class="section-number-4">1.5.3.</span> 5.3 Empirical models</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li>Es mesura la potència perduda en certs punts i es fa la mitjana per veure quines pèrdues hi ha.</li>
+<li>Amb line fitting es pot obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.</li>
+<li>Amb aquest mètode saps la mitjana de a quina distància s'arriba al threshold, però no saps on has de posar el threshold en la pitjor de les direccions.</li>
+<li>Es pot fer la mitjana i veure la probabilitat que arribi a tot arreu, i posar el threshold a una probabilitat alta (variància de la potència mitjana).</li>
+<li>Així obtens la probabilitat d'estar dins del coverage, és a dir, de poder llegir el senyal que reps.</li>
+<li>S'afegeix el <b>variance path loss coefficient</b> (shadowing log-normal): la potència mitjana varia aleatòriament al voltant del valor predit.</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orge01af68"></a>Okumura model<br />
+<div class="outline-text-5" id="text-1-5-3-1">
+<p>
+Coses que s'han tingut en compte:
+</p>
+
+<ul class="org-ul">
+<li><b>Altura de les antenes</b>: es va considerar com varia el senyal amb l'altura de l'antena base i la mòbil. Okumura va determinar que el guany de l'antena base varia a 20 dB/dècada i el de la mòbil a 10 dB/dècada per altures inferiors a 3 m.</li>
+<li><b>Freqüència de la portadora</b>: el model és sensible a la freqüència utilitzada.</li>
+<li><b>Tipus d'entorn</b>: es van definir correccions per a àrees suburbanes, quasi-obertes, obertes (rurals) i terrenys muntanyosos.</li>
+<li><b>Pèrdues per difracció</b>: causades per muntanyes o obstacles aïllats.</li>
+<li><b>Superfícies d'aigua</b>: com ara mars o llacs.</li>
+<li><b>Pendent de la carretera</b>: la inclinació del terreny per on es propaga el senyal.</li>
+<li><b>Orientació dels carrers</b>: en entorns urbans, la direcció dels carrers respecte a la línia de visió també es va tenir en compte.</li>
+</ul>
+
+<p>
+Fórmula:
+</p>
+
+<p>
+\[
+L(dB) = L_{free\_space} + A_{mu}(f,d) - G(h_{te}) - G(h_{re}) - G_{area}
+\]
+</p>
+
+<p>
+On \(A_{mu}(f,d)\) és l'atenuació mediana urbana, \(G(h_{te})\), \(G(h_{re})\) els guanys per altura efectiva, i \(G_{area}\) la correcció d'entorn.
+</p>
+</div>
+</li>
+<li><a id="org9d417bd"></a>Hata model<br />
+<div class="outline-text-5" id="text-1-5-3-2">
+<p>
+Aquest dona una fórmula, no és un gràfic que has de seguir (és la versió tancada d'Okumura).
+</p>
+
+<p>
+\[
+PL_{urban} = 69.55 + 26.16\log_{10}(f_c) - 13.82\log_{10}(h_{te}) - a(h_{re}) + (44.9 - 6.55\log_{10}(h_{te}))\log_{10}(d)
+\]
+</p>
+
+<p>
+On \(f_c\) és en MHz, \(h_{te}\) i \(h_{re}\) altures en m, \(d\) distància en km, i \(a(h_{re})\) factor de correcció de l'antena mòbil.
+</p>
+
+<hr />
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org823667f" class="outline-3">
+<h3 id="org823667f"><span class="section-number-3">1.6.</span> 6. Multipath: senyal directe i còpia reflectida</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>El transmissor (TX) transmet i el receptor (RX) rep dos senyals:
+<ul class="org-ul">
+<li>el senyal directe (LOS),</li>
+<li>una còpia del senyal que rebota amb el terra o algun obstacle i arriba més tard (overlap de senyals).</li>
+</ul></li>
+<li>La còpia arriba atenuada (al reflectir-se s'absorbeix una part de la potència) i amb un retard / desfasament.</li>
+<li>Aquesta còpia és <b>bona</b> si el senyal és periòdic i arriba en fase (interferència constructiva): se suma al directe.</li>
+<li>Si arriba desfasada és <b>dolenta</b> (interferència destructiva): degrada o fins i tot cancel·la el senyal rebut -&gt; fading.</li>
+<li>Què es pot fer per remediar-ho?
+<ul class="org-ul">
+<li>Antenes directives / bona orientació per reduir reflexions.</li>
+<li>Diversitat espacial (múltiples antenes).</li>
+<li>Equalització al receptor i tècniques com OFDM amb guard interval.</li>
+</ul></li>
+</ul>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-orgcd92232" class="outline-3">
+<h3 id="orgcd92232"><span class="section-number-3">1.7.</span> 7. Noise and interference</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-org5cc4921" class="outline-4">
+<h4 id="org5cc4921"><span class="section-number-4">1.7.1.</span> 7.1 Thermal noise (soroll tèrmic)</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<ul class="org-ul">
+<li>És el soroll blanc intrínsec del maquinari.</li>
+<li>Depèn de la temperatura del receptor i del transmissor (agitació tèrmica dels electrons).</li>
+<li>Potència de soroll:</li>
+</ul>
+
+<p>
+\[
+N = k \cdot T \cdot B
+\]
+</p>
+
+<p>
+On \(k\) és la constant de Boltzmann, \(T\) la temperatura equivalent en Kelvin i \(B\) l'ample de banda en Hz.
+</p>
+<ul class="org-ul">
+<li>A més \(T\) i a més \(B\), més soroll. Per això el receptor defineix el límit d'SNR.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd573fc3" class="outline-4">
+<h4 id="orgd573fc3"><span class="section-number-4">1.7.2.</span> 7.2 Interference (interferència)</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<ul class="org-ul">
+<li><b>Extrínseca</b>: altres transmissions a la mateixa banda (co-channel), canals adjacents, motors, microones, tempestes solars, etc.</li>
+<li>A diferència del soroll tèrmic, la interferència normalment no és blanca ni gaussiana i depèn de l'entorn.</li>
+<li>La qualitat final es mesura amb SINR: senyal útil dividit per soroll + interferència.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -468,7 +592,7 @@ P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Joaquim</p>
-<p class="date">Created: 2026-09-24 jue 10:16</p>
+<p class="date">Created: 2026-09-24 jue 11:31</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
