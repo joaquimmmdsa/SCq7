@@ -1,4 +1,231 @@
-* Propagació i impairments en transmissions sense fil
+#+TITLE: Apunts SC - Sistemes de Comunicació sense fils
+#+LANGUAGE: ca
+#+OPTIONS: toc:t num:t
+#+STARTUP: overview
+
+* 07-09-26 — Com funciona la ràdio al mòbil sense receptor FM?
+** Avaluació de l'assignatura
+| Concepte                  | Percentatge |
+|---------------------------+-------------|
+| Quizzes (cada 2 setmanes) | 30%         |
+| Examen final              | 25%         |
+| Pràctiques de laboratori  | 25%         |
+| Projecte en equip         | 20%         |
+
+** 1. Concepte principal
+L'aplicació *no capta ones de ràdio reals (FM)*, sinó que reprodueix
+l'emissió a través d'Internet (*streaming*) utilitzant la teva connexió
+Wi-Fi o de dades mòbils.
+
+-----
+
+** 2. Rutes de connexió a la xarxa
+*** Opció A: Connexió via Wi-Fi (a casa o oficines)
+- *Tram 1 (Sense fils /Wireless/):* El mòbil es connecta al router
+  Wi-Fi mitjançant radiofreqüència local.
+- *Tram 2 (Cablejat /Wired/):* El router Wi-Fi està connectat per
+  cable (Ethernet / fibra òptica) al router d'accés de l'ISP (proveïdor
+  d'Internet).
+- *Tram 3 (Internet Global):* El senyal viatja per la xarxa global fins
+  arribar al servidor d'/streaming/ de l'emissora.
+
+#+begin_src text
+[ Mòbil ]
+   │
+   │ (Sense fils / Wi-Fi)
+   ▼
+[ Router Wi-Fi ]
+   │
+   │ (Cablejat / Ethernet - Fibra)
+   ▼
+[ Router d'accés / ISP ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+#+end_src
+
+-----
+
+*** Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)
+- *Tram 1 (Sense fils /Wireless/):* El mòbil es connecta a l'antena o
+  estació base (/Base Station/ eNodeB / gNodeB) mitjançant la xarxa
+  cel·lular.
+- *Tram 2 (Cablejat /Wired/):* L'estació base està connectada per una
+  xarxa cablejada (/backhaul/ de fibra òptica) als routers centrals de
+  la companyia telefònica (/Core Network/).
+- *Tram 3 (Internet Global):* La xarxa de l'operadora dóna sortida cap a
+  Internet fins al servidor de l'emissora.
+
+#+begin_src text
+[ Mòbil ]
+   │
+   │ (Sense fils / 4G-5G)
+   ▼
+[ Estació Base (Torre de telefonia) ]
+   │
+   │ (Cablejat / Fibra òptica de retorn)
+   ▼
+[ Routers centrals de l'operadora ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+#+end_src
+
+-----
+
+** 3. Conclusió
+El contingut d'àudio es transmet exclusivament en format de paquets de
+dades digitals (IP) a través d'infraestructura d'Internet cablejada
+durant la major part del trajecte, utilitzant només connexió sense fils
+en el tram final entre el dispositiu (mòbil) i el punt d'accés (router o
+antena).
+
+-----
+
+** 4. Dades curioses
+*** Voyager 1 (1977)
+Primer objecte que ha estat fet per l'esser humà que és fora del sistema
+solar. Encara hi ha comunicació /wireless/ amb aquest objecte.
+
+*** Evolució de la tecnologia sense fils
+| Estandar | Any  | Notes                      |
+|----------+------+----------------------------|
+| 802.11   | 1997 | Primer estàndard de Wi-Fi  |
+| 802.11ax | 2020 | Estàndard actual (Wi-Fi 6) |
+
+*** Increment de la velocitat de dades
+- Més de *5000x* d'increment
+- De *2 Mbps* a *11 Gbps*
+- Com s'ha aconseguit això?
+
+-----
+
+** 5. Temes del curs de xarxes sense fils
+- Fonaments de les xarxes sense fils (/wireless network fundamentals/)
+- Tipus i arquitectures de xarxes sense fils (/wireless network types
+  and architectures/)
+- L'evolució de les xarxes sense fils (/the evolution.../)
+
+** 6. Què és la comunicació sense fils?
+És una *comunicació que no requereix* que el transmissor i el receptor
+*estiguin en contacte físic*, ni comunicar-se a través d'un *medi
+guiat*.
+
+*** Usos
+- Ones electromagnètiques
+- Radiofreqüència (RF)
+- Radar
+- Infraroig (IR)
+- Òptic
+- Ones acústiques
+- Molècules
+
+*** Primeres formes de comunicació sense fils
+- *Primitives:* So (tambors), vista (senyals de fum)
+
+* 14-09-26 — Com viatja un missatge de WhatsApp (capes de xarxa)
+** 1. Escenari
+En Josep envia un missatge per WhatsApp. Seguim el recorregut de les
+dades des que escriu el missatge fins que arriba als servidors de
+WhatsApp i torna.
+
+** 2. Models de referència
+*** 2.1 Model OSI (7 capes)
+1. *Física* -- senyals
+2. *Enllaç de dades* -- trames, MAC
+3. *Xarxa* -- paquets, IP
+4. *Transport* -- segments, TCP/UDP
+5. *Sessió*
+6. *Presentació*
+7. *Aplicació* -- WhatsApp
+
+*** 2.2 Model TCP/IP
+- *Aplicació* (OSI 5-7)
+- *Transport* (OSI 4)
+- *Xarxa* (OSI 3)
+- *Enllaç* (OSI 2)
+- *Física* (OSI 1)
+
+*** 2.3 Correspondència entre models
+| OSI                            | TCP/IP    | PDU     | Exemples            |
+|--------------------------------+-----------+---------+---------------------|
+| Aplicació, Presentació, Sessió | Aplicació | Dades   | WhatsApp, HTTP, DNS |
+| Transport                      | Transport | Segment | TCP, UDP            |
+| Xarxa                          | Xarxa     | Paquet  | IP, ICMP            |
+| Enllaç de dades                | Enllaç    | Trama   | Ethernet, Wi-Fi     |
+| Física                         | Física    | Bits    | Cable, ràdio        |
+
+** 3. Encapsulament i desencapsulament
+- *Encapsulament*: baixant capes, cada capa afegeix la seva capçalera (i
+  de vegades tràiler).
+- *Desencapsulament*: pujant capes, cada capa treu la seva capçalera.
+- Cada capa només entén la seva part i passa la resta a la capa superior
+  o inferior.
+
+** 4. Baixant capes: enviament des del mòbil d'en Josep
+*** 4.1 Capa d'aplicació
+- WhatsApp genera el missatge.
+- Utilitza protocols propis sobre *TCP* i *TLS*.
+- WhatsApp també aplica *xifrat d'extrem a extrem* (E2E), habitualment
+  amb el protocol Signal.
+- PDU: *dades*.
+
+*** 4.2 Capa de transport (TCP)
+- *TCP* segmenta les dades en segments.
+- Afegeix ports d'origen i destí.
+- Gestiona control de flux, control de congestió i retransmissió.
+- ACKs: si un segment no arriba, es retransmet *només aquell segment*,
+  no tot el missatge.
+- PDU: *segment TCP*.
+
+*** 4.3 Capa de xarxa (IP)
+- *IP* decideix la ruta fins al servidor de WhatsApp.
+- Afegeix adreces IP d'origen i destí.
+- Els routers encaminen els paquets salt a salt.
+- PDU: *paquet IP*.
+
+*** 4.4 Capa d'enllaç de dades
+- Subcapa *MAC* (/Medium Access Control/): controla l'accés al medi.
+  - Exemples: *ALOHA*, *CSMA/CD* (Ethernet), *CSMA/CA* (Wi-Fi).
+- Afegeix adreces *MAC* d'origen i destí.
+- Afegeix *CRC* per detectar errors.
+- Wi-Fi: cada trama unicast s'ACKja. Si falla, es retransmet la trama,
+  no tot el fitxer.
+- Wi-Fi també *encripta* les trames a nivell d'enllaç amb WPA2/WPA3.
+- PDU: *trama*.
+
+*** 4.5 Capa física
+- Converteix bits en senyals físics: voltatge, llum, ones de ràdio.
+- Modulació i codificació de línia.
+- **Channel
+- *VLAN*: segmenta xarxes a nivell d'enllaç.
+- *IPv4/IPv6*: versions del protocol IP.
+
+** 13. Glossari bàsic
+| Terme   | Significat                                           |
+|---------+------------------------------------------------------|
+| PDU     | Unitat de dades del protocol                         |
+| MAC     | Adreça física de la targeta de xarxa                 |
+| IP      | Adreça lògica de xarxa                               |
+| ACK     | Confirmació de recepció                              |
+| CRC     | Codi de detecció d'errors                            |
+| CSMA/CA | Accés múltiple amb escolta i evitació de col·lisions |
+| CSMA/CD | Accés múltiple amb escolta i detecció de col·lisions |
+
+TDD (Time Division Duplexing) vs FDD (Frequency Division Duplexing)
+
+Data (information) vs Signal
+
+digital data: you can encrypt, compress the data, error protection,
+lower cost, smaller processors Analog signals: You can use diferent
+frequencies.
+
+Which layer does this: Channel coding, modulation physical layer
+
+* 17-09-26 — How does wireless communication work?
+how does wireless communication work?
+
+* 21-09-26 — Propagació i impairments en transmissions sense fil
 
 
 ** 1. Modes de propagació
@@ -19,9 +246,7 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
   - De nit, els senyals reboten a la ionosfera i permeten transmissions a llarga distància.
 - *> 30 MHz*: propagació per línia de visió (LOS). Cal que no hi hagi obstacles entre transmissor (TX) i receptor (RX). És el mode dominant en tecnologies actuals.
 
-#+begin_quote
 *Nota:* Els límits de 2 MHz i 30 MHz són aproximats i depenen de les condicions atmosfèriques, l'hora, l'estació de l'any i la potència.
-#+end_quote
 
 -----
 
@@ -172,4 +397,419 @@ N = k \cdot T \cdot B
 
 
 
-MIMO technology (multiple input multiple output)
+** 8. MIMO (Multiple Input Multiple Output)
+
+- Tecnologia de múltiples antenes a transmissor i receptor.
+- Pendent d'ampliar: diversitat espacial, multiplexació espacial, /beamforming/.
+
+-----
+
+* 01-10-26 — Modulacions digitals: ASK, FSK, errors i sincronització
+
+** 1. ASK (Amplitude-Shift Keying)
+
+*** 1.1 Definició
+
+- Dues valors binaris representats per dues amplituds diferents de la freqüència portadora.
+- Forma simple: OOK (/On-Off Keying/):
+  - si hi ha senyal → ~1~,
+  - si no hi ha senyal → ~0~.
+- Compromís: pot ser difícil distingir si hi ha senyal o no per culpa del soroll o la interferència.
+
+#+begin_src text
+  ASK: s(t) = A_m * sin(2*pi*fc*t + phase),  m = 0,1
+  OOK: A_0 = 0 (silenci), A_1 = A (to)
+#+end_src
+
+*** 1.2 Què passa amb ASK si posem més nivells?
+
+En ASK, la informació s'envia canviant l'amplitud del senyal. Si només tens dos nivells, pots enviar 1 bit a la vegada: un nivell és 0 i l'altre és 1.
+
+Si vols enviar més bits de cop, has de tenir més nivells. Per exemple:
+
+| Nivells | Bits per símbol |
+|---------+-----------------|
+|       2 |               1 |
+|       4 |               2 |
+|       8 |               3 |
+
+Com més nivells, més bits pots enviar en cada símbol. Això sembla bo, però té un cost.
+
+*** 1.3 El problema: els nivells queden més junts
+
+- Amb pocs nivells, entre un nivell i el següent hi ha molt espai. El soroll pot moure una mica el senyal i encara s'entén bé.
+- Amb molts nivells, els nivells estan més a prop. Qualsevol soroll o interferència pot fer que el receptor confongui un nivell amb el del costat.
+- Conclusió: com més nivells poses, més bits pots enviar, però també és més fàcil que hi hagi errors.
+
+*** 1.4 Què és un llindar?
+
+El receptor no sap exactament quin nivell ha arribat. El que fa és comparar l'amplitud rebuda amb uns límits, que són els /llindars/.
+
+Exemple amb 4 nivells:
+
+#+begin_src text
+  Nivell -3
+  ---------- llindar -2
+  Nivell -1
+  ---------- llindar  0
+  Nivell +1
+  ---------- llindar +2
+  Nivell +3
+#+end_src
+
+- Si el senyal cau entre -2 i 0, el receptor decideix que és el nivell -1.
+- Si el soroll el mou una mica i creua el 0, pot decidir que és +1. Això és un error.
+
+*** 1.5 La idea del codi Gray
+
+Els nivells veïns haurien de tenir etiquetes binàries que es diferenciïn només en 1 bit. Això es fa amb el codi Gray.
+
+Exemple amb 4 nivells, /sense/ Gray:
+
+| Nivell | Bits |
+|--------+------|
+|     -3 | 00   |
+|     -1 | 01   |
+|     +1 | 10   |
+|     +3 | 11   |
+
+- Si reps -1 però el soroll et fa confondre amb +1, passes de 01 a 10. Això són 2 bits errats.
+
+Exemple amb 4 nivells, /amb/ Gray:
+
+| Nivell | Bits |
+|--------+------|
+|     -3 | 00   |
+|     -1 | 01   |
+|     +1 | 11   |
+|     +3 | 10   |
+
+- Ara -1 és 01 i +1 és 11. Si els confons, només falla 1 bit.
+
+Per què això és útil?
+
+- Perquè la majoria d'errors no són d'un nivell molt llunyà, sinó del nivell del costat.
+- Si els veïns només es diferencien en 1 bit, un error de símbol només produeix 1 bit erroni.
+- Això fa que sigui més fàcil detectar-lo o corregir-lo amb codis de protecció.
+- Gray no elimina el soroll ni corregeix errors per si sol. Però redueix els bits errats i ajuda que els sistemes de detecció i correcció funcionin millor.
+
+*** 1.6 Resum ASK
+
+- Més nivells → més bits per símbol.
+- Més nivells → nivells més junts → més errors probables.
+- Els llindars separen nivells.
+- Els nivells veïns haurien de diferir només en 1 bit (codi Gray).
+- Això no evita l'error, però fa que un error de símbol afecti menys bits.
+- Per detectar o corregir errors de veritat, cal afegir redundància.
+
+-----
+
+** 2. BFSK i MFSK (Frequency-Shift Keying)
+
+*** 2.1 Definició BFSK
+
+- Bit 1: \(s_1(t) = A \sin(2\pi (f_c + \Delta) t + \phi)\)
+- Bit 0: \(s_0(t) = A \sin(2\pi (f_c - \Delta) t + \phi)\)
+- Ample de banda mínim: \(BW_{min} = 2 \Delta\).
+- Errors típics: soroll, interferència, errors de freqüència.
+
+*** 2.2 Ample de banda i més nivells
+
+- Si tens més amplada de banda, pots posar més tons (més nivells) i transmetre més bits. Això és MFSK.
+- Una altra opció és fer \(\Delta\) més petit per encabir més tons dins la mateixa banda i així suportar més nivells → més bits.
+- Compromís: \(\Delta\) petit = tons junts = més sensible a errors.
+
+*** 2.3 Què és un error de freqüència?
+
+Un error de freqüència (/frequency error/) és quan la freqüència que arriba al receptor no és exactament la que el receptor espera. No és soroll aleatori, sinó un desplaçament o deriva de la freqüència.
+
+En BFSK, la informació va en la freqüència:
+
+- bit 1 → \(A \sin(2\pi (f_c + \Delta) t + \phi)\)
+- bit 0 → \(A \sin(2\pi (f_c - \Delta) t + \phi)\)
+
+El receptor mira si l'energia està a \(f_c + \Delta\) o a \(f_c - \Delta\). Si les freqüències es desplacen, el receptor pot equivocar-se.
+
+Causes típiques d'error de freqüència:
+
+- Oscil·ladors imperfectes: el transmissor i el receptor no generen exactament la mateixa freqüència.
+- Efecte Doppler: si el transmissor o el receptor es mouen, la freqüència rebuda canvia.
+- Deriva tèrmica o envelliment: els components electrònics varien amb la temperatura o el temps.
+- Interferències: altres senyals poden emmascarar o arrossegar la freqüència.
+- Sincronització deficient: el receptor no ajusta bé la seva freqüència central.
+
+*** 2.4 Efecte en BFSK
+
+Suposem que hi ha un error de freqüència \(\varepsilon\). Els tons arriben com:
+
+- bit 1: \(f_c + \Delta + \varepsilon\)
+- bit 0: \(f_c - \Delta + \varepsilon\)
+
+El receptor decideix comparant amb \(f_c\):
+
+- Si \(\varepsilon\) és petit respecte a \(\Delta\), encara distingeix bé.
+- Però si \(\varepsilon\) s'apropa a \(\Delta\), el to de bit 0 pot semblar-se al de bit 1, o al revés. Llavors hi ha error.
+- Per tant, com més petit és \(\Delta\), més fàcil és que un error de freqüència faci confondre els bits.
+
+*** 2.5 Relació amb MFSK i més nivells
+
+- Si tens més amplada de banda, pots posar més tons (més nivells) i enviar més bits per símbol. Això és MFSK.
+- També pots fer \(\Delta\) més petit per encabir més tons dins la mateixa banda. Però si \(\Delta\) és molt petit:
+  - els tons queden molt junts,
+  - un error de freqüència petit ja pot fer saltar al to veí,
+  - augmenta la probabilitat d'error de símbol i, per tant, de bit.
+- Compromís:
+  - Més bits per símbol → més eficiència, però més sensible a soroll, interferència i errors de freqüència.
+  - \(\Delta\) més gran → més robust, però necessita més amplada de banda.
+
+Resum:
+
+- Un error de freqüència és un desplaçament de la freqüència rebuda respecte a l'esperada.
+- En BFSK/MFSK afecta directament la detecció dels tons.
+- Com més petits són els espaiats \(\Delta\) entre tons, més fàcil és que aquests errors facin confondre símbols veïns.
+- Si redueixes \(\Delta\) per posar més nivells, guanyes bits per símbol però perds robustesa davant d'errors de freqüència.
+
+-----
+
+** 3. Sincronització deficient
+
+*** 3.1 Sincronització de freqüència deficient
+
+El receptor genera internament una freqüència de referència, normalment \(f_c\). En BFSK espera trobar:
+
+- bit 1 a \(f_c + \Delta\)
+- bit 0 a \(f_c - \Delta\)
+
+Si l'oscil·lador del receptor no és exactament igual que el del transmissor, apareix un /offset/ de freqüència \(\delta f\). Llavors els tons arriben a:
+
+- \(f_c + \Delta + \delta f\)
+- \(f_c - \Delta + \delta f\)
+
+Els filtres o correladors del receptor estan sintonitzats a \(f_c + \Delta\) i \(f_c - \Delta\), però el senyal real ha caigut una mica desviat. Això fa que:
+
+- es perdi amplitud en el filtre correcte,
+- part de l'energia pugui anar a parar al filtre equivocat,
+- si \(\delta f\) és prou gran, es confongui el to d'un bit amb el de l'altre.
+
+En MFSK, com més tons tens i més petits són els espaiats \(\Delta\), més crític és això. Un error de sincronització petit pot fer que el receptor decideixi el to veí.
+
+*** 3.2 Sincronització de fase deficient
+
+- Passa sobretot en detecció coherent.
+- El receptor no només ha de saber la freqüència, sinó també la fase de la portadora.
+- Si la fase no coincideix, la correlació amb \(\sin\) i \(\cos\) no dóna el màxim, i fins i tot es pot cancel·lar part del senyal.
+- En BFSK no coherent, normalment no cal sincronitzar la fase, perquè es mira l'energia en cada to.
+- Però en sistemes coherents, una fase deficient és una font directa d'errors.
+
+*** 3.3 Sincronització temporal deficient
+
+Aquí el problema és el rellotge de símbol. El receptor ha de saber exactament quan comença i quan acaba cada símbol per integrar o mostrejar dins del període correcte.
+
+Si el receptor va desplaçat:
+
+- agafa una part del símbol anterior,
+- o una part del símbol següent,
+- o barreja tots dos.
+
+Això s'anomena interferència inter-símbol (ISI). Encara que la freqüència sigui perfecta, el receptor decideix malament perquè està mirant el senyal en el moment equivocat.
+
+*** 3.4 Per què passa? Causes típiques
+
+- Oscil·ladors barats o imprecisos.
+- Efecte Doppler per moviment.
+- Canvis de temperatura o envelliment dels components.
+- Retards variables al canal.
+- Poca qualitat del senyal (SNR baix).
+- Preàmbuls o seqüències de sincronització curts o dolents.
+- Algorismes de sincronització lents o mal ajustats.
+
+*** 3.5 Relació amb els /frequency errors/
+
+- Un error de freqüència és el símptoma: la freqüència rebuda no és l'esperada.
+- La sincronització deficient és una de les causes: el receptor no ha ajustat bé la seva referència de freqüència, fase o temps.
+- En FSK/MFSK, com més nivells posis i més petit facis \(\Delta\), més fàcil és que una sincronització deficient provoqui errors, perquè els tons queden més junts i qualsevol desviació els confon.
+
+*** 3.6 Resum sincronització
+
+- Sincronització deficient = el receptor no està ben alineat amb el transmissor en freqüència, fase o temps.
+- Freqüència deficient → /offset/ de freqüència, tons desviats, confusió entre nivells veïns.
+- Fase deficient → pitjor detecció coherent.
+- Temps deficient → mostreig fora del símbol, ISI i errors.
+- Com més tons i més petits els espaiats, més important és sincronitzar bé. Si no, el receptor pot confondre símbols encara que el soroll no sigui gran.
+
+-----
+
+* Modulacions PSK i constel·lacions — Apunts detallats
+
+** 1. Senyal sinusoïdal i representació polar
+
+Un senyal modulat es pot escriure com:
+
+\[
+s(t) = A \sin(2\pi f_c t + \phi)
+\]
+
+On:
+
+- \(A\) = amplitud.
+- \(f_c\) = freqüència de la portadora.
+- \(\phi\) = fase.
+
+Aquesta mateixa senyal es pot representar en forma *I/Q* (/in-phase/ / quadrature/):
+
+\[
+s(t) = I \cos(2\pi f_c t) - Q \sin(2\pi f_c t)
+\]
+
+Si prenem com a referència \(\cos(2\pi f_c t)\), aleshores:
+
+\[
+I = A \cos\phi
+\]
+
+\[
+Q = A \sin\phi
+\]
+
+Per tant, cada símbol es pot representar com un punt \((I, Q)\) en un pla. Aquest és el *diagrama de constel·lació* o *representació polar*.
+
+- La *distància a l'origen* és l'amplitud:
+  \[
+  A = \sqrt{I^2 + Q^2}
+  \]
+- L'*angle* respecte l'eix horitzontal és la fase:
+  \[
+  \phi = \arctan\left(\frac{Q}{I}\right)
+  \]
+
+Així, canviar l'amplitud mou el punt cap a l'origen o cap enfora. Canviar la fase el fa girar al voltant de l'origen.
+
+-----
+
+** 2. ASK (Amplitude Shift Keying)
+
+En ASK, la informació va en l'*amplitud*. La fase es manté constant.
+
+- Bit 0: amplitud \(0\) (o un nivell baix).
+- Bit 1: amplitud \(A_0\) (o un nivell alt).
+
+Si la fase és constant, tots els símbols tenen el mateix angle \(\phi\). Per tant, en el diagrama I/Q, els punts *estan sobre una recta* que passa per l'origen.
+
+- Si \(\phi = 0\), els punts estan sobre l'eix horitzontal (positiu).
+- Si \(\phi = \pi\), els punts estan sobre l'eix horitzontal negatiu.
+- Si \(\phi\) és un altre angle, la recta està girada aquell angle.
+
+En ASK multinivell (M-ASK), hi ha \(M\) punts sobre la mateixa recta, un per cada nivell d'amplitud.
+
+-----
+
+** 3. BPSK (Binary Phase Shift Keying)
+
+En BPSK, la informació va en la *fase*. L'amplitud es manté constant.
+
+- Bit 0: \(A \sin(2\pi f_c t)\)
+- Bit 1: \(A \sin(2\pi f_c t + \pi) = -A \sin(2\pi f_c t)\)
+
+És a dir, el bit 1 és el mateix senyal que el bit 0 però *invertit* (180° de desfasament).
+
+*** 3.1 Constel·lació BPSK
+
+Com que l'amplitud \(A\) no canvia, tots els punts tenen la mateixa distància a l'origen. Per tant, estan sobre una *circumferència* de radi \(A\).
+
+Si prenem la fase 0 com a referència:
+
+- Bit 0 → \((+A, 0)\)
+- Bit 1 → \((-A, 0)\)
+
+Són dos punts oposats, separats 180°.
+
+*** 3.2 Detecció
+
+El receptor mira si el senyal està a la dreta o a l'esquerra de l'origen. El llindar és el zero. Si el soroll fa creuar el zero, es produeix un error.
+
+-----
+
+** 4. QPSK (Quadrature Phase Shift Keying)
+
+QPSK és una PSK de 4 nivells. Cada símbol transporta *2 bits*.
+
+Les fases proposades són:
+
+| Fase          | Bits |
+|---------------+------|
+| \(+\pi/4\)  | 11   |
+| \(+3\pi/4\) | 01   |
+| \(-3\pi/4\) | 00   |
+| \(-\pi/4\)  | 10   |
+
+Aquesta assignació és *codi Gray*: símbols adjacents difereixen només en 1 bit.
+
+*** 4.1 Constel·lació QPSK
+
+L'amplitud és constant, així que els 4 punts estan sobre una circumferència de radi \(A\). Els angles són:
+
+- \(45^\circ\) (\(+\pi/4\)) → 11
+- \(135^\circ\) (\(+3\pi/4\)) → 01
+- \(225^\circ\) (\(-3\pi/4\)) → 00
+- \(315^\circ\) (\(-\pi/4\)) → 10
+
+Coordenades I/Q (amb \(A=1\)):
+
+| Fase          | I                        | Q                        | Bits |
+|---------------+--------------------------+--------------------------+------|
+| \(+\pi/4\)  | \(+\frac{1}{\sqrt{2}}\) | \(+\frac{1}{\sqrt{2}}\) | 11   |
+| \(+3\pi/4\) | \(-\frac{1}{\sqrt{2}}\) | \(+\frac{1}{\sqrt{2}}\) | 01   |
+| \(-3\pi/4\) | \(-\frac{1}{\sqrt{2}}\) | \(-\frac{1}{\sqrt{2}}\) | 00   |
+| \(-\pi/4\)  | \(+\frac{1}{\sqrt{2}}\) | \(-\frac{1}{\sqrt{2}}\) | 10   |
+
+Els punts formen un quadrat girat 45° respecte els eixos. Les regions de decisió són els quadrants separats pels eixos \(I=0\) i \(Q=0\).
+
+*** 4.2 Per què Gray?
+
+Si el soroll fa que el receptor confongui un símbol amb el veí, com que els veïns només difereixen en 1 bit, només es produeix *1 bit erroni* en lloc de 2. Això redueix la BER (/Bit Error Rate/).
+
+*** 4.3 Eficiència espectral
+
+- BPSK: 1 bit/símbol.
+- QPSK: 2 bits/símbol.
+
+Per la mateixa taxa de bits, QPSK necessita *la meitat d'amplada de banda* que BPSK. O, per la mateixa amplada de banda, QPSK pot enviar *el doble de bits*.
+
+-----
+
+** 5. Resum visual de constel·lacions
+
+| Modulació | Punts a la constel·lació       | Forma   |
+|-----------+--------------------------------+---------|
+| ASK       | \(M\) punts sobre una recta    | Línia   |
+| BPSK      | 2 punts oposats                | Cercle  |
+| QPSK      | 4 punts separats 90°           | Cercle  |
+| MPSK      | \(M\) punts separats \(2\pi/M\) | Cercle  |
+
+Com més punts, més bits per símbol, però més a prop estan entre ells i més fàcil és que el soroll, la interferència o una sincronització deficient causin errors.
+
+-----
+
+** 6. Errors i sincronització en PSK
+
+Els errors en PSK poden venir de:
+
+- *Soroll*: mou els punts de la constel·lació.
+- *Interferència*: distorsiona amplitud o fase.
+- *Errors de freqüència*: la portadora rebuda no coincideix amb l'esperada.
+- *Sincronització deficient*:
+  - *Freqüència*: /offset/ de la portadora.
+  - *Fase*: en detecció coherent, la fase no està alineada.
+  - *Temps*: el receptor mostreja fora del símbol, provocant ISI.
+
+Com més nivells té la modulació (QPSK, 8-PSK, etc.), més crítica és la sincronització i més petit ha de ser el soroll per no equivocar-se.
+
+-----
+
+** 7. Conclusió
+
+- *ASK*: modula amplitud → punts en línia.
+- *BPSK*: modula fase amb 2 estats → 2 punts en cercle.
+- *QPSK*: modula fase amb 4 estats → 4 punts en cercle, 2 bits/símbol, codi Gray.
+- La representació polar (I/Q) és una eina molt útil per visualitzar i entendre aquestes modulacions.
+- El codi Gray és clau per minimitzar els bits errats quan hi ha soroll o interferències.

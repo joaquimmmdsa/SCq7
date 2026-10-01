@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca">
 <head>
-<!-- 2026-09-24 jue 11:31 -->
+<!-- 2026-10-01 jue 11:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Apunts SC - Sistemes de Comunicació sense fils</title>
 <meta name="author" content="Joaquim" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -228,53 +228,680 @@
 </head>
 <body>
 <div id="content" class="content">
+<h1 class="title">Apunts SC - Sistemes de Comunicació sense fils</h1>
 <div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
+<h2>&Iacute;ndex</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0e71fa1">1. Propagació i impairments en transmissions sense fil</a>
+<li><a href="#org6141ee7">1. 07-09-26 — Com funciona la ràdio al mòbil sense receptor FM?</a>
 <ul>
-<li><a href="#orga1fb457">1.1. 1. Modes de propagació</a>
+<li><a href="#orgaa1a032">1.1. Avaluació de l'assignatura</a></li>
+<li><a href="#org6d94a98">1.2. 1. Concepte principal</a></li>
+<li><a href="#org8290ad1">1.3. 2. Rutes de connexió a la xarxa</a>
 <ul>
-<li><a href="#org2e426f6">1.1.1. Detalls</a></li>
+<li><a href="#orgb5c33c2">1.3.1. Opció A: Connexió via Wi-Fi (a casa o oficines)</a></li>
+<li><a href="#org9388a6a">1.3.2. Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</a></li>
 </ul>
 </li>
-<li><a href="#org73156d7">1.2. 2. Wireless transmission impairments (pèrdues i soroll)</a>
+<li><a href="#orgb8beb58">1.4. 3. Conclusió</a></li>
+<li><a href="#orgb264a92">1.5. 4. Dades curioses</a>
 <ul>
-<li><a href="#orgb026063">1.2.1. 2.1 Path loss (atenuació)</a></li>
-<li><a href="#org7947d35">1.2.2. 2.2 Soroll (<i>noise</i>)</a></li>
-<li><a href="#org0d25d90">1.2.3. 2.3 Efectes d'obstacles</a></li>
-<li><a href="#orgac663d7">1.2.4. 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</a></li>
+<li><a href="#orgf7b923e">1.5.1. Voyager 1 (1977)</a></li>
+<li><a href="#org1044709">1.5.2. Evolució de la tecnologia sense fils</a></li>
+<li><a href="#orgc54ee4f">1.5.3. Increment de la velocitat de dades</a></li>
 </ul>
 </li>
-<li><a href="#org8bf610b">1.3. 3. Càlcul de potència rebuda</a></li>
-<li><a href="#orgd734e68">1.4. 4. Qui necessita calcular el path loss?</a></li>
-<li><a href="#org797b236">1.5. 5. Models de càlcul de pèrdues</a>
+<li><a href="#orgf34a66a">1.6. 5. Temes del curs de xarxes sense fils</a></li>
+<li><a href="#orgc9633e1">1.7. 6. Què és la comunicació sense fils?</a>
 <ul>
-<li><a href="#org86b498e">1.5.1. 5.1 Analytical way</a></li>
-<li><a href="#orgc86c7d0">1.5.2. 5.2 Friis free-space equation</a></li>
-<li><a href="#orgeb62a7f">1.5.3. 5.3 Empirical models</a></li>
+<li><a href="#org8cc48ad">1.7.1. Usos</a></li>
+<li><a href="#org9edaf22">1.7.2. Primeres formes de comunicació sense fils</a></li>
 </ul>
 </li>
-<li><a href="#org823667f">1.6. 6. Multipath: senyal directe i còpia reflectida</a></li>
-<li><a href="#orgcd92232">1.7. 7. Noise and interference</a>
-<ul>
-<li><a href="#org5cc4921">1.7.1. 7.1 Thermal noise (soroll tèrmic)</a></li>
-<li><a href="#orgd573fc3">1.7.2. 7.2 Interference (interferència)</a></li>
 </ul>
 </li>
+<li><a href="#org18460f0">2. 14-09-26 — Com viatja un missatge de WhatsApp (capes de xarxa)</a>
+<ul>
+<li><a href="#orgd9ff895">2.1. 1. Escenari</a></li>
+<li><a href="#org5fda0ce">2.2. 2. Models de referència</a>
+<ul>
+<li><a href="#org778329d">2.2.1. 2.1 Model OSI (7 capes)</a></li>
+<li><a href="#orga954f8f">2.2.2. 2.2 Model TCP/IP</a></li>
+<li><a href="#orgb64167b">2.2.3. 2.3 Correspondència entre models</a></li>
+</ul>
+</li>
+<li><a href="#org7c9cf0b">2.3. 3. Encapsulament i desencapsulament</a></li>
+<li><a href="#org23c5e5a">2.4. 4. Baixant capes: enviament des del mòbil d'en Josep</a>
+<ul>
+<li><a href="#org9fd968f">2.4.1. 4.1 Capa d'aplicació</a></li>
+<li><a href="#orgc12a26d">2.4.2. 4.2 Capa de transport (TCP)</a></li>
+<li><a href="#orgd432f1d">2.4.3. 4.3 Capa de xarxa (IP)</a></li>
+<li><a href="#org41f313f">2.4.4. 4.4 Capa d'enllaç de dades</a></li>
+<li><a href="#orgca207f7">2.4.5. 4.5 Capa física</a></li>
+</ul>
+</li>
+<li><a href="#orgc1fe007">2.5. 13. Glossari bàsic</a></li>
+</ul>
+</li>
+<li><a href="#orgb5e94cb">3. 17-09-26 — How does wireless communication work?</a></li>
+<li><a href="#orgdfa63a6">4. 21-09-26 — Propagació i impairments en transmissions sense fil</a>
+<ul>
+<li><a href="#org1e01045">4.1. 1. Modes de propagació</a>
+<ul>
+<li><a href="#org9183b0a">4.1.1. Detalls</a></li>
+</ul>
+</li>
+<li><a href="#org3838e30">4.2. 2. Wireless transmission impairments (pèrdues i soroll)</a>
+<ul>
+<li><a href="#org5193602">4.2.1. 2.1 Path loss (atenuació)</a></li>
+<li><a href="#orgcb4a2ac">4.2.2. 2.2 Soroll (<i>noise</i>)</a></li>
+<li><a href="#org982050c">4.2.3. 2.3 Efectes d'obstacles</a></li>
+<li><a href="#orgbce0cde">4.2.4. 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</a></li>
+</ul>
+</li>
+<li><a href="#org5eb1bf4">4.3. 3. Càlcul de potència rebuda</a></li>
+<li><a href="#org4dad449">4.4. 4. Qui necessita calcular el path loss?</a></li>
+<li><a href="#orge2a2709">4.5. 5. Models de càlcul de pèrdues</a>
+<ul>
+<li><a href="#orgf9f91c1">4.5.1. 5.1 Analytical way</a></li>
+<li><a href="#orgc4b7493">4.5.2. 5.2 Friis free-space equation</a></li>
+<li><a href="#orgbbb77cb">4.5.3. 5.3 Empirical models</a></li>
+</ul>
+</li>
+<li><a href="#orgfab8447">4.6. 6. Multipath: senyal directe i còpia reflectida</a></li>
+<li><a href="#org626e0ec">4.7. 7. Noise and interference</a>
+<ul>
+<li><a href="#org4dd3d24">4.7.1. 7.1 Thermal noise (soroll tèrmic)</a></li>
+<li><a href="#orga924db1">4.7.2. 7.2 Interference (interferència)</a></li>
+</ul>
+</li>
+<li><a href="#org0f3119c">4.8. 8. MIMO (Multiple Input Multiple Output)</a></li>
+</ul>
+</li>
+<li><a href="#org2ffab1e">5. 01-10-26 — Modulacions digitals: ASK, FSK, errors i sincronització</a>
+<ul>
+<li><a href="#org8eb4ce3">5.1. 1. ASK (Amplitude-Shift Keying)</a>
+<ul>
+<li><a href="#org1d05953">5.1.1. 1.1 Definició</a></li>
+<li><a href="#org21f948d">5.1.2. 1.2 Què passa amb ASK si posem més nivells?</a></li>
+<li><a href="#org8c68be7">5.1.3. 1.3 El problema: els nivells queden més junts</a></li>
+<li><a href="#org74f521d">5.1.4. 1.4 Què és un llindar?</a></li>
+<li><a href="#org9b466e3">5.1.5. 1.5 La idea del codi Gray</a></li>
+<li><a href="#orgc869c88">5.1.6. 1.6 Resum ASK</a></li>
+</ul>
+</li>
+<li><a href="#orgd6e85f9">5.2. 2. BFSK i MFSK (Frequency-Shift Keying)</a>
+<ul>
+<li><a href="#orga7bae8a">5.2.1. 2.1 Definició BFSK</a></li>
+<li><a href="#orgcea50b9">5.2.2. 2.2 Ample de banda i més nivells</a></li>
+<li><a href="#org1cc83b2">5.2.3. 2.3 Què és un error de freqüència?</a></li>
+<li><a href="#org754fe8c">5.2.4. 2.4 Efecte en BFSK</a></li>
+<li><a href="#orga78c8cf">5.2.5. 2.5 Relació amb MFSK i més nivells</a></li>
+</ul>
+</li>
+<li><a href="#orgfa1f91d">5.3. 3. Sincronització deficient</a>
+<ul>
+<li><a href="#org9443b09">5.3.1. 3.1 Sincronització de freqüència deficient</a></li>
+<li><a href="#org41c0ea9">5.3.2. 3.2 Sincronització de fase deficient</a></li>
+<li><a href="#org3bae5db">5.3.3. 3.3 Sincronització temporal deficient</a></li>
+<li><a href="#org5b3488d">5.3.4. 3.4 Per què passa? Causes típiques</a></li>
+<li><a href="#orgb8cdffd">5.3.5. 3.5 Relació amb els <i>frequency errors</i></a></li>
+<li><a href="#org901f82f">5.3.6. 3.6 Resum sincronització</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge552d28">6. Modulacions PSK i constel·lacions — Apunts detallats</a>
+<ul>
+<li><a href="#orgc152588">6.1. 1. Senyal sinusoïdal i representació polar</a></li>
+<li><a href="#org60ace44">6.2. 2. ASK (Amplitude Shift Keying)</a></li>
+<li><a href="#org562e937">6.3. 3. BPSK (Binary Phase Shift Keying)</a>
+<ul>
+<li><a href="#orgb44cab0">6.3.1. 3.1 Constel·lació BPSK</a></li>
+<li><a href="#org2260e85">6.3.2. 3.2 Detecció</a></li>
+</ul>
+</li>
+<li><a href="#org0fcc43b">6.4. 4. QPSK (Quadrature Phase Shift Keying)</a>
+<ul>
+<li><a href="#org91b44d8">6.4.1. 4.1 Constel·lació QPSK</a></li>
+<li><a href="#org6e8227d">6.4.2. 4.2 Per què Gray?</a></li>
+<li><a href="#org6559adb">6.4.3. 4.3 Eficiència espectral</a></li>
+</ul>
+</li>
+<li><a href="#org79a3555">6.5. 5. Resum visual de constel·lacions</a></li>
+<li><a href="#orga775c2b">6.6. 6. Errors i sincronització en PSK</a></li>
+<li><a href="#org5c63a6a">6.7. 7. Conclusió</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0e71fa1" class="outline-2">
-<h2 id="org0e71fa1"><span class="section-number-2">1.</span> Propagació i impairments en transmissions sense fil</h2>
+<div id="outline-container-org6141ee7" class="outline-2">
+<h2 id="org6141ee7"><span class="section-number-2">1.</span> 07-09-26 — Com funciona la ràdio al mòbil sense receptor FM?</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga1fb457" class="outline-3">
-<h3 id="orga1fb457"><span class="section-number-3">1.1.</span> 1. Modes de propagació</h3>
+<div id="outline-container-orgaa1a032" class="outline-3">
+<h3 id="orgaa1a032"><span class="section-number-3">1.1.</span> Avaluació de l'assignatura</h3>
 <div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Concepte</th>
+<th scope="col" class="org-right">Percentatge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Quizzes (cada 2 setmanes)</td>
+<td class="org-right">30%</td>
+</tr>
+
+<tr>
+<td class="org-left">Examen final</td>
+<td class="org-right">25%</td>
+</tr>
+
+<tr>
+<td class="org-left">Pràctiques de laboratori</td>
+<td class="org-right">25%</td>
+</tr>
+
+<tr>
+<td class="org-left">Projecte en equip</td>
+<td class="org-right">20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6d94a98" class="outline-3">
+<h3 id="org6d94a98"><span class="section-number-3">1.2.</span> 1. Concepte principal</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+L'aplicació <b>no capta ones de ràdio reals (FM)</b>, sinó que reprodueix
+l'emissió a través d'Internet (<b>streaming</b>) utilitzant la teva connexió
+Wi-Fi o de dades mòbils.
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org8290ad1" class="outline-3">
+<h3 id="org8290ad1"><span class="section-number-3">1.3.</span> 2. Rutes de connexió a la xarxa</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgb5c33c2" class="outline-4">
+<h4 id="orgb5c33c2"><span class="section-number-4">1.3.1.</span> Opció A: Connexió via Wi-Fi (a casa o oficines)</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li><b>Tram 1 (Sense fils <i>Wireless</i>):</b> El mòbil es connecta al router
+Wi-Fi mitjançant radiofreqüència local.</li>
+<li><b>Tram 2 (Cablejat <i>Wired</i>):</b> El router Wi-Fi està connectat per
+cable (Ethernet / fibra òptica) al router d'accés de l'ISP (proveïdor
+d'Internet).</li>
+<li><b>Tram 3 (Internet Global):</b> El senyal viatja per la xarxa global fins
+arribar al servidor d'<i>streaming</i> de l'emissora.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-text">[ Mòbil ]
+   │
+   │ (Sense fils / Wi-Fi)
+   ▼
+[ Router Wi-Fi ]
+   │
+   │ (Cablejat / Ethernet - Fibra)
+   ▼
+[ Router d'accés / ISP ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org9388a6a" class="outline-4">
+<h4 id="org9388a6a"><span class="section-number-4">1.3.2.</span> Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ul class="org-ul">
+<li><b>Tram 1 (Sense fils <i>Wireless</i>):</b> El mòbil es connecta a l'antena o
+estació base (<i>Base Station</i> eNodeB / gNodeB) mitjançant la xarxa
+cel·lular.</li>
+<li><b>Tram 2 (Cablejat <i>Wired</i>):</b> L'estació base està connectada per una
+xarxa cablejada (<i>backhaul</i> de fibra òptica) als routers centrals de
+la companyia telefònica (<i>Core Network</i>).</li>
+<li><b>Tram 3 (Internet Global):</b> La xarxa de l'operadora dóna sortida cap a
+Internet fins al servidor de l'emissora.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-text">[ Mòbil ]
+   │
+   │ (Sense fils / 4G-5G)
+   ▼
+[ Estació Base (Torre de telefonia) ]
+   │
+   │ (Cablejat / Fibra òptica de retorn)
+   ▼
+[ Routers centrals de l'operadora ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgb8beb58" class="outline-3">
+<h3 id="orgb8beb58"><span class="section-number-3">1.4.</span> 3. Conclusió</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+El contingut d'àudio es transmet exclusivament en format de paquets de
+dades digitals (IP) a través d'infraestructura d'Internet cablejada
+durant la major part del trajecte, utilitzant només connexió sense fils
+en el tram final entre el dispositiu (mòbil) i el punt d'accés (router o
+antena).
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-orgb264a92" class="outline-3">
+<h3 id="orgb264a92"><span class="section-number-3">1.5.</span> 4. Dades curioses</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orgf7b923e" class="outline-4">
+<h4 id="orgf7b923e"><span class="section-number-4">1.5.1.</span> Voyager 1 (1977)</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+Primer objecte que ha estat fet per l'esser humà que és fora del sistema
+solar. Encara hi ha comunicació <i>wireless</i> amb aquest objecte.
+</p>
+</div>
+</div>
+<div id="outline-container-org1044709" class="outline-4">
+<h4 id="org1044709"><span class="section-number-4">1.5.2.</span> Evolució de la tecnologia sense fils</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Estandar</th>
+<th scope="col" class="org-right">Any</th>
+<th scope="col" class="org-left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">802.11</td>
+<td class="org-right">1997</td>
+<td class="org-left">Primer estàndard de Wi-Fi</td>
+</tr>
+
+<tr>
+<td class="org-left">802.11ax</td>
+<td class="org-right">2020</td>
+<td class="org-left">Estàndard actual (Wi-Fi 6)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgc54ee4f" class="outline-4">
+<h4 id="orgc54ee4f"><span class="section-number-4">1.5.3.</span> Increment de la velocitat de dades</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li>Més de <b>5000x</b> d'increment</li>
+<li>De <b>2 Mbps</b> a <b>11 Gbps</b></li>
+<li>Com s'ha aconseguit això?</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgf34a66a" class="outline-3">
+<h3 id="orgf34a66a"><span class="section-number-3">1.6.</span> 5. Temes del curs de xarxes sense fils</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Fonaments de les xarxes sense fils (<i>wireless network fundamentals</i>)</li>
+<li>Tipus i arquitectures de xarxes sense fils (<i>wireless network types
+and architectures</i>)</li>
+<li>L'evolució de les xarxes sense fils (<i>the evolution&#x2026;</i>)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc9633e1" class="outline-3">
+<h3 id="orgc9633e1"><span class="section-number-3">1.7.</span> 6. Què és la comunicació sense fils?</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+És una <b>comunicació que no requereix</b> que el transmissor i el receptor
+<b>estiguin en contacte físic</b>, ni comunicar-se a través d'un <b>medi
+guiat</b>.
+</p>
+</div>
+<div id="outline-container-org8cc48ad" class="outline-4">
+<h4 id="org8cc48ad"><span class="section-number-4">1.7.1.</span> Usos</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<ul class="org-ul">
+<li>Ones electromagnètiques</li>
+<li>Radiofreqüència (RF)</li>
+<li>Radar</li>
+<li>Infraroig (IR)</li>
+<li>Òptic</li>
+<li>Ones acústiques</li>
+<li>Molècules</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9edaf22" class="outline-4">
+<h4 id="org9edaf22"><span class="section-number-4">1.7.2.</span> Primeres formes de comunicació sense fils</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<ul class="org-ul">
+<li><b>Primitives:</b> So (tambors), vista (senyals de fum)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org18460f0" class="outline-2">
+<h2 id="org18460f0"><span class="section-number-2">2.</span> 14-09-26 — Com viatja un missatge de WhatsApp (capes de xarxa)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd9ff895" class="outline-3">
+<h3 id="orgd9ff895"><span class="section-number-3">2.1.</span> 1. Escenari</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+En Josep envia un missatge per WhatsApp. Seguim el recorregut de les
+dades des que escriu el missatge fins que arriba als servidors de
+WhatsApp i torna.
+</p>
+</div>
+</div>
+<div id="outline-container-org5fda0ce" class="outline-3">
+<h3 id="org5fda0ce"><span class="section-number-3">2.2.</span> 2. Models de referència</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org778329d" class="outline-4">
+<h4 id="org778329d"><span class="section-number-4">2.2.1.</span> 2.1 Model OSI (7 capes)</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ol class="org-ol">
+<li><b>Física</b> &#x2013; senyals</li>
+<li><b>Enllaç de dades</b> &#x2013; trames, MAC</li>
+<li><b>Xarxa</b> &#x2013; paquets, IP</li>
+<li><b>Transport</b> &#x2013; segments, TCP/UDP</li>
+<li><b>Sessió</b></li>
+<li><b>Presentació</b></li>
+<li><b>Aplicació</b> &#x2013; WhatsApp</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga954f8f" class="outline-4">
+<h4 id="orga954f8f"><span class="section-number-4">2.2.2.</span> 2.2 Model TCP/IP</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ul class="org-ul">
+<li><b>Aplicació</b> (OSI 5-7)</li>
+<li><b>Transport</b> (OSI 4)</li>
+<li><b>Xarxa</b> (OSI 3)</li>
+<li><b>Enllaç</b> (OSI 2)</li>
+<li><b>Física</b> (OSI 1)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb64167b" class="outline-4">
+<h4 id="orgb64167b"><span class="section-number-4">2.2.3.</span> 2.3 Correspondència entre models</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">OSI</th>
+<th scope="col" class="org-left">TCP/IP</th>
+<th scope="col" class="org-left">PDU</th>
+<th scope="col" class="org-left">Exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Aplicació, Presentació, Sessió</td>
+<td class="org-left">Aplicació</td>
+<td class="org-left">Dades</td>
+<td class="org-left">WhatsApp, HTTP, DNS</td>
+</tr>
+
+<tr>
+<td class="org-left">Transport</td>
+<td class="org-left">Transport</td>
+<td class="org-left">Segment</td>
+<td class="org-left">TCP, UDP</td>
+</tr>
+
+<tr>
+<td class="org-left">Xarxa</td>
+<td class="org-left">Xarxa</td>
+<td class="org-left">Paquet</td>
+<td class="org-left">IP, ICMP</td>
+</tr>
+
+<tr>
+<td class="org-left">Enllaç de dades</td>
+<td class="org-left">Enllaç</td>
+<td class="org-left">Trama</td>
+<td class="org-left">Ethernet, Wi-Fi</td>
+</tr>
+
+<tr>
+<td class="org-left">Física</td>
+<td class="org-left">Física</td>
+<td class="org-left">Bits</td>
+<td class="org-left">Cable, ràdio</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org7c9cf0b" class="outline-3">
+<h3 id="org7c9cf0b"><span class="section-number-3">2.3.</span> 3. Encapsulament i desencapsulament</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><b>Encapsulament</b>: baixant capes, cada capa afegeix la seva capçalera (i
+de vegades tràiler).</li>
+<li><b>Desencapsulament</b>: pujant capes, cada capa treu la seva capçalera.</li>
+<li>Cada capa només entén la seva part i passa la resta a la capa superior
+o inferior.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org23c5e5a" class="outline-3">
+<h3 id="org23c5e5a"><span class="section-number-3">2.4.</span> 4. Baixant capes: enviament des del mòbil d'en Josep</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org9fd968f" class="outline-4">
+<h4 id="org9fd968f"><span class="section-number-4">2.4.1.</span> 4.1 Capa d'aplicació</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<ul class="org-ul">
+<li>WhatsApp genera el missatge.</li>
+<li>Utilitza protocols propis sobre <b>TCP</b> i <b>TLS</b>.</li>
+<li>WhatsApp també aplica <b>xifrat d'extrem a extrem</b> (E2E), habitualment
+amb el protocol Signal.</li>
+<li>PDU: <b>dades</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc12a26d" class="outline-4">
+<h4 id="orgc12a26d"><span class="section-number-4">2.4.2.</span> 4.2 Capa de transport (TCP)</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<ul class="org-ul">
+<li><b>TCP</b> segmenta les dades en segments.</li>
+<li>Afegeix ports d'origen i destí.</li>
+<li>Gestiona control de flux, control de congestió i retransmissió.</li>
+<li>ACKs: si un segment no arriba, es retransmet <b>només aquell segment</b>,
+no tot el missatge.</li>
+<li>PDU: <b>segment TCP</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd432f1d" class="outline-4">
+<h4 id="orgd432f1d"><span class="section-number-4">2.4.3.</span> 4.3 Capa de xarxa (IP)</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<ul class="org-ul">
+<li><b>IP</b> decideix la ruta fins al servidor de WhatsApp.</li>
+<li>Afegeix adreces IP d'origen i destí.</li>
+<li>Els routers encaminen els paquets salt a salt.</li>
+<li>PDU: <b>paquet IP</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org41f313f" class="outline-4">
+<h4 id="org41f313f"><span class="section-number-4">2.4.4.</span> 4.4 Capa d'enllaç de dades</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<ul class="org-ul">
+<li>Subcapa <b>MAC</b> (<i>Medium Access Control</i>): controla l'accés al medi.
+<ul class="org-ul">
+<li>Exemples: <b>ALOHA</b>, <b>CSMA/CD</b> (Ethernet), <b>CSMA/CA</b> (Wi-Fi).</li>
+</ul></li>
+<li>Afegeix adreces <b>MAC</b> d'origen i destí.</li>
+<li>Afegeix <b>CRC</b> per detectar errors.</li>
+<li>Wi-Fi: cada trama unicast s'ACKja. Si falla, es retransmet la trama,
+no tot el fitxer.</li>
+<li>Wi-Fi també <b>encripta</b> les trames a nivell d'enllaç amb WPA2/WPA3.</li>
+<li>PDU: <b>trama</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgca207f7" class="outline-4">
+<h4 id="orgca207f7"><span class="section-number-4">2.4.5.</span> 4.5 Capa física</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<ul class="org-ul">
+<li>Converteix bits en senyals físics: voltatge, llum, ones de ràdio.</li>
+<li>Modulació i codificació de línia.</li>
+<li>**Channel</li>
+<li><b>VLAN</b>: segmenta xarxes a nivell d'enllaç.</li>
+<li><b>IPv4/IPv6</b>: versions del protocol IP.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc1fe007" class="outline-3">
+<h3 id="orgc1fe007"><span class="section-number-3">2.5.</span> 13. Glossari bàsic</h3>
+<div class="outline-text-3" id="text-2-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Terme</th>
+<th scope="col" class="org-left">Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">PDU</td>
+<td class="org-left">Unitat de dades del protocol</td>
+</tr>
+
+<tr>
+<td class="org-left">MAC</td>
+<td class="org-left">Adreça física de la targeta de xarxa</td>
+</tr>
+
+<tr>
+<td class="org-left">IP</td>
+<td class="org-left">Adreça lògica de xarxa</td>
+</tr>
+
+<tr>
+<td class="org-left">ACK</td>
+<td class="org-left">Confirmació de recepció</td>
+</tr>
+
+<tr>
+<td class="org-left">CRC</td>
+<td class="org-left">Codi de detecció d'errors</td>
+</tr>
+
+<tr>
+<td class="org-left">CSMA/CA</td>
+<td class="org-left">Accés múltiple amb escolta i evitació de col·lisions</td>
+</tr>
+
+<tr>
+<td class="org-left">CSMA/CD</td>
+<td class="org-left">Accés múltiple amb escolta i detecció de col·lisions</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+TDD (Time Division Duplexing) vs FDD (Frequency Division Duplexing)
+</p>
+
+<p>
+Data (information) vs Signal
+</p>
+
+<p>
+digital data: you can encrypt, compress the data, error protection,
+lower cost, smaller processors Analog signals: You can use diferent
+frequencies.
+</p>
+
+<p>
+Which layer does this: Channel coding, modulation physical layer
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb5e94cb" class="outline-2">
+<h2 id="orgb5e94cb"><span class="section-number-2">3.</span> 17-09-26 — How does wireless communication work?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+how does wireless communication work?
+</p>
+</div>
+</div>
+<div id="outline-container-orgdfa63a6" class="outline-2">
+<h2 id="orgdfa63a6"><span class="section-number-2">4.</span> 21-09-26 — Propagació i impairments en transmissions sense fil</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org1e01045" class="outline-3">
+<h3 id="org1e01045"><span class="section-number-3">4.1.</span> 1. Modes de propagació</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 La propagació depèn de la freqüència utilitzada per transmetre. Segons la banda, el senyal pot seguir la curvatura terrestre, rebotar a la ionosfera o necessitar visió directa.
 </p>
@@ -323,9 +950,9 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </tbody>
 </table>
 </div>
-<div id="outline-container-org2e426f6" class="outline-4">
-<h4 id="org2e426f6"><span class="section-number-4">1.1.1.</span> Detalls</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-org9183b0a" class="outline-4">
+<h4 id="org9183b0a"><span class="section-number-4">4.1.1.</span> Detalls</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
 <li><b>&lt; 2 MHz</b>: les freqüències més baixes segueixen el contorn de la Terra.</li>
 <li><b>2–30 MHz (AM)</b>:
@@ -336,23 +963,21 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 <li><b>&gt; 30 MHz</b>: propagació per línia de visió (LOS). Cal que no hi hagi obstacles entre transmissor (TX) i receptor (RX). És el mode dominant en tecnologies actuals.</li>
 </ul>
 
-<blockquote>
 <p>
 <b>Nota:</b> Els límits de 2 MHz i 30 MHz són aproximats i depenen de les condicions atmosfèriques, l'hora, l'estació de l'any i la potència.
 </p>
-</blockquote>
 
 <hr />
 </div>
 </div>
 </div>
-<div id="outline-container-org73156d7" class="outline-3">
-<h3 id="org73156d7"><span class="section-number-3">1.2.</span> 2. Wireless transmission impairments (pèrdues i soroll)</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org3838e30" class="outline-3">
+<h3 id="org3838e30"><span class="section-number-3">4.2.</span> 2. Wireless transmission impairments (pèrdues i soroll)</h3>
+<div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-orgb026063" class="outline-4">
-<h4 id="orgb026063"><span class="section-number-4">1.2.1.</span> 2.1 Path loss (atenuació)</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-org5193602" class="outline-4">
+<h4 id="org5193602"><span class="section-number-4">4.2.1.</span> 2.1 Path loss (atenuació)</h4>
+<div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Pèrdua de potència del senyal a mesura que es propaga.</li>
 <li>Normalment, com més alta és la freqüència, més atenuació.</li>
@@ -360,27 +985,27 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </ul>
 </div>
 </div>
-<div id="outline-container-org7947d35" class="outline-4">
-<h4 id="org7947d35"><span class="section-number-4">1.2.2.</span> 2.2 Soroll (<i>noise</i>)</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-orgcb4a2ac" class="outline-4">
+<h4 id="orgcb4a2ac"><span class="section-number-4">4.2.2.</span> 2.2 Soroll (<i>noise</i>)</h4>
+<div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li><b>Soroll intrínsec</b> (<i>white noise</i>): originat pel maquinari del transmissor (TX) i del receptor (RX).</li>
 <li><b>Soroll extrínsec</b>: radiofreqüència externa, interferències, motors de cotxes, explosions solars, etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0d25d90" class="outline-4">
-<h4 id="org0d25d90"><span class="section-number-4">1.2.3.</span> 2.3 Efectes d'obstacles</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<div id="outline-container-org982050c" class="outline-4">
+<h4 id="org982050c"><span class="section-number-4">4.2.3.</span> 2.3 Efectes d'obstacles</h4>
+<div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li>No només importa un obstacle al mig del camí.</li>
 <li>Un obstacle proper pot fer que el senyal reboti i es combini amb el senyal directe al receptor, modificant-lo (multipath, fading, interferència).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac663d7" class="outline-4">
-<h4 id="orgac663d7"><span class="section-number-4">1.2.4.</span> 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</h4>
-<div class="outline-text-4" id="text-1-2-4">
+<div id="outline-container-orgbce0cde" class="outline-4">
+<h4 id="orgbce0cde"><span class="section-number-4">4.2.4.</span> 2.4 Sensibilitat del receptor (<i>receiver sensitivity</i>)</h4>
+<div class="outline-text-4" id="text-4-2-4">
 <ul class="org-ul">
 <li>Si la potència rebuda és massa baixa, el receptor no pot interpretar correctament el missatge o la informació.</li>
 <li>Cada receptor té un llindar de sensibilitat.</li>
@@ -390,9 +1015,9 @@ La propagació depèn de la freqüència utilitzada per transmetre. Segons la ba
 </div>
 </div>
 </div>
-<div id="outline-container-org8bf610b" class="outline-3">
-<h3 id="org8bf610b"><span class="section-number-3">1.3.</span> 3. Càlcul de potència rebuda</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org5eb1bf4" class="outline-3">
+<h3 id="org5eb1bf4"><span class="section-number-3">4.3.</span> 3. Càlcul de potència rebuda</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 Fórmula bàsica en dB:
 </p>
@@ -417,9 +1042,9 @@ On:
 <hr />
 </div>
 </div>
-<div id="outline-container-orgd734e68" class="outline-3">
-<h3 id="orgd734e68"><span class="section-number-3">1.4.</span> 4. Qui necessita calcular el path loss?</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org4dad449" class="outline-3">
+<h3 id="org4dad449"><span class="section-number-3">4.4.</span> 4. Qui necessita calcular el path loss?</h3>
+<div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>Els instal·ladors d'antenes o els qui organitzen la instal·lació.</li>
 <li>Fan el càlcul per saber:
@@ -434,21 +1059,21 @@ On:
 <hr />
 </div>
 </div>
-<div id="outline-container-org797b236" class="outline-3">
-<h3 id="org797b236"><span class="section-number-3">1.5.</span> 5. Models de càlcul de pèrdues</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-orge2a2709" class="outline-3">
+<h3 id="orge2a2709"><span class="section-number-3">4.5.</span> 5. Models de càlcul de pèrdues</h3>
+<div class="outline-text-3" id="text-4-5">
 </div>
-<div id="outline-container-org86b498e" class="outline-4">
-<h4 id="org86b498e"><span class="section-number-4">1.5.1.</span> 5.1 Analytical way</h4>
-<div class="outline-text-4" id="text-1-5-1">
+<div id="outline-container-orgf9f91c1" class="outline-4">
+<h4 id="orgf9f91c1"><span class="section-number-4">4.5.1.</span> 5.1 Analytical way</h4>
+<div class="outline-text-4" id="text-4-5-1">
 <ul class="org-ul">
 <li>\(P_r = f(P_t, G_{tx}, G_{rx}, d)\): funció que et dona \(P_r\) (model de Friis free space).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc86c7d0" class="outline-4">
-<h4 id="orgc86c7d0"><span class="section-number-4">1.5.2.</span> 5.2 Friis free-space equation</h4>
-<div class="outline-text-4" id="text-1-5-2">
+<div id="outline-container-orgc4b7493" class="outline-4">
+<h4 id="orgc4b7493"><span class="section-number-4">4.5.2.</span> 5.2 Friis free-space equation</h4>
+<div class="outline-text-4" id="text-4-5-2">
 <p>
 \[
 P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
@@ -461,9 +1086,9 @@ P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb62a7f" class="outline-4">
-<h4 id="orgeb62a7f"><span class="section-number-4">1.5.3.</span> 5.3 Empirical models</h4>
-<div class="outline-text-4" id="text-1-5-3">
+<div id="outline-container-orgbbb77cb" class="outline-4">
+<h4 id="orgbbb77cb"><span class="section-number-4">4.5.3.</span> 5.3 Empirical models</h4>
+<div class="outline-text-4" id="text-4-5-3">
 <ul class="org-ul">
 <li>Es mesura la potència perduda en certs punts i es fa la mitjana per veure quines pèrdues hi ha.</li>
 <li>Amb line fitting es pot obtenir una funció (aproximada) amb els mateixos paràmetres que el model de Friis free space.</li>
@@ -474,8 +1099,8 @@ P_r(W) = P_t(W) \cdot G_t \cdot G_r \left( \frac{\lambda}{4\pi d} \right)^2
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orge01af68"></a>Okumura model<br />
-<div class="outline-text-5" id="text-1-5-3-1">
+<li><a id="orgead105c"></a>Okumura model<br />
+<div class="outline-text-5" id="text-4-5-3-1">
 <p>
 Coses que s'han tingut en compte:
 </p>
@@ -505,8 +1130,8 @@ On \(A_{mu}(f,d)\) és l'atenuació mediana urbana, \(G(h_{te})\), \(G(h_{re})\)
 </p>
 </div>
 </li>
-<li><a id="org9d417bd"></a>Hata model<br />
-<div class="outline-text-5" id="text-1-5-3-2">
+<li><a id="orgdf5d6d8"></a>Hata model<br />
+<div class="outline-text-5" id="text-4-5-3-2">
 <p>
 Aquest dona una fórmula, no és un gràfic que has de seguir (és la versió tancada d'Okumura).
 </p>
@@ -527,9 +1152,9 @@ On \(f_c\) és en MHz, \(h_{te}\) i \(h_{re}\) altures en m, \(d\) distància en
 </ol>
 </div>
 </div>
-<div id="outline-container-org823667f" class="outline-3">
-<h3 id="org823667f"><span class="section-number-3">1.6.</span> 6. Multipath: senyal directe i còpia reflectida</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-orgfab8447" class="outline-3">
+<h3 id="orgfab8447"><span class="section-number-3">4.6.</span> 6. Multipath: senyal directe i còpia reflectida</h3>
+<div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>El transmissor (TX) transmet i el receptor (RX) rep dos senyals:
 <ul class="org-ul">
@@ -550,13 +1175,13 @@ On \(f_c\) és en MHz, \(h_{te}\) i \(h_{re}\) altures en m, \(d\) distància en
 <hr />
 </div>
 </div>
-<div id="outline-container-orgcd92232" class="outline-3">
-<h3 id="orgcd92232"><span class="section-number-3">1.7.</span> 7. Noise and interference</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-org626e0ec" class="outline-3">
+<h3 id="org626e0ec"><span class="section-number-3">4.7.</span> 7. Noise and interference</h3>
+<div class="outline-text-3" id="text-4-7">
 </div>
-<div id="outline-container-org5cc4921" class="outline-4">
-<h4 id="org5cc4921"><span class="section-number-4">1.7.1.</span> 7.1 Thermal noise (soroll tèrmic)</h4>
-<div class="outline-text-4" id="text-1-7-1">
+<div id="outline-container-org4dd3d24" class="outline-4">
+<h4 id="org4dd3d24"><span class="section-number-4">4.7.1.</span> 7.1 Thermal noise (soroll tèrmic)</h4>
+<div class="outline-text-4" id="text-4-7-1">
 <ul class="org-ul">
 <li>És el soroll blanc intrínsec del maquinari.</li>
 <li>Depèn de la temperatura del receptor i del transmissor (agitació tèrmica dels electrons).</li>
@@ -577,9 +1202,9 @@ On \(k\) és la constant de Boltzmann, \(T\) la temperatura equivalent en Kelvin
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd573fc3" class="outline-4">
-<h4 id="orgd573fc3"><span class="section-number-4">1.7.2.</span> 7.2 Interference (interferència)</h4>
-<div class="outline-text-4" id="text-1-7-2">
+<div id="outline-container-orga924db1" class="outline-4">
+<h4 id="orga924db1"><span class="section-number-4">4.7.2.</span> 7.2 Interference (interferència)</h4>
+<div class="outline-text-4" id="text-4-7-2">
 <ul class="org-ul">
 <li><b>Extrínseca</b>: altres transmissions a la mateixa banda (co-channel), canals adjacents, motors, microones, tempestes solars, etc.</li>
 <li>A diferència del soroll tèrmic, la interferència normalment no és blanca ni gaussiana i depèn de l'entorn.</li>
@@ -588,11 +1213,884 @@ On \(k\) és la constant de Boltzmann, \(T\) la temperatura equivalent en Kelvin
 </div>
 </div>
 </div>
+<div id="outline-container-org0f3119c" class="outline-3">
+<h3 id="org0f3119c"><span class="section-number-3">4.8.</span> 8. MIMO (Multiple Input Multiple Output)</h3>
+<div class="outline-text-3" id="text-4-8">
+<ul class="org-ul">
+<li>Tecnologia de múltiples antenes a transmissor i receptor.</li>
+<li>Pendent d'ampliar: diversitat espacial, multiplexació espacial, <i>beamforming</i>.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org2ffab1e" class="outline-2">
+<h2 id="org2ffab1e"><span class="section-number-2">5.</span> 01-10-26 — Modulacions digitals: ASK, FSK, errors i sincronització</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org8eb4ce3" class="outline-3">
+<h3 id="org8eb4ce3"><span class="section-number-3">5.1.</span> 1. ASK (Amplitude-Shift Keying)</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-org1d05953" class="outline-4">
+<h4 id="org1d05953"><span class="section-number-4">5.1.1.</span> 1.1 Definició</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li>Dues valors binaris representats per dues amplituds diferents de la freqüència portadora.</li>
+<li>Forma simple: OOK (<i>On-Off Keying</i>):
+<ul class="org-ul">
+<li>si hi ha senyal → <code>1</code>,</li>
+<li>si no hi ha senyal → <code>0</code>.</li>
+</ul></li>
+<li>Compromís: pot ser difícil distingir si hi ha senyal o no per culpa del soroll o la interferència.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-text">ASK: s(t) = A_m * sin(2*pi*fc*t + phase),  m = 0,1
+OOK: A_0 = 0 (silenci), A_1 = A (to)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org21f948d" class="outline-4">
+<h4 id="org21f948d"><span class="section-number-4">5.1.2.</span> 1.2 Què passa amb ASK si posem més nivells?</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+En ASK, la informació s'envia canviant l'amplitud del senyal. Si només tens dos nivells, pots enviar 1 bit a la vegada: un nivell és 0 i l'altre és 1.
+</p>
+
+<p>
+Si vols enviar més bits de cop, has de tenir més nivells. Per exemple:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Nivells</th>
+<th scope="col" class="org-right">Bits per símbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Com més nivells, més bits pots enviar en cada símbol. Això sembla bo, però té un cost.
+</p>
+</div>
+</div>
+<div id="outline-container-org8c68be7" class="outline-4">
+<h4 id="org8c68be7"><span class="section-number-4">5.1.3.</span> 1.3 El problema: els nivells queden més junts</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<ul class="org-ul">
+<li>Amb pocs nivells, entre un nivell i el següent hi ha molt espai. El soroll pot moure una mica el senyal i encara s'entén bé.</li>
+<li>Amb molts nivells, els nivells estan més a prop. Qualsevol soroll o interferència pot fer que el receptor confongui un nivell amb el del costat.</li>
+<li>Conclusió: com més nivells poses, més bits pots enviar, però també és més fàcil que hi hagi errors.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org74f521d" class="outline-4">
+<h4 id="org74f521d"><span class="section-number-4">5.1.4.</span> 1.4 Què és un llindar?</h4>
+<div class="outline-text-4" id="text-5-1-4">
+<p>
+El receptor no sap exactament quin nivell ha arribat. El que fa és comparar l'amplitud rebuda amb uns límits, que són els <i>llindars</i>.
+</p>
+
+<p>
+Exemple amb 4 nivells:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">Nivell -3
+---------- llindar -2
+Nivell -1
+---------- llindar  0
+Nivell +1
+---------- llindar +2
+Nivell +3
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Si el senyal cau entre -2 i 0, el receptor decideix que és el nivell -1.</li>
+<li>Si el soroll el mou una mica i creua el 0, pot decidir que és +1. Això és un error.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9b466e3" class="outline-4">
+<h4 id="org9b466e3"><span class="section-number-4">5.1.5.</span> 1.5 La idea del codi Gray</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<p>
+Els nivells veïns haurien de tenir etiquetes binàries que es diferenciïn només en 1 bit. Això es fa amb el codi Gray.
+</p>
+
+<p>
+Exemple amb 4 nivells, <i>sense</i> Gray:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Nivell</th>
+<th scope="col" class="org-right">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">-3</td>
+<td class="org-right">00</td>
+</tr>
+
+<tr>
+<td class="org-right">-1</td>
+<td class="org-right">01</td>
+</tr>
+
+<tr>
+<td class="org-right">+1</td>
+<td class="org-right">10</td>
+</tr>
+
+<tr>
+<td class="org-right">+3</td>
+<td class="org-right">11</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Si reps -1 però el soroll et fa confondre amb +1, passes de 01 a 10. Això són 2 bits errats.</li>
+</ul>
+
+<p>
+Exemple amb 4 nivells, <i>amb</i> Gray:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Nivell</th>
+<th scope="col" class="org-right">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">-3</td>
+<td class="org-right">00</td>
+</tr>
+
+<tr>
+<td class="org-right">-1</td>
+<td class="org-right">01</td>
+</tr>
+
+<tr>
+<td class="org-right">+1</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-right">+3</td>
+<td class="org-right">10</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Ara -1 és 01 i +1 és 11. Si els confons, només falla 1 bit.</li>
+</ul>
+
+<p>
+Per què això és útil?
+</p>
+
+<ul class="org-ul">
+<li>Perquè la majoria d'errors no són d'un nivell molt llunyà, sinó del nivell del costat.</li>
+<li>Si els veïns només es diferencien en 1 bit, un error de símbol només produeix 1 bit erroni.</li>
+<li>Això fa que sigui més fàcil detectar-lo o corregir-lo amb codis de protecció.</li>
+<li>Gray no elimina el soroll ni corregeix errors per si sol. Però redueix els bits errats i ajuda que els sistemes de detecció i correcció funcionin millor.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc869c88" class="outline-4">
+<h4 id="orgc869c88"><span class="section-number-4">5.1.6.</span> 1.6 Resum ASK</h4>
+<div class="outline-text-4" id="text-5-1-6">
+<ul class="org-ul">
+<li>Més nivells → més bits per símbol.</li>
+<li>Més nivells → nivells més junts → més errors probables.</li>
+<li>Els llindars separen nivells.</li>
+<li>Els nivells veïns haurien de diferir només en 1 bit (codi Gray).</li>
+<li>Això no evita l'error, però fa que un error de símbol afecti menys bits.</li>
+<li>Per detectar o corregir errors de veritat, cal afegir redundància.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgd6e85f9" class="outline-3">
+<h3 id="orgd6e85f9"><span class="section-number-3">5.2.</span> 2. BFSK i MFSK (Frequency-Shift Keying)</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-orga7bae8a" class="outline-4">
+<h4 id="orga7bae8a"><span class="section-number-4">5.2.1.</span> 2.1 Definició BFSK</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<ul class="org-ul">
+<li>Bit 1: \(s_1(t) = A \sin(2\pi (f_c + \Delta) t + \phi)\)</li>
+<li>Bit 0: \(s_0(t) = A \sin(2\pi (f_c - \Delta) t + \phi)\)</li>
+<li>Ample de banda mínim: \(BW_{min} = 2 \Delta\).</li>
+<li>Errors típics: soroll, interferència, errors de freqüència.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcea50b9" class="outline-4">
+<h4 id="orgcea50b9"><span class="section-number-4">5.2.2.</span> 2.2 Ample de banda i més nivells</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<ul class="org-ul">
+<li>Si tens més amplada de banda, pots posar més tons (més nivells) i transmetre més bits. Això és MFSK.</li>
+<li>Una altra opció és fer \(\Delta\) més petit per encabir més tons dins la mateixa banda i així suportar més nivells → més bits.</li>
+<li>Compromís: \(\Delta\) petit = tons junts = més sensible a errors.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1cc83b2" class="outline-4">
+<h4 id="org1cc83b2"><span class="section-number-4">5.2.3.</span> 2.3 Què és un error de freqüència?</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<p>
+Un error de freqüència (<i>frequency error</i>) és quan la freqüència que arriba al receptor no és exactament la que el receptor espera. No és soroll aleatori, sinó un desplaçament o deriva de la freqüència.
+</p>
+
+<p>
+En BFSK, la informació va en la freqüència:
+</p>
+
+<ul class="org-ul">
+<li>bit 1 → \(A \sin(2\pi (f_c + \Delta) t + \phi)\)</li>
+<li>bit 0 → \(A \sin(2\pi (f_c - \Delta) t + \phi)\)</li>
+</ul>
+
+<p>
+El receptor mira si l'energia està a \(f_c + \Delta\) o a \(f_c - \Delta\). Si les freqüències es desplacen, el receptor pot equivocar-se.
+</p>
+
+<p>
+Causes típiques d'error de freqüència:
+</p>
+
+<ul class="org-ul">
+<li>Oscil·ladors imperfectes: el transmissor i el receptor no generen exactament la mateixa freqüència.</li>
+<li>Efecte Doppler: si el transmissor o el receptor es mouen, la freqüència rebuda canvia.</li>
+<li>Deriva tèrmica o envelliment: els components electrònics varien amb la temperatura o el temps.</li>
+<li>Interferències: altres senyals poden emmascarar o arrossegar la freqüència.</li>
+<li>Sincronització deficient: el receptor no ajusta bé la seva freqüència central.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org754fe8c" class="outline-4">
+<h4 id="org754fe8c"><span class="section-number-4">5.2.4.</span> 2.4 Efecte en BFSK</h4>
+<div class="outline-text-4" id="text-5-2-4">
+<p>
+Suposem que hi ha un error de freqüència \(\varepsilon\). Els tons arriben com:
+</p>
+
+<ul class="org-ul">
+<li>bit 1: \(f_c + \Delta + \varepsilon\)</li>
+<li>bit 0: \(f_c - \Delta + \varepsilon\)</li>
+</ul>
+
+<p>
+El receptor decideix comparant amb \(f_c\):
+</p>
+
+<ul class="org-ul">
+<li>Si \(\varepsilon\) és petit respecte a \(\Delta\), encara distingeix bé.</li>
+<li>Però si \(\varepsilon\) s'apropa a \(\Delta\), el to de bit 0 pot semblar-se al de bit 1, o al revés. Llavors hi ha error.</li>
+<li>Per tant, com més petit és \(\Delta\), més fàcil és que un error de freqüència faci confondre els bits.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga78c8cf" class="outline-4">
+<h4 id="orga78c8cf"><span class="section-number-4">5.2.5.</span> 2.5 Relació amb MFSK i més nivells</h4>
+<div class="outline-text-4" id="text-5-2-5">
+<ul class="org-ul">
+<li>Si tens més amplada de banda, pots posar més tons (més nivells) i enviar més bits per símbol. Això és MFSK.</li>
+<li>També pots fer \(\Delta\) més petit per encabir més tons dins la mateixa banda. Però si \(\Delta\) és molt petit:
+<ul class="org-ul">
+<li>els tons queden molt junts,</li>
+<li>un error de freqüència petit ja pot fer saltar al to veí,</li>
+<li>augmenta la probabilitat d'error de símbol i, per tant, de bit.</li>
+</ul></li>
+<li>Compromís:
+<ul class="org-ul">
+<li>Més bits per símbol → més eficiència, però més sensible a soroll, interferència i errors de freqüència.</li>
+<li>\(\Delta\) més gran → més robust, però necessita més amplada de banda.</li>
+</ul></li>
+</ul>
+
+<p>
+Resum:
+</p>
+
+<ul class="org-ul">
+<li>Un error de freqüència és un desplaçament de la freqüència rebuda respecte a l'esperada.</li>
+<li>En BFSK/MFSK afecta directament la detecció dels tons.</li>
+<li>Com més petits són els espaiats \(\Delta\) entre tons, més fàcil és que aquests errors facin confondre símbols veïns.</li>
+<li>Si redueixes \(\Delta\) per posar més nivells, guanyes bits per símbol però perds robustesa davant d'errors de freqüència.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgfa1f91d" class="outline-3">
+<h3 id="orgfa1f91d"><span class="section-number-3">5.3.</span> 3. Sincronització deficient</h3>
+<div class="outline-text-3" id="text-5-3">
+</div>
+<div id="outline-container-org9443b09" class="outline-4">
+<h4 id="org9443b09"><span class="section-number-4">5.3.1.</span> 3.1 Sincronització de freqüència deficient</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+El receptor genera internament una freqüència de referència, normalment \(f_c\). En BFSK espera trobar:
+</p>
+
+<ul class="org-ul">
+<li>bit 1 a \(f_c + \Delta\)</li>
+<li>bit 0 a \(f_c - \Delta\)</li>
+</ul>
+
+<p>
+Si l'oscil·lador del receptor no és exactament igual que el del transmissor, apareix un <i>offset</i> de freqüència \(\delta f\). Llavors els tons arriben a:
+</p>
+
+<ul class="org-ul">
+<li>\(f_c + \Delta + \delta f\)</li>
+<li>\(f_c - \Delta + \delta f\)</li>
+</ul>
+
+<p>
+Els filtres o correladors del receptor estan sintonitzats a \(f_c + \Delta\) i \(f_c - \Delta\), però el senyal real ha caigut una mica desviat. Això fa que:
+</p>
+
+<ul class="org-ul">
+<li>es perdi amplitud en el filtre correcte,</li>
+<li>part de l'energia pugui anar a parar al filtre equivocat,</li>
+<li>si \(\delta f\) és prou gran, es confongui el to d'un bit amb el de l'altre.</li>
+</ul>
+
+<p>
+En MFSK, com més tons tens i més petits són els espaiats \(\Delta\), més crític és això. Un error de sincronització petit pot fer que el receptor decideixi el to veí.
+</p>
+</div>
+</div>
+<div id="outline-container-org41c0ea9" class="outline-4">
+<h4 id="org41c0ea9"><span class="section-number-4">5.3.2.</span> 3.2 Sincronització de fase deficient</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<ul class="org-ul">
+<li>Passa sobretot en detecció coherent.</li>
+<li>El receptor no només ha de saber la freqüència, sinó també la fase de la portadora.</li>
+<li>Si la fase no coincideix, la correlació amb \(\sin\) i \(\cos\) no dóna el màxim, i fins i tot es pot cancel·lar part del senyal.</li>
+<li>En BFSK no coherent, normalment no cal sincronitzar la fase, perquè es mira l'energia en cada to.</li>
+<li>Però en sistemes coherents, una fase deficient és una font directa d'errors.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3bae5db" class="outline-4">
+<h4 id="org3bae5db"><span class="section-number-4">5.3.3.</span> 3.3 Sincronització temporal deficient</h4>
+<div class="outline-text-4" id="text-5-3-3">
+<p>
+Aquí el problema és el rellotge de símbol. El receptor ha de saber exactament quan comença i quan acaba cada símbol per integrar o mostrejar dins del període correcte.
+</p>
+
+<p>
+Si el receptor va desplaçat:
+</p>
+
+<ul class="org-ul">
+<li>agafa una part del símbol anterior,</li>
+<li>o una part del símbol següent,</li>
+<li>o barreja tots dos.</li>
+</ul>
+
+<p>
+Això s'anomena interferència inter-símbol (ISI). Encara que la freqüència sigui perfecta, el receptor decideix malament perquè està mirant el senyal en el moment equivocat.
+</p>
+</div>
+</div>
+<div id="outline-container-org5b3488d" class="outline-4">
+<h4 id="org5b3488d"><span class="section-number-4">5.3.4.</span> 3.4 Per què passa? Causes típiques</h4>
+<div class="outline-text-4" id="text-5-3-4">
+<ul class="org-ul">
+<li>Oscil·ladors barats o imprecisos.</li>
+<li>Efecte Doppler per moviment.</li>
+<li>Canvis de temperatura o envelliment dels components.</li>
+<li>Retards variables al canal.</li>
+<li>Poca qualitat del senyal (SNR baix).</li>
+<li>Preàmbuls o seqüències de sincronització curts o dolents.</li>
+<li>Algorismes de sincronització lents o mal ajustats.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb8cdffd" class="outline-4">
+<h4 id="orgb8cdffd"><span class="section-number-4">5.3.5.</span> 3.5 Relació amb els <i>frequency errors</i></h4>
+<div class="outline-text-4" id="text-5-3-5">
+<ul class="org-ul">
+<li>Un error de freqüència és el símptoma: la freqüència rebuda no és l'esperada.</li>
+<li>La sincronització deficient és una de les causes: el receptor no ha ajustat bé la seva referència de freqüència, fase o temps.</li>
+<li>En FSK/MFSK, com més nivells posis i més petit facis \(\Delta\), més fàcil és que una sincronització deficient provoqui errors, perquè els tons queden més junts i qualsevol desviació els confon.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org901f82f" class="outline-4">
+<h4 id="org901f82f"><span class="section-number-4">5.3.6.</span> 3.6 Resum sincronització</h4>
+<div class="outline-text-4" id="text-5-3-6">
+<ul class="org-ul">
+<li>Sincronització deficient = el receptor no està ben alineat amb el transmissor en freqüència, fase o temps.</li>
+<li>Freqüència deficient → <i>offset</i> de freqüència, tons desviats, confusió entre nivells veïns.</li>
+<li>Fase deficient → pitjor detecció coherent.</li>
+<li>Temps deficient → mostreig fora del símbol, ISI i errors.</li>
+<li>Com més tons i més petits els espaiats, més important és sincronitzar bé. Si no, el receptor pot confondre símbols encara que el soroll no sigui gran.</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge552d28" class="outline-2">
+<h2 id="orge552d28"><span class="section-number-2">6.</span> Modulacions PSK i constel·lacions — Apunts detallats</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgc152588" class="outline-3">
+<h3 id="orgc152588"><span class="section-number-3">6.1.</span> 1. Senyal sinusoïdal i representació polar</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Un senyal modulat es pot escriure com:
+</p>
+
+<p>
+\[
+s(t) = A \sin(2\pi f_c t + \phi)
+\]
+</p>
+
+<p>
+On:
+</p>
+
+<ul class="org-ul">
+<li>\(A\) = amplitud.</li>
+<li>\(f_c\) = freqüència de la portadora.</li>
+<li>\(\phi\) = fase.</li>
+</ul>
+
+<p>
+Aquesta mateixa senyal es pot representar en forma <b>I/Q</b> (<i>in-phase</i> / quadrature/):
+</p>
+
+<p>
+\[
+s(t) = I \cos(2\pi f_c t) - Q \sin(2\pi f_c t)
+\]
+</p>
+
+<p>
+Si prenem com a referència \(\cos(2\pi f_c t)\), aleshores:
+</p>
+
+<p>
+\[
+I = A \cos\phi
+\]
+</p>
+
+<p>
+\[
+Q = A \sin\phi
+\]
+</p>
+
+<p>
+Per tant, cada símbol es pot representar com un punt \((I, Q)\) en un pla. Aquest és el <b>diagrama de constel·lació</b> o <b>representació polar</b>.
+</p>
+
+<ul class="org-ul">
+<li>La <b>distància a l'origen</b> és l'amplitud:
+\[
+  A = \sqrt{I^2 + Q^2}
+  \]</li>
+<li>L'<b>angle</b> respecte l'eix horitzontal és la fase:
+\[
+  \phi = \arctan\left(\frac{Q}{I}\right)
+  \]</li>
+</ul>
+
+<p>
+Així, canviar l'amplitud mou el punt cap a l'origen o cap enfora. Canviar la fase el fa girar al voltant de l'origen.
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org60ace44" class="outline-3">
+<h3 id="org60ace44"><span class="section-number-3">6.2.</span> 2. ASK (Amplitude Shift Keying)</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+En ASK, la informació va en l'<b>amplitud</b>. La fase es manté constant.
+</p>
+
+<ul class="org-ul">
+<li>Bit 0: amplitud \(0\) (o un nivell baix).</li>
+<li>Bit 1: amplitud \(A_0\) (o un nivell alt).</li>
+</ul>
+
+<p>
+Si la fase és constant, tots els símbols tenen el mateix angle \(\phi\). Per tant, en el diagrama I/Q, els punts <b>estan sobre una recta</b> que passa per l'origen.
+</p>
+
+<ul class="org-ul">
+<li>Si \(\phi = 0\), els punts estan sobre l'eix horitzontal (positiu).</li>
+<li>Si \(\phi = \pi\), els punts estan sobre l'eix horitzontal negatiu.</li>
+<li>Si \(\phi\) és un altre angle, la recta està girada aquell angle.</li>
+</ul>
+
+<p>
+En ASK multinivell (M-ASK), hi ha \(M\) punts sobre la mateixa recta, un per cada nivell d'amplitud.
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org562e937" class="outline-3">
+<h3 id="org562e937"><span class="section-number-3">6.3.</span> 3. BPSK (Binary Phase Shift Keying)</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+En BPSK, la informació va en la <b>fase</b>. L'amplitud es manté constant.
+</p>
+
+<ul class="org-ul">
+<li>Bit 0: \(A \sin(2\pi f_c t)\)</li>
+<li>Bit 1: \(A \sin(2\pi f_c t + \pi) = -A \sin(2\pi f_c t)\)</li>
+</ul>
+
+<p>
+És a dir, el bit 1 és el mateix senyal que el bit 0 però <b>invertit</b> (180° de desfasament).
+</p>
+</div>
+<div id="outline-container-orgb44cab0" class="outline-4">
+<h4 id="orgb44cab0"><span class="section-number-4">6.3.1.</span> 3.1 Constel·lació BPSK</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+Com que l'amplitud \(A\) no canvia, tots els punts tenen la mateixa distància a l'origen. Per tant, estan sobre una <b>circumferència</b> de radi \(A\).
+</p>
+
+<p>
+Si prenem la fase 0 com a referència:
+</p>
+
+<ul class="org-ul">
+<li>Bit 0 → \((+A, 0)\)</li>
+<li>Bit 1 → \((-A, 0)\)</li>
+</ul>
+
+<p>
+Són dos punts oposats, separats 180°.
+</p>
+</div>
+</div>
+<div id="outline-container-org2260e85" class="outline-4">
+<h4 id="org2260e85"><span class="section-number-4">6.3.2.</span> 3.2 Detecció</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<p>
+El receptor mira si el senyal està a la dreta o a l'esquerra de l'origen. El llindar és el zero. Si el soroll fa creuar el zero, es produeix un error.
+</p>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org0fcc43b" class="outline-3">
+<h3 id="org0fcc43b"><span class="section-number-3">6.4.</span> 4. QPSK (Quadrature Phase Shift Keying)</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+QPSK és una PSK de 4 nivells. Cada símbol transporta <b>2 bits</b>.
+</p>
+
+<p>
+Les fases proposades són:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Fase</th>
+<th scope="col" class="org-right">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(+\pi/4\)</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-left">\(+3\pi/4\)</td>
+<td class="org-right">01</td>
+</tr>
+
+<tr>
+<td class="org-left">\(-3\pi/4\)</td>
+<td class="org-right">00</td>
+</tr>
+
+<tr>
+<td class="org-left">\(-\pi/4\)</td>
+<td class="org-right">10</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Aquesta assignació és <b>codi Gray</b>: símbols adjacents difereixen només en 1 bit.
+</p>
+</div>
+<div id="outline-container-org91b44d8" class="outline-4">
+<h4 id="org91b44d8"><span class="section-number-4">6.4.1.</span> 4.1 Constel·lació QPSK</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<p>
+L'amplitud és constant, així que els 4 punts estan sobre una circumferència de radi \(A\). Els angles són:
+</p>
+
+<ul class="org-ul">
+<li>\(45^\circ\) (\(+\pi/4\)) → 11</li>
+<li>\(135^\circ\) (\(+3\pi/4\)) → 01</li>
+<li>\(225^\circ\) (\(-3\pi/4\)) → 00</li>
+<li>\(315^\circ\) (\(-\pi/4\)) → 10</li>
+</ul>
+
+<p>
+Coordenades I/Q (amb \(A=1\)):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Fase</th>
+<th scope="col" class="org-left">I</th>
+<th scope="col" class="org-left">Q</th>
+<th scope="col" class="org-right">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(+\pi/4\)</td>
+<td class="org-left">\(+\frac{1}{\sqrt{2}}\)</td>
+<td class="org-left">\(+\frac{1}{\sqrt{2}}\)</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-left">\(+3\pi/4\)</td>
+<td class="org-left">\(-\frac{1}{\sqrt{2}}\)</td>
+<td class="org-left">\(+\frac{1}{\sqrt{2}}\)</td>
+<td class="org-right">01</td>
+</tr>
+
+<tr>
+<td class="org-left">\(-3\pi/4\)</td>
+<td class="org-left">\(-\frac{1}{\sqrt{2}}\)</td>
+<td class="org-left">\(-\frac{1}{\sqrt{2}}\)</td>
+<td class="org-right">00</td>
+</tr>
+
+<tr>
+<td class="org-left">\(-\pi/4\)</td>
+<td class="org-left">\(+\frac{1}{\sqrt{2}}\)</td>
+<td class="org-left">\(-\frac{1}{\sqrt{2}}\)</td>
+<td class="org-right">10</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Els punts formen un quadrat girat 45° respecte els eixos. Les regions de decisió són els quadrants separats pels eixos \(I=0\) i \(Q=0\).
+</p>
+</div>
+</div>
+<div id="outline-container-org6e8227d" class="outline-4">
+<h4 id="org6e8227d"><span class="section-number-4">6.4.2.</span> 4.2 Per què Gray?</h4>
+<div class="outline-text-4" id="text-6-4-2">
+<p>
+Si el soroll fa que el receptor confongui un símbol amb el veí, com que els veïns només difereixen en 1 bit, només es produeix <b>1 bit erroni</b> en lloc de 2. Això redueix la BER (<i>Bit Error Rate</i>).
+</p>
+</div>
+</div>
+<div id="outline-container-org6559adb" class="outline-4">
+<h4 id="org6559adb"><span class="section-number-4">6.4.3.</span> 4.3 Eficiència espectral</h4>
+<div class="outline-text-4" id="text-6-4-3">
+<ul class="org-ul">
+<li>BPSK: 1 bit/símbol.</li>
+<li>QPSK: 2 bits/símbol.</li>
+</ul>
+
+<p>
+Per la mateixa taxa de bits, QPSK necessita <b>la meitat d'amplada de banda</b> que BPSK. O, per la mateixa amplada de banda, QPSK pot enviar <b>el doble de bits</b>.
+</p>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org79a3555" class="outline-3">
+<h3 id="org79a3555"><span class="section-number-3">6.5.</span> 5. Resum visual de constel·lacions</h3>
+<div class="outline-text-3" id="text-6-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Modulació</th>
+<th scope="col" class="org-left">Punts a la constel·lació</th>
+<th scope="col" class="org-left">Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">ASK</td>
+<td class="org-left">\(M\) punts sobre una recta</td>
+<td class="org-left">Línia</td>
+</tr>
+
+<tr>
+<td class="org-left">BPSK</td>
+<td class="org-left">2 punts oposats</td>
+<td class="org-left">Cercle</td>
+</tr>
+
+<tr>
+<td class="org-left">QPSK</td>
+<td class="org-left">4 punts separats 90°</td>
+<td class="org-left">Cercle</td>
+</tr>
+
+<tr>
+<td class="org-left">MPSK</td>
+<td class="org-left">\(M\) punts separats \(2\pi/M\)</td>
+<td class="org-left">Cercle</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Com més punts, més bits per símbol, però més a prop estan entre ells i més fàcil és que el soroll, la interferència o una sincronització deficient causin errors.
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-orga775c2b" class="outline-3">
+<h3 id="orga775c2b"><span class="section-number-3">6.6.</span> 6. Errors i sincronització en PSK</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+Els errors en PSK poden venir de:
+</p>
+
+<ul class="org-ul">
+<li><b>Soroll</b>: mou els punts de la constel·lació.</li>
+<li><b>Interferència</b>: distorsiona amplitud o fase.</li>
+<li><b>Errors de freqüència</b>: la portadora rebuda no coincideix amb l'esperada.</li>
+<li><b>Sincronització deficient</b>:
+<ul class="org-ul">
+<li><b>Freqüència</b>: <i>offset</i> de la portadora.</li>
+<li><b>Fase</b>: en detecció coherent, la fase no està alineada.</li>
+<li><b>Temps</b>: el receptor mostreja fora del símbol, provocant ISI.</li>
+</ul></li>
+</ul>
+
+<p>
+Com més nivells té la modulació (QPSK, 8-PSK, etc.), més crítica és la sincronització i més petit ha de ser el soroll per no equivocar-se.
+</p>
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org5c63a6a" class="outline-3">
+<h3 id="org5c63a6a"><span class="section-number-3">6.7.</span> 7. Conclusió</h3>
+<div class="outline-text-3" id="text-6-7">
+<ul class="org-ul">
+<li><b>ASK</b>: modula amplitud → punts en línia.</li>
+<li><b>BPSK</b>: modula fase amb 2 estats → 2 punts en cercle.</li>
+<li><b>QPSK</b>: modula fase amb 4 estats → 4 punts en cercle, 2 bits/símbol, codi Gray.</li>
+<li>La representació polar (I/Q) és una eina molt útil per visualitzar i entendre aquestes modulacions.</li>
+<li>El codi Gray és clau per minimitzar els bits errats quan hi ha soroll o interferències.</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Joaquim</p>
-<p class="date">Created: 2026-09-24 jue 11:31</p>
+<p class="author">Autor: Joaquim</p>
+<p class="date">Created: 2026-10-01 jue 11:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
