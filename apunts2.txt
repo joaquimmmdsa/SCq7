@@ -1,0 +1,837 @@
+What is wireless communication?  Communication that does not require
+the transmitter and reciever to be in physical contact or
+communicating through a guided media.  Wireless communications Use
+elctromagnetic waves: RF, Radar, IR, Optical..., Acoustic waves,
+Molecules
+
+Early forms of wireless communications: Sound: beating drums...
+      	       				Sight: Smoke signals ...
+Disadvantages of these forms of comunication: Privacy and security, noisy, limited
+      	       				distance, require the tx and
+      	       				rx to be in line-of-sight
+
+
+Why wireless communications:
+    Supports mobility of the end systems
+    Reduced cost and more convinience: Enable communication without installing expensive infrastructure.
+    Can easily setup temporary LANs
+    Cheaper, More convinient, easier to mantain etc.
+    Physical conditions: In places where laying a cable is very difficult because of terrain conditions etc wireless communication can still arrive easily
+    Easier to scale (adding more users without laying more cables/ changing the infrastructure)
+    integration with iot stuff
+
+Challenges of wireless communication:
+Noisy, time-varying channel: you can get the signal in different times because of colissions/interferences etc.
+
+Shared medium: The signals travel through an open medium (canal comu compartit). en aquest canal hi pot haber mes usuaris creant interferencies i s'ha de trobar alguna manera per poder compartir aquest canal.
+
+maneres:
+multiplexio:
+
+Tècnica	Què divideix	Exemple
+FDM (Frequency Division Multiplexing)	La freqüència	Ràdio FM, TV analògica
+TDM (Time Division Multiplexing)	El temps (slots fixos)	Telefonia digital
+WDM (Wavelength Division Multiplexing)	La longitud d'ona	Fibra òptica
+CDM (Code Division Multiplexing)	Un codi únic per usuari	3G, GPS
+
+Control d'accés al medi (MAC – Medium Access Control)
+A) Accés aleatori (competitiu)
+Els usuaris competeixen pel canal quan el necessiten.
+
+ALOHA (puro i slotted) → transmet quan vol; moltes col·lisions.
+
+CSMA (Carrier Sense Multiple Access) → "escolta" abans de transmetre.
+
+CSMA/CD (Collision Detection) → Ethernet clàssic; detecta col·lisió i reintenta.
+
+CSMA/CA (Collision Avoidance) → Wi-Fi (802.11); evita col·lisions amb ACKs i temporitzadors.
+
+B) Accés controlat (sense col·lisions)
+Un mecanisme central o un torn decideix qui transmet.
+
+Polling → un mestre pregunta a cada node si vol transmetre.
+
+Token Passing → un "testimoni" circula; només qui el té pot transmetre (Token Ring, FDDI).
+
+Reserva → els usuaris reserven slots prèviament (usat en satèl·lits, DAMA).
+
+C) Accés per contenció amb prioritat
+CSMA/CA amb backoff exponencial → Wi-Fi.
+
+Prioritats / QoS → diferenciar tràfic crític.
+
+
+
+
+Limited bandwidth:
+The bandwidth is limited. You can not use unlimited bandwidth because of physical phenomenons that happen at high frequencies. Apart from that there are rules to transmit certain frequencies if these rules didnt exist there would be to many interferences in the medium to read the correct signal for the reciever
+
+Cal repartir aquest recurs entre molts usos: telefonia mòbil, Wi-Fi, ràdio, TV, satèl·lits, militars, emergències, etc.
+
+Com que és escàs, és car i regulat.
+
+To achieve there rules and regulate them there are regulators
+País/Regió	Organisme regulador
+EUA	FCC (Federal Communications Commission)
+Europa	CEPT / ETSI (i cada país té la seva autoritat, ex. a Espanya el Ministeri / SETELECO)
+Internacional	ITU (Unió Internacional de Telecomunicacions, ONU)
+
+
+They assign certain bandwidth to specific services (phone, radio, TV...)
+these regulators give licenses to operators  (les operadores de mòbil paguen milers de milions per llicències)
+Estableixen normes de potència, abast i interferències permeses.
+
+interferencies permeses = quant de "soroll" (senyal que per algu altre es interferencies) pot generar el teu dispositiu legalment i quanta interferencia estas obligat a "aguantar" tu
+limit d'emisio: Límit de potència de transmissió (ex. Wi-Fi a 2.4 GHz: màx. ~100 mW a Europa).
+
+Límit d'emissions fora de banda (no enviar senyal a freqüències veïnes).
+
+Límit de potència en direccions no desitjades
+
+
+
+
+1.3. 2. Rutes de connexió a la xarxa
+1.3.1. Opció A: Connexió via Wi-Fi (a casa o oficines)
+Tram 1 (Sense fils Wireless): El mòbil es connecta al router Wi-Fi mitjançant radiofreqüència local.
+Tram 2 (Cablejat Wired): El router Wi-Fi està connectat per cable (Ethernet / fibra òptica) al router d'accés de l'ISP (proveïdor d'Internet).
+Tram 3 (Internet Global): El senyal viatja per la xarxa global fins arribar al servidor d'streaming de l'emissora.
+[ Mòbil ]
+   │
+   │ (Sense fils / Wi-Fi)
+   ▼
+[ Router Wi-Fi ]
+   │
+   │ (Cablejat / Ethernet - Fibra)
+   ▼
+[ Router d'accés / ISP ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+1.3.2. Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)
+Tram 1 (Sense fils Wireless): El mòbil es connecta a l'antena o estació base (Base Station eNodeB / gNodeB) mitjançant la xarxa cel·lular.
+Tram 2 (Cablejat Wired): L'estació base està connectada per una xarxa cablejada (backhaul de fibra òptica) als routers centrals de la companyia telefònica (Core Network).
+Tram 3 (Internet Global): La xarxa de l'operadora dóna sortida cap a Internet fins al servidor de l'emissora.
+[ Mòbil ]
+   │
+   │ (Sense fils / 4G-5G)
+   ▼
+[ Estació Base (Torre de telefonia) ]
+   │
+   │ (Cablejat / Fibra òptica de retorn)
+   ▼
+[ Routers centrals de l'operadora ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+
+
+
+
+2.2. 2. Models de referència
+2.2.1. 2.1 Model OSI (7 capes)
+Física – senyals
+Enllaç de dades – trames, MAC
+Xarxa – paquets, IP
+Transport – segments, TCP/UDP
+Sessió
+Presentació
+Aplicació – WhatsApp
+2.2.2. 2.2 Model TCP/IP
+Aplicació (OSI 5-7)
+Transport (OSI 4)
+Xarxa (OSI 3)
+Enllaç (OSI 2)
+Física (OSI 1)
+2.2.3. 2.3 Correspondència entre models
+OSI	TCP/IP	PDU	Exemples
+Aplicació, Presentació, Sessió	Aplicació	Dades	WhatsApp, HTTP, DNS
+Transport	Transport	Segment	TCP, UDP
+Xarxa	Xarxa	Paquet	IP, ICMP
+Enllaç de dades	Enllaç	Trama	Ethernet, Wi-Fi
+Física	Física	Bits	Cable, ràdio
+2.3. 3. Encapsulament i desencapsulament
+Encapsulament: baixant capes, cada capa afegeix la seva capçalera (i de vegades tràiler per exemple CRC bits d'ack etc.).
+Desencapsulament: pujant capes, cada capa treu la seva capçalera.
+Cada capa només entén la seva part i passa la resta a la capa superior o inferior.
+
+
+2.4. 4. Baixant capes: enviament des del mòbil d'en Josep
+2.4.1. 4.1 Capa d'aplicació
+WhatsApp genera el missatge.
+Utilitza protocols propis sobre TCP i TLS.
+WhatsApp també aplica xifrat d'extrem a extrem (E2E), habitualment amb el protocol Signal.
+PDU: dades.
+
+
+
+2.4.2. 4.2 Capa de transport (TCP)
+TCP segmenta les dades en segments.
+Afegeix ports d'origen i destí.
+Gestiona control de flux, control de congestió i retransmissió.
+ACKs: si un segment no arriba, es retransmet només aquell segment, no tot el missatge.
+PDU: segment TCP.
+
+
+4.2 Capa de transport (TCP) — Apunts complets
+Índex
+Context: on som dins l'enviament del missatge
+
+TCP segmenta les dades en segments
+
+Afegeix ports d'origen i destí
+
+Gestiona control de flux, control de congestió i retransmissió
+
+ACKs: si un segment no arriba, es retransmet només aquell segment
+
+Qui retransmet realment? Extrem a extrem vs salt a salt
+
+ARQ de capa 2 vs TCP
+
+Casos pràctics: quan actua cada mecanisme
+
+PDU: segment TCP
+
+Resum final
+
+1. Context: on som dins l'enviament del missatge
+En Josep envia un missatge per WhatsApp. El missatge ja s'ha generat a la capa d'aplicació (WhatsApp, xifrat E2E amb el protocol Signal). Ara baixa a la capa de transport, on entra en joc TCP (Transmission Control Protocol).
+
+👉 TCP agafa aquestes dades i les prepara perquè puguin viatjar per la xarxa de manera fiable i ordenada.
+
+Posició dins dels models de capes:
+
+Model OSI	Model TCP/IP	PDU	Protocol
+Transport (capa 4)	Transport	Segment	TCP, UDP
+Xarxa (capa 3)	Xarxa	Paquet	IP
+Enllaç (capa 2)	Enllaç	Trama	Ethernet, Wi-Fi
+2. TCP segmenta les dades en segments
+Què vol dir "segmentar"?
+El missatge de WhatsApp (o qualsevol dada) pot ser més gran que el que la xarxa pot transportar d'una sola vegada. Cada xarxa té una mida màxima de paquet anomenada MTU (Maximum Transmission Unit), típicament 1500 bytes a Ethernet.
+
+Per tant, TCP trosseja les dades en blocs més petits anomenats segments.
+
+Exemple
+Suposem que el missatge de WhatsApp (amb el xifratge) ocupa 4000 bytes:
+
+text
+Missatge original:  [ 4000 bytes de dades ]
+
+TCP el divideix en segments:
+   Segment 1:  [ 1460 bytes ]
+   Segment 2:  [ 1460 bytes ]
+   Segment 3:  [ 1080 bytes ]
+👉 Cada segment viatjarà independentment per la xarxa, i poden arribar en ordre diferent o per camins diferents. TCP s'encarregarà de reordenar-los al destí.
+
+Per què es diu "segment"?
+Perquè la PDU de la capa de transport (quan el protocol és TCP) s'anomena segment TCP. Si fos UDP, es diria datagrama UDP.
+
+3. Afegeix ports d'origen i destí
+Què és un port?
+Una adreça IP identifica un dispositiu a la xarxa (el mòbil d'en Josep, el servidor de WhatsApp...).
+
+Però dins d'un dispositiu hi ha moltes aplicacions funcionant alhora: WhatsApp, el navegador, Spotify, el correu...
+
+👉 El port identifica quina aplicació (quin procés) ha d'enviar o rebre les dades.
+
+Estructura d'un segment TCP
+text
+┌─────────────────────────────────────┐
+│      CAPÇALERA TCP (20-60 bytes)    │
+├─────────────────────────────────────┤
+│  Port origen      │  Port destí     │
+│  Número de seqüència                │
+│  Número d'ACK                       │
+│  Flags (SYN, ACK, FIN...)           │
+│  Finestra (window)                  │
+│  Checksum                           │
+├─────────────────────────────────────┤
+│         DADES                       │
+│    (missatge de WhatsApp xifrat)    │
+└─────────────────────────────────────┘
+Exemple pràctic
+En Josep envia un missatge a WhatsApp:
+
+Camp	Valor	Significat
+IP origen	192.168.1.10	Mòbil d'en Josep
+Port origen	54321	Port aleatori assignat per WhatsApp al mòbil
+IP destí	157.240.20.35	Servidor de WhatsApp
+Port destí	443	HTTPS (port estàndard)
+👉 La combinació IP + port s'anomena socket. Un socket identifica una connexió concreta entre dues aplicacions.
+
+Socket origen: 192.168.1.10:54321
+Socket destí: 157.240.20.35:443
+
+Port d'origen vs port de destí
+Port d'origen	Port de destí
+Qui el decideix?	El sistema operatiu (aleatori)	L'aplicació/protocol (fix)
+Valor típic	49152–65535 (efímer)	0–1023 (estàndard) o personalitzat
+Per què?	Identificar la connexió concreta	Identificar el servei destí
+Exemple	54321	443 (HTTPS), 5222 (XMPP)
+Com es pot saber el port de destí?
+El port de destí ve determinat pel protocol o servei al qual et vols connectar. No és aleatori.
+
+a) Ports estàndard (well-known ports):
+
+Port	Protocol/Servei	Ús
+20/21	FTP	Transferència de fitxers
+22	SSH	Accés remot segur
+25	SMTP	Enviament de correu
+53	DNS	Resolució de noms
+80	HTTP	Web (no xifrat)
+443	HTTPS	Web xifrada
+587	SMTP	Enviament de correu (segur)
+3306	MySQL	Base de dades
+👉 Quan obres https://www.google.com, automàticament es connecta al port 443 (HTTPS sempre va al 443).
+
+b) Aplicacions amb servidors propis (com WhatsApp):
+
+WhatsApp té assignat un port concret als seus servidors.
+
+L'aplicació de WhatsApp al mòbil ja sap a quin port connectar-se (està programat a l'app).
+
+Normalment usen ports estàndard com el 443 (HTTPS) o el 5222 (XMPP), perquè així el trànsit es camufla amb trànsit web normal i passa més fàcilment per firewalls.
+
+👉 En resum: el port de destí el sap l'aplicació perquè està definit al protocol o a la configuració del servei; el port d'origen és temporal i l'assigna el sistema operatiu.
+
+4. Gestiona control de flux, control de congestió i retransmissió
+TCP té tres mecanismes per garantir que les dades arribin bé:
+
+4.1 Control de flux (Flow Control)
+Problema: El receptor pot ser més lent que l'emissor. Si l'emissor envia massa ràpid, el receptor no pot processar-ho i es perd informació.
+
+Solució: TCP utilitza una finestra lliscant (sliding window). El receptor indica a l'emissor quants bytes pot rebre sense desbordar-se.
+
+text
+Emissor: "Et puc enviar 10 segments?"
+Receptor: "No, de moment només en puc rebre 3"
+Emissor: "OK, n'enviaré 3 i esperaré confirmació"
+👉 El camp Window de la capçalera TCP indica aquesta capacitat.
+
+4.2 Control de congestió (Congestion Control)
+Problema: La xarxa (routers, enllaços) pot estar saturada. Si tothom envia paquets alhora, es produeixen cues, retards i pèrdues.
+
+Solució: TCP redueix la velocitat quan detecta congestió (pèrdua de paquets o retards).
+
+Algorismes típics:
+
+Slow Start: comença enviant poc i va augmentant.
+
+Congestion Avoidance: quan s'acosta al límit, augmenta més lentament.
+
+Fast Retransmit / Fast Recovery: recupera ràpidament després d'una pèrdua.
+
+text
+Velocitat d'enviament
+    ▲
+    │         ┌─────────── (límit de la xarxa)
+    │        /
+    │       /
+    │      /
+    │     /
+    │    /
+    │   /
+    │  /
+    │ /
+    │/
+    └────────────────────────► Temps
+     Slow Start   Congestion Avoidance
+👉 Si hi ha pèrdues, TCP baixa la velocitat i torna a pujar gradualment.
+
+4.3 Retransmissió (Retransmission)
+Problema: Els paquets IP es poden perdre pel camí (IP és best-effort, no garanteix res).
+
+Solució: TCP confirma cada segment amb un ACK (Acknowledgment). Si l'emissor no rep l'ACK dins d'un temps límit (timeout), retransmet el segment.
+
+text
+Emissor  ──── Segment 1 ────►  Receptor
+Emissor  ◄─── ACK 1 ────────  Receptor
+Emissor  ──── Segment 2 ────►  Receptor
+         (es perd)
+Emissor  ◄─── (cap ACK) ────  Receptor
+         (timeout)
+Emissor  ──── Segment 2 ────►  Receptor  (retransmissió)
+Emissor  ◄─── ACK 2 ────────  Receptor
+👉 TCP garanteix que tots els segments arribin, retransmetent els que es perdin.
+
+5. ACKs: si un segment no arriba, es retransmet només aquell segment
+Aquesta és una de les claus de TCP i una de les diferències principals amb altres sistemes.
+
+Com funciona?
+Cada segment té un número de seqüència (per saber l'ordre) i el receptor envia ACKs per confirmar què ha rebut.
+
+Exemple: Missatge de WhatsApp dividit en 3 segments:
+
+text
+Segment 1 (bytes 0-1459)     ────►  Receptor  ✅ rep
+Segment 2 (bytes 1460-2919)  ────►  Receptor  ❌ es perd
+Segment 3 (bytes 2920-3999)  ────►  Receptor  ✅ rep
+El receptor envia:
+
+ACK 1 (he rebut fins al byte 1459)
+
+ACK 1 un altre cop (encara espero el segment 2 — duplicate ACK)
+
+ACK 1 un altre cop (encara espero el segment 2)
+
+Quan l'emissor rep 3 ACKs duplicats, entén que el segment 2 s'ha perdut i el retransmet només ell:
+
+text
+Segment 2 (retransmès)  ────►  Receptor  ✅ rep
+Receptor: ACK 3 (he rebut fins al byte 3999)
+Per què és important?
+Eficiència: No cal reenviar tot el missatge (4000 bytes). Només es reenvia el tros perdut (1460 bytes).
+
+Velocitat: La resta del missatge ja ha arribat i s'ha processat.
+
+Estalvi de recursos: Menys trànsit a la xarxa.
+
+Comparació amb altres sistemes
+Sistema	Què passa si es perd un tros?
+TCP	Retransmet només el segment perdut
+UDP	No retransmet res (l'aplicació se n'ha de preocupar)
+Sistemes sense segmentació	Caldria reenviar tot el missatge sencer
+👉 Això és el que fa TCP fiable: garanteix el lliurament complet i ordenat, però de manera eficient.
+
+Detecció d'error: checksum
+Si el segment arriba però amb bits corromputs:
+
+El checksum TCP del receptor falla → el receptor descarta el segment com si no hagués arribat.
+
+El receptor envia ACK 5 (com si el 6 no hagués arribat).
+
+El mòbil rep 3 ACKs duplicats → retransmet el segment 6.
+
+👉 Mateix resultat: el mòbil retransmet.
+
+6. Qui retransmet realment? Extrem a extrem vs salt a salt
+Resposta curta
+👉 El mòbil d'en Josep (l'emissor original) és qui retransmet el segment perdut.
+
+Els routers no retransmeten res. Només encaminen paquets. La retransmissió és responsabilitat dels extrems (emissor i receptor), no de la xarxa.
+
+Els routers NO retransmeten
+Els routers treballen a la capa de xarxa (IP), i IP és best-effort:
+
+Si un paquet es perd o arriba amb errors, IP no fa res per recuperar-lo.
+
+Els routers només miren la IP destí i decideixen cap a on enviar el paquet.
+
+No guarden còpies dels paquets per si de cas.
+
+No tenen memòria de connexions TCP.
+
+👉 Un router és com un carter que només mira l'adreça i passa la carta al següent punt. Si la carta es perd pel camí, el carter no la torna a escriure.
+
+Escenari amb 5 routers: 20 segments, el 6 s'ha perdut
+text
+[Mòbil Josep]
+     │
+     ▼
+[Router 1] ──► [Router 2] ──► [Router 3] ──► [Router 4] ──► [Router 5]
+                                                                  │
+                                                                  ▼
+                                                        [Servidor WhatsApp]
+
+Segment 1  ✅ arriba
+Segment 2  ✅ arriba
+Segment 3  ✅ arriba
+Segment 4  ✅ arriba
+Segment 5  ✅ arriba
+Segment 6  ❌ ES PERD (en algun router pel mig)
+Segment 7  ✅ arriba
+Segment 8  ✅ arriba
+...
+Segment 20 ✅ arriba
+Què fa el servidor de WhatsApp?
+
+Segment rebut	Número de seqüència	Què fa el receptor
+Segment 1	0	ACK 1 (espero el 2)
+Segment 2	1460	ACK 2 (espero el 3)
+...	...	...
+Segment 5	7300	ACK 5 (espero el 6)
+Segment 7	8760	ACK 5 (encara espero el 6!) — duplicate ACK
+Segment 8	10220	ACK 5 (encara espero el 6!) — duplicate ACK
+Segment 9	11680	ACK 5 (encara espero el 6!) — duplicate ACK
+👉 El receptor no pot acceptar els segments 7, 8, 9... perquè li falta el 6. Els guarda en un buffer temporal, però no els processa.
+
+Quan l'emissor (mòbil d'en Josep) rep 3 ACKs duplicats, entén que el segment 6 s'ha perdut i el retransmet només ell.
+
+Per què els routers no retransmeten?
+Perquè no és la seva feina. La divisió de responsabilitats és:
+
+Capa	Responsabilitat	Retransmet?
+Enllaç (Wi-Fi, Ethernet)	Detectar errors amb CRC	Sí, però només entre nodes veïns
+Xarxa (IP, routers)	Encaminar paquets	❌ No
+Transport (TCP)	Fiabilitat extrem a extrem	✅ Sí
+👉 TCP és l'únic que garanteix la fiabilitat extrem a extrem (entre el mòbil i el servidor). Els routers no ho fan.
+
+Principi de disseny d'extrem a extrem
+Internet va adoptar des del principi el principi de disseny d'extrem a extrem, col·locant la funcionalitat de fiabilitat (confirmació, retransmissió, ordenació) als sistemes terminals, en lloc de a la xarxa intermèdia. Els routers no necessiten mantenir informació d'estat de les connexions TCP, la qual cosa simplifica enormement el disseny de la xarxa.
+
+L'especificació d'IP (RFC 791)
+"El protocol d'Internet no proporciona una instal·lació de comunicació fiable. No hi ha confirmacions d'extrem a extrem ni de salt a salt. No hi ha control d'errors per a les dades... No hi ha retransmissions."
+
+👉 Els routers només s'encarreguen d'encaminar i enviar paquets, i descarten directament els paquets que no es poden enviar; no els retransmeten.
+
+7. ARQ de capa 2 vs TCP
+L'ARQ de capa 2 SÍ que té temporitzador
+ARQ (Automatic Repeat reQuest) és el mecanisme de retransmissió de la capa d'enllaç. Quan un node envia una trama i no rep l'ACK corresponent dins del temps límit, retransmet la trama.
+
+Però això només funciona entre els dos nodes directament connectats per aquell enllaç.
+
+text
+[Mòbil] ──Wi-Fi──► [Router 1] ──Ethernet──► [Router 2] ──Fibra──► [Router 3]
+                         ▲                                            │
+                         │                                            │
+                    ARQ aquí                                    Congestió aquí
+                 (mòbil ↔ R1)                                   (R3 descarta)
+L'ARQ de capa 2 només cobreix UN salt
+text
+[Mòbil Josep] ←── Wi-Fi (ARQ aquí) ──► [Router 1]
+[Router 1]    ←── Ethernet (potser ARQ) ──► [Router 2]
+[Router 2]    ←── Fibra (potser ARQ) ──► [Router 3]
+...
+[Router 5]    ←── Ethernet ──► [Servidor WhatsApp]
+Cada enllaç té el seu propi ARQ (o no en té). Però cap d'ells cobreix la ruta sencera.
+
+Diferència clau: error de transmissió vs descart per congestió
+Tipus de pèrdua	On passa	Ho detecta l'ARQ de capa 2?
+Error de bits a l'enllaç	Al medi físic (soroll, interferència)	✅ Sí (CRC falla → no ACK → retransmet)
+Col·lisió	Al medi compartit (Wi-Fi, Ethernet antic)	✅ Sí (no ACK → retransmet)
+Trama perduda al medi	Al medi físic	✅ Sí (no ACK → retransmet)
+Cua plena al router	Dins del router (capa 3)	❌ No (el router ja havia confirmat la recepció)
+Router massa lent	Dins del router	❌ No
+Router descarta per prioritat	Dins del router	❌ No
+Router falla o es reinicia	Dins del router	❌ No
+Enllaç sense ARQ (fibra normal)	Al medi	❌ No
+Ruta canvia i paquets desordenats	A la xarxa	❌ No
+Per què la congestió NO es detecta a capa 2?
+Quan el Router 3 rep una trama del Router 2:
+
+Capa 2 del Router 3 rep la trama correctament.
+
+Capa 2 del Router 3 envia l'ACK al Router 2 ("he rebut la trama").
+
+Capa 2 passa les dades a capa 3 (IP).
+
+Capa 3 (IP) mira la cua per enviar el paquet cap al següent salt.
+
+La cua està plena → IP descarta el paquet.
+
+Capa 2 ja havia confirmat la recepció → el Router 2 no sap res de la pèrdua.
+
+👉 El descart passa a capa 3 (IP), després que capa 2 ja hagi confirmat la recepció. Per tant, l'ARQ de capa 2 no pot detectar-ho.
+
+A més:
+
+Retransmetre no ajuda si la cua segueix plena; cal reduir la velocitat (control de congestió), cosa que l'ARQ de capa 2 no pot fer.
+
+L'ARQ de capa 2 no té visió global: només sap si el node veí ha rebut la trama, no si el paquet arribarà al destí final.
+
+Taula comparativa: ARQ local vs TCP
+ARQ de capa d'enllaç	TCP (capa de transport)
+Abast	Un salt (entre 2 nodes veïns)	Extrem a extrem (mòbil ↔ servidor)
+Qui retransmet?	El node anterior de l'enllaç	L'emissor original
+Detecta pèrdues en altres enllaços?	❌ No	✅ Sí
+Detecta congestió?	❌ No	✅ Sí (control de congestió)
+Reordena paquets?	❌ No	✅ Sí
+Garanteix lliurament complet?	❌ No	✅ Sí
+Funciona si un router falla?	❌ No	✅ Sí
+Funciona si la ruta canvia?	❌ No	✅ Sí
+Funciona en enllaços sense ARQ?	❌ No	✅ Sí
+8. Casos pràctics: quan actua cada mecanisme
+Casos en què l'ARQ de capa 2 SÍ que detecta i retransmet
+Cas A: Error de bits al medi físic
+text
+[Mòbil] ──Wi-Fi──► [Router 1]
+   │                    │
+   │  Trama amb bits    │
+   │  corromputs        │
+   └────────────────────┘
+   
+Router 1: CRC falla → descarta la trama → NO envia ACK
+Mòbil: timeout → retransmet la trama
+✅ Detectat i retransmès per ARQ de capa 2.
+
+Cas B: Col·lisió en medi compartit
+text
+[Mòbil A] ──Wi-Fi──► [Router 1] ◄──Wi-Fi── [Mòbil B]
+              │                              │
+              └────── col·lisió ─────────────┘
+
+Cap dels dos rep ACK → tots dos retransmeten
+✅ Detectat i retransmès per ARQ de capa 2 (CSMA/CA).
+
+Cas C: Trama perduda al medi (soroll, atenuació)
+text
+[Mòbil] ──Wi-Fi──► [Router 1]
+   │                    │
+   │  La trama es perd  │
+   │  pel camí          │
+   └────────────────────┘
+   
+Router 1: no rep res → NO envia ACK
+Mòbil: timeout → retransmet la trama
+✅ Detectat i retransmès per ARQ de capa 2.
+
+Cas D: Interferència que corromp el senyal
+text
+[Mòbil] ──Wi-Fi──► [Router 1]
+              ▲
+              │
+        Interferència (microones, altre Wi-Fi...)
+        
+Router 1: CRC falla → descarta → NO ACK
+Mòbil: timeout → retransmet
+✅ Detectat i retransmès per ARQ de capa 2.
+
+Casos en què NOMÉS TCP detecta i retransmet
+Cas E: Pèrdua entre dos routers
+text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                       │
+                       │ ❌ El paquet es perd aquí (R2 → R3)
+                       ▼
+                    (descarta)
+L'ARQ de Wi-Fi entre el mòbil i R1 no ho pot detectar (el paquet ja va passar bé per allà).
+
+L'ARQ entre R2 i R3 potser no existeix (fibra òptica normalment no en té).
+
+Si existeix, només retransmetria entre R2 i R3, no des del mòbil.
+
+Qui ho recupera? TCP, gràcies a l'ACK del servidor i la retransmissió des del mòbil.
+
+Cas F: Congestió en un router
+text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                              │
+                              │ ⚠️ Cua plena → descarta paquets
+                              ▼
+                         (paquets perduts)
+El router descarta paquets perquè no pot processar-los tots.
+
+L'ARQ local no pot fer res: el paquet ha arribat bé al router, però el router l'ha descartat perquè no pot més.
+
+Qui ho recupera? TCP, que detecta la pèrdua i redueix la velocitat (control de congestió) i retransmet.
+
+Cas G: Error de bits en un enllaç sense ARQ
+text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                                    │
+                                    │ ⚠️ Bit corromput a la fibra
+                                    ▼
+                              (CRC falla → descarta)
+Si l'enllaç té CRC, el router R4 descarta el paquet perquè està corromput.
+
+Si l'enllaç no té ARQ, no es retransmet localment.
+
+Qui ho recupera? TCP, des del mòbil.
+
+Cas H: Un router falla o es reinicia
+text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                       │
+                       │ ❌ R3 es reinicia i perd els paquets en cua
+                       ▼
+                    (paquets perduts)
+Cap ARQ local pot recuperar això.
+
+Qui ho recupera? TCP.
+
+Cas I: La ruta canvia i els paquets arriben desordenats
+text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [Servidor]
+                └── [R2'] ── [R3'] ── [R4'] ──┘
+                (ruta alternativa)
+Alguns paquets van per una ruta, d'altres per una altra.
+
+Arriben desordenats al servidor.
+
+L'ARQ local no té res a veure amb l'ordre global.
+
+Qui ho resol? TCP, gràcies als números de seqüència.
+
+Comparació visual: on actua cada mecanisme
+text
+[Mòbil] ──Wi-Fi──► [R1] ──Ethernet──► [R2] ──Fibra──► [R3] ──Fibra──► [R4] ──Ethernet──► [Servidor]
+   │                    │                    │                    │                    │
+   │◄── ARQ Wi-Fi ─────►│                    │                    │                    │
+   │                    │◄── ARQ Eth ───────►│                    │                    │
+   │                    │                    │◄── ARQ Fibra ─────►│                    │
+   │                    │                    │                    │◄── ARQ Eth ───────►│
+   │                    │                    │                    │                    │
+   │◄────────────────── TCP (extrem a extrem) ──────────────────────────────────────►│
+ARQ de capa 2: protegeix cada enllaç individual (mòbil↔R1, R1↔R2, R2↔R3...).
+
+TCP: protegeix tota la ruta (mòbil↔servidor).
+
+Analogia: enviar una carta per correu
+Imagina que envies un llibre per correu, dividit en 20 capítols (segments):
+
+ARQ local = el carter que porta el capítol 6 de la teva oficina de correus a la central local. Si el capítol 6 es perd en aquest tram, el carter el torna a demanar a l'oficina.
+
+TCP = tu, que has enviat els 20 capítols. Si el destinatari et diu "em falta el capítol 6", tu el tornes a enviar des de casa teva.
+
+👉 El carter només cobreix el seu tram. Si el capítol 6 es perd en un altre tram (per exemple, entre la central local i la central regional), el carter local no ho sap. Tu (TCP) has de tornar a enviar el capítol 6 des de zero.
+
+9. PDU: segment TCP
+Com hem vist, la PDU (Protocol Data Unit) de la capa de transport quan el protocol és TCP s'anomena segment TCP.
+
+text
+┌─────────────────────────────────────┐
+│         CAPÇALERA TCP               │
+│  (ports, seqüència, ACK, flags...)  │
+├─────────────────────────────────────┤
+│         DADES                       │
+│  (missatge de WhatsApp xifrat)      │
+└─────────────────────────────────────┘
+        ↑
+   SEGMENT TCP (PDU de transport)
+Aquest segment baixarà a la capa de xarxa, on IP li afegirà la seva pròpia capçalera i es convertirà en un paquet IP.
+
+Recordatori: PDU a cada capa
+Capa (OSI)	Capa (TCP/IP)	PDU	Exemples de protocols
+Aplicació / Presentació / Sessió	Aplicació	Dades	WhatsApp, HTTP, DNS
+Transport	Transport	Segment	TCP, UDP
+Xarxa	Xarxa	Paquet	IP, ICMP
+Enllaç de dades	Enllaç	Trama (frame)	Ethernet, Wi-Fi
+Física	Física	Bits	Cable, ràdio
+👉 PDU = el nom que rep el bloc de dades a cada capa. El mateix conjunt de dades canvia de nom segons la capa on ens trobem.
+
+Notes sobre l'ACK dins del segment TCP
+L'ACK flag (1 bit) i el Acknowledgment Number (32 bits) formen part de la capçalera TCP.
+
+👉 No és tràiler. El tràiler (CRC) és cosa de la capa d'enllaç (Ethernet, Wi-Fi).
+
+Quan un segment TCP porta el flag ACK activat, està confirmant dades rebudes.
+
+10. Resum final
+Què fa TCP en aquest pas?
+Concepte	Què fa TCP
+Segmentació	Divideix les dades en segments (PDU = segment TCP)
+Ports	Identifiquen l'aplicació origen i destí (socket = IP + port)
+Port d'origen	Aleatori, assignat pel sistema operatiu (49152–65535)
+Port de destí	Fix, determinat pel protocol/servei (443 HTTPS, 5222 XMPP...)
+Control de flux	Evita que l'emissor saturi el receptor (finestra lliscant)
+Control de congestió	Redueix la velocitat si la xarxa està saturada
+Retransmissió	Reenvia segments perduts gràcies als ACKs
+ACKs	Confirmen recepció; si en falta un, es retransmet només aquell segment
+Fiabilitat	Garanteix que tot arribi, en ordre i sense errors
+Qui retransmet?
+Pregunta	Resposta
+Qui detecta l'error?	El receptor final (servidor WhatsApp), gràcies al checksum i números de seqüència
+Qui retransmet?	L'emissor original (mòbil d'en Josep)
+Els routers retransmeten?	❌ No. Només encaminen
+Què retransmet?	Només el segment perdut (el 6), no tot el missatge
+Com sap l'emissor que cal retransmetre?	Perquè rep 3 ACKs duplicats (o un timeout)
+Quin protocol ho gestiona?	TCP (capa de transport), extrem a extrem
+ARQ local vs TCP
+Pregunta	Resposta
+L'ARQ de capa 2 té temporitzador?	✅ Sí
+Detecta errors de bits?	✅ Sí (CRC falla → no ACK → retransmet)
+Detecta col·lisions?	✅ Sí (no ACK → retransmet)
+Detecta trames perdudes al medi?	✅ Sí (timeout → retransmet)
+Detecta congestió al router?	❌ No (el router ja ha confirmat la recepció a capa 2)
+Detecta router que falla?	❌ No
+Detecta enllaç sense ARQ?	❌ No
+Detecta paquets desordenats?	❌ No
+Qui ho detecta tot això?	TCP
+Frase resum
+👉 TCP agafa el missatge de WhatsApp, el trosseja en segments, hi posa ports i números de seqüència, i s'assegura que cada segment arribi bé — retransmetent només els que es perdin, gràcies als ACKs. Els routers només transporten paquets; la fiabilitat és responsabilitat de TCP, que treballa extrem a extrem, no salt a salt.
+
+Diagrama final del procés complet
+text
+┌──────────────────────────────────────────────────────────┐
+│ CAPA D'APLICACIÓ (WhatsApp)                              │
+│ Missatge xifrat E2E: 4000 bytes                          │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌──────────────────────────────────────────────────────────┐
+│ CAPA DE TRANSPORT (TCP)                                  │
+│                                                          │
+│  1. Segmenta:  [1460B] [1460B] [1080B]                   │
+│  2. Afegeix ports: origen 54321, destí 443               │
+│  3. Afegeix números de seqüència i ACK                   │
+│  4. Control de flux, congestió i retransmissió           │
+│                                                          │
+│  PDU: SEGMENT TCP                                        │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌──────────────────────────────────────────────────────────┐
+│ CAPA DE XARXA (IP)                                       │
+│  Afegeix IP origen i destí → PAQUET IP                   │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+                    ... segueix baixant ...
+
+Si es perd un segment:
+  Servidor envia ACK duplicat → Mòbil retransmet NOMÉS aquell segment
+  (els routers NO retransmeten mai)
+
+
+2.4.3. 4.3 Capa de xarxa (IP)
+IP decideix la ruta fins al servidor de WhatsApp.
+Afegeix adreces IP d'origen i destí.
+Els routers encaminen els paquets salt a salt.
+PDU: paquet IP.
+
+
+Passos que fa el router
+Rep el paquet i llegeix la IP destí de la capçalera IP.
+
+Consulta la taula d’encaminament. Cada entrada té:
+
+Xarxa destí (ex: 157.240.0.0)
+
+Màscara (ex: /16)
+
+Següent salt (next hop) (ex: 10.0.0.1)
+
+Interfície de sortida (ex: eth0)
+
+Mètrica (opcional: cost, distància…)
+
+Busca la coincidència més específica (longest prefix match):
+
+Compara la IP destí amb totes les entrades.
+
+Si diverses entrades coincideixen, tria la que té la màscara més llarga (la més específica).
+
+Si no troba cap coincidència específica, usa la ruta per defecte (0.0.0.0/0), que normalment apunta cap a Internet.
+
+Envia el paquet per la interfície indicada cap al next hop.
+
+Decrementa el TTL en 1. Si arriba a 0, descarta el paquet i envia un ICMP Time Exceeded.
+
+Si no té cap ruta (ni específica ni per defecte), descarta el paquet i envia un ICMP Destination Unreachable.
+
+Exemple amb la taula dels apunts
+Xarxa destí	Màscara	Següent salt	Interfície
+157.240.0.0	/16	10.0.0.1	eth0
+142.250.0.0	/16	10.0.0.2	eth1
+0.0.0.0	/0	10.0.0.254	eth0
+Arriba un paquet amb IP destí = 157.240.20.35.
+
+Coincideix amb 157.240.0.0/16 → next hop 10.0.0.1, interfície eth0.
+
+També coincidiria amb 0.0.0.0/0, però /16 és més específica que /0.
+
+Guanya la /16.
+
+El router envia el paquet a 10.0.0.1 per eth0.
+
+
+
+2.4.4. 4.4 Capa d'enllaç de dades
+Subcapa MAC (Medium Access Control): controla l'accés al medi.
+Exemples: ALOHA, CSMA/CD (Ethernet), CSMA/CA (Wi-Fi).
+Afegeix adreces MAC d'origen i destí.
+Afegeix CRC per detectar errors.
+Wi-Fi: cada trama unicast s'ACKja. Si falla, es retransmet la trama, no tot el fitxer.
+Wi-Fi també encripta les trames a nivell d'enllaç amb WPA2/WPA3.
+PDU: trama.
