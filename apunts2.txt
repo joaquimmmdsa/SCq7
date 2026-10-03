@@ -825,6 +825,25 @@ Guanya la /16.
 
 El router envia el paquet a 10.0.0.1 per eth0.
 
+Idea clau
+👉 El router no decideix la ruta completa, només el següent salt. Aquesta decisió es basa en:
+
+IP destí
+
+Taula d’encaminament
+
+Coincidència més específica (longest prefix match)
+
+Ruta per defecte si no hi ha res millor
+
+A més, les taules d’encaminament es poden omplir de forma:
+
+Estàtica: algú les configura manualment.
+
+Dinàmica: els routers intercanvien informació amb protocols com OSPF, BGP, RIP, etc.
+
+Però en tots els casos, el funcionament bàsic és el mateix: mirar la IP destí, triar la millor entrada i enviar el paquet al següent salt.
+
 
 
 2.4.4. 4.4 Capa d'enllaç de dades
@@ -835,3 +854,533 @@ Afegeix CRC per detectar errors.
 Wi-Fi: cada trama unicast s'ACKja. Si falla, es retransmet la trama, no tot el fitxer.
 Wi-Fi també encripta les trames a nivell d'enllaç amb WPA2/WPA3.
 PDU: trama.
+
+4.4 Capa d’enllaç de dades
+La capa d’enllaç de dades (capa 2 OSI) transmet trames entre nodes directament connectats (mateix enllaç físic: Wi-Fi, Ethernet, fibra…). No encamina per Internet; això ho fa IP (capa 3). Es divideix en dues subcapes:
+
+LLC (Logical Link Control): interfície amb la capa de xarxa.
+
+MAC (Medium Access Control): controla l’accés al medi i prepara la trama.
+
+1. Subcapa MAC
+S’encarrega de:
+
+Controlar l’accés al medi quan diversos dispositius el comparteixen.
+
+Afegir adreces MAC d’origen i destí.
+
+Afegir CRC/FCS per detectar errors.
+
+En Wi-Fi: ACK i retransmissió de trames unicast.
+
+En Wi-Fi: encriptació de trames (WPA2/WPA3).
+
+Protocols d’accés al medi
+Protocol	Àmbit	Funcionament	Ús típic
+ALOHA	Ràdio	Transmet quan vol; moltes col·lisions	Històric
+CSMA/CD	Ethernet half-duplex	Escolta, detecta col·lisions i reintenta	Ethernet antic
+CSMA/CA	Wi-Fi	Escolta, evita col·lisions amb backoff i ACKs	Wi-Fi
+CSMA/CD: Carrier Sense Multiple Access with Collision Detection. Si hi ha col·lisió, s’atura, s’envia jam i s’espera un temps aleatori.
+
+CSMA/CA: Collision Avoidance. No es pot detectar col·lisió mentre es transmet, per això s’evita: DIFS, backoff, ACK, RTS/CTS opcional.
+
+2. Adreces MAC
+48 bits (6 bytes), hexadecimal: 00:1A:2B:3C:4D:5E.
+
+Estructura: OUI (24 bits, fabricant) + NIC (24 bits, targeta).
+
+Tipus: unicast, multicast, broadcast (FF:FF:FF:FF:FF:FF).
+
+S’utilitzen dins d’una xarxa local; els switches mantenen taules MAC → port.
+
+Canvien a cada salt: cada enllaç té les seves MAC origen/destí.
+
+Per traduir IP → MAC dins la LAN: ARP (IPv4) o NDP (IPv6).
+
+3. CRC (detecció d’errors)
+S’afegeix un CRC/FCS al final de la trama.
+
+L’emissor calcula el CRC de capçalera + dades.
+
+El receptor el recalcula; si no coincideix, descarta la trama.
+
+Detecta errors, no els corregeix. La retransmissió la fan capes superiors (TCP) o la pròpia Wi-Fi.
+
+4. Wi-Fi: ACK i retransmissió
+Cada trama unicast s’ACKja.
+
+Si l’emissor no rep l’ACK, retransmet la trama (no tot el fitxer).
+
+Broadcast/multicast no s’ACKgen.
+
+És fiabilitat salt a salt (mòbil ↔ AP), no extrem a extrem.
+
+TCP s’encarrega de la fiabilitat extrem a extrem.
+
+5. Wi-Fi: encriptació WPA2/WPA3
+Encripta l’enllaç de ràdio entre dispositiu i AP.
+
+Protegeix contra escoltes i injecció de trames.
+
+No és extrem a extrem: un cop arriba a l’AP, es desencripta.
+
+WPA2: AES-CCMP, PSK. WPA3: AES-GCMP, SAE, forward secrecy.
+
+6. PDU: trama
+La PDU de la capa d’enllaç és la trama (frame).
+
+Estructura bàsica Ethernet:
+
+text
+[Preàmbul | MAC dst | MAC src | Tipus | Dades (paquet IP) | FCS]
+Wi-Fi (802.11) és més complexa: Frame Control, Duration, Address 1-4, Sequence, QoS, Body, FCS.
+
+Encapsulament:
+
+text
+Paquet IP  →  Trama  →  Bits
+7. Resum
+Capa d’enllaç = trames entre nodes directament connectats.
+
+Subcapa MAC = accés al medi, MAC, CRC, ACKs, encriptació.
+
+Protocols = ALOHA, CSMA/CD (Ethernet), CSMA/CA (Wi-Fi).
+
+Adreces MAC = 48 bits, origen/destí, canvien a cada salt.
+
+CRC = detecció d’errors.
+
+Wi-Fi = ACK per trama unicast, retransmissió de trama, WPA2/WPA3.
+
+PDU = trama.
+
+👉 En una frase: la subcapa MAC controla qui transmet, posa adreces MAC, afegeix CRC, i en Wi-Fi ACKja, retransmet i encripta trames; tot dins d’una trama, la PDU de la capa d’enllaç.
+
+1. Xarxes sense fils amb diferents propòsits
+Què diu: Wireless networks with different purposes: e.g., GSM, WiFi, ZigBee, Bluetooth, RFID, Radio, TV.
+
+Explicació: Cada tecnologia sense fils està dissenyada per a un objectiu concret.
+
+GSM/5G: Cobertura global, mobilitat, veu i dades d'alta velocitat.
+
+WiFi: Alta velocitat de dades per a xarxes locals (LAN) i accés a Internet.
+
+ZigBee: Xarxes de sensors de baixa potència i baixa velocitat (IoT).
+
+Bluetooth: Xarxes d'àrea personal (PAN) de curt abast.
+
+RFID: Identificació i seguiment d'objectes.
+
+Ràdio/TV: Difusió massiva d'un a molts.
+
+Conclusió: No pot haver-hi un protocol únic perquè les aplicacions són radicalment diferents.
+
+2. Requisits diversos de les aplicacions
+Què diu: Diverse application requirements: Reliability, delay, ...
+
+Explicació: Les aplicacions tenen necessitats crítiques diferents.
+
+Fiabilitat i Retard (Delay): Un cotxe autònom (V2X) necessita latència ultrabaixa (mil·lisegons) i una fiabilitat gairebé perfecta per evitar accidents. En canvi, un sensor de temperatura domèstic pot enviar dades cada hora i tolerar retards o pèrdues. Un protocol per a tots dos no pot optimitzar aquests paràmetres alhora.
+
+3. Diferents condicions de l'entorn i del canal
+Què diu: Different environment/channel conditions: ISM vs. Licensed channels.
+
+Explicació: L'espectre radioelèctric es divideix en bandes:
+
+Canals llicenciats (Licensed): Operadors de telefonia mòbil paguen per ús exclusiu. Hi ha menys interferències i es pot garantir qualitat.
+
+Canals ISM (Industrial, Scientific, Medical): Bandes lliures (com 2.4 GHz o 5 GHz) que qualsevol pot utilitzar. Són gratuïtes, però estan plenes d'interferències (WiFi, Bluetooth, microones). Els protocols han d'estar dissenyats per gestionar aquesta interferència o per aprofitar l'espectre llicenciat.
+
+4. Propietats del maquinari de comunicació diferents
+Què diu: Dissimilar communication hardware properties: Power, range, ...
+
+Explicació: El maquinari condiciona el protocol.
+
+Potència: Un telèfon mòbil té una bateria gran, però un sensor IoT pot haver de durar anys amb una pila petita (requereix protocols d'estalvi d'energia extrems).
+
+Abast (Range): Un router WiFi té un abast de desenes de metres; una torre cel·lular pot cobrir quilòmetres. El maquinari (antenes, amplificadors) i el protocol han d'anar en consonància amb l'abast desitjat.
+
+Communication modes:
+Simplex: one way communication, radio, TV, GPS etc.
+Half-duplex: two way communications but not simultaneously
+Full-duplex: two-way simultaneous communication
+Full duplex is possible in different ways: using two simplex channels separeted by TDD or FDD or separeted signal paths (cables) or hardware support for tx suppression
+
+Guided vs unguided media:
+Guided: the waves are guided along a physical path: coaxial cable, optical fiber, twisted pair
+Unguided: wireless meduim (canal comu compartit)
+
+
+Analog vs Digital Signal:
+Analog signal: signal intensity varies in a smooth way over time. There are no braks or discontinuitites in the signal
+
+Digital signal: Signal intensity mantains a constant level for some period of time and then changes to another constant level
+
+
+Digital data:
+Enables compression, error protection, encryption, low-cost/smaller
+processors
+Analog signals:
+Allows use of multiple channels (frequencies)
+
+
+El diagrama il·lustra el viatge de la informació en un sistema de comunicació, dividit en 5 blocs i 6 etapes:
+
+Blocs principals: Source (Font) 
+→
+→ Transmitter (Transmissor) 
+→
+→ Transmission system (Sistema de transmissió) 
+→
+→ Receiver (Receptor) 
+→
+→ Destination (Destinació).
+
+Procés de conversió: La informació (Text) es converteix en un flux de bits digitals, després en un senyal analògic per viatjar pel medi, i al receptor es fa el procés invers fins a recuperar el Text.
+
+Etapes numerades:
+
+Input information 
+m
+m: Informació original (Text).
+Input data 
+g
+(
+t
+)
+g(t): Dades digitals (bits).
+Transmitted signal 
+s
+(
+t
+)
+s(t): Senyal analògic enviat.
+Received signal 
+r
+(
+t
+)
+r(t): Senyal analògic rebut (pot variar per soroll).
+Output data 
+g
+′
+(
+t
+)
+g 
+′
+ (t): Dades digitals extretes.
+Output information 
+m
+′
+m 
+′
+ : Informació final rebuda (idealment igual a 
+m
+m).
+
+
+
+Antennas:
+
+Segons el document, una antena és un conductor elèctric o un sistema de conductors. La seva funció principal és actuar com a interfície entre el món de l'electrònica (els circuits) i el món de les ones electromagnètiques (l'espai).
+
+Les seves dues funcions principals:
+Transmissió: L'antena radia energia electromagnètica a l'espai. Quan el transmissor li envia un corrent elèctric altern d'alta freqüència, l'antena converteix aquesta energia elèctrica en ones electromagnètiques que es propaguen per l'aire (o el buit).
+
+Recepció: L'antena recull energia electromagnètica de l'espai. Quan les ones electromagnètiques xoquen contra ella, indueixen un petit corrent elèctric que el receptor pot detectar i processar.
+
+Nota important: En comunicacions bidireccionals, la mateixa antena es pot utilitzar tant per transmetre com per rebre.
+
+
+
+Conceptes clau de les antenes (segons el PDF):
+Patró de radiació: És la representació gràfica (en 3D o en tall transversal 2D) de com l'antena distribueix l'energia. Mostra els "lòbuls" (on hi ha més senyal) i els "nuls" (on no n'hi ha).
+
+Guany (Gain): És la potència de sortida en una direcció concreta comparada amb la que produiria una antena isotròpica ideal. Es mesura en dBi. Com més guany, més enfocada està l'energia en una direcció (i més abast), però menys cobertura en altres direccions.
+
+Longitud de l'antena: Està directament relacionada amb la longitud d'ona (
+λ
+λ) del senyal. Per exemple, per a una xarxa WiFi de 2.4 GHz, la longitud d'ona és d'uns 12.5 cm, i les antenes solen ser de mitja ona (uns 6.25 cm) o de quart d'ona.
+
+
+
+Tipus d'antenes (segons la seva radiació):
+Isotròpica (0 dBi): Idealitzada. Radiaria energia per igual en totes direccions (com una esfera perfecta). No existeix a la realitat, serveix com a referència.
+
+Omnidireccional: Radiació en forma de "dònut" (com el dipol de mitja ona). Cobreix 360° al voltant, però té poca cobertura vertical. S'utilitza en mòbils, WiFi domèstic, etc.
+
+Direccional: Enfoca l'energia en un feix estret (com una llanterna). Tenen alt guany (més abast i menys interferència), però han d'estar ben apuntades. Exemples: Yagi, Panel, Parabòlica (la que s'utilitza per a satèl·lits).
+
+
+
+Radio Wave propagation modes:
+
+Ground-wave propagation: The signal contours the curvature of the earth, Only frequencies up to 2 Mhz. It can propagate considerable distances. This only happends during the day. Example AM radio during the day
+
+Sky-wave Propagation: Frequencies between 2 Mhz and 30 Mhz Signal reflected from ionized layer of atmosphere back down to earth
+Signal can travel a number of hops, back and forth between ionosphere
+and earth’s surface
+Examples: Amateur radio, Citizens’ Band radio (27 Mhz), AM (at night)
+
+line-of-sight propagation: Frequencies above 30 Mhz Transmitting and receiving antennas must be
+within line of sight
+ Satellite communication
+ Most ground communication
+
+Wireless Transmission impairments:
+Path loss(attenuation): Greater at higher frequencies
+Noise: intrinsic noise: Hardware originated
+       Extrinsic noise: Radio noise (any unwanted noise), interference
+obstacle effects
+
+
+Path loss:
+Rx Power (dBm) = Tx Power (dBm) + Gains (dB) – Losses (dB)
+
+
+Analytical calculations of path loss:
+Friis free-space model (serveix per espais oberts)
+L'Equació de Friis
+Uneix els dos conceptes anteriors:
+P
+r
+=
+P
+t
+⋅
+G
+t
+⋅
+G
+r
+⋅
+(
+λ
+4
+π
+d
+)
+2
+P 
+r
+​
+ =P 
+t
+​
+ ⋅G 
+t
+​
+ ⋅G 
+r
+​
+ ⋅( 
+4πd
+λ
+​
+ ) 
+2
+ 
+
+On:
+
+P
+r
+P 
+r
+​
+  i 
+P
+t
+P 
+t
+​
+ : Potència rebuda i transmesa.
+
+G
+t
+G 
+t
+​
+  i 
+G
+r
+G 
+r
+​
+ : Guany de les antenes (quant enfoquen l'energia).
+
+λ
+λ: Longitud d'ona del senyal.
+
+d
+d: Distància entre antenes.
+
+Pèrdua de Trajecte (Path Loss)
+La fórmula de la pèrdua (PL) ens diu com es degrada el senyal amb la distància i la freqüència:
+P
+L
+=
+(
+4
+π
+d
+λ
+)
+2
+=
+(
+4
+π
+d
+f
+c
+)
+2
+PL=( 
+λ
+4πd
+​
+ ) 
+2
+ =( 
+c
+4πdf
+​
+ ) 
+2
+ 
+
+Conclusions clau d'aquest model:
+
+Depèn de la distància al quadrat (
+d
+2
+d 
+2
+ ): Si dupliques la distància, la potència rebuda es divideix per 4 (perds uns 6 dB).
+
+Depèn de la freqüència: Com més alta és la freqüència (
+f
+f) o més curta la longitud d'ona (
+λ
+λ), més gran és la pèrdua. Per tant, les freqüències altes (com 5G mmWave) es degraden molt més ràpidament que les baixes (com FM o 4G) a la mateixa distància.
+
+És el "millor cas possible": A la realitat, la potència rebuda sempre serà pitjor que la que prediu aquest model, a causa del soroll, obstacles, reflexions i absorció atmosfèrica. Serveix com a punt de partida per als dissenyadors de sistemes.
+
+Two-ray ground propagation model: cosidera line of sight path i considera una reflexio del terra 
+
+Empirical propagation models
+Okumura model:  Very accurate for urban areas
+ Not that accurate for rural areas
+
+
+Hata model: empirical "formulation" of okumuria model
+Additional corrections:
+ Considers effects of diffraction, reflection and scattering caused by
+city structures
+ Further corrections for suburban and rural environments
+
+
+Noise and interfence:
+Intrinsic noise: Thermal noise
+Extrinsic noise: Radio noise
+
+ITU defines the “radio noise” as the noise caused by
+factors external to the radio receiving system
+
+
+Types of radio noise: radiation from lightning discarges (atmospheric noise due to lightning)
+man-made noise: unintended radiation from electrical machinery, electrical and electronic
+equipment, power transmission lines, or from internal combustion engine
+ignition,
+
+emissions from atmospheric gases and hydrometeors
+radiation from galactic radio sources
+
+
+
+SNR: Signal to noise ratio:
+SNR=S/N=S/(N0*B)=S(k*T*B)
+SINR: signal to interference ratio
+
+
+ Apunts: Efectes dels Obstacles en la Propagació de Ràdio
+Els obstacles entre el transmissor i el receptor són una de les tres causes principals d'empitjorament del senyal (juntament amb la pèrdua de trajecte i el soroll). El seu impacte depèn directament de la mida de l'obstacle en comparació amb la longitud d'ona (
+λ
+λ) del senyal.
+
+1. Mecanismes Físics d'Interacció (Pàgina 26)
+Quan una ona de ràdio xoca amb un obstacle, es produeixen quatre fenòmens principals:
+
+Reflexió (Reflection):
+
+Què passa: L'ona rebota contra l'objecte.
+
+Condició: L'objecte és molt més gran que la longitud d'ona (
+λ
+λ).
+
+Exemples: Edificis, parets, la superfície de la Terra.
+
+Difracció (Diffraction):
+
+Què passa: L'ona es "corba" o doblega al voltant d'objectes esmolats o cantonades.
+
+Condició: L'objecte té vores esmolades.
+
+Exemples: Cantonades d'edificis, carenes de muntanyes. Això permet que el senyal arribi a zones d'ombra (sense línia de visió directa).
+
+Dispersió (Scattering):
+
+Què passa: L'ona es fragmenta i es dispersa en múltiples direccions.
+
+Condició: L'objecte és més petit que la longitud d'ona (
+λ
+λ) o la superfície és molt rugosa.
+
+Exemples: Fulles dels arbres, superfícies rugoses, gotes de pluja.
+
+Ombrejat (Shadowing):
+
+Què passa: La recepció del senyal es suprimeix o s'atenua dràsticament perquè un objecte bloqueja el camí directe.
+
+Conseqüència: Crea zones de "ombra" on el senyal és molt feble.
+
+2. Atenuació de Materials (Pàgines 27-29)
+No tots els obstacles bloquegen el senyal de la mateixa manera. El PDF mostra mesures reals de com diferents materials atenuen les ones de ràdio (comparat amb l'espai obert):
+
+Parets (Wall): Un mur de maó de 45 cm pot atenuar el senyal entre 20 i 50 dB, depenent de la freqüència. Com més gruixut i dens, més atenuació.
+
+Finestres (Window): El vidre prim (1 capa) atenua poc (5-10 dB). El vidre doble o amb tractaments metàl·lics pot atenuar molt més (20-40 dB).
+
+Portes (Door): Les portes de vidre o metàl·liques atenuen el senyal significativament.
+
+Tendència general: A major freqüència, major atenuació per part dels obstacles. Per exemple, el senyal de 60 GHz (5G mmWave) es veu molt més afectat per una paret que el senyal de 700 MHz (4G).
+
+3. Efecte Multitrayecte (Multipath Effect) (Pàgines 30-31)
+Aquest és el resultat directe de la reflexió, difracció i dispersió. Quan hi ha obstacles, el receptor no rep una sola còpia del senyal, sinó múltiples còpies que han arribat per camins diferents:
+
+Camí directe (LOS): El més curt, arriba primer.
+
+Camins reflectits: Arriben més tard (retardats) i amb menys potència.
+
+Conseqüències:
+
+Interferència constructiva: Les còpies se sumen i el senyal es fa més fort (Amplification).
+
+Interferència destructiva: Les còpies se sumen en oposició de fase i es cancel·len (Elimination). Això causa el famós desvaniment (fading).
+
+Problemes pràctics: Aquest fenomen causa "fantasmes" a la TV analògica, ecos en el radar i errors en la transmissió de dades digitals.
+
+4. Conclusió per al Disseny del Sistema
+Els efectes dels obstacles fan que el món real sigui molt més complex que el model de Friis (espai lliure). Els enginyers han de:
+
+Predir aquestes pèrdues addicionals.
+
+Utilitzar models empírics (com el d'Okumura) que tenen en compte l'entorn urbà.
+
+Dissenyar receptors capaços de gestionar el multipath (equalitzadors).
+
+Triar freqüències adequades: les baixes penetren millor les parets, però tenen menys amplada de banda.
+
