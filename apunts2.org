@@ -1,0 +1,1031 @@
+#+TITLE: Apunts de Comunicacions Sense Fil
+#+AUTHOR: 
+#+OPTIONS: toc:2 num:t
+
+* Introducció: Què és la comunicació sense fil?
+** Definició
+- Communication that does not require the transmitter and reciever to be in physical contact or communicating through a guided media.
+- Wireless communications Use electromagnetic waves: RF, Radar, IR, Optical..., Acoustic waves, Molecules
+** Formes primerenques
+- Sound: beating drums...
+- Sight: Smoke signals ...
+- Desavantatges d'aquestes formes de comunicació: Privacy and security, noisy, limited distance, require the tx and rx to be in line-of-sight
+** Per què comunicació sense fils?
+- Supports mobility of the end systems
+- Reduced cost and more convinience: Enable communication without installing expensive infrastructure.
+- Can easily setup temporary LANs
+- Cheaper, More convinient, easier to mantain etc.
+- Physical conditions: In places where laying a cable is very difficult because of terrain conditions etc wireless communication can still arrive easily
+- Easier to scale (adding more users without laying more cables / changing the infrastructure)
+- integration with iot stuff
+** Reptes de la comunicació sense fils
+*** Canal sorollós i variant en el temps
+- Noisy, time-varying channel: you can get the signal in different times because of colissions/interferences etc.
+*** Medi compartit
+- Shared medium: The signals travel through an open medium (canal comu compartit). en aquest canal hi pot haber mes usuaris creant interferencies i s'ha de trobar alguna manera per poder compartir aquest canal.
+**** Multiplexió
+| Tècnica | Què divideix | Exemple |
+|----------+--------------+-----------------|
+| FDM (Frequency Division Multiplexing) | La freqüència | Ràdio FM, TV analògica |
+| TDM (Time Division Multiplexing) | El temps (slots fixos) | Telefonia digital |
+| WDM (Wavelength Division Multiplexing) | La longitud d'ona | Fibra òptica |
+| CDM (Code Division Multiplexing) | Un codi únic per usuari | 3G, GPS |
+**** Control d'accés al medi (MAC – Medium Access Control)
+***** A) Accés aleatori (competitiu)
+- Els usuaris competeixen pel canal quan el necessiten.
+- ALOHA (puro i slotted) → transmet quan vol; moltes col·lisions.
+- CSMA (Carrier Sense Multiple Access) → "escolta" abans de transmetre.
+- CSMA/CD (Collision Detection) → Ethernet clàssic; detecta col·lisió i reintenta.
+- CSMA/CA (Collision Avoidance) → Wi-Fi (802.11); evita col·lisions amb ACKs i temporitzadors.
+***** B) Accés controlat (sense col·lisions)
+- Un mecanisme central o un torn decideix qui transmet.
+- Polling → un mestre pregunta a cada node si vol transmetre.
+- Token Passing → un "testimoni" circula; només qui el té pot transmetre (Token Ring, FDDI).
+- Reserva → els usuaris reserven slots prèviament (usat en satèl·lits, DAMA).
+***** C) Accés per contenció amb prioritat
+- CSMA/CA amb backoff exponencial → Wi-Fi.
+- Prioritats / QoS → diferenciar tràfic crític.
+*** Ample de banda limitat
+- Limited bandwidth: The bandwidth is limited. You can not use unlimited bandwidth because of physical phenomenons that happen at high frequencies. Apart from that there are rules to transmit certain frequencies if these rules didnt exist there would be to many interferences in the medium to read the correct signal for the reciever
+- Cal repartir aquest recurs entre molts usos: telefonia mòbil, Wi-Fi, ràdio, TV, satèl·lits, militars, emergències, etc.
+- Com que és escàs, és car i regulat.
+- To achieve there rules and regulate them there are regulators
+| País/Regió | Organisme regulador |
+|------------+---------------------|
+| EUA | FCC (Federal Communications Commission) |
+| Europa | CEPT / ETSI (i cada país té la seva autoritat, ex. a Espanya el Ministeri / SETELECO) |
+| Internacional | ITU (Unió Internacional de Telecomunicacions, ONU) |
+- They assign certain bandwidth to specific services (phone, radio, TV...)
+- these regulators give licenses to operators (les operadores de mòbil paguen milers de milions per llicències)
+- Estableixen normes de potència, abast i interferències permeses.
+- interferencies permeses = quant de "soroll" (senyal que per algu altre es interferencies) pot generar el teu dispositiu legalment i quanta interferencia estas obligat a "aguantar" tu
+- limit d'emisio: Límit de potència de transmissió (ex. Wi-Fi a 2.4 GHz: màx. ~100 mW a Europa).
+- Límit d'emissions fora de banda (no enviar senyal a freqüències veïnes).
+- Límit de potència en direccions no desitjades
+* Rutes de connexió a la xarxa
+** Opció A: Connexió via Wi-Fi (a casa o oficines)
+- Tram 1 (Sense fils Wireless): El mòbil es connecta al router Wi-Fi mitjançant radiofreqüència local.
+- Tram 2 (Cablejat Wired): El router Wi-Fi està connectat per cable (Ethernet / fibra òptica) al router d'accés de l'ISP (proveïdor d'Internet).
+- Tram 3 (Internet Global): El senyal viatja per la xarxa global fins arribar al servidor d'streaming de l'emissora.
+#+BEGIN_SRC text
+[ Mòbil ]
+   │
+   │ (Sense fils / Wi-Fi)
+   ▼
+[ Router Wi-Fi ]
+   │
+   │ (Cablejat / Ethernet - Fibra)
+   ▼
+[ Router d'accés / ISP ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+#+END_SRC
+** Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)
+- Tram 1 (Sense fils Wireless): El mòbil es connecta a l'antena o estació base (Base Station eNodeB / gNodeB) mitjançant la xarxa cel·lular.
+- Tram 2 (Cablejat Wired): L'estació base està connectada per una xarxa cablejada (backhaul de fibra òptica) als routers centrals de la companyia telefònica (Core Network).
+- Tram 3 (Internet Global): La xarxa de l'operadora dóna sortida cap a Internet fins al servidor de l'emissora.
+#+BEGIN_SRC text
+[ Mòbil ]
+   │
+   │ (Sense fils / 4G-5G)
+   ▼
+[ Estació Base (Torre de telefonia) ]
+   │
+   │ (Cablejat / Fibra òptica de retorn)
+   ▼
+[ Routers centrals de l'operadora ]
+   │
+   ▼
+[ Internet Global (Servidor d'àudio de l'emissora) ]
+#+END_SRC
+* Models de referència (OSI i TCP/IP)
+** Model OSI (7 capes)
+1. Física – senyals
+2. Enllaç de dades – trames, MAC
+3. Xarxa – paquets, IP
+4. Transport – segments, TCP/UDP
+5. Sessió
+6. Presentació
+7. Aplicació – WhatsApp
+** Model TCP/IP
+- Aplicació (OSI 5-7)
+- Transport (OSI 4)
+- Xarxa (OSI 3)
+- Enllaç (OSI 2)
+- Física (OSI 1)
+** Correspondència entre models
+| OSI | TCP/IP | PDU | Exemples |
+|-----+--------+-------+------------------|
+| Aplicació, Presentació, Sessió | Aplicació | Dades | WhatsApp, HTTP, DNS |
+| Transport | Transport | Segment | TCP, UDP |
+| Xarxa | Xarxa | Paquet | IP, ICMP |
+| Enllaç de dades | Enllaç | Trama | Ethernet, Wi-Fi |
+| Física | Física | Bits | Cable, ràdio |
+* Encapsulament i desencapsulament
+- Encapsulament: baixant capes, cada capa afegeix la seva capçalera (i de vegades tràiler per exemple CRC bits d'ack etc.).
+- Desencapsulament: pujant capes, cada capa treu la seva capçalera.
+- Cada capa només entén la seva part i passa la resta a la capa superior o inferior.
+* Baixant capes: enviament des del mòbil d'en Josep
+** Capa d'aplicació
+- WhatsApp genera el missatge.
+- Utilitza protocols propis sobre TCP i TLS.
+- WhatsApp també aplica xifrat d'extrem a extrem (E2E), habitualment amb el protocol Signal.
+- PDU: dades.
+** Capa de transport (TCP) — Apunts complets
+*** Índex
+1. Context: on som dins l'enviament del missatge
+2. TCP segmenta les dades en segments
+3. Afegeix ports d'origen i destí
+4. Gestiona control de flux, control de congestió i retransmissió
+5. ACKs: si un segment no arriba, es retransmet només aquell segment
+6. Qui retransmet realment? Extrem a extrem vs salt a salt
+7. ARQ de capa 2 vs TCP
+8. Casos pràctics: quan actua cada mecanisme
+9. PDU: segment TCP
+10. Resum final
+*** Context: on som dins l'enviament del missatge
+- En Josep envia un missatge per WhatsApp. El missatge ja s'ha generat a la capa d'aplicació (WhatsApp, xifrat E2E amb el protocol Signal). Ara baixa a la capa de transport, on entra en joc TCP (Transmission Control Protocol).
+- TCP agafa aquestes dades i les prepara perquè puguin viatjar per la xarxa de manera fiable i ordenada.
+- Posició dins dels models de capes:
+| Model OSI | Model TCP/IP | PDU | Protocol |
+|-----------+--------------+---------+----------|
+| Transport (capa 4) | Transport | Segment | TCP, UDP |
+| Xarxa (capa 3) | Xarxa | Paquet | IP |
+| Enllaç (capa 2) | Enllaç | Trama | Ethernet, Wi-Fi |
+*** TCP segmenta les dades en segments
+- Què vol dir "segmentar"? El missatge de WhatsApp (o qualsevol dada) pot ser més gran que el que la xarxa pot transportar d'una sola vegada. Cada xarxa té una mida màxima de paquet anomenada MTU (Maximum Transmission Unit), típicament 1500 bytes a Ethernet.
+- Per tant, TCP trosseja les dades en blocs més petits anomenats segments.
+- *Exemple:* Suposem que el missatge de WhatsApp (amb el xifratge) ocupa 4000 bytes:
+#+BEGIN_SRC text
+Missatge original:  [ 4000 bytes de dades ]
+
+TCP el divideix en segments:
+   Segment 1:  [ 1460 bytes ]
+   Segment 2:  [ 1460 bytes ]
+   Segment 3:  [ 1080 bytes ]
+#+END_SRC
+- Cada segment viatjarà independentment per la xarxa, i poden arribar en ordre diferent o per camins diferents. TCP s'encarregarà de reordenar-los al destí.
+- Per què es diu "segment"? Perquè la PDU de la capa de transport (quan el protocol és TCP) s'anomena segment TCP. Si fos UDP, es diria datagrama UDP.
+*** Afegeix ports d'origen i destí
+**** Què és un port?
+- Una adreça IP identifica un dispositiu a la xarxa (el mòbil d'en Josep, el servidor de WhatsApp...).
+- Però dins d'un dispositiu hi ha moltes aplicacions funcionant alhora: WhatsApp, el navegador, Spotify, el correu...
+- El port identifica quina aplicació (quin procés) ha d'enviar o rebre les dades.
+**** Estructura d'un segment TCP
+#+BEGIN_SRC text
+┌─────────────────────────────────────┐
+│      CAPÇALERA TCP (20-60 bytes)    │
+├─────────────────────────────────────┤
+│  Port origen      │  Port destí     │
+│  Número de seqüència                │
+│  Número d'ACK                       │
+│  Flags (SYN, ACK, FIN...)           │
+│  Finestra (window)                  │
+│  Checksum                           │
+├─────────────────────────────────────┤
+│         DADES                       │
+│    (missatge de WhatsApp xifrat)    │
+└─────────────────────────────────────┘
+#+END_SRC
+**** Exemple pràctic
+- En Josep envia un missatge a WhatsApp:
+| Camp | Valor | Significat |
+|------+---------------+------------------------------|
+| IP origen | 192.168.1.10 | Mòbil d'en Josep |
+| Port origen | 54321 | Port aleatori assignat per WhatsApp al mòbil |
+| IP destí | 157.240.20.35 | Servidor de WhatsApp |
+| Port destí | 443 | HTTPS (port estàndard) |
+- La combinació IP + port s'anomena socket. Un socket identifica una connexió concreta entre dues aplicacions.
+- Socket origen: 192.168.1.10:54321
+- Socket destí: 157.240.20.35:443
+**** Port d'origen vs port de destí
+| Port d'origen | Port de destí |
+|---------------+---------------|
+| Qui el decideix? El sistema operatiu (aleatori) | L'aplicació/protocol (fix) |
+| Valor típic 49152–65535 (efímer) | 0–1023 (estàndard) o personalitzat |
+| Per què? Identificar la connexió concreta | Identificar el servei destí |
+| Exemple 54321 | 443 (HTTPS), 5222 (XMPP) |
+**** Com es pot saber el port de destí?
+- El port de destí ve determinat pel protocol o servei al qual et vols connectar. No és aleatori.
+- a) Ports estàndard (well-known ports):
+| Port | Protocol/Servei | Ús |
+|------+-----------------+--------------------------|
+| 20/21 | FTP | Transferència de fitxers |
+| 22 | SSH | Accés remot segur |
+| 25 | SMTP | Enviament de correu |
+| 53 | DNS | Resolució de noms |
+| 80 | HTTP | Web (no xifrat) |
+| 443 | HTTPS | Web xifrada |
+| 587 | SMTP | Enviament de correu (segur) |
+| 3306 | MySQL | Base de dades |
+- Quan obres https://www.google.com, automàticament es connecta al port 443 (HTTPS sempre va al 443).
+- b) Aplicacions amb servidors propis (com WhatsApp):
+  - WhatsApp té assignat un port concret als seus servidors.
+  - L'aplicació de WhatsApp al mòbil ja sap a quin port connectar-se (està programat a l'app).
+  - Normalment usen ports estàndard com el 443 (HTTPS) o el 5222 (XMPP), perquè així el trànsit es camufla amb trànsit web normal i passa més fàcilment per firewalls.
+- En resum: el port de destí el sap l'aplicació perquè està definit al protocol o a la configuració del servei; el port d'origen és temporal i l'assigna el sistema operatiu.
+*** Gestiona control de flux, control de congestió i retransmissió
+- TCP té tres mecanismes per garantir que les dades arribin bé:
+**** Control de flux (Flow Control)
+- Problema: El receptor pot ser més lent que l'emissor. Si l'emissor envia massa ràpid, el receptor no pot processar-ho i es perd informació.
+- Solució: TCP utilitza una finestra lliscant (sliding window). El receptor indica a l'emissor quants bytes pot rebre sense desbordar-se.
+#+BEGIN_SRC text
+Emissor: "Et puc enviar 10 segments?"
+Receptor: "No, de moment només en puc rebre 3"
+Emissor: "OK, n'enviaré 3 i esperaré confirmació"
+#+END_SRC
+- El camp Window de la capçalera TCP indica aquesta capacitat.
+**** Control de congestió (Congestion Control)
+- Problema: La xarxa (routers, enllaços) pot estar saturada. Si tothom envia paquets alhora, es produeixen cues, retards i pèrdues.
+- Solució: TCP redueix la velocitat quan detecta congestió (pèrdua de paquets o retards).
+- Algorismes típics:
+  - Slow Start: comença enviant poc i va augmentant.
+  - Congestion Avoidance: quan s'acosta al límit, augmenta més lentament.
+  - Fast Retransmit / Fast Recovery: recupera ràpidament després d'una pèrdua.
+#+BEGIN_SRC text
+Velocitat d'enviament
+    ▲
+    │         ┌─────────── (límit de la xarxa)
+    │        /
+    │       /
+    │      /
+    │     /
+    │    /
+    │   /
+    │  /
+    │ /
+    │/
+    └────────────────────────► Temps
+     Slow Start   Congestion Avoidance
+#+END_SRC
+- Si hi ha pèrdues, TCP baixa la velocitat i torna a pujar gradualment.
+**** Retransmissió (Retransmission)
+- Problema: Els paquets IP es poden perdre pel camí (IP és best-effort, no garanteix res).
+- Solució: TCP confirma cada segment amb un ACK (Acknowledgment). Si l'emissor no rep l'ACK dins d'un temps límit (timeout), retransmet el segment.
+#+BEGIN_SRC text
+Emissor  ──── Segment 1 ────►  Receptor
+Emissor  ◄─── ACK 1 ────────  Receptor
+Emissor  ──── Segment 2 ────►  Receptor
+         (es perd)
+Emissor  ◄─── (cap ACK) ────  Receptor
+         (timeout)
+Emissor  ──── Segment 2 ────►  Receptor  (retransmissió)
+Emissor  ◄─── ACK 2 ────────  Receptor
+#+END_SRC
+- TCP garanteix que tots els segments arribin, retransmetent els que es perdin.
+*** ACKs: si un segment no arriba, es retransmet només aquell segment
+- Com funciona? Cada segment té un número de seqüència (per saber l'ordre) i el receptor envia ACKs per confirmar què ha rebut.
+- Exemple: Missatge de WhatsApp dividit en 3 segments:
+#+BEGIN_SRC text
+Segment 1 (bytes 0-1459)     ────►  Receptor  ✅ rep
+Segment 2 (bytes 1460-2919)  ────►  Receptor  ❌ es perd
+Segment 3 (bytes 2920-3999)  ────►  Receptor  ✅ rep
+#+END_SRC
+- El receptor envia:
+  - ACK 1 (he rebut fins al byte 1459)
+  - ACK 1 un altre cop (encara espero el segment 2 — duplicate ACK)
+  - ACK 1 un altre cop (encara espero el segment 2)
+- Quan l'emissor rep 3 ACKs duplicats, entén que el segment 2 s'ha perdut i el retransmet només ell:
+#+BEGIN_SRC text
+Segment 2 (retransmès)  ────►  Receptor  ✅ rep
+Receptor: ACK 3 (he rebut fins al byte 3999)
+#+END_SRC
+- Per què és important?
+  - Eficiència: No cal reenviar tot el missatge (4000 bytes). Només es reenvia el tros perdut (1460 bytes).
+  - Velocitat: La resta del missatge ja ha arribat i s'ha processat.
+  - Estalvi de recursos: Menys trànsit a la xarxa.
+- Comparació amb altres sistemes
+| Sistema | Què passa si es perd un tros? |
+|---------+-------------------------------|
+| TCP | Retransmet només el segment perdut |
+| UDP | No retransmet res (l'aplicació se n'ha de preocupar) |
+| Sistemes sense segmentació | Caldria reenviar tot el missatge sencer |
+- Això és el que fa TCP fiable: garanteix el lliurament complet i ordenat, però de manera eficient.
+**** Detecció d'error: checksum
+- Si el segment arriba però amb bits corromputs:
+- El checksum TCP del receptor falla → el receptor descarta el segment com si no hagués arribat.
+- El receptor envia ACK 5 (com si el 6 no hagués arribat).
+- El mòbil rep 3 ACKs duplicats → retransmet el segment 6.
+- Mateix resultat: el mòbil retransmet.
+*** Qui retransmet realment? Extrem a extrem vs salt a salt
+- Resposta curta: El mòbil d'en Josep (l'emissor original) és qui retransmet el segment perdut.
+- Els routers no retransmeten res. Només encaminen paquets. La retransmissió és responsabilitat dels extrems (emissor i receptor), no de la xarxa.
+**** Els routers NO retransmeten
+- Els routers treballen a la capa de xarxa (IP), i IP és best-effort:
+  - Si un paquet es perd o arriba amb errors, IP no fa res per recuperar-lo.
+  - Els routers només miren la IP destí i decideixen cap a on enviar el paquet.
+  - No guarden còpies dels paquets per si de cas.
+  - No tenen memòria de connexions TCP.
+- Un router és com un carter que només mira l'adreça i passa la carta al següent punt. Si la carta es perd pel camí, el carter no la torna a escriure.
+**** Escenari amb 5 routers: 20 segments, el 6 s'ha perdut
+#+BEGIN_SRC text
+[Mòbil Josep]
+     │
+     ▼
+[Router 1] ──► [Router 2] ──► [Router 3] ──► [Router 4] ──► [Router 5]
+                                                                  │
+                                                                  ▼
+                                                        [Servidor WhatsApp]
+
+Segment 1  ✅ arriba
+Segment 2  ✅ arriba
+Segment 3  ✅ arriba
+Segment 4  ✅ arriba
+Segment 5  ✅ arriba
+Segment 6  ❌ ES PERD (en algun router pel mig)
+Segment 7  ✅ arriba
+Segment 8  ✅ arriba
+...
+Segment 20 ✅ arriba
+#+END_SRC
+- Què fa el servidor de WhatsApp?
+| Segment rebut | Número de seqüència | Què fa el receptor |
+|---------------+---------------------+--------------------|
+| Segment 1 | 0 | ACK 1 (espero el 2) |
+| Segment 2 | 1460 | ACK 2 (espero el 3) |
+| ... | ... | ... |
+| Segment 5 | 7300 | ACK 5 (espero el 6) |
+| Segment 7 | 8760 | ACK 5 (encara espero el 6!) — duplicate ACK |
+| Segment 8 | 10220 | ACK 5 (encara espero el 6!) — duplicate ACK |
+| Segment 9 | 11680 | ACK 5 (encara espero el 6!) — duplicate ACK |
+- El receptor no pot acceptar els segments 7, 8, 9... perquè li falta el 6. Els guarda en un buffer temporal, però no els processa.
+- Quan l'emissor (mòbil d'en Josep) rep 3 ACKs duplicats, entén que el segment 6 s'ha perdut i el retransmet només ell.
+**** Per què els routers no retransmeten?
+- Perquè no és la seva feina. La divisió de responsabilitats és:
+| Capa | Responsabilitat | Retransmet? |
+|------+-----------------+-------------|
+| Enllaç (Wi-Fi, Ethernet) | Detectar errors amb CRC | Sí, però només entre nodes veïns |
+| Xarxa (IP, routers) | Encaminar paquets | No |
+| Transport (TCP) | Fiabilitat extrem a extrem | Sí |
+- TCP és l'únic que garanteix la fiabilitat extrem a extrem (entre el mòbil i el servidor). Els routers no ho fan.
+**** Principi de disseny d'extrem a extrem
+- Internet va adoptar des del principi el principi de disseny d'extrem a extrem, col·locant la funcionalitat de fiabilitat (confirmació, retransmissió, ordenació) als sistemes terminals, en lloc de a la xarxa intermèdia. Els routers no necessiten mantenir informació d'estat de les connexions TCP, la qual cosa simplifica enormement el disseny de la xarxa.
+- L'especificació d'IP (RFC 791): "El protocol d'Internet no proporciona una instal·lació de comunicació fiable. No hi ha confirmacions d'extrem a extrem ni de salt a salt. No hi ha control d'errors per a les dades... No hi ha retransmissions."
+- Els routers només s'encarreguen d'encaminar i enviar paquets, i descarten directament els paquets que no es poden enviar; no els retransmeten.
+*** ARQ de capa 2 vs TCP
+- L'ARQ de capa 2 SÍ que té temporitzador. ARQ (Automatic Repeat reQuest) és el mecanisme de retransmissió de la capa d'enllaç. Quan un node envia una trama i no rep l'ACK corresponent dins del temps límit, retransmet la trama.
+- Però això només funciona entre els dos nodes directament connectats per aquell enllaç.
+#+BEGIN_SRC text
+[Mòbil] ──Wi-Fi──► [Router 1] ──Ethernet──► [Router 2] ──Fibra──► [Router 3]
+                         ▲                                            │
+                         │                                            │
+                    ARQ aquí                                    Congestió aquí
+                 (mòbil ↔ R1)                                   (R3 descarta)
+#+END_SRC
+**** L'ARQ de capa 2 només cobreix UN salt
+#+BEGIN_SRC text
+[Mòbil Josep] ←── Wi-Fi (ARQ aquí) ──► [Router 1]
+[Router 1]    ←── Ethernet (potser ARQ) ──► [Router 2]
+[Router 2]    ←── Fibra (potser ARQ) ──► [Router 3]
+...
+[Router 5]    ←── Ethernet ──► [Servidor WhatsApp]
+#+END_SRC
+- Cada enllaç té el seu propi ARQ (o no en té). Però cap d'ells cobreix la ruta sencera.
+**** Diferència clau: error de transmissió vs descart per congestió
+| Tipus de pèrdua | On passa | Ho detecta l'ARQ de capa 2? |
+|-----------------+----------+------------------------------|
+| Error de bits a l'enllaç | Al medi físic (soroll, interferència) | Sí (CRC falla → no ACK → retransmet) |
+| Col·lisió | Al medi compartit (Wi-Fi, Ethernet antic) | Sí (no ACK → retransmet) |
+| Trama perduda al medi | Al medi físic | Sí (no ACK → retransmet) |
+| Cua plena al router | Dins del router (capa 3) | No (el router ja havia confirmat la recepció) |
+| Router massa lent | Dins del router | No |
+| Router descarta per prioritat | Dins del router | No |
+| Router falla o es reinicia | Dins del router | No |
+| Enllaç sense ARQ (fibra normal) | Al medi | No |
+| Ruta canvia i paquets desordenats | A la xarxa | No |
+**** Per què la congestió NO es detecta a capa 2?
+- Quan el Router 3 rep una trama del Router 2:
+  1. Capa 2 del Router 3 rep la trama correctament.
+  2. Capa 2 del Router 3 envia l'ACK al Router 2 ("he rebut la trama").
+  3. Capa 2 passa les dades a capa 3 (IP).
+  4. Capa 3 (IP) mira la cua per enviar el paquet cap al següent salt.
+  5. La cua està plena → IP descarta el paquet.
+  6. Capa 2 ja havia confirmat la recepció → el Router 2 no sap res de la pèrdua.
+- El descart passa a capa 3 (IP), després que capa 2 ja hagi confirmat la recepció. Per tant, l'ARQ de capa 2 no pot detectar-ho.
+- A més:
+  - Retransmetre no ajuda si la cua segueix plena; cal reduir la velocitat (control de congestió), cosa que l'ARQ de capa 2 no pot fer.
+  - L'ARQ de capa 2 no té visió global: només sap si el node veí ha rebut la trama, no si el paquet arribarà al destí final.
+**** Taula comparativa: ARQ local vs TCP
+| ARQ de capa d'enllaç | TCP (capa de transport) |
+|----------------------+-------------------------|
+| Abast Un salt (entre 2 nodes veïns) | Extrem a extrem (mòbil ↔ servidor) |
+| Qui retransmet? El node anterior de l'enllaç | L'emissor original |
+| Detecta pèrdues en altres enllaços? No | Sí |
+| Detecta congestió? No | Sí (control de congestió) |
+| Reordena paquets? No | Sí |
+| Garanteix lliurament complet? No | Sí |
+| Funciona si un router falla? No | Sí |
+| Funciona si la ruta canvia? No | Sí |
+| Funciona en enllaços sense ARQ? No | Sí |
+*** Casos pràctics: quan actua cada mecanisme
+**** Casos en què l'ARQ de capa 2 SÍ que detecta i retransmet
+- Cas A: Error de bits al medi físic
+#+BEGIN_SRC text
+[Mòbil] ──Wi-Fi──► [Router 1]
+   │                    │
+   │  Trama amb bits    │
+   │  corromputs        │
+   └────────────────────┘
+
+Router 1: CRC falla → descarta la trama → NO envia ACK
+Mòbil: timeout → retransmet la trama
+✅ Detectat i retransmès per ARQ de capa 2.
+#+END_SRC
+- Cas B: Col·lisió en medi compartit
+#+BEGIN_SRC text
+[Mòbil A] ──Wi-Fi──► [Router 1] ◄──Wi-Fi── [Mòbil B]
+              │                              │
+              └────── col·lisió ─────────────┘
+
+Cap dels dos rep ACK → tots dos retransmeten
+✅ Detectat i retransmès per ARQ de capa 2 (CSMA/CA).
+#+END_SRC
+- Cas C: Trama perduda al medi (soroll, atenuació)
+#+BEGIN_SRC text
+[Mòbil] ──Wi-Fi──► [Router 1]
+   │                    │
+   │  La trama es perd  │
+   │  pel camí          │
+   └────────────────────┘
+
+Router 1: no rep res → NO envia ACK
+Mòbil: timeout → retransmet la trama
+✅ Detectat i retransmès per ARQ de capa 2.
+#+END_SRC
+- Cas D: Interferència que corromp el senyal
+#+BEGIN_SRC text
+[Mòbil] ──Wi-Fi──► [Router 1]
+              ▲
+              │
+        Interferència (microones, altre Wi-Fi...)
+
+Router 1: CRC falla → descarta → NO ACK
+Mòbil: timeout → retransmet
+✅ Detectat i retransmès per ARQ de capa 2.
+#+END_SRC
+**** Casos en què NOMÉS TCP detecta i retransmet
+- Cas E: Pèrdua entre dos routers
+#+BEGIN_SRC text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                       │
+                       │ ❌ El paquet es perd aquí (R2 → R3)
+                       ▼
+                    (descarta)
+#+END_SRC
+  - L'ARQ de Wi-Fi entre el mòbil i R1 no ho pot detectar (el paquet ja va passar bé per allà).
+  - L'ARQ entre R2 i R3 potser no existeix (fibra òptica normalment no en té).
+  - Si existeix, només retransmetria entre R2 i R3, no des del mòbil.
+  - Qui ho recupera? TCP, gràcies a l'ACK del servidor i la retransmissió des del mòbil.
+- Cas F: Congestió en un router
+#+BEGIN_SRC text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                              │
+                              │ ⚠️ Cua plena → descarta paquets
+                              ▼
+                         (paquets perduts)
+#+END_SRC
+  - El router descarta paquets perquè no pot processar-los tots.
+  - L'ARQ local no pot fer res: el paquet ha arribat bé al router, però el router l'ha descartat perquè no pot més.
+  - Qui ho recupera? TCP, que detecta la pèrdua i redueix la velocitat (control de congestió) i retransmet.
+- Cas G: Error de bits en un enllaç sense ARQ
+#+BEGIN_SRC text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                                    │
+                                    │ ⚠️ Bit corromput a la fibra
+                                    ▼
+                              (CRC falla → descarta)
+#+END_SRC
+  - Si l'enllaç té CRC, el router R4 descarta el paquet perquè està corromput.
+  - Si l'enllaç no té ARQ, no es retransmet localment.
+  - Qui ho recupera? TCP, des del mòbil.
+- Cas H: Un router falla o es reinicia
+#+BEGIN_SRC text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [R5] ── [Servidor]
+                       │
+                       │ ❌ R3 es reinicia i perd els paquets en cua
+                       ▼
+                    (paquets perduts)
+#+END_SRC
+  - Cap ARQ local pot recuperar això.
+  - Qui ho recupera? TCP.
+- Cas I: La ruta canvia i els paquets arriben desordenats
+#+BEGIN_SRC text
+[Mòbil] ── [R1] ── [R2] ── [R3] ── [R4] ── [Servidor]
+                └── [R2'] ── [R3'] ── [R4'] ──┘
+                (ruta alternativa)
+#+END_SRC
+  - Alguns paquets van per una ruta, d'altres per una altra.
+  - Arriben desordenats al servidor.
+  - L'ARQ local no té res a veure amb l'ordre global.
+  - Qui ho resol? TCP, gràcies als números de seqüència.
+**** Comparació visual: on actua cada mecanisme
+#+BEGIN_SRC text
+[Mòbil] ──Wi-Fi──► [R1] ──Ethernet──► [R2] ──Fibra──► [R3] ──Fibra──► [R4] ──Ethernet──► [Servidor]
+   │                    │                    │                    │                    │
+   │◄── ARQ Wi-Fi ─────►│                    │                    │                    │
+   │                    │◄── ARQ Eth ───────►│                    │                    │
+   │                    │                    │◄── ARQ Fibra ─────►│                    │
+   │                    │                    │                    │◄── ARQ Eth ───────►│
+   │                    │                    │                    │                    │
+   │◄────────────────── TCP (extrem a extrem) ──────────────────────────────────────►│
+#+END_SRC
+- ARQ de capa 2: protegeix cada enllaç individual (mòbil↔R1, R1↔R2, R2↔R3...).
+- TCP: protegeix tota la ruta (mòbil↔servidor).
+- Analogia: enviar una carta per correu. Imagina que envies un llibre per correu, dividit en 20 capítols (segments):
+  - ARQ local = el carter que porta el capítol 6 de la teva oficina de correus a la central local. Si el capítol 6 es perd en aquest tram, el carter el torna a demanar a l'oficina.
+  - TCP = tu, que has enviat els 20 capítols. Si el destinatari et diu "em falta el capítol 6", tu el tornes a enviar des de casa teva.
+  - El carter només cobreix el seu tram. Si el capítol 6 es perd en un altre tram (per exemple, entre la central local i la central regional), el carter local no ho sap. Tu (TCP) has de tornar a enviar el capítol 6 des de zero.
+*** PDU: segment TCP
+- Com hem vist, la PDU (Protocol Data Unit) de la capa de transport quan el protocol és TCP s'anomena segment TCP.
+#+BEGIN_SRC text
+┌─────────────────────────────────────┐
+│         CAPÇALERA TCP               │
+│  (ports, seqüència, ACK, flags...)  │
+├─────────────────────────────────────┤
+│         DADES                       │
+│  (missatge de WhatsApp xifrat)      │
+└─────────────────────────────────────┘
+        ↑
+   SEGMENT TCP (PDU de transport)
+#+END_SRC
+- Aquest segment baixarà a la capa de xarxa, on IP li afegirà la seva pròpia capçalera i es convertirà en un paquet IP.
+- Recordatori: PDU a cada capa
+| Capa (OSI) | Capa (TCP/IP) | PDU | Exemples de protocols |
+|------------+---------------+-----+-----------------------|
+| Aplicació / Presentació / Sessió | Aplicació | Dades | WhatsApp, HTTP, DNS |
+| Transport | Transport | Segment | TCP, UDP |
+| Xarxa | Xarxa | Paquet | IP, ICMP |
+| Enllaç de dades | Enllaç | Trama (frame) | Ethernet, Wi-Fi |
+| Física | Física | Bits | Cable, ràdio |
+- PDU = el nom que rep el bloc de dades a cada capa. El mateix conjunt de dades canvia de nom segons la capa on ens trobem.
+**** Notes sobre l'ACK dins del segment TCP
+- L'ACK flag (1 bit) i el Acknowledgment Number (32 bits) formen part de la capçalera TCP.
+- No és tràiler. El tràiler (CRC) és cosa de la capa d'enllaç (Ethernet, Wi-Fi).
+- Quan un segment TCP porta el flag ACK activat, està confirmant dades rebudes.
+*** Resum final
+- Què fa TCP en aquest pas?
+| Concepte | Què fa TCP |
+|----------+------------|
+| Segmentació | Divideix les dades en segments (PDU = segment TCP) |
+| Ports | Identifiquen l'aplicació origen i destí (socket = IP + port) |
+| Port d'origen | Aleatori, assignat pel sistema operatiu (49152–65535) |
+| Port de destí | Fix, determinat pel protocol/servei (443 HTTPS, 5222 XMPP...) |
+| Control de flux | Evita que l'emissor saturi el receptor (finestra lliscant) |
+| Control de congestió | Redueix la velocitat si la xarxa està saturada |
+| Retransmissió | Reenvia segments perduts gràcies als ACKs |
+| ACKs | Confirmen recepció; si en falta un, es retransmet només aquell segment |
+| Fiabilitat | Garanteix que tot arribi, en ordre i sense errors |
+- Qui retransmet?
+| Pregunta | Resposta |
+|----------+----------|
+| Qui detecta l'error? | El receptor final (servidor WhatsApp), gràcies al checksum i números de seqüència |
+| Qui retransmet? | L'emissor original (mòbil d'en Josep) |
+| Els routers retransmeten? | No. Només encaminen |
+| Què retransmet? | Només el segment perdut (el 6), no tot el missatge |
+| Com sap l'emissor que cal retransmetre? | Perquè rep 3 ACKs duplicats (o un timeout) |
+| Quin protocol ho gestiona? | TCP (capa de transport), extrem a extrem |
+- ARQ local vs TCP
+| Pregunta | Resposta |
+|----------+----------|
+| L'ARQ de capa 2 té temporitzador? | Sí |
+| Detecta errors de bits? | Sí (CRC falla → no ACK → retransmet) |
+| Detecta col·lisions? | Sí (no ACK → retransmet) |
+| Detecta trames perdudes al medi? | Sí (timeout → retransmet) |
+| Detecta congestió al router? | No (el router ja ha confirmat la recepció a capa 2) |
+| Detecta router que falla? | No |
+| Detecta enllaç sense ARQ? | No |
+| Detecta paquets desordenats? | No |
+| Qui ho detecta tot això? | TCP |
+- Frase resum: TCP agafa el missatge de WhatsApp, el trosseja en segments, hi posa ports i números de seqüència, i s'assegura que cada segment arribi bé — retransmetent només els que es perdin, gràcies als ACKs. Els routers només transporten paquets; la fiabilitat és responsabilitat de TCP, que treballa extrem a extrem, no salt a salt.
+**** Diagrama final del procés complet
+#+BEGIN_SRC text
+┌──────────────────────────────────────────────────────────┐
+│ CAPA D'APLICACIÓ (WhatsApp)                              │
+│ Missatge xifrat E2E: 4000 bytes                          │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌──────────────────────────────────────────────────────────┐
+│ CAPA DE TRANSPORT (TCP)                                  │
+│                                                          │
+│  1. Segmenta:  [1460B] [1460B] [1080B]                   │
+│  2. Afegeix ports: origen 54321, destí 443               │
+│  3. Afegeix números de seqüència i ACK                   │
+│  4. Control de flux, congestió i retransmissió           │
+│                                                          │
+│  PDU: SEGMENT TCP                                        │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌──────────────────────────────────────────────────────────┐
+│ CAPA DE XARXA (IP)                                       │
+│  Afegeix IP origen i destí → PAQUET IP                   │
+└──────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+                    ... segueix baixant ...
+
+Si es perd un segment:
+  Servidor envia ACK duplicat → Mòbil retransmet NOMÉS aquell segment
+  (els routers NO retransmeten mai)
+#+END_SRC
+** Capa de xarxa (IP)
+- IP decideix la ruta fins al servidor de WhatsApp.
+- Afegeix adreces IP d'origen i destí.
+- Els routers encaminen els paquets salt a salt.
+- PDU: paquet IP.
+*** Passos que fa el router
+1. Rep el paquet i llegeix la IP destí de la capçalera IP.
+2. Consulta la taula d'encaminament. Cada entrada té:
+   - Xarxa destí (ex: 157.240.0.0)
+   - Màscara (ex: /16)
+   - Següent salt (next hop) (ex: 10.0.0.1)
+   - Interfície de sortida (ex: eth0)
+   - Mètrica (opcional: cost, distància…)
+3. Busca la coincidència més específica (longest prefix match):
+   - Compara la IP destí amb totes les entrades.
+   - Si diverses entrades coincideixen, tria la que té la màscara més llarga (la més específica).
+   - Si no troba cap coincidència específica, usa la ruta per defecte (0.0.0.0/0), que normalment apunta cap a Internet.
+4. Envia el paquet per la interfície indicada cap al next hop.
+5. Decrementa el TTL en 1. Si arriba a 0, descarta el paquet i envia un ICMP Time Exceeded.
+6. Si no té cap ruta (ni específica ni per defecte), descarta el paquet i envia un ICMP Destination Unreachable.
+*** Exemple amb la taula dels apunts
+| Xarxa destí | Màscara | Següent salt | Interfície |
+|-------------+---------+--------------+------------|
+| 157.240.0.0 | /16 | 10.0.0.1 | eth0 |
+| 142.250.0.0 | /16 | 10.0.0.2 | eth1 |
+| 0.0.0.0 | /0 | 10.0.0.254 | eth0 |
+- Arriba un paquet amb IP destí = 157.240.20.35.
+- Coincideix amb 157.240.0.0/16 → next hop 10.0.0.1, interfície eth0.
+- També coincidiria amb 0.0.0.0/0, però /16 és més específica que /0.
+- Guanya la /16.
+- El router envia el paquet a 10.0.0.1 per eth0.
+*** Idea clau
+- El router no decideix la ruta completa, només el següent salt. Aquesta decisió es basa en:
+  - IP destí
+  - Taula d'encaminament
+  - Coincidència més específica (longest prefix match)
+  - Ruta per defecte si no hi ha res millor
+- A més, les taules d'encaminament es poden omplir de forma:
+  - Estàtica: algú les configura manualment.
+  - Dinàmica: els routers intercanvien informació amb protocols com OSPF, BGP, RIP, etc.
+- Però en tots els casos, el funcionament bàsic és el mateix: mirar la IP destí, triar la millor entrada i enviar el paquet al següent salt.
+** Capa d'enllaç de dades
+- Subcapa MAC (Medium Access Control): controla l'accés al medi.
+- Exemples: ALOHA, CSMA/CD (Ethernet), CSMA/CA (Wi-Fi).
+- Afegeix adreces MAC d'origen i destí.
+- Afegeix CRC per detectar errors.
+- Wi-Fi: cada trama unicast s'ACKja. Si falla, es retransmet la trama, no tot el fitxer.
+- Wi-Fi també encripta les trames a nivell d'enllaç amb WPA2/WPA3.
+- PDU: trama.
+*** Capa d'enllaç de dades detallada
+- La capa d'enllaç de dades (capa 2 OSI) transmet trames entre nodes directament connectats (mateix enllaç físic: Wi-Fi, Ethernet, fibra…). No encamina per Internet; això ho fa IP (capa 3). Es divideix en dues subcapes:
+  - LLC (Logical Link Control): interfície amb la capa de xarxa.
+  - MAC (Medium Access Control): controla l'accés al medi i prepara la trama.
+**** Subcapa MAC
+- S'encarrega de:
+  - Controlar l'accés al medi quan diversos dispositius el comparteixen.
+  - Afegir adreces MAC d'origen i destí.
+  - Afegir CRC/FCS per detectar errors.
+  - En Wi-Fi: ACK i retransmissió de trames unicast.
+  - En Wi-Fi: encriptació de trames (WPA2/WPA3).
+- Protocols d'accés al medi
+| Protocol | Àmbit | Funcionament | Ús típic |
+|----------+-------+------------------------------+----------------|
+| ALOHA | Ràdio | Transmet quan vol; moltes col·lisions | Històric |
+| CSMA/CD | Ethernet half-duplex | Escolta, detecta col·lisions i reintenta | Ethernet antic |
+| CSMA/CA | Wi-Fi | Escolta, evita col·lisions amb backoff i ACKs | Wi-Fi |
+- CSMA/CD: Carrier Sense Multiple Access with Collision Detection. Si hi ha col·lisió, s'atura, s'envia jam i s'espera un temps aleatori.
+- CSMA/CA: Collision Avoidance. No es pot detectar col·lisió mentre es transmet, per això s'evita: DIFS, backoff, ACK, RTS/CTS opcional.
+**** Adreces MAC
+- 48 bits (6 bytes), hexadecimal: 00:1A:2B:3C:4D:5E.
+- Estructura: OUI (24 bits, fabricant) + NIC (24 bits, targeta).
+- Tipus: unicast, multicast, broadcast (FF:FF:FF:FF:FF:FF).
+- S'utilitzen dins d'una xarxa local; els switches mantenen taules MAC → port.
+- Canvien a cada salt: cada enllaç té les seves MAC origen/destí.
+- Per traduir IP → MAC dins la LAN: ARP (IPv4) o NDP (IPv6).
+**** CRC (detecció d'errors)
+- S'afegeix un CRC/FCS al final de la trama.
+- L'emissor calcula el CRC de capçalera + dades.
+- El receptor el recalcula; si no coincideix, descarta la trama.
+- Detecta errors, no els corregeix. La retransmissió la fan capes superiors (TCP) o la pròpia Wi-Fi.
+**** Wi-Fi: ACK i retransmissió
+- Cada trama unicast s'ACKja.
+- Si l'emissor no rep l'ACK, retransmet la trama (no tot el fitxer).
+- Broadcast/multicast no s'ACKgen.
+- És fiabilitat salt a salt (mòbil ↔ AP), no extrem a extrem.
+- TCP s'encarrega de la fiabilitat extrem a extrem.
+**** Wi-Fi: encriptació WPA2/WPA3
+- Encripta l'enllaç de ràdio entre dispositiu i AP.
+- Protegeix contra escoltes i injecció de trames.
+- No és extrem a extrem: un cop arriba a l'AP, es desencripta.
+- WPA2: AES-CCMP, PSK. WPA3: AES-GCMP, SAE, forward secrecy.
+**** PDU: trama
+- La PDU de la capa d'enllaç és la trama (frame).
+- Estructura bàsica Ethernet:
+#+BEGIN_SRC text
+[Preàmbul | MAC dst | MAC src | Tipus | Dades (paquet IP) | FCS]
+#+END_SRC
+- Wi-Fi (802.11) és més complexa: Frame Control, Duration, Address 1-4, Sequence, QoS, Body, FCS.
+- Encapsulament:
+#+BEGIN_SRC text
+Paquet IP  →  Trama  →  Bits
+#+END_SRC
+**** Resum
+- Capa d'enllaç = trames entre nodes directament connectats.
+- Subcapa MAC = accés al medi, MAC, CRC, ACKs, encriptació.
+- Protocols = ALOHA, CSMA/CD (Ethernet), CSMA/CA (Wi-Fi).
+- Adreces MAC = 48 bits, origen/destí, canvien a cada salt.
+- CRC = detecció d'errors.
+- Wi-Fi = ACK per trama unicast, retransmissió de trama, WPA2/WPA3.
+- PDU = trama.
+- En una frase: la subcapa MAC controla qui transmet, posa adreces MAC, afegeix CRC, i en Wi-Fi ACKja, retransmet i encripta trames; tot dins d'una trama, la PDU de la capa d'enllaç.
+* Xarxes sense fils amb diferents propòsits
+- Què diu: Wireless networks with different purposes: e.g., GSM, WiFi, ZigBee, Bluetooth, RFID, Radio, TV.
+- Explicació: Cada tecnologia sense fils està dissenyada per a un objectiu concret.
+- GSM/5G: Cobertura global, mobilitat, veu i dades d'alta velocitat.
+- WiFi: Alta velocitat de dades per a xarxes locals (LAN) i accés a Internet.
+- ZigBee: Xarxes de sensors de baixa potència i baixa velocitat (IoT).
+- Bluetooth: Xarxes d'àrea personal (PAN) de curt abast.
+- RFID: Identificació i seguiment d'objectes.
+- Ràdio/TV: Difusió massiva d'un a molts.
+- Conclusió: No pot haver-hi un protocol únic perquè les aplicacions són radicalment diferents.
+* Requisits diversos de les aplicacions
+- Què diu: Diverse application requirements: Reliability, delay, ...
+- Explicació: Les aplicacions tenen necessitats crítiques diferents.
+- Fiabilitat i Retard (Delay): Un cotxe autònom (V2X) necessita latència ultrabaixa (mil·lisegons) i una fiabilitat gairebé perfecta per evitar accidents. En canvi, un sensor de temperatura domèstic pot enviar dades cada hora i tolerar retards o pèrdues. Un protocol per a tots dos no pot optimitzar aquests paràmetres alhora.
+* Condicions de l'entorn i del canal
+- Què diu: Different environment/channel conditions: ISM vs. Licensed channels.
+- Explicació: L'espectre radioelèctric es divideix en bandes:
+- Canals llicenciats (Licensed): Operadors de telefonia mòbil paguen per ús exclusiu. Hi ha menys interferències i es pot garantir qualitat.
+- Canals ISM (Industrial, Scientific, Medical): Bandes lliures (com 2.4 GHz o 5 GHz) que qualsevol pot utilitzar. Són gratuïtes, però estan plenes d'interferències (WiFi, Bluetooth, microones). Els protocols han d'estar dissenyats per gestionar aquesta interferència o per aprofitar l'espectre llicenciat.
+* Propietats del maquinari
+- Què diu: Dissimilar communication hardware properties: Power, range, ...
+- Explicació: El maquinari condiciona el protocol.
+- Potència: Un telèfon mòbil té una bateria gran, però un sensor IoT pot haver de durar anys amb una pila petita (requereix protocols d'estalvi d'energia extrems).
+- Abast (Range): Un router WiFi té un abast de desenes de metres; una torre cel·lular pot cobrir quilòmetres. El maquinari (antenes, amplificadors) i el protocol han d'anar en consonància amb l'abast desitjat.
+* Modes de comunicació
+- Simplex: one way communication, radio, TV, GPS etc.
+- Half-duplex: two way communications but not simultaneously
+- Full-duplex: two-way simultaneous communication
+- Full duplex is possible in different ways: using two simplex channels separeted by TDD or FDD or separeted signal paths (cables) or hardware support for tx suppression
+* Mitjans guiats vs. no guiats
+- Guided: the waves are guided along a physical path: coaxial cable, optical fiber, twisted pair
+- Unguided: wireless meduim (canal comu compartit)
+* Senyal analògic vs. digital
+- Analog signal: signal intensity varies in a smooth way over time. There are no braks or discontinuitites in the signal
+- Digital signal: Signal intensity mantains a constant level for some period of time and then changes to another constant level
+* Dades digitals vs. senyals analògics
+- Digital data: Enables compression, error protection, encryption, low-cost/smaller processors
+- Analog signals: Allows use of multiple channels (frequencies)
+* Diagrama del sistema de comunicació
+- El diagrama il·lustra el viatge de la informació en un sistema de comunicació, dividit en 5 blocs i 6 etapes:
+- Blocs principals: Source (Font) → Transmitter (Transmissor) → Transmission system (Sistema de transmissió) → Receiver (Receptor) → Destination (Destinació).
+- Procés de conversió: La informació (Text) es converteix en un flux de bits digitals, després en un senyal analògic per viatjar pel medi, i al receptor es fa el procés invers fins a recuperar el Text.
+- Etapes numerades:
+  1. Input information \(m\): Informació original (Text).
+  2. Input data \(g(t)\): Dades digitals (bits).
+  3. Transmitted signal \(s(t)\): Senyal analògic enviat.
+  4. Received signal \(r(t)\): Senyal analògic rebut (pot variar per soroll).
+  5. Output data \(g'(t)\): Dades digitals extretes.
+  6. Output information \(m'\): Informació final rebuda (idealment igual a \(m\)).
+* Antenes
+** Definició i funcions
+- Segons el document, una antena és un conductor elèctric o un sistema de conductors. La seva funció principal és actuar com a interfície entre el món de l'electrònica (els circuits) i el món de les ones electromagnètiques (l'espai).
+- Les seves dues funcions principals:
+  - Transmissió: L'antena radia energia electromagnètica a l'espai. Quan el transmissor li envia un corrent elèctric altern d'alta freqüència, l'antena converteix aquesta energia elèctrica en ones electromagnètiques que es propaguen per l'aire (o el buit).
+  - Recepció: L'antena recull energia electromagnètica de l'espai. Quan les ones electromagnètiques xoquen contra ella, indueixen un petit corrent elèctric que el receptor pot detectar i processar.
+- Nota important: En comunicacions bidireccionals, la mateixa antena es pot utilitzar tant per transmetre com per rebre.
+** Conceptes clau de les antenes
+- Patró de radiació: És la representació gràfica (en 3D o en tall transversal 2D) de com l'antena distribueix l'energia. Mostra els "lòbuls" (on hi ha més senyal) i els "nuls" (on no n'hi ha).
+- Guany (Gain): És la potència de sortida en una direcció concreta comparada amb la que produiria una antena isotròpica ideal. Es mesura en dBi. Com més guany, més enfocada està l'energia en una direcció (i més abast), però menys cobertura en altres direccions.
+- Longitud de l'antena: Està directament relacionada amb la longitud d'ona (\( \lambda \)) del senyal. Per exemple, per a una xarxa WiFi de 2.4 GHz, la longitud d'ona és d'uns 12.5 cm, i les antenes solen ser de mitja ona (uns 6.25 cm) o de quart d'ona.
+** Tipus d'antenes (segons la seva radiació)
+- Isotròpica (0 dBi): Idealitzada. Radiaria energia per igual en totes direccions (com una esfera perfecta). No existeix a la realitat, serveix com a referència.
+- Omnidireccional: Radiació en forma de "dònut" (com el dipol de mitja ona). Cobreix 360° al voltant, però té poca cobertura vertical. S'utilitza en mòbils, WiFi domèstic, etc.
+- Direccional: Enfoca l'energia en un feix estret (com una llanterna). Tenen alt guany (més abast i menys interferència), però han d'estar ben apuntades. Exemples: Yagi, Panel, Parabòlica (la que s'utilitza per a satèl·lits).
+* Propagació d'ones de ràdio
+- Ground-wave propagation: The signal contours the curvature of the earth, Only frequencies up to 2 Mhz. It can propagate considerable distances. This only happends during the day. Example AM radio during the day
+- Sky-wave Propagation: Frequencies between 2 Mhz and 30 Mhz Signal reflected from ionized layer of atmosphere back down to earth. Signal can travel a number of hops, back and forth between ionosphere and earth's surface. Examples: Amateur radio, Citizens' Band radio (27 Mhz), AM (at night)
+- line-of-sight propagation: Frequencies above 30 Mhz Transmitting and receiving antennas must be within line of sight. Satellite communication. Most ground communication
+* Pèrdues de propagació i models
+** Wireless Transmission impairments
+- Path loss (attenuation): Greater at higher frequencies
+- Noise: intrinsic noise: Hardware originated. Extrinsic noise: Radio noise (any unwanted noise), interference
+- obstacle effects
+** Path loss
+- \[ P_{rx}(dBm) = P_{tx}(dBm) + G(dB) - L(dB) \]
+** Càlculs analítics de path loss
+*** Friis free-space model (serveix per espais oberts)
+- L'Equació de Friis uneix els dos conceptes anteriors:
+\[ P_r = P_t \cdot G_t \cdot G_r \cdot \left(\frac{\lambda}{4 \pi d}\right)^2 \]
+- On:
+  - \(P_r\) i \(P_t\): Potència rebuda i transmesa.
+  - \(G_t\) i \(G_r\): Guany de les antenes (quant enfoquen l'energia).
+  - \( \lambda \): Longitud d'ona del senyal.
+  - \(d\): Distància entre antenes.
+- Pèrdua de Trajecte (Path Loss). La fórmula de la pèrdua (PL) ens diu com es degrada el senyal amb la distància i la freqüència:
+\[ PL = \left(\frac{4 \pi d}{\lambda}\right)^2 = \left(\frac{4 \pi d f}{c}\right)^2 \]
+- Conclusions clau d'aquest model:
+  - Depèn de la distància al quadrat (\(d^2\)): Si dupliques la distància, la potència rebuda es divideix per 4 (perds uns 6 dB).
+  - Depèn de la freqüència: Com més alta és la freqüència (\(f\)) o més curta la longitud d'ona (\( \lambda \)), més gran és la pèrdua. Per tant, les freqüències altes (com 5G mmWave) es degraden molt més ràpidament que les baixes (com FM o 4G) a la mateixa distància.
+  - És el "millor cas possible": A la realitat, la potència rebuda sempre serà pitjor que la que prediu aquest model, a causa del soroll, obstacles, reflexions i absorció atmosfèrica. Serveix com a punt de partida per als dissenyadors de sistemes.
+*** Two-ray ground propagation model
+- considera line of sight path i considera una reflexio del terra
+*** Empirical propagation models
+- Okumura model: Very accurate for urban areas. Not that accurate for rural areas
+- Hata model: empirical "formulation" of okumuria model. Additional corrections:
+  - Considers effects of diffraction, reflection and scattering caused by city structures
+  - Further corrections for suburban and rural environments
+* Soroll i interferència
+- Intrinsic noise: Thermal noise
+- Extrinsic noise: Radio noise
+- ITU defines the "radio noise" as the noise caused by factors external to the radio receiving system
+- Types of radio noise: radiation from lightning discarges (atmospheric noise due to lightning), man-made noise: unintended radiation from electrical machinery, electrical and electronic equipment, power transmission lines, or from internal combustion engine ignition, emissions from atmospheric gases and hydrometeors, radiation from galactic radio sources
+- SNR: Signal to noise ratio: \(SNR = S/N = S/(N_0 \cdot B)\)
+- SINR: signal to interference ratio
+* Efectes dels obstacles
+- Els obstacles entre el transmissor i el receptor són una de les tres causes principals d'empitjorament del senyal (juntament amb la pèrdua de trajecte i el soroll). El seu impacte depèn directament de la mida de l'obstacle en comparació amb la longitud d'ona (\( \lambda \)) del senyal.
+** Mecanismes Físics d'Interacció
+- Quan una ona de ràdio xoca amb un obstacle, es produeixen quatre fenòmens principals:
+*** Reflexió (Reflection)
+- Què passa: L'ona rebota contra l'objecte.
+- Condició: L'objecte és molt més gran que la longitud d'ona (\( \lambda \)).
+- Exemples: Edificis, parets, la superfície de la Terra.
+*** Difracció (Diffraction)
+- Què passa: L'ona es "corba" o doblega al voltant d'objectes esmolats o cantonades.
+- Condició: L'objecte té vores esmolades.
+- Exemples: Cantonades d'edificis, carenes de muntanyes. Això permet que el senyal arribi a zones d'ombra (sense línia de visió directa).
+*** Dispersió (Scattering)
+- Què passa: L'ona es fragmenta i es dispersa en múltiples direccions.
+- Condició: L'objecte és més petit que la longitud d'ona (\( \lambda \)) o la superfície és molt rugosa.
+- Exemples: Fulles dels arbres, superfícies rugoses, gotes de pluja.
+*** Ombrejat (Shadowing)
+- Què passa: La recepció del senyal es suprimeix o s'atenua dràsticament perquè un objecte bloqueja el camí directe.
+- Conseqüència: Crea zones de "ombra" on el senyal és molt feble.
+** Atenuació de Materials
+- No tots els obstacles bloquegen el senyal de la mateixa manera. El document mostra mesures reals de com diferents materials atenuen les ones de ràdio (comparat amb l'espai obert):
+- Parets (Wall): Un mur de maó de 45 cm pot atenuar el senyal entre 20 i 50 dB, depenent de la freqüència. Com més gruixut i dens, més atenuació.
+- Finestres (Window): El vidre prim (1 capa) atenua poc (5-10 dB). El vidre doble o amb tractaments metàl·lics pot atenuar molt més (20-40 dB).
+- Portes (Door): Les portes de vidre o metàl·liques atenuen el senyal significativament.
+- Tendència general: A major freqüència, major atenuació per part dels obstacles. Per exemple, el senyal de 60 GHz (5G mmWave) es veu molt més afectat per una paret que el senyal de 700 MHz (4G).
+** Efecte Multitrayecte (Multipath Effect)
+- Aquest és el resultat directe de la reflexió, difracció i dispersió. Quan hi ha obstacles, el receptor no rep una sola còpia del senyal, sinó múltiples còpies que han arribat per camins diferents:
+- Camí directe (LOS): El més curt, arriba primer.
+- Camins reflectits: Arriben més tard (retardats) i amb menys potència.
+- Conseqüències:
+  - Interferència constructiva: Les còpies se sumen i el senyal es fa més fort (Amplification).
+  - Interferència destructiva: Les còpies se sumen en oposició de fase i es cancel·len (Elimination). Això causa el famós desvaniment (fading).
+- Problemes pràctics: Aquest fenomen causa "fantasmes" a la TV analògica, ecos en el radar i errors en la transmissió de dades digitals.
+** Conclusió per al Disseny del Sistema
+- Els efectes dels obstacles fan que el món real sigui molt més complex que el model de Friis (espai lliure). Els enginyers han de:
+  - Predir aquestes pèrdues addicionals.
+  - Utilitzar models empírics (com el d'Okumura) que tenen en compte l'entorn urbà.
+  - Dissenyar receptors capaços de gestionar el multipath (equalitzadors).
+  - Triar freqüències adequades: les baixes penetren millor les parets, però tenen menys amplada de banda.
+* Modulació de portadora
+- To transmit a signal we take a data signal modulate a frequency (carrier frequency) this way multiple systems with different carrier frequencies can communicate at the same time
+* Regulació de l'espectre
+** Regulacio del espectre de frequencies
+- L'espectre radioelèctric (el conjunt de totes les freqüències de ràdio) és un recurs natural, finit i limitat. No es pot fabricar més espectre. Com que és un bé escàs, els governs de cada país (i organismes internacionals com la ITU) s'encarreguen de regular-lo i repartir-lo.
+- Cada país té un regulador (per exemple, la FCC als EUA, o el Ministeri d'Assumptes Econòmics i Transformació Digital a Espanya) que decideix:
+  - Quines freqüències es poden utilitzar.
+  - Qui les pot utilitzar.
+  - Per a què es poden utilitzar.
+  - Amb quina potència es poden emetre.
+** Per què es fa? (Els objectius)
+- Evitar el caos i les interferències: Sense regulació, tothom podria emetre a qualsevol freqüència i amb qualsevol potència. Això faria que els senyals xoquessin entre ells i cap comunicació funcionés. És com posar-se a cridar tothom alhora en una sala petita.
+- Garantir serveis crítics: Cal assegurar que serveis essencials com l'aviació, els serveis d'emergència (112), la policia, els militars o la navegació marítima tinguin canals exclusius i lliures d'interferències.
+- Optimitzar l'ús: Assignar l'espectre a qui li donarà un ús més eficient i rendible (per exemple, als operadors de telefonia mòbil).
+- Permetre la coexistència: Establir regles perquè diferents tecnologies (Wi-Fi, Bluetooth, microones) puguin conviure en les mateixes bandes sense destruir-se mútuament.
+** Com es regula? Tipus de Bandes
+- El document distingeix dos grans tipus de regulació:
+- Bandes Llicenciades (Licensed):
+  - Els països "lloguen" aquestes bandes als operadors (Movistar, Vodafone, Orange) mitjançant subhastes públiques.
+  - L'operador té ús exclusiu de la banda.
+  - Avantatge: No hi ha interferències d'altres operadors. Es pot garantir la qualitat del servei.
+  - Exemple: Les bandes de 4G i 5G a Espanya.
+- Bandes No Llicenciades (Unlicensed / ISM):
+  - Són bandes definides per la ITU per a ús lliure (Industrial, Scientific and Medical).
+  - Qualsevol pot utilitzar-les sense pagar llicència.
+  - Avantatge: Fàcil accés, fomenta la innovació (Wi-Fi, Bluetooth).
+  - Desavantatge: Com que tothom hi pot accedir, hi ha moltes interferències. Els dispositius han de ser "educats" i saber compartir el medi.
+  - Exemples: Wi-Fi (2.4 GHz i 5 GHz), Bluetooth, microones domèstics, walkie-talkies.
+** La "Fam d'Espectre" (Spectrum Crunch)
+- Cada cop hi ha més dispositius (mòbils, IoT, cotxes connectats) i necessitem més velocitat de dades. Això fa que l'espectre disponible sigui insuficient.
+- Això obliga els reguladors a "alliberar" bandes que abans s'utilitzaven per a altres coses.
+- Cost econòmic elevat: Les subhastes de l'espectre són multimilionàries. Els operadors han de pagar quantitats astronòmiques per aconseguir llicències, un cost que sovint repercuteix en l'usuari final.
+- Fragmentació de l'espectre: A Espanya, l'espectre està dividit entre 4 operadors (Movistar, Vodafone, Orange, Yoigo). Això complica la interoperabilitat i el desplegament de noves tecnologies (com el 5G), perquè cada operador té "trossos" de freqüència diferents.
+- Interferències a les bandes ISM: Com que les bandes no llicenciades són lliures, estan molt congestionades. El Wi-Fi de 2.4 GHz, per exemple, pateix interferències constants d'altres xarxes veïnes, Bluetooth, i fins i tot del microones de casa.
+- El dilema tècnic: La regulació obliga a triar entre freqüències baixes (millor cobertura, però menys amplada de banda) o altes (més velocitat, però més atenuació). Això limita el que els enginyers poden fer.
+- Coexistència internacional: Coordinar l'ús de l'espectre entre països és complex. Si un país utilitza una freqüència per a un servei i el país veí per a un altre, es poden produir interferències transfrontereres.
+* Modulació sense fil (MCS i AMC)
+** La taula central: Esquema de Modulació i Codificació (MCS)
+- Aquesta taula relaciona el CQI (Channel Quality Indicator o Indicador de Qualitat del Canal) amb el tipus de modulació i la velocitat de codi.
+- CQI: És un valor de 0 a 15 que indica com de bo és el canal de ràdio entre el mòbil i l'estació base.
+- Evolució de la modulació: A mesura que el CQI augmenta (millor qualitat), la modulació es torna més complexa:
+  - QPSK (Quaternary Phase Shift Keying): S'usa per a CQI baixos (pitjor qualitat). És molt robust.
+  - 16QAM (Quadrature Amplitude Modulation): CQI mitjans.
+  - 64QAM: CQI alts.
+  - 256QAM: CQI molt alts (només en versions recents com Rel.12 i posteriors).
+- Bits per RE (Resource Element): Fixa't que a mesura que la modulació és més complexa, s'envien més bits per cada símbol. Per exemple, QPSK envia 2 bits per RE, mentre que 256QAM n'envia 8. Això augmenta la velocitat de dades, però també requereix un senyal molt més net.
+** El diagrama de la dreta: Adaptació a l'entorn
+- Aquest gràfic mostra una estació base (eNB) al centre i diferents zones de cobertura.
+- Zones concèntriques: Mostren com la qualitat del senyal (SNR - Signal-to-Noise Ratio) disminueix amb la distància i el esvaïment (Fade).
+- Modulació adaptativa:
+  - A prop de l'estació base (SNR alt, 25 dB), s'utilitza 64QAM per aconseguir altes velocitats.
+  - A distàncies mitjanes (SNR 15 dB), es fa servir 16QAM.
+  - A la vora de la cel·la (SNR baix, 9 dB), s'utilitza QPSK, que és més lent però més resistent a la interferència i al soroll.
+- Això es coneix com a Adaptive Modulation and Coding (AMC).
+* Modulació sense fil (diapositives 3-19)
+** Conceptes Bàsics de la Modulació (Diapositives 3-5)
+*** Què és la modulació?
+- És el procés d'encodar dades d'origen (informació) sobre un senyal portadora amb una freqüència \(f_c\).
+- Senyal modulador (o banda base): El senyal d'entrada que porta la informació. Pot ser analògic o digital.
+- Senyal portadora: La freqüència que es modifica amb el senyal d'informació.
+- Senyal modulat (o de pas de banda): El resultat final de la modulació.
+- Espectre: El senyal modulat té un ample de banda centrat al voltant de la freqüència portadora (\(f_c\)).
+*** La Idea de la Modulació
+- L'equació general d'un senyal portadora és:
+\[ s(t) = A \sin(2 \pi f_c t + \phi) \]
+- Per codificar dades en aquest senyal, podem variar tres paràmetres fonamentals:
+  - Amplitud (A)
+  - Freqüència (f)
+  - Fase (\( \phi \))
+- Totes les tècniques de modulació es basen en la manipulació d'un o més d'aquests paràmetres.
+*** Tècniques Bàsiques de Modulació Digital
+- ASK (Amplitude-Shift Keying): Es varia l'amplitud de la portadora.
+- FSK (Frequency-Shift Keying): Es varia la freqüència propera a la portadora.
+- PSK (Phase-Shift Keying): Es varia la fase del senyal portadora.
+** Modulació per Desplaçament d'Amplitud (ASK)
+- Dos valors binaris es representen mitjançant dues amplituds diferents de la freqüència portadora.
+- OOK (On-Off Keying): És la forma més simple d'ASK.
+  - Un dígit binari (1) es representa per la presència de la portadora a amplitud constant.
+  - L'altre dígit binari (0) es representa per l'absència de portadora.
+- Equació:
+\[ s(t) = \begin{cases} A \sin(2 \pi f_c t) & \text{per a un 1 binari} \\ 0 & \text{per a un 0 binari} \end{cases} \]
+** Modulació per Desplaçament de Freqüència (FSK)
+*** BFSK (Binary Frequency-Shift Keying)
+- Dos dígits binaris es representen mitjançant dues freqüències diferents properes a la freqüència portadora.
+- Les freqüències \(f_1\) i \(f_2\) estan desviades de la freqüència portadora \(f_c\) per quantitats iguals però oposades (\(f_d\)).
+- Representació:
+  - Senyal per al missatge '1': \(A \sin(2 \pi f_1 t)\)
+  - Senyal per al missatge '0': \(A \sin(2 \pi f_2 t)\)
+*** MFSK (Multiple Frequency-Shift Keying)
+- S'utilitzen més de dues freqüències.
+- Fórmula:
+\[ f_i = f_c + (2i - 1 - M) f_d \]
+- On:
+  - \(f_c\): freqüència portadora
+  - \(f_d\): diferència de freqüència
+  - \(M\): nombre d'elements de senyal diferents (\(M = 2^L\))
+  - \(L\): nombre de bits per element de senyal
+- Equació del senyal:
+\[ s_i(t) = A \sin(2 \pi f_i t) \quad \text{per a } 1 \le i \le M \]
+- Exemple: Si \(f_c = 250 \, kHz\) i \(f_d = 25 \, kHz\), es calculen les freqüències per a cada símbol.
+- Avantatge: És més eficient en amplada de banda que BFSK.
+- Desavantatge: És més susceptible a errors de freqüència.
+** Modulació per Desplaçament de Fase (PSK) i Constel·lacions
+*** BPSK (Binary Phase-Shift Keying)
+- Utilitza dues fases per representar els dígits binaris.
+- Un bit '1' es pot representar amb la fase original (\(A \sin(2 \pi f_c t)\)).
+- Un bit '0' es pot representar amb la fase invertida (\(A \sin(2 \pi f_c t + \pi)\)).
+*** Representació Polar i Diagrames de Constel·lació
+- El senyal es pot representar de forma polar:
+\[ s(t) = M(t) \sin(2 \pi f_c t + \phi) \]
+- L'amplitud (\(M\)) és la distància des de l'origen.
+- La fase (\( \phi \)) és l'angle respecte a l'eix horitzontal.
+- Diagrama de constel·lació: Mostra els possibles símbols que es poden transmetre/rebre com a punts en el pla I/Q (In-phase / Quadrature).
+*** BPSK i Diagrames de Constel·lació
+- El diagrama de constel·lació de BPSK té només dos punts, situats en els extrems de l'eix I (In-phase), separats per 180°.
+- Compromís: Si definim més punts en el cercle (constel·lació més densa), podem aconseguir una taxa de dades més alta, però augmenta la taxa d'error de bits (BER) a causa del soroll i la interferència.
+** QPSK i Codificació Intel·ligent
+*** QPSK (Quadrature Phase-Shift Keying)
+- És una PSK de quatre nivells.
+- Cada element representa més d'un bit (concretament, 2 bits per símbol).
+- Exemple d'assignació:
+  - \(A \sin(2 \pi f t + \pi/4) \rightarrow 11\)
+  - \(A \sin(2 \pi f t - 3\pi/4) \rightarrow 01\)
+  - \(A \sin(2 \pi f t - 3\pi/4) \rightarrow 00\) (Nota: correcció de l'original, hauria de ser \(-3\pi/4\) o similar per cobrir els 4 quadrants)
+  - \(A \sin(2 \pi f t - \pi/4) \rightarrow 10\)
+- Constel·lació QPSK: Té 4 punts situats en els quatre quadrants del pla I/Q.
+- Variants: Es poden utilitzar conjunts de fases alternatives (per exemple, 0, \(\pi/2\), \(\pi\), \(3\pi/2\) o \(\pi/4\), \(3\pi/4\), \(-3\pi/4\), \(-\pi/4\)).
+*** Constel·lacions Dolentes vs. Bones
+- Una constel·lació "dolenta" mostra els núvols de punts molt dispersos (molt soroll).
+- Una constel·lació "bona" mostra els núvols de punts ben agrupats i separats, permetent una decodificació clara.
+*** Codificació de Bits Intel·ligent: Codi Gray
+- En lloc d'assignar bits arbitràriament, s'utilitza una codificació que asseguri que els punts adjacents a la constel·lació només difereixin en 1 bit.
+- Això minimitza els errors: si el soroll fa que el receptor interpreti un símbol adjacent, només es produirà un error d'1 bit en lloc de múltiples.
+** Modulació per Amplitud en Quadratura (QAM)
+*** QAM (Quadrature Amplitude Modulation)
+- És una combinació d'ASK i PSK. S'utilitza tant l'amplitud com la fase per representar les dades.
+- Exemple: 16QAM
+  - Té 16 punts a la constel·lació (4 bits per símbol).
+  - Els punts es distribueixen en una graella (no només en un cercle).
+  - Permet taxes de dades més altes que QPSK, però requereix un SNR (relació senyal-soroll) més alt per funcionar correctament.
+*** QAM és Popular
+- S'utilitza en tecnologies actuals:
+  - Homeplug AV2 (Ethernet per línia elèctrica): Utilitza 1024-QAM i 4096-QAM.
+  - ADSL (parells de coure): Pot arribar fins a 32768-QAM.
+- *Pregunta:* Quina és la modulació més alta que s'utilitza actualment en WiFi, LTE i 5G-NR? (Això convida a investigar sobre 256QAM o 1024QAM en sistemes moderns).

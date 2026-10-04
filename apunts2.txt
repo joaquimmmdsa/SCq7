@@ -1384,3 +1384,639 @@ Dissenyar receptors capaços de gestionar el multipath (equalitzadors).
 
 Triar freqüències adequades: les baixes penetren millor les parets, però tenen menys amplada de banda.
 
+
+Carrier modulation:
+To transmit a signal we take a data signal modulate a frequency (carrier frequency) this way multiple systems with different carrier frequencies can communicate at the same time
+
+
+Regulacio del espectre de frequencies:
+L'espectre radioelèctric (el conjunt de totes les freqüències de ràdio) és un recurs natural, finit i limitat. No es pot fabricar més espectre. Com que és un bé escàs, els governs de cada país (i organismes internacionals com la ITU) s'encarreguen de regular-lo i repartir-lo.
+
+Cada país té un regulador (per exemple, la FCC als EUA, o el Ministeri d'Assumptes Econòmics i Transformació Digital a Espanya) que decideix:
+
+Quines freqüències es poden utilitzar.
+
+Qui les pot utilitzar.
+
+Per a què es poden utilitzar.
+
+Amb quina potència es poden emetre.
+ Per què es fa? (Els objectius)
+Evitar el caos i les interferències: Sense regulació, tothom podria emetre a qualsevol freqüència i amb qualsevol potència. Això faria que els senyals xoquessin entre ells i cap comunicació funcionés. És com posar-se a cridar tothom alhora en una sala petita.
+
+Garantir serveis crítics: Cal assegurar que serveis essencials com l'aviació, els serveis d'emergència (112), la policia, els militars o la navegació marítima tinguin canals exclusius i lliures d'interferències.
+
+Optimitzar l'ús: Assignar l'espectre a qui li donarà un ús més eficient i rendible (per exemple, als operadors de telefonia mòbil).
+
+Permetre la coexistència: Establir regles perquè diferents tecnologies (Wi-Fi, Bluetooth, microones) puguin conviure en les mateixes bandes sense destruir-se mútuament.
+
+Com es regula? Tipus de Bandes (Pàgina 36)
+El document distingeix dos grans tipus de regulació:
+
+Bandes Llicenciades (Licensed):
+
+Els països "lloguen" aquestes bandes als operadors (Movistar, Vodafone, Orange) mitjançant subhastes públiques.
+
+L'operador té ús exclusiu de la banda.
+
+Avantatge: No hi ha interferències d'altres operadors. Es pot garantir la qualitat del servei.
+
+Exemple: Les bandes de 4G i 5G a Espanya (Pàgines 37-38).
+
+Bandes No Llicenciades (Unlicensed / ISM):
+
+Són bandes definides per la ITU per a ús lliure (Industrial, Scientific and Medical).
+
+Qualsevol pot utilitzar-les sense pagar llicència.
+
+Avantatge: Fàcil accés, fomenta la innovació (Wi-Fi, Bluetooth).
+
+Desavantatge: Com que tothom hi pot accedir, hi ha moltes interferències. Els dispositius han de ser "educats" i saber compartir el medi.
+
+Exemples: Wi-Fi (2.4 GHz i 5 GHz), Bluetooth, microones domèstics, walkie-talkies.
+
+La "Fam d'Espectre" (Spectrum Crunch):
+
+Cada cop hi ha més dispositius (mòbils, IoT, cotxes connectats) i necessitem més velocitat de dades. Això fa que l'espectre disponible sigui insuficient.
+
+Això obliga els reguladors a "alliberar" bandes que abans s'utilitzaven per a altres coses
+Cost econòmic elevat:
+
+Les subhastes de l'espectre són multimilionàries. Els operadors han de pagar quantitats astronòmiques per aconseguir llicències, un cost que sovint repercuteix en l'usuari final.
+
+Fragmentació de l'espectre:
+
+A Espanya, l'espectre està dividit entre 4 operadors (Movistar, Vodafone, Orange, Yoigo). Això complica la interoperabilitat i el desplegament de noves tecnologies (com el 5G), perquè cada operador té "trossos" de freqüència diferents.
+
+Interferències a les bandes ISM:
+
+Com que les bandes no llicenciades són lliures, estan molt congestionades. El Wi-Fi de 2.4 GHz, per exemple, pateix interferències constants d'altres xarxes veïnes, Bluetooth, i fins i tot del microones de casa.
+
+El dilema tècnic (Pàgina 39):
+
+La regulació obliga a triar entre freqüències baixes (millor cobertura, però menys amplada de banda) o altes (més velocitat, però més atenuació). Això limita el que els enginyers poden fer.
+
+Coexistència internacional:
+
+Coordinar l'ús de l'espectre entre països és complex. Si un país utilitza una freqüència per a un servei i el país veí per a un altre, es poden produir interferències transfrontereres.
+
+
+La taula central: Esquema de Modulació i Codificació (MCS)
+Aquesta taula relaciona el CQI (Channel Quality Indicator o Indicador de Qualitat del Canal) amb el tipus de modulació i la velocitat de codi.
+
+CQI: És un valor de 0 a 15 que indica com de bo és el canal de ràdio entre el mòbil i l'estació base.
+
+Evolució de la modulació: A mesura que el CQI augmenta (millor qualitat), la modulació es torna més complexa:
+
+QPSK (Quaternary Phase Shift Keying): S'usa per a CQI baixos (pitjor qualitat). És molt robust.
+
+16QAM (Quadrature Amplitude Modulation): CQI mitjans.
+
+64QAM: CQI alts.
+
+256QAM: CQI molt alts (només en versions recents com Rel.12 i posteriors).
+
+Bits per RE (Resource Element): Fixa't que a mesura que la modulació és més complexa, s'envien més bits per cada símbol. Per exemple, QPSK envia 2 bits per RE, mentre que 256QAM n'envia 8. Això augmenta la velocitat de dades, però també requereix un senyal molt més net.
+
+El diagrama de la dreta: Adaptació a l'entorn
+Aquest gràfic mostra una estació base (eNB) al centre i diferents zones de cobertura.
+
+Zones concèntriques: Mostren com la qualitat del senyal (SNR - Signal-to-Noise Ratio) disminueix amb la distància i el esvaïment (Fade).
+
+Modulació adaptativa:
+
+A prop de l'estació base (SNR alt, 25 dB), s'utilitza 64QAM per aconseguir altes velocitats.
+
+A distàncies mitjanes (SNR 15 dB), es fa servir 16QAM.
+
+A la vora de la cel·la (SNR baix, 9 dB), s'utilitza QPSK, que és més lent però més resistent a la interferència i al soroll.
+
+Això es coneix com a Adaptive Modulation and Coding (AMC).
+
+
+1. Conceptes Bàsics de la Modulació (Diapositives 3-5)
+Què és la modulació? (Diapositiva 3)
+És el procés d'encodar dades d'origen (informació) sobre un senyal portadora amb una freqüència 
+f
+c
+f 
+c
+​
+ .
+
+Senyal modulador (o banda base): El senyal d'entrada que porta la informació. Pot ser analògic o digital.
+
+Senyal portadora: La freqüència que es modifica amb el senyal d'informació.
+
+Senyal modulat (o de pas de banda): El resultat final de la modulació.
+
+Espectre: El senyal modulat té un ample de banda centrat al voltant de la freqüència portadora (
+f
+c
+f 
+c
+​
+ ).
+
+La Idea de la Modulació (Diapositiva 4)
+L'equació general d'un senyal portadora és:
+
+s
+(
+t
+)
+=
+A
+sin
+⁡
+(
+2
+π
+f
+c
+t
++
+ϕ
+)
+s(t)=Asin(2πf 
+c
+​
+ t+ϕ)
+Per codificar dades en aquest senyal, podem variar tres paràmetres fonamentals:
+
+Amplitud (A)
+
+Freqüència (f)
+
+**Fase (
+ϕ
+ϕ)
+Totes les tècniques de modulació es basen en la manipulació d'un o més d'aquests paràmetres.
+
+Tècniques Bàsiques de Modulació Digital (Diapositiva 5)
+
+ASK (Amplitude-Shift Keying): Es varia l'amplitud de la portadora.
+
+FSK (Frequency-Shift Keying): Es varia la freqüència propera a la portadora.
+
+PSK (Phase-Shift Keying): Es varia la fase del senyal portadora.
+
+2. Modulació per Desplaçament d'Amplitud (ASK) (Diapositiva 6)
+Dos valors binaris es representen mitjançant dues amplituds diferents de la freqüència portadora.
+
+OOK (On-Off Keying): És la forma més simple d'ASK.
+
+Un dígit binari (1) es representa per la presència de la portadora a amplitud constant.
+
+L'altre dígit binari (0) es representa per l'absència de portadora.
+
+Equació:
+
+s
+(
+t
+)
+=
+{
+A
+sin
+⁡
+(
+2
+π
+f
+c
+t
+)
+per a un 1 binari
+0
+per a un 0 binari
+s(t)={ 
+Asin(2πf 
+c
+​
+ t)
+0
+​
+  
+per a un 1 binari
+per a un 0 binari
+​
+ 
+3. Modulació per Desplaçament de Freqüència (FSK) (Diapositives 7-10)
+BFSK (Binary Frequency-Shift Keying) (Diapositives 7-8)
+
+Dos dígits binaris es representen mitjançant dues freqüències diferents properes a la freqüència portadora.
+
+Les freqüències 
+f
+1
+f 
+1
+​
+  i 
+f
+2
+f 
+2
+​
+  estan desviades de la freqüència portadora 
+f
+c
+f 
+c
+​
+  per quantitats iguals però oposades (
+f
+d
+f 
+d
+​
+ ).
+
+Representació:
+
+Senyal per al missatge '1': 
+A
+sin
+⁡
+(
+2
+π
+f
+1
+t
+)
+Asin(2πf 
+1
+​
+ t)
+
+Senyal per al missatge '0': 
+A
+sin
+⁡
+(
+2
+π
+f
+2
+t
+)
+Asin(2πf 
+2
+​
+ t)
+
+MFSK (Multiple Frequency-Shift Keying) (Diapositives 9-10)
+
+S'utilitzen més de dues freqüències.
+
+Fórmula: 
+f
+i
+=
+f
+c
++
+(
+2
+i
+−
+1
+−
+M
+)
+f
+d
+f 
+i
+​
+ =f 
+c
+​
+ +(2i−1−M)f 
+d
+​
+ 
+
+f
+c
+f 
+c
+​
+ : freqüència portadora
+
+f
+d
+f 
+d
+​
+ : diferència de freqüència
+
+M
+M: nombre d'elements de senyal diferents (
+M
+=
+2
+L
+M=2 
+L
+ )
+
+L
+L: nombre de bits per element de senyal
+
+Equació del senyal: 
+s
+i
+(
+t
+)
+=
+A
+sin
+⁡
+(
+2
+π
+f
+i
+t
+)
+s 
+i
+​
+ (t)=Asin(2πf 
+i
+​
+ t) per a 
+1
+≤
+i
+≤
+M
+1≤i≤M
+
+Exemple: Si 
+f
+c
+=
+250
+ kHz
+f 
+c
+​
+ =250 kHz i 
+f
+d
+=
+25
+ kHz
+f 
+d
+​
+ =25 kHz, es calculen les freqüències per a cada símbol.
+
+Avantatge: És més eficient en amplada de banda que BFSK.
+
+Desavantatge: És més susceptible a errors de freqüència.
+
+4. Modulació per Desplaçament de Fase (PSK) i Constel·lacions (Diapositives 11-13)
+BPSK (Binary Phase-Shift Keying) (Diapositiva 11)
+
+Utilitza dues fases per representar els dígits binaris.
+
+Un bit '1' es pot representar amb la fase original (
+A
+sin
+⁡
+(
+2
+π
+f
+c
+t
+)
+Asin(2πf 
+c
+​
+ t)).
+
+Un bit '0' es pot representar amb la fase invertida (
+A
+sin
+⁡
+(
+2
+π
+f
+c
+t
++
+π
+)
+Asin(2πf 
+c
+​
+ t+π)).
+
+Representació Polar i Diagrames de Constel·lació (Diapositiva 12)
+
+El senyal es pot representar de forma polar: 
+s
+(
+t
+)
+=
+M
+(
+t
+)
+sin
+⁡
+(
+2
+π
+f
+c
+t
++
+ϕ
+)
+s(t)=M(t)sin(2πf 
+c
+​
+ t+ϕ)
+
+L'amplitud (
+M
+M) és la distància des de l'origen.
+
+La fase (
+ϕ
+ϕ) és l'angle respecte a l'eix horitzontal.
+
+Diagrama de constel·lació: Mostra els possibles símbols que es poden transmetre/rebre com a punts en el pla I/Q (In-phase / Quadrature).
+
+BPSK i Diagrames de Constel·lació (Diapositiva 13)
+
+El diagrama de constel·lació de BPSK té només dos punts, situats en els extrems de l'eix I (In-phase), separats per 180°.
+
+Compromís: Si definim més punts en el cercle (constel·lació més densa), podem aconseguir una taxa de dades més alta, però augmenta la taxa d'error de bits (BER) a causa del soroll i la interferència.
+
+5. QPSK i Codificació Intel·ligent (Diapositives 14-17)
+QPSK (Quadrature Phase-Shift Keying) (Diapositives 14-15)
+
+És una PSK de quatre nivells.
+
+Cada element representa més d'un bit (concretament, 2 bits per símbol).
+
+Exemple d'assignació:
+
+A
+sin
+⁡
+(
+2
+π
+f
+t
++
+π
+/
+4
+)
+→
+11
+Asin(2πft+π/4)→11
+
+A
+sin
+⁡
+(
+2
+π
+f
+t
+−
+3
+π
+/
+4
+)
+→
+01
+Asin(2πft−3π/4)→01
+
+A
+sin
+⁡
+(
+2
+π
+f
+t
+−
+3
+π
+/
+4
+)
+→
+00
+Asin(2πft−3π/4)→00 (Nota: correcció de l'original, hauria de ser 
+−
+3
+π
+/
+4
+−3π/4 o similar per cobrir els 4 quadrants)
+
+A
+sin
+⁡
+(
+2
+π
+f
+t
+−
+π
+/
+4
+)
+→
+10
+Asin(2πft−π/4)→10
+
+Constel·lació QPSK: Té 4 punts situats en els quatre quadrants del pla I/Q.
+
+Variants: Es poden utilitzar conjunts de fases alternatives (per exemple, 0, 
+π
+/
+2
+π/2, 
+π
+π, 
+3
+π
+/
+2
+3π/2 o 
+π
+/
+4
+π/4, 
+3
+π
+/
+4
+3π/4, 
+−
+3
+π
+/
+4
+−3π/4, 
+−
+π
+/
+4
+−π/4).
+
+Constel·lacions Dolentes vs. Bones (Diapositiva 16)
+
+Una constel·lació "dolenta" mostra els núvols de punts molt dispersos (molt soroll).
+
+Una constel·lació "bona" mostra els núvols de punts ben agrupats i separats, permetent una decodificació clara.
+
+Codificació de Bits Intel·ligent: Codi Gray (Diapositiva 17)
+
+En lloc d'assignar bits arbitràriament, s'utilitza una codificació que asseguri que els punts adjacents a la constel·lació només difereixin en 1 bit.
+
+Això minimitza els errors: si el soroll fa que el receptor interpreti un símbol adjacent, només es produirà un error d'1 bit en lloc de múltiples.
+
+6. Modulació per Amplitud en Quadratura (QAM) (Diapositives 18-19)
+QAM (Quadrature Amplitude Modulation) (Diapositiva 18)
+
+És una combinació d'ASK i PSK. S'utilitza tant l'amplitud com la fase per representar les dades.
+
+Exemple: 16QAM
+
+Té 16 punts a la constel·lació (4 bits per símbol).
+
+Els punts es distribueixen en una graella (no només en un cercle).
+
+Permet taxes de dades més altes que QPSK, però requereix un SNR (relació senyal-soroll) més alt per funcionar correctament.
+
+QAM és Popular (Diapositiva 19)
+
+S'utilitza en tecnologies actuals:
+
+Homeplug AV2 (Ethernet per línia elèctrica): Utilitza 1024-QAM i 4096-QAM.
+
+ADSL (parells de coure): Pot arribar fins a 32768-QAM.
+
+Pregunta oberta: Quina és la modulació més alta que s'utilitza actualment en WiFi, LTE i 5G-NR? (Això convida a investigar sobre 256QAM o 1024QAM en sistemes moderns).
+
