@@ -1029,3 +1029,553 @@ Paquet IP  →  Trama  →  Bits
   - Homeplug AV2 (Ethernet per línia elèctrica): Utilitza 1024-QAM i 4096-QAM.
   - ADSL (parells de coure): Pot arribar fins a 32768-QAM.
 - *Pregunta:* Quina és la modulació més alta que s'utilitza actualment en WiFi, LTE i 5G-NR? (Això convida a investigar sobre 256QAM o 1024QAM en sistemes moderns).
+* Codificació de dades (EDC, ECC i ARQ/HARQ)
+** Codis de detecció d'errors (EDC – Error Detection Codes)
+- Error detection codes: CRC, bit de paritat...
+- Què fer quan detectes un error?
+  - S'envia un NACK i s'enviarà un altre cop el missatge.
+  - O també es pot no enviar res: el Tx saltarà el timeout i enviarà un altre cop el missatge.
+- Exemples: CRC, parity check, etc.
+- La detecció d'errors no és suficient per a aplicacions sense fils, perquè les taxes d'error poden ser altes.
+** Codis de correcció d'errors (ECC – Error Correction Codes)
+*** Codis de bloc (Block Error Correction Codes)
+- Per cada bit s'envien varis bits, així el receptor pot saber que segurament és el valor que més surt.
+- Exemple:
+| El que envia el transmissor | El que significa | El que rep el receptor amb algun error | El que entén el receptor |
+|-----------------------------+------------------+----------------------------------------+--------------------------|
+| 00000                       | 0                | 00010                                  | 0                        |
+| 11111                       | 1                | 11011                                  | 1                        |
+| 11111                       | 1                | 01110                                  | 1                        |
+- Això fa més probable que sigui correcte el que reps, però no ho assegura.
+*** Codis convolucionals
+- Un codi convolucional és un codi lineal *amb memòria*: no codifica blocs independents, sinó que la sortida en cada instant depèn dels bits d'entrada actuals i de varis bits anteriors.
+- Exemple (codi = 0101):
+#+BEGIN_SRC text
+000000000 -- 11111111_0 -- 0000000_01 -- 111111_010
+#+END_SRC
+- Els bits que estan separats dels blocs de bits fan referència al(s) bit(s) anterior(s).
+**** La idea fàcil
+- Imagina que vols enviar un bit. En un codi normal (de bloc), aquell bit només afecta el seu bloc. Si el canal el corromp, has perdut aquell bit.
+- En un codi convolucional, aquell bit afecta diverses sortides seguides. És com si l'enviessis diverses vegades, però combinat amb altres bits. Així, si una part de la seqüència rebuda surt malament, les altres parts encara porten informació del mateix bit original.
+**** El que mostres amb els guions baixos
+- Quan escrius coses com:
+#+BEGIN_SRC text
+000000000 -- 11111111_0 -- 0000000_01 -- 111111_010
+#+END_SRC
+- Els bits després del guió baix (_0, _01, _010) són els bits anteriors que encara estan al registre. El codificador té una mena de cua: el bit nou entra, i els vells es van desplaçant però no desapareixen immediatament.
+- Per tant, la sortida en cada instant es calcula com una combinació XOR del bit actual i d'aquests bits anteriors. Això crea una dependència temporal: cada bit d'entrada apareix en diverses equacions de sortida.
+**** Exemple concret
+- Agafem el codi de l'altre dia: 1 bit d'entrada, 2 de sortida, memòria 2.
+- Generadors:
+  - Sortida 1: \(u_t \oplus u_{t-1} \oplus u_{t-2}\)
+  - Sortida 2: \(u_t \oplus u_{t-2}\)
+- Suposem que enviem un sol 1 i després tot zeros.
+- Entrada: 1 0 0 0 0 ...
+- Sortida (pas a pas):
+| t | Entra | Estat | Surt |
+|---+-------+-------+------|
+| 1 | 1     | 00    | 11   |
+| 2 | 0     | 10    | 10   |
+| 3 | 0     | 01    | 11   |
+| 4 | 0     | 00    | 00   |
+| 5 | 0     | 00    | 00   |
+- Fixat que el 1 inicial ha influït en tres parells de sortida seguits: 11 10 11. No ha desaparegut de cop.
+**** Com ajuda això a corregir errors?
+- Imagina que el canal corromp un bit. Per exemple, reps 11 00 11 00 00 en comptes de 11 10 11 00 00. Hi ha un error al segon parell (10 → 00).
+- El decodificador (Viterbi) compara aquesta seqüència rebuda amb totes les seqüències vàlides que el codificador podria haver generat. Com que 11 10 11 és l'única seqüència vàlida que s'hi assembla (només 1 bit de diferència), decideix que l'original era 11 10 11 i recupera el 1.
+- Si no hi hagués memòria, un error en un bit de sortida podria ser irrecuperable. Amb memòria, el mateix bit d'entrada ha deixat petjada en diverses sortides, i això permet al receptor adonar-se'n i corregir.
+**** Per què funciona?
+- Perquè les seqüències codificades vàlides estan molt separades entre elles (tenen una distància lliure gran). Un error de bit en una posició no és suficient per confondre una seqüència vàlida amb una altra. El decodificador tria la seqüència vàlida més propera a la rebuda, i així corregeix l'error.
+- En resum: la memòria fa que cada bit d'entrada es reparteixi en el temps. Aquesta redundància temporal és el que permet detectar i corregir errors de bits.
+- Això es fa servir en 3G, 4G i 5G wireless systems.
+** ARQ i HARQ (Automatic Repeat reQuest i Hybrid Automatic Repeat reQuest)
+- Hybrid Automatic Repeat reQuest (HARQ) combina ECC i ARQ (que a l'ARQ ja porta EDC).
+- ARQ pur: si el receptor detecta un error, llença el paquet i demana que es torni a enviar.
+- FEC pur: afegeixes redundància perquè el receptor pugui corregir errors sense demanar res.
+- HARQ: barreja els dos. El receptor no llença el paquet erroni: el guarda i, si cal, demana una retransmissió. Després combina el paquet original amb el retransmès per decodificar millor.
+** Notes sobre codificació a la capa física
+- Physical layer adds parity bits in /channel coding/ to protect the data, etc.
+- Source coding is for FEC, EDC, etc.
+* Data rate: per què el cabal real és menor que l'esperat
+- El "data" del data rate es refereix a les dades de la capa física, amb totes les capçaleres i tràilers, etc.; en realitat n'obtens menys.
+- Factors de la diferència entre el data rate que et donen i el que obtens:
+  - Headers and trailers.
+  - Congestió / enllaç del servidor saturat a la ruta
+    - compartició dels recursos d'accés al medi.
+  - Altres aplicacions als dispositius finals (retards de planificació de l'OS, aplicacions comunicant-se, limitacions de maquinari).
+  - Pèrdua de paquets a la ruta.
+  - Processament dels dispositius de xarxa / limitacions de maquinari.
+  - Overhead de comunicació (per exemple: handshake / establiment de la connexió del protocol).
+* Protocols MAC (Medium Access Control)
+- Decideixen qui/quan i quin dispositiu pot accedir al medi (who/when which device can access the medium).
+- Identifiquen els dispositius (adreça MAC).
+- Tipus de MAC — com decideixo qui/quan pot accedir al medi?
+  - El primer que arriba: CSMA (Carrier Sense Multiple Access).
+  - SDMA (Space Division Multiple Access).
+  - Token-based MAC.
+  - Polling: el receptor envia a cada node i pregunta si vol dir algo; si és que sí, transmet; si és que no, passa al següent.
+  - TDMA (Time Division Multiple Access): solució comuna en xarxes mòbils.
+  - FDMA (Frequency Division Multiple Access).
+  - Combinació de TDMA i FDMA.
+* Accés al medi: Wi-Fi, xarxes mòbils i ALOHA
+** Per què Wi-Fi usa CSMA/CA i no CSMA/CD?
+- El medi ràdio és compartit i half-duplex: mentre un dispositiu transmet, no pot escoltar el canal.
+- Per tant, no pot detectar col·lisions mentre transmet, com fa Ethernet amb CSMA/CD.
+- També existeix el problema del *terminal ocult*: dos dispositius poden no sentir-se entre ells i col·lisionar a l'AP.
+- Solució: CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance):
+  - Escoltar el canal abans de parlar.
+  - Backoff aleatori.
+  - ACKs per confirmar recepció.
+  - Espaiat entre trames.
+  - Si hi ha col·lisió, es recupera amb retransmissions.
+- Idea clau: Wi-Fi evita col·lisions perquè al ràdio no les pot detectar mentre transmet.
+** Xarxes mòbils: TDMA + CSMA
+- És un esquema híbrid d'accés al medi.
+- TDMA:
+  - Dóna slots de temps dedicats i garanties.
+  - Bo per a veu, vídeo i alta càrrega.
+- CSMA:
+  - Dóna flexibilitat i competeix pel canal.
+  - Bo per a dades a ràfegues i trànsit variable.
+- Implementació possible: partir la trama en temps
+  - una part TDMA reservada.
+  - una part CSMA de contesa.
+- Adaptar el mode segons la mobilitat o la càrrega de la xarxa.
+** Finestra de connexió / accés aleatori
+- La xarxa reserva periòdicament oportunitats d'accés aleatori (access slots / RA slots).
+- Un dispositiu que es vol connectar:
+  - Espera aquesta finestra.
+  - Tria un slot a l'atzar.
+  - Envia una sol·licitud curta.
+  - Si dos dispositius trien el mateix slot, pot haver-hi col·lisió; la xarxa la resol.
+- Un cop el dispositiu és identificat i sincronitzat, la xarxa li assigna un slot TDMA dedicat per transmetre sense competir.
+** Idees clau
+- Wi-Fi: usa CSMA/CA perquè al ràdio no es poden detectar col·lisions mentre es transmet.
+- Xarxes mòbils híbrides:
+  - CSMA per competir i entrar a la xarxa.
+  - TDMA per transmetre de forma ordenada, garantida i eficient un cop assignat un slot.
+** Quan pot ALOHA superar CSMA?
+- ALOHA pot ser millor que CSMA quan el cost d'escoltar el canal no compensa o quan escoltar dóna informació poc fiable:
+  - Retard de propagació gran (satèl·lit, xarxes no terrestres): quan escoltes el canal, la informació ja pot ser obsoleta.
+  - Paquets molt curts (IoT/M2M): el temps d'escoltar representa una part massa gran de la transmissió.
+  - Càrrega baixa: hi ha poques col·lisions i CSMA encara paga l'overhead d'escoltar.
+  - Xarxes multihop amb terminals ocults: CSMA pot fallar perquè un node no sent el transmissor ocult; ALOHA pot ser competitiu o millor.
+- Idea clau: CSMA guanya en xarxes ben connectades, paquets llargs i càrrega moderada/alta. ALOHA pot guanyar quan l'escolta és cara, inútil o poc fiable.
+* Problemes d'accés al medi: terminal ocult i terminal exposat
+** Terminal ocult: l'escenari dels tres nodes
+- Escenari amb 3 nodes (Oscar, Ivan i Lucas):
+  - Oscar i Ivan estan dins de l'abast mútuament: es poden comunicar.
+  - Lucas i Ivan també es poden comunicar.
+  - Lucas i Oscar NO se senten mútuament.
+- Si Oscar i Lucas volen comunicar amb Ivan alhora, es poden produir col·lisions a Ivan.
+- This is the classic *hiddenº-terminal problem*: Oscar and Lucas are "hidden" from each other, but both can reach Ivan, so CSMA alone fails — both may sense the channel as idle and transmit to Ivan at the same time, causing a collision at Ivan.
+** Terminal ocult: com resoldre'l (RTS/CTS)
+- Solució: RTS/CTS handshake (MACA / 802.11 CSMA/CA).
+- Oscar envia un RTS (Request-to-Send) a Ivan.
+- Ivan respon amb un CTS (Clear-to-Send).
+- Lucas sent el CTS d'Ivan i espera (activa el temporitzador NAV), encara que no pot sentir Oscar.
+- Oscar envia les dades; Ivan envia l'ACK. Després Lucas ho pot intentar.
+- Si Oscar i Lucas envien el RTS alhora, els RTS poden col·lisionar; el backoff aleatori i els reintents ho resolen.
+- Punt important: el CTS del receptor arriba al node ocult.
+** Terminal exposat (exposed terminal problem)
+- El problema del terminal exposat és el cas contrari al del terminal ocult: un node deixa de transmetre quan sí que podria fer-ho, perquè sent una transmissió que no li faria nosa.
+*** Exemple clàssic
+- Tenim quatre nodes: A, B, C i D.
+- A està transmetent a B.
+- C sent la transmissió d'A perquè és dins del seu abast.
+- Però C no sent B i vol transmetre a D.
+- La transmissió C → D no interferiria en la recepció de B, perquè C és fora de l'abast de B.
+- Tot i així, com que C detecta el canal ocupat per la transmissió d'A, el mecanisme CSMA el fa esperar. Aquesta espera és innecessària: es perd una oportunitat de transmetre en paral·lel.
+*** Per què passa?
+- CSMA només mira si el canal està ocupat localment. No sap si la transmissió que sent afecta realment el seu receptor. És una escolta massa conservadora.
+*** Conseqüència
+- No hi ha col·lisió, però sí pèrdua d'eficiència.
+- Es redueix la reutilització espacial del medi: nodes que podrien transmetre alhora no ho fan.
+- Baixa el throughput global de la xarxa.
+- *Under-utilization of the channel/medium*.
+*** Diferència amb el terminal ocult
+- Terminal ocult: no sento una transmissió que sí que em pot fer col·lisió → transmeto i col·lisiono.
+- Terminal exposat: sento una transmissió que no em fa nosa → no transmeto quan podria.
+*** Com es pot mitigar?
+- Amb RTS/CTS (ajuda sobretot al terminal ocult), antenes direccionals, control de potència, busy tones, o planificació/TDMA que assigni torns de transmissió tenint en compte la topologia.
+** Virtual CS (portadora virtual)
+- El virtual CS (virtual carrier sense, o portadora virtual) és un mecanisme de les xarxes Wi-Fi (802.11) que permet a una estació marcar el medi com a ocupat sense escoltar-lo físicament, només a partir de la informació de durada que hi ha als frames.
+*** Com funciona?
+- Quan una estació sent un frame (per exemple un RTS, un CTS o un Data) que no va adreçat a ella, llegeix el camp Duration/ID.
+- Amb aquest valor actualitza el seu NAV (Network Allocation Vector): un temporitzador intern que indica "el canal estarà ocupat fins a aquest moment".
+- Mentre el NAV no expira, l'estació no transmet, encara que físicament no senti res.
+*** Per què serveix?
+- És especialment útil per al terminal ocult:
+  - Oscar envia un RTS a Ivan.
+  - Ivan respon amb un CTS que inclou la durada de la transmissió.
+  - Lucas, que no sent Oscar però sí que sent Ivan, rep el CTS i posa el seu NAV actiu → espera.
+- Així s'evita que Lucas transmeti alhora i col·lisioni amb Oscar a Ivan.
+*** Diferència amb el CS físic
+- Physical CS: l'estació escolta el medi (energia o preamble) i detecta si hi ha senyal.
+- Virtual CS: l'estació no escolta, sinó que reserva el temps segons la informació dels frames. És una reserva lògica del canal.
+*** Limitacions
+- Depèn que els frames portin durades correctes.
+- Pot augmentar el problema del terminal exposat: una estació pot esperar pel NAV encara que la transmissió no li faci nosa.
+- No detecta si el canal s'ha quedat lliure abans del que diu el NAV.
+- Idea clau: el virtual CS és un temporitzador de reserva del medi (NAV) basat en la durada dels frames; complementa l'escolta física i ajuda sobretot a resoldre el terminal ocult.
+** CSMA persistent vs non-persistent
+*** El problema: tothom espera el mateix moment
+- Tenim Oscar, Ivan i Lucas. Oscar comença a enviar un missatge molt llarg. Els altres senten el canal ocupat i esperen.
+- Quan Oscar acaba, el canal passa a idle en el mateix instant per a tots. Amb CSMA persistent (sobretot 1-persistent):
+  - Les estacions escolten contínuament el canal.
+  - Quan el canal queda lliure, transmeten immediatament.
+  - Com que totes han estat esperant el mateix esdeveniment, transmeten totes alhora → col·lisió.
+- És a dir: el CSMA persistent sincronitza sense voler les estacions: totes salten quan el canal s'allibera.
+*** La solució: Non-persistent CSMA + backoff
+- Amb CSMA non-persistent:
+  - Si el canal està ocupat, l'estació no es queda escoltant fins que quedi lliure.
+  - Espera un temps aleatori de backoff.
+  - Passat aquest temps, torna a escoltar:
+    - Si el canal està lliure, transmet.
+    - Si està ocupat, torna a esperar un altre temps aleatori i repeteix.
+*** Per què això resol el problema?
+- Perquè trenca la sincronització:
+  - Quan Oscar acaba, Ivan i Lucas no transmeten tots exactament al mateix instant.
+  - Cadascun ha triat un backoff diferent (aleatori).
+  - El primer que escolta i troba el canal lliure comença a transmetre.
+  - Els altres, quan els toca el torn, senten el canal ocupat i tornen a esperar.
+- Així es redueix molt la probabilitat que els tres transmetin alhora just quan s'allibera el canal.
+*** Exemple
+- Oscar acaba el missatge llarg.
+- Ivan espera, per exemple, 3 ms de backoff.
+- Lucas espera, per exemple, 7 ms.
+- Al cap de 3 ms, Ivan escolta: canal lliure → transmet.
+- Al cap de 7 ms, Lucas escolta: canal ocupat per Ivan → espera un altre backoff.
+*** Idea clau
+- CSMA persistent: quan el canal queda lliure, tothom hi va de cop → col·lisions.
+- CSMA non-persistent + backoff aleatori: les estacions no reaccionen totes al mateix instant; es desincronitzen i una té més probabilitat de començar abans que les altres.
+- El backoff no elimina del tot les col·lisions, però les fa molt menys probables. Per això, a Wi-Fi, després d'una col·lisió també s'aplica backoff exponencial i es recupera amb ACKs i retransmissions.
+
+** Col·lisió per temps de propagació en CSMA (+ backoff)
+- CSMA escolta abans de transmetre, però l'escolta només és fiable si el senyal de l'altra estació ja ha arribat.
+- Dues estacions A i B llunyanes:
+  1. A escolta → canal lliure → transmet.
+  2. El senyal d'A triga τ (temps de propagació) a arribar a B.
+  3. B, abans de rebre'l, escolta → també veu el canal lliure → transmet.
+  4. Els senyals es creuen → col·lisió.
+- *Causa:* el retard de propagació fa que la informació d'escolta sigui obsoleta.
+- *Període vulnerable:* τ = d / v (distància / velocitat del senyal). Com més gran la distància, més gran el risc.
+- *No és terminal ocult:* hi ha abast, però el senyal encara no ha arribat.
+*** Backoff time
+- Quan hi ha una col·lisió, l'estació no retransmet immediatament.
+- Espera un temps de backoff aleatori abans de tornar a escoltar i transmetre.
+- *Objectiu:* desincronitzar les estacions que han col·lisionat, perquè no tornin a transmetre totes alhora.
+- Com més col·lisions consecutives, més gran pot ser el backoff (backoff exponencial a Wi-Fi).
+- El backoff no evita la col·lisió inicial per propagació, però redueix les col·lisions repetides i millora la recuperació.
+- *Idea clau:* amb retard de propagació gran, dues estacions poden sentir el canal lliure alhora i col·lisionar; després, el backoff aleatori fa que no tornin a xocar immediatament i que el medi es pugui recuperar.
+** Versió millorada: RTS/CTS i SIFS/DIFS
+- *A vol enviar dades a B.* L'intercanvi és:
+  1. A → B: *RTS*
+  2. B rep el RTS. Aquí hi ha *temps de propagació*, *temps de lectura del missatge* i *temps de processament per preparar el CTS*.
+  3. B → A: *CTS*
+  4. A → B: *DATA*
+  5. B → A: *ACK*
+- El problema és que, durant el pas 2, una altra estació podria fer *carrier sense* i, si no ha sentit el RTS o si el medi li sembla lliure just quan acaba el RTS, decidir transmetre. Llavors el CTS de B podria col·lidir.
+- La solució és fer servir els espais entre trames:
+  - *SIFS* (*Short Interframe Space*): espai curt entre trames. S'usa per a respostes immediates com CTS, ACK o fragments.
+  - *DIFS* (*DCF Interframe Space*): espai d'espera per a l'accés normal amb DCF.
+  - *C.S.* (*Carrier Sense*): detecció de portadora, és a dir, escoltar si el medi està lliure o ocupat.
+- La clau és que *SIFS < DIFS*. B envia el CTS després d'un SIFS. Les altres estacions que volen iniciar una transmissió han d'esperar un DIFS d'ociositat (i després un *backoff* aleatori). Com que SIFS és més curt que DIFS, el CTS de B surt abans que les altres estacions puguin decidir que el canal és lliure i començar a transmetre. A més, el RTS i el CTS fixen el *NAV*, que és una forma de *carrier sense* virtual.
+- *Matís important:* si una altra estació *ha sentit el RTS*, no hauria de veure el canal com a lliure, perquè el RTS ja li ha indicat la durada de la transmissió. El risc principal apareix si *no sent el RTS* —per exemple, per terminal oculta— o si només mira el medi en el moment inadequat.
+- No és exactament que "el carrier sense hagi de ser més gran que el processament"; el que cal és que *l'espera DIFS sigui més gran que el gap RTS → CTS*, és a dir, que SIFS més el temps de propagació/processament quedi per sota del DIFS que esperen les altres estacions.
+** A torna a enviar RTS immediatament?
+- *En DCF normal, no.* Després de rebre l'ACK, A ha de tornar a fer *carrier sense*, esperar *DIFS* i un *backoff aleatori* abans de tornar a enviar un RTS.
+- Enviar un RTS immediatament després de l'ACK seria *dolent* en DCF: trencaria el mecanisme CSMA/CA, donaria a A un avantatge injust i podria provocar col·lisions amb estacions que encara estan entrant en contesa.
+- *Excepció:* en mecanismes de *TXOP/burst* o fragmentació, es poden encadenar trames amb SIFS dins d'una mateixa oportunitat de transmissió, però això no és el mateix que un RTS immediat indiscriminat després de cada ACK.
+** RTS i fairness
+- RTS és necessari per fairness.
+- RTS s'envia un altre cop perquè, si no, els altres nodes/persones no tindrien opció d'enviar en cap moment.
+** Quan RTS no és necessari?
+- Quan les dades són molt curtes, és a dir, quan la mida és comparable amb length(RTS).
+
+
+
+Slotted random access:
+
+Slotted aloha:
+Els principals avantatges de Slotted Aloha respecte del seu predecessor, Pure Aloha, es poden resumir en una millora substancial de l'eficiència i l'estabilitat del canal.
+
+📈 Augment del rendiment (throughput)
+L'avantatge més destacat és que duplica el rendiment màxim del canal en comparació amb Pure Aloha.
+
+Pure Aloha té una eficiència màxima d'aproximadament un 18,5% (1/2e).
+
+Slotted Aloha pot arribar a una utilització del canal de fins a un 37% (1/e).
+
+Aquest augment es deu al fet que, en dividir el temps en slots (franges), les transmissions només poden començar a l'inici d'un slot. Això redueix a la meitat la "finestra de vulnerabilitat" (el període durant el qual una trama pot patir una col·lisió), ja que impedeix que una trama comenci a transmetre just quan una altra ja està en curs.
+
+🎯 Reducció de col·lisions parcials
+En permetre que les estacions només transmetin a l'inici d'un slot, s'evita un dels problemes principals de Pure Aloha: la col·lisió parcial de trames. Si dues trames xoquen en Slotted Aloha, ho fan completament dins del mateix slot, cosa que facilita la detecció de la col·lisió i la posterior retransmissió.
+
+⚙️ Idoni per a entorns amb sincronització prèvia
+Tot i que la sincronització temporal afegeix complexitat, aquesta no és una càrrega extra en sistemes que ja requereixen sincronització per a altres propòsits. Per exemple, en xarxes cel·lulars TDMA (com GSM), les estacions ja estan sincronitzades, de manera que l'ús de Slotted Aloha per a sol·licituds d'accés no suposa una sobrecàrrega significativa.
+
+✨ Simplicitat conceptual
+Igual que Pure Aloha, Slotted Aloha és un protocol descentralitzat i simple, que no necessita un mecanisme centralitzat de control d'accés al medi. Això el fa fàcil d'implementar en entorns on els nodes transmeten de manera esporàdica.
+
+En resum, el gran avantatge de Slotted Aloha és que, amb un cost de complexitat (la sincronització), aconsegueix duplicar l'eficiència d'un protocol tan simple com Pure Aloha, convertint-lo en una opció molt més pràctica per a xarxes amb tràfic intermitent.
+
+
+the vulnerable period of Slotted aloha is T_data
+
+
+#+TITLE: Accés al Medi en IEEE 802.11 i Frame Aggregation
+#+AUTHOR: Apunts de Xarxes
+#+LANGUAGE: ca
+#+OPTIONS: toc:t num:t
+
+* Mecanisme d'Accés al Canal (CSMA/CA amb RTS/CTS)
+
+** Cronograma temporal del canal
+#+begin_example
+Temps ─────────────────────────────────────────────────────────────────────────────────────────────►
+
+Qui transmet:
+   [ MARIO ]     [ ORIOL ]                        [ MARIO ]     [ ORIOL ]     [ MARIO ]     [ ORIOL ]
+┌─────────────┐ ┌─────────┐                      ┌─────────┐   ┌─────────┐   ┌─────────────┐ ┌─────────┐
+│    DADES    │ │   ACK   │                      │   RTS   │   │   CTS   │   │    DADES    │ │   ACK   │
+└─────────────┘ └─────────┘                      └─────────┘   └─────────┘   └─────────────┘ └─────────┘
+              ▲           ▲                      ▲         ▲   ▲         ▲   ▲             ▲
+Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          SIFS
+#+end_example
+
+** Seqüència temporal d'intercanvi
+1. *Transmissió inicial:* El Mario envia una trama de dades a l'Oriol.
+2. *Confirmació ràpida:* L'Oriol respon amb un *ACK* després d'un temps breu (*SIFS*).
+3. *Temps d'espera i contesa:* S'espera un temps *DIFS* i posteriorment un compte enrere aleatori (*BACKOFF*).
+4. *Reserva de canal (RTS):* El Mario envia una trama *RTS* (/Request To Send/).
+5. *Autorització (CTS):* L'Oriol respon amb un *CTS* (/Clear To Send/) després d'un *SIFS*.
+6. *Enviament protegit de dades:* El Mario transmet les dades un cop reservat el canal.
+7. *Confirmació final:* L'Oriol respon amb l'*ACK* de recepció.
+
+** Gestió de la contesa i Equitat (/Fairness/)
+- Després de cada cicle complet o quan el canal s'allibera, els nodes no transmeten a l'instant.
+- Han d'esperar el temps *DIFS* i, si el canal continua lliure, aplicar el *BACKOFF* aleatori.
+- *Objectiu:* Garantir el repartiment equitatiu del medi (*fairness*) i evitar col·lisions en cadena.
+
+
+* Problema: Ineficiència del Canal (Massa Overhead)
+
+$$T_{exec} = T_d + T_{overhead}$$
+
+$$\text{Eficiència} = \frac{T_d}{T_{exec}} \approx 20\%$$
+
+- *T_d:* Temps dedicat exclusivament a la càrrega útil de dades.
+- *T_{overhead}:* Temps perdut en capçaleres, preàmbuls físics, temps d'espera (*DIFS*, *SIFS*), *Backoff* i confirmacions (*ACK*, *RTS*, *CTS*).
+
+
+* Solució: Agregació de Trames (/Frame Aggregation/)
+
+** Opcions d'Estructura
+
+*** Opció 1: Agregació amb verificació individual (A-MPDU)
+- *Format:* =[H1 · D1 · T1] [H2 · D2 · T2]=
+- *Avantatges:* Si falla un bloc, només es retransmet la part afectada.
+- *Inconvenients:* Més /overhead/ (més capçaleres i cues).
+
+*** Opció 2: Agregació conjunta amb cua única (A-MSDU)
+- *Format:* =[H1 · D1] [H2 · D2] [T*]=
+- *Avantatges:* Molt baix /overhead/ (més espai per a dades).
+- *Inconvenients:* Si falla un bit, cal retransmetre el paquet sencer.
+
+*** Opció 3: Enfocament híbrid
+- *Format:* =[H1 · D1 · H2 · D2 · T12] [H3 · D3 · H4 · D4 · T34]=
+- Agrupa blocs en parelles o conjunts petits amb una cua comuna per conjunt.
+
+** Taula comparativa
+
+#+ATTR_LATEX: :align |c|l|c|p{4cm}|p{4cm}|
+| Opció | Estructura                          | Overhead | Robustesa davant errors  | Cost de retransmissió   |
+|-------+-------------------------------------+----------+--------------------------+-------------------------|
+| *1*   | [H1 · D1 · T1] [H2 · D2 · T2]       | Alt      | Alta (independent)       | Només els blocs fallits |
+| *2*   | [H1 · D1] [H2 · D2] [T*]            | Baix     | Baixa (tot o res)        | Tota la càrrega         |
+| *3*   | [H1 · D1 · H2 · D2 · T12] [...]     | Mitjà    | Mitjana-Alta (per grups) | Només el subgrup fallit |
+
+
+* Modificació del Mecanisme de Confirmació: Block ACK
+
+Per a les **Opcions 1 i 3**:
+- No es pot fer servir un ACK estàndard de 1 bit.
+- Es fa servir un **Block ACK amb un mapa de bits (/bitmap/)**, on **cada bit representa un bloc de dades o subtrama**.
+  - Bit a =1=: Subtrama rebuda correctament.
+  - Bit a =0=: Subtrama amb errors (l'emissor només retransmet aquesta).
+
+#+TITLE: Fonaments d'IEEE 802.11 i Arquitectura WLAN
+#+AUTHOR: Apunts de Xarxes
+#+LANGUAGE: ca
+#+OPTIONS: toc:t num:t
+
+* Què és l'IEEE i la Família 802?
+
+** L'organització IEEE
+*IEEE* (*Institute of Electrical and Electronics Engineers*): la major associació professional tècnica del món dedicada a l'avanç de la tecnologia.
+
+Les seves funcions principals són:
+- *Desenvolupament d'estàndards:* Defineixen normes tècniques globals per a telecomunicacions, xarxes i electrònica (Wi-Fi, Ethernet, etc.).
+- *Publicació científica:* Editen revistes acadèmiques de referència internacional (/journals/).
+- *Organització de congressos:* Convoquen conferències internacionals per a la presentació d'avenços tecnològics.
+
+** El comitè IEEE 802
+Dins de l'IEEE, el **Comitè 802** és l'encarregat d'estandarditzar les xarxes d'àrea local (*LAN*) i metropolitana (*MAN*).
+
+- =IEEE 802.3=: Estàndard per a xarxes cablejades (*Ethernet*).
+- =IEEE 802.11=: Estàndard per a xarxes d'àrea local sense fils (*WLAN* / *Wi-Fi*).
+- =IEEE 802.15=: Xarxes d'àrea personal sense fils (*WPAN*, inclou Bluetooth i Zigbee).
+
+** Què representen les lletres (a, b, g, n, ac, ax...)?
+Són **esmenes (/amendments/)** que s'aproven al llarg dels anys sobre l'estàndard base 802.11 per incorporar:
+- Noves modulacions i tècniques de ràdio.
+- Augment de la velocitat de transmissió (*bitrate*).
+- Ús de noves bandes de freqüència (2.4 GHz, 5 GHz, 6 GHz).
+
+
+* Classificació de Xarxes per Abast
+
+#+ATTR_LATEX: :align |l|l|p{7cm}|
+| Tipus | Nom complet | Abast típic i característiques |
+|-------+---------------------------------------+--------------------------------------------------------------|
+| *WPAN*| /Wireless Personal Area Network/      | Curt abast (~10 m). Connexió de perifèrics (ex: Bluetooth).  |
+| *LAN* | /Local Area Network/                  | Àmbit local d'un edifici, oficina o llar (cablejat Ethernet).|
+| *WLAN*| /Wireless Local Area Network/         | Extensió sense fils de la LAN; és on opera la tecnologia Wi-Fi.|
+
+
+* Components d'una WLAN (Capa 2)
+
+Una xarxa WLAN funciona principalment en la **Capa 2 (Enllaç de dades / MAC)** i la **Capa 1 (Física)**:
+
+** Estació (/Station/ - STA)
+Qualsevol dispositiu final que disposi d'una interfície de xarxa sense fils compatible amb 802.11 (ordinadors portàtils, telèfons mòbils, dispositius IoT, impressores).
+
+** Punt d'Accés (/Access Point/ - AP)
+Dispositiu de xarxa que actua com a coordinador de la comunicació per ràdio:
+- *Funció a Capa 2:* Realitza de pont (*bridge*) transparent entre les trames sense fils (802.11) i les trames cablejades (802.3 Ethernet).
+- *Diferència entre AP i Router:*
+  - L'*AP* opera a **Capa 2** (gestiona adreces MAC, xifrat Wi-Fi i accés al medi per ràdio).
+  - El *Router* opera a **Capa 3** (enruta paquets IP cap a l'exterior / Internet).
+  - /Nota pràctica:/ En entorns domèstics, l'AP, el switch Ethernet i el router estan físicament integrats dins de la mateixa capsa ("el router de casa"), però en xarxes corporatives o universitàries són aparells independents.
+
+
+* Topologies 802.11: BSS, ESS i DS
+
+** BSS (/Basic Service Set/)
+És el bloc constructiu bàsic d'una xarxa Wi-Fi en mode infraestructura.
+- Format per **un únic Punt d'Accés (AP)** i **múltiples Estacions (STA)** associades a ell.
+- Tots els membres del BSS comparteixen el mateix canal de ràdio (freqüència), esquemes de modulació i configuració de seguretat.
+- *BSSID (/Basic Service Set Identifier/):* És l'identificador físic d'aquell BSS en concret; correspon a l'*adreça MAC de la interfície de ràdio de l'AP*.
+
+** DS (/Distribution System/)
+- És el mitjà troncal de comunicació (habitualment una xarxa cablejada Ethernet amb switches) que interconnecta els diferents punts d'accés entre si i permet connectar-los amb el router/Internet.
+
+** ESS (/Extended Service Set/)
+Conjunt de dos o més BSSs interconnectats a través d'un mateix *Distribution System (DS)* per cobrir una àrea extensa (un campus, un hospital, una empresa):
+- *SSID (/Service Set Identifier/):* Nom lògic de la xarxa que veu l'usuari (per exemple: =eduroam=).
+- En un ESS, **tots els APs comparteixen el mateix SSID**, però cadascun té un **BSSID (adreça MAC) diferent**.
+- *Procediment d'associació i Roaming:* Quan un usuari es mou d'una aula a una altra, la seva STA es desassocia d'un AP i s'associa a un altre amb millor senyal (*handover/roaming*) de manera transparent, mantenint la mateixa connexió lògica.
+
+** Esquema d'un ESS
+#+begin_example
+  [ STA 1 ]     [ STA 2 ]                     [ STA 3 ]     [ STA 4 ]
+      \             /                             \             /
+     ┌───────────────┐                           ┌───────────────┐
+     │   AP 1 (BSS1) │                           │   AP 2 (BSS2) │
+     │ BSSID: MAC_A  │                           │ BSSID: MAC_B  │
+     └───────┬───────┘                           └───────┬───────┘
+             │                                           │
+             └─────────────► [ DISTRIBUTION SYSTEM ] ◄───┘
+                               (Switches Ethernet)
+                                       │
+                                ┌──────┴──────┐
+                                │   ROUTER    │ (Capa 3 - IP)
+                                └──────┬──────┘
+                                       │
+                                  [ INTERNET ]
+#+end_example
+
+
+* Seguretat: L'atac d'AP Maliciós (/Evil Twin / Rogue AP/)
+
+Com que el nom de la xarxa (=SSID=) no és secret ni està protegit per defecte:
+
+- *Escenari d'atac:* Un atacant munta un AP maliciós configurat amb el mateix SSID legítim (ex: =eduroam=).
+- *Engany de selecció:* Si l'AP atacant emet amb més potència de senyal que l'AP legítim, els dispositius dels estudiants intentaran associar-s'hi automàticament.
+- *Portal captiu fals (/Phishing/):*
+  - L'atacant força a l'usuari a obrir una pàgina de login fraudulenta disfressada amb la imatge corporativa de la universitat (colors, logotip UPC).
+  - Quan l'usuari introdueix les seves credencials per accedir a la xarxa, l'atacant les captura i roba la identitat.
+- *Defensa:* Ús d'autenticació basada en certificats digitals (WPA2/WPA3-Enterprise amb 802.1X / EAP-TLS o PEAP), on el client valida el certificat del servidor abans d'enviar cap contrasenya.
+
+
+#+TITLE: Camps Fonamentals de la Capçalera Wi-Fi (IEEE 802.11 - Capa 2)
+#+AUTHOR: Apunts de Xarxes
+#+LANGUAGE: ca
+#+OPTIONS: toc:t num:t
+
+* Les 4 Adreces MAC (Adreçament en el Medi Ràdio)
+
+A diferència d'Ethernet (que només necessita MAC Origen i MAC Destí), el Wi-Fi utilitza fins a **4 adreces MAC** perquè el transmissor per ràdio sovint és només un intermediari cap a la xarxa cablejada.
+
+#+ATTR_LATEX: :align |l|l|p{8cm}|
+| Adreça | Concepte | Funció |
+|--------+----------------------------+-------------------------------------------------------------|
+| *TA*   | Transmissor immediat       | L'antena que està emetent el senyal de ràdio ara mateix.    |
+| *RA*   | Receptor immediat          | L'antena que ha de capturar el senyal de ràdio ara mateix.  |
+| *SA*   | Origen real de les dades   | El dispositiu original que ha creat el paquet (Source).     |
+| *DA*   | Destinació final           | El dispositiu al qual va dirigit el paquet (Destination).   |
+
+** Exemple pràctic (El teu mòbil enviant dades a un servidor web):
+#+begin_example
+[ Mòbil ] ──────── (ràdio Wi-Fi) ────────► [ Punt d'Accés ] ────── (cable) ──────► [ Router/Internet ]
+   │                                              │
+   ├── SA: MAC del teu mòbil                      ├── RA: MAC del Punt d'Accés
+   └── TA: MAC del teu mòbil                      └── DA: MAC del Router de sortida
+#+end_example
+- En el salt sense fils: *TA = SA* (el teu mòbil), però *RA* és l'Access Point i *DA* és el router final.
+
+
+* Tipus de Trama (/Frame Type/)
+
+Dins del camp =Frame Control=, s'especifica el tipus i subtipus de missatge per saber com gestionar-lo:
+
+** 1. Trames de DADES (/Data Frames/)
+- Porten la informació útil de l'usuari (paquets IP, trànsit web, vídeo, etc.).
+
+** 2. Trames de CONTROL (/Control Frames/)
+- No porten càrrega útil; coordinen l'accés al canal i eviten col·lisions:
+  - =RTS= (/Request To Send/): Petició de reserva del canal per transmetre.
+  - =CTS= (/Clear To Send/): Autorització que el receptor està llest per escoltar.
+  - =ACK= (/Acknowledgment/): Confirmació que la trama ha arribat sense errors.
+
+** 3. Trames de GESTIÓ (/Management Frames/)
+- Configuració i manteniment de la xarxa (p. ex., /Beacons/ que anuncien el nom de la xarxa, peticions d'associació i autenticació).
+
+
+* Durada de l'Intercanvi i Reserva del Medi (=Duration/ID=)
+
+És el camp que indica **quant temps cal reservar el medi físic**:
+
+#+begin_quote
+*"I should shut up during this time"* (He de callar durant aquest període).
+#+end_quote
+
+- *Com funciona:*
+  1. Quan un dispositiu transmet (per exemple, un =RTS= o unes =DADES=), escriu al camp =Duration= el temps necessari en microsegons ($\mu s$) per completar tot l'intercanvi (la trama actual + el temps d'espera SIFS + l'ACK o CTS de resposta).
+  2. *Sensor virtual de portadora (NAV - /Network Allocation Vector/):* Tots els altres dispositius de la xarxa que senten la trama llegeixen aquest camp i posen el seu temporitzador intern (**NAV**) a aquest valor.
+  3. Durant tot el compte enrere del NAV, cap altre dispositiu té permès transmetre perquè consideren el medi "virtualment ocupat", evitant interrompre la conversa.
+
+
+* Mida de les Dades (/Data Size/)
+
+- Indica la longitud exacta de la càrrega útil que es transporta.
+- En xarxes Wi-Fi, la longitud total de la transmissió és imprescindible perquè el receptor sàpiga exactament quan acaba el paquet i pugui comprovar immediatament la cua de verificació d'errors (*FCS / CRC*).
+- En agregació de trames (*Frame Aggregation*), s'inclouen camps de longitud específics per a cada subbloc (com el /delimiter/ en A-MPDU) per tal de saber on comença i on acaba cada fragment agregat.
+
+
+
+H1|D1|T1
+
+la ip va a D1 perque si s'ho poses en el header com que estem a capa 2 no ho enten ha d'anar a dins de dades per a que capa 3 ho entengui
+
