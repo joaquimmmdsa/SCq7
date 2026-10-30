@@ -1030,6 +1030,81 @@ Paquet IP  →  Trama  →  Bits
   - ADSL (parells de coure): Pot arribar fins a 32768-QAM.
 - *Pregunta:* Quina és la modulació més alta que s'utilitza actualment en WiFi, LTE i 5G-NR? (Això convida a investigar sobre 256QAM o 1024QAM en sistemes moderns).
 * Codificació de dades (EDC, ECC i ARQ/HARQ)
+
+* Source Coding
+
+  El *source coding* (codificació de font) prepara la informació original per ser transmesa de la manera més eficient possible. Treballa amb el contingut (text, veu, imatge, etc.) i la seva sortida són bits.
+
+** Funcions principals
+
+*** Digitalització (si la font és analògica)
+    - Converteix senyals continus (so, imatge, vídeo) en una seqüència de bits.
+    - Exemple: mostreig, quantificació i codificació PCM per a àudio.
+
+*** Compressió
+    - Elimina la redundància natural de la font.
+    - Redueix el nombre de bits necessaris per representar la informació.
+    - Exemples: MP3 (àudio), JPEG (imatge), H.264/MP4 (vídeo).
+
+*** Representació i format
+    - Assigna codis binaris als símbols (ASCII, UTF-8, PCM, etc.).
+    - Estructura les dades perquè siguin interpretables pel receptor.
+
+*** Xifrat (opcional, sovint a prop)
+    - No és una funció estricta del source coding, però habitualment s'aplica aquí o a les capes superiors (presentació/aplicació) per protegir la confidencialitat.
+
+* Channel Coding
+
+  El *channel coding* (codificació de canal) protegeix els bits perquè sobrevisquin als errors del canal (soroll, fading, interferència). Treballa amb bits i afegeix redundància controlada.
+
+** Funcions principals
+
+*** Afegir redundància controlada
+    - Transforma un bloc de \(k\) bits útils en un bloc de \(n\) bits (\(n > k\)).
+    - La diferència \(n - k\) són bits de redundància.
+    - *Code rate* = \(k/n\): fracció de bits útils respecte al total.
+      - Rate alt (proper a 1): poca protecció, molta eficiència.
+      - Rate baix: molta protecció, menys eficiència.
+
+*** Tipus de redundància
+
+**** EDC (Error Detection Codes)
+     - Només *detecten* errors, no els corregeixen.
+     - Exemples: bit de paritat, CRC (Cyclic Redundancy Check).
+     - Si es detecta un error, normalment es recorre a ARQ (retransmissió).
+
+**** ECC / FEC (Error Correction Codes / Forward Error Correction)
+     - Detecten i *corregeixen* errors fins a un límit.
+     - Tipus:
+       - Codis de bloc (ex: repetició, Hamming, Reed-Solomon).
+       - Codis convolucionals (amb memòria, decodificació Viterbi).
+       - Turbo codes (3G/4G/5G).
+     - Permeten corregir sense demanar retransmissió.
+
+**** Suport per ARQ i HARQ
+     - L'ARQ i l'HARQ no són exactament tipus de redundància, sinó mecanismes que *utilitzen* la detecció/correcció d'errors.
+
+*** ARQ (Automatic Repeat reQuest)
+    - Si el receptor detecta un error (via EDC/CRC) que no pot corregir, descarta el paquet i demana al transmissor que el retransmeti (NACK o timeout).
+    - Simple però pot causar retards si la taxa d'error és alta.
+
+*** HARQ (Hybrid ARQ)
+    - Combina ECC i ARQ.
+    - El receptor *no* descarta el paquet erroni: el guarda a memòria.
+    - Quan arriba la retransmissió, *combina* la informació del primer enviament (amb errors) amb la del segon.
+    - Aquesta combinació permet corregir errors que per separat serien impossibles.
+    - Usat en 3G, 4G i 5G.
+
+* Resum i diferències
+
+  | Característica       | Source Coding               | Channel Coding                     |
+  |----------------------+-----------------------------+------------------------------------|
+  | Objectiu             | Fer la informació eficient  | Fer els bits resistents als errors |
+  | Efecte sobre bits    | Redueix (comprimeix)        | Augmenta (afegeix redundància)     |
+  | Es preocupa de...    | La font (contingut)         | El canal (soroll, fading)          |
+  | Exemples             | MP3, JPEG, UTF-8            | CRC, paritat, Viterbi, Turbo codes |
+  | Corregeix errors?    | No                          | Sí (FEC) o facilita ARQ/HARQ       |
+
 ** Codis de detecció d'errors (EDC – Error Detection Codes)
 - Error detection codes: CRC, bit de paritat...
 - Què fer quan detectes un error?
@@ -1037,7 +1112,7 @@ Paquet IP  →  Trama  →  Bits
   - O també es pot no enviar res: el Tx saltarà el timeout i enviarà un altre cop el missatge.
 - Exemples: CRC, parity check, etc.
 - La detecció d'errors no és suficient per a aplicacions sense fils, perquè les taxes d'error poden ser altes.
-** Codis de correcció d'errors (ECC – Error Correction Codes)
+** Codis de correcció d'errors (ECC – Error Correction Codes/ FEC - Forward Error Correction)
 *** Codis de bloc (Block Error Correction Codes)
 - Per cada bit s'envien varis bits, així el receptor pot saber que segurament és el valor que més surt.
 - Exemple:
