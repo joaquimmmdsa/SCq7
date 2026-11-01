@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca">
 <head>
-<!-- 2026-10-30 vie 19:48 -->
+<!-- 2026-11-01 dom 10:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Apunts de Comunicacions Sense Fil Accés al Medi en IEEE 802.11 i Frame Aggregation Fonaments d'IEEE 802.11 i Arquitectura WLAN Camps Fonamentals de la Capçalera Wi-Fi (IEEE 802.11 - Capa 2)</title>
@@ -233,322 +233,322 @@
 <h2>&Iacute;ndex</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0249d1b">1. Introducció: Què és la comunicació sense fil?</a>
+<li><a href="#org12913cf">1. Introducció: Què és la comunicació sense fil?</a>
 <ul>
-<li><a href="#org7d094dd">1.1. Definició</a></li>
-<li><a href="#org0c29010">1.2. Formes primerenques</a></li>
-<li><a href="#org67c6078">1.3. Per què comunicació sense fils?</a></li>
-<li><a href="#org4d0754c">1.4. Reptes de la comunicació sense fils</a>
+<li><a href="#orgc214628">1.1. Definició</a></li>
+<li><a href="#orga3763cc">1.2. Formes primerenques</a></li>
+<li><a href="#org79e1c54">1.3. Per què comunicació sense fils?</a></li>
+<li><a href="#org060bc23">1.4. Reptes de la comunicació sense fils</a>
 <ul>
-<li><a href="#org067a385">1.4.1. Canal sorollós i variant en el temps</a></li>
-<li><a href="#orgfeca5ea">1.4.2. Medi compartit</a></li>
-<li><a href="#org575cee5">1.4.3. Ample de banda limitat</a></li>
+<li><a href="#org19ac977">1.4.1. Canal sorollós i variant en el temps</a></li>
+<li><a href="#orgeb40352">1.4.2. Medi compartit</a></li>
+<li><a href="#orgd9d87db">1.4.3. Ample de banda limitat</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga6b4054">2. Rutes de connexió a la xarxa</a>
+<li><a href="#org6bafd1f">2. Rutes de connexió a la xarxa</a>
 <ul>
-<li><a href="#orgc9cabd0">2.1. Opció A: Connexió via Wi-Fi (a casa o oficines)</a></li>
-<li><a href="#org8c0290b">2.2. Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</a></li>
+<li><a href="#orge4427c5">2.1. Opció A: Connexió via Wi-Fi (a casa o oficines)</a></li>
+<li><a href="#org3ae0b8a">2.2. Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</a></li>
 </ul>
 </li>
-<li><a href="#org1514232">3. Models de referència (OSI i TCP/IP)</a>
+<li><a href="#org3566eb3">3. Models de referència (OSI i TCP/IP)</a>
 <ul>
-<li><a href="#orgb4114e1">3.1. Model OSI (7 capes)</a></li>
-<li><a href="#org9eee4c1">3.2. Model TCP/IP</a></li>
-<li><a href="#orgf4af2b1">3.3. Correspondència entre models</a></li>
+<li><a href="#org82a1650">3.1. Model OSI (7 capes)</a></li>
+<li><a href="#org73e09b3">3.2. Model TCP/IP</a></li>
+<li><a href="#orgbcc6404">3.3. Correspondència entre models</a></li>
 </ul>
 </li>
-<li><a href="#org8ef150d">4. Encapsulament i desencapsulament</a></li>
-<li><a href="#orgf538bee">5. Baixant capes: enviament des del mòbil d'en Josep</a>
+<li><a href="#org1e5a084">4. Encapsulament i desencapsulament</a></li>
+<li><a href="#orgf2fa87f">5. Baixant capes: enviament des del mòbil d'en Josep</a>
 <ul>
-<li><a href="#orgc6dc68f">5.1. Capa d'aplicació</a></li>
-<li><a href="#orge69dcf3">5.2. Capa de transport (TCP) — Apunts complets</a>
+<li><a href="#org31f778d">5.1. Capa d'aplicació</a></li>
+<li><a href="#orge30ebc2">5.2. Capa de transport (TCP) — Apunts complets</a>
 <ul>
-<li><a href="#orgbe40305">5.2.1. Índex</a></li>
-<li><a href="#orgf92900e">5.2.2. Context: on som dins l'enviament del missatge</a></li>
-<li><a href="#org539b948">5.2.3. TCP segmenta les dades en segments</a></li>
-<li><a href="#org2d7387d">5.2.4. Afegeix ports d'origen i destí</a></li>
-<li><a href="#orge964cff">5.2.5. Gestiona control de flux, control de congestió i retransmissió</a></li>
-<li><a href="#org1db853a">5.2.6. ACKs: si un segment no arriba, es retransmet només aquell segment</a></li>
-<li><a href="#orgd558a83">5.2.7. Qui retransmet realment? Extrem a extrem vs salt a salt</a></li>
-<li><a href="#orgb40f156">5.2.8. ARQ de capa 2 vs TCP</a></li>
-<li><a href="#org3f41dbd">5.2.9. Casos pràctics: quan actua cada mecanisme</a></li>
-<li><a href="#orgdf0b39e">5.2.10. PDU: segment TCP</a></li>
-<li><a href="#orga1b161f">5.2.11. Resum final</a></li>
+<li><a href="#org9542d11">5.2.1. Índex</a></li>
+<li><a href="#org7e9ba28">5.2.2. Context: on som dins l'enviament del missatge</a></li>
+<li><a href="#orgada930b">5.2.3. TCP segmenta les dades en segments</a></li>
+<li><a href="#org9f9aeb6">5.2.4. Afegeix ports d'origen i destí</a></li>
+<li><a href="#orgc2f5989">5.2.5. Gestiona control de flux, control de congestió i retransmissió</a></li>
+<li><a href="#orgc89bb15">5.2.6. ACKs: si un segment no arriba, es retransmet només aquell segment</a></li>
+<li><a href="#org36a6967">5.2.7. Qui retransmet realment? Extrem a extrem vs salt a salt</a></li>
+<li><a href="#org87b22e2">5.2.8. ARQ de capa 2 vs TCP</a></li>
+<li><a href="#org5101f4e">5.2.9. Casos pràctics: quan actua cada mecanisme</a></li>
+<li><a href="#org3e3dca0">5.2.10. PDU: segment TCP</a></li>
+<li><a href="#org328f401">5.2.11. Resum final</a></li>
 </ul>
 </li>
-<li><a href="#orgf4e8775">5.3. Capa de xarxa (IP)</a>
+<li><a href="#orgc629aff">5.3. Capa de xarxa (IP)</a>
 <ul>
-<li><a href="#org83d31c8">5.3.1. Passos que fa el router</a></li>
-<li><a href="#org9d121a3">5.3.2. Exemple amb la taula dels apunts</a></li>
-<li><a href="#orgb41460b">5.3.3. Idea clau</a></li>
+<li><a href="#orgb58ece4">5.3.1. Passos que fa el router</a></li>
+<li><a href="#org411cac8">5.3.2. Exemple amb la taula dels apunts</a></li>
+<li><a href="#orgafed4fb">5.3.3. Idea clau</a></li>
 </ul>
 </li>
-<li><a href="#org6f1eb20">5.4. Capa d'enllaç de dades</a>
+<li><a href="#org1be0dc5">5.4. Capa d'enllaç de dades</a>
 <ul>
-<li><a href="#orgbfaab9f">5.4.1. Capa d'enllaç de dades detallada</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org2911904">6. Xarxes sense fils amb diferents propòsits</a></li>
-<li><a href="#orgea1730d">7. Requisits diversos de les aplicacions</a></li>
-<li><a href="#orgf71b8db">8. Condicions de l'entorn i del canal</a></li>
-<li><a href="#org4b7fc9f">9. Propietats del maquinari</a></li>
-<li><a href="#orge42d9e8">10. Modes de comunicació</a></li>
-<li><a href="#org1cc5730">11. Mitjans guiats vs. no guiats</a></li>
-<li><a href="#org1b506aa">12. Senyal analògic vs. digital</a></li>
-<li><a href="#org11cdca5">13. Dades digitals vs. senyals analògics</a></li>
-<li><a href="#orgd1098de">14. Diagrama del sistema de comunicació</a></li>
-<li><a href="#org3d4eacd">15. Antenes</a>
-<ul>
-<li><a href="#org52712a8">15.1. Definició i funcions</a></li>
-<li><a href="#orgad66e1f">15.2. Conceptes clau de les antenes</a></li>
-<li><a href="#org2121c9f">15.3. Tipus d'antenes (segons la seva radiació)</a></li>
-</ul>
-</li>
-<li><a href="#orgeb857f4">16. Propagació d'ones de ràdio</a></li>
-<li><a href="#org3b2893a">17. Pèrdues de propagació i models</a>
-<ul>
-<li><a href="#orgc76027f">17.1. Wireless Transmission impairments</a></li>
-<li><a href="#org0e0810b">17.2. Path loss</a></li>
-<li><a href="#orga914feb">17.3. Càlculs analítics de path loss</a>
-<ul>
-<li><a href="#org9175091">17.3.1. Friis free-space model (serveix per espais oberts)</a></li>
-<li><a href="#org9c3cb7a">17.3.2. Two-ray ground propagation model</a></li>
-<li><a href="#org7b398dc">17.3.3. Empirical propagation models</a></li>
+<li><a href="#orga276f07">5.4.1. Capa d'enllaç de dades detallada</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf09b0c4">18. Soroll i interferència</a></li>
-<li><a href="#org6ff36b4">19. Efectes dels obstacles</a>
+<li><a href="#org573674c">6. Xarxes sense fils amb diferents propòsits</a></li>
+<li><a href="#org22aa5d6">7. Requisits diversos de les aplicacions</a></li>
+<li><a href="#orge25c56c">8. Condicions de l'entorn i del canal</a></li>
+<li><a href="#org0fc5f55">9. Propietats del maquinari</a></li>
+<li><a href="#org497765e">10. Modes de comunicació</a></li>
+<li><a href="#orgf8e49be">11. Mitjans guiats vs. no guiats</a></li>
+<li><a href="#orgaae9b62">12. Senyal analògic vs. digital</a></li>
+<li><a href="#org84097e3">13. Dades digitals vs. senyals analògics</a></li>
+<li><a href="#org0c0dd1a">14. Diagrama del sistema de comunicació</a></li>
+<li><a href="#orga515f92">15. Antenes</a>
 <ul>
-<li><a href="#orga477545">19.1. Mecanismes Físics d'Interacció</a>
-<ul>
-<li><a href="#org112b8ef">19.1.1. Reflexió (Reflection)</a></li>
-<li><a href="#org9985f48">19.1.2. Difracció (Diffraction)</a></li>
-<li><a href="#org37ca80c">19.1.3. Dispersió (Scattering)</a></li>
-<li><a href="#org0386ccc">19.1.4. Ombrejat (Shadowing)</a></li>
+<li><a href="#org9ce5bac">15.1. Definició i funcions</a></li>
+<li><a href="#org3ae9c60">15.2. Conceptes clau de les antenes</a></li>
+<li><a href="#org9b8915b">15.3. Tipus d'antenes (segons la seva radiació)</a></li>
 </ul>
 </li>
-<li><a href="#org59f0aae">19.2. Atenuació de Materials</a></li>
-<li><a href="#orgf7b7e6f">19.3. Efecte Multitrayecte (Multipath Effect)</a></li>
-<li><a href="#orga54a2d4">19.4. Conclusió per al Disseny del Sistema</a></li>
-</ul>
-</li>
-<li><a href="#org01ed768">20. Modulació de portadora</a></li>
-<li><a href="#org2451335">21. Regulació de l'espectre</a>
+<li><a href="#orgaa27541">16. Propagació d'ones de ràdio</a></li>
+<li><a href="#orge1f101c">17. Pèrdues de propagació i models</a>
 <ul>
-<li><a href="#org8b4d5fd">21.1. Regulacio del espectre de frequencies</a></li>
-<li><a href="#org39a5434">21.2. Per què es fa? (Els objectius)</a></li>
-<li><a href="#org13e917e">21.3. Com es regula? Tipus de Bandes</a></li>
-<li><a href="#org4c87d0f">21.4. La "Fam d'Espectre" (Spectrum Crunch)</a></li>
-</ul>
-</li>
-<li><a href="#org1307960">22. Modulació sense fil (MCS i AMC)</a>
+<li><a href="#org66829ea">17.1. Wireless Transmission impairments</a></li>
+<li><a href="#org0fccb08">17.2. Path loss</a></li>
+<li><a href="#orgc3a8845">17.3. Càlculs analítics de path loss</a>
 <ul>
-<li><a href="#org2e96534">22.1. La taula central: Esquema de Modulació i Codificació (MCS)</a></li>
-<li><a href="#org4728812">22.2. El diagrama de la dreta: Adaptació a l'entorn</a></li>
-</ul>
-</li>
-<li><a href="#orgd9bf410">23. Modulació sense fil (diapositives 3-19)</a>
-<ul>
-<li><a href="#org0c1f8ef">23.1. Conceptes Bàsics de la Modulació (Diapositives 3-5)</a>
-<ul>
-<li><a href="#orga7bf96e">23.1.1. Què és la modulació?</a></li>
-<li><a href="#org1a51617">23.1.2. La Idea de la Modulació</a></li>
-<li><a href="#org3f1a406">23.1.3. Tècniques Bàsiques de Modulació Digital</a></li>
-</ul>
-</li>
-<li><a href="#org15b55fa">23.2. Modulació per Desplaçament d'Amplitud (ASK)</a></li>
-<li><a href="#org5beb3a2">23.3. Modulació per Desplaçament de Freqüència (FSK)</a>
-<ul>
-<li><a href="#orgb7e0996">23.3.1. BFSK (Binary Frequency-Shift Keying)</a></li>
-<li><a href="#org48f8904">23.3.2. MFSK (Multiple Frequency-Shift Keying)</a></li>
-</ul>
-</li>
-<li><a href="#org1fcdefc">23.4. Modulació per Desplaçament de Fase (PSK) i Constel·lacions</a>
-<ul>
-<li><a href="#org6ad6cb6">23.4.1. BPSK (Binary Phase-Shift Keying)</a></li>
-<li><a href="#org88dba81">23.4.2. Representació Polar i Diagrames de Constel·lació</a></li>
-<li><a href="#org64e03b6">23.4.3. BPSK i Diagrames de Constel·lació</a></li>
-</ul>
-</li>
-<li><a href="#org237db7e">23.5. QPSK i Codificació Intel·ligent</a>
-<ul>
-<li><a href="#orgc0d0357">23.5.1. QPSK (Quadrature Phase-Shift Keying)</a></li>
-<li><a href="#orgd5a85c3">23.5.2. Constel·lacions Dolentes vs. Bones</a></li>
-<li><a href="#org5bdf4dd">23.5.3. Codificació de Bits Intel·ligent: Codi Gray</a></li>
-</ul>
-</li>
-<li><a href="#org1e34063">23.6. Modulació per Amplitud en Quadratura (QAM)</a>
-<ul>
-<li><a href="#orga73f25e">23.6.1. QAM (Quadrature Amplitude Modulation)</a></li>
-<li><a href="#org66e5f45">23.6.2. QAM és Popular</a></li>
+<li><a href="#orga68cf2a">17.3.1. Friis free-space model (serveix per espais oberts)</a></li>
+<li><a href="#orgf230b0b">17.3.2. Two-ray ground propagation model</a></li>
+<li><a href="#org9964425">17.3.3. Empirical propagation models</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgfacfb49">24. Codificació de dades (EDC, ECC i ARQ/HARQ)</a></li>
-<li><a href="#org7c5533a">25. Source Coding</a>
+<li><a href="#org62d120b">18. Soroll i interferència</a></li>
+<li><a href="#org8c4b682">19. Efectes dels obstacles</a>
 <ul>
-<li><a href="#orge9fecf0">25.1. Funcions principals</a>
+<li><a href="#orgacab930">19.1. Mecanismes Físics d'Interacció</a>
 <ul>
-<li><a href="#orgbb80d9c">25.1.1. Digitalització (si la font és analògica)</a></li>
-<li><a href="#orgf7337de">25.1.2. Compressió</a></li>
-<li><a href="#orga1c376b">25.1.3. Representació i format</a></li>
-<li><a href="#org35f268c">25.1.4. Xifrat (opcional, sovint a prop)</a></li>
+<li><a href="#org48ee921">19.1.1. Reflexió (Reflection)</a></li>
+<li><a href="#org33804fe">19.1.2. Difracció (Diffraction)</a></li>
+<li><a href="#org0e09f3e">19.1.3. Dispersió (Scattering)</a></li>
+<li><a href="#orgb99be8f">19.1.4. Ombrejat (Shadowing)</a></li>
+</ul>
+</li>
+<li><a href="#org42d63b1">19.2. Atenuació de Materials</a></li>
+<li><a href="#org2b19e1f">19.3. Efecte Multitrayecte (Multipath Effect)</a></li>
+<li><a href="#org0822e1a">19.4. Conclusió per al Disseny del Sistema</a></li>
+</ul>
+</li>
+<li><a href="#org0d34c16">20. Modulació de portadora</a></li>
+<li><a href="#org3002ecd">21. Regulació de l'espectre</a>
+<ul>
+<li><a href="#org103cc98">21.1. Regulacio del espectre de frequencies</a></li>
+<li><a href="#org29b5b62">21.2. Per què es fa? (Els objectius)</a></li>
+<li><a href="#org61d97d9">21.3. Com es regula? Tipus de Bandes</a></li>
+<li><a href="#org5603e7a">21.4. La "Fam d'Espectre" (Spectrum Crunch)</a></li>
+</ul>
+</li>
+<li><a href="#orgfde7a24">22. Modulació sense fil (MCS i AMC)</a>
+<ul>
+<li><a href="#orgcaf2e33">22.1. La taula central: Esquema de Modulació i Codificació (MCS)</a></li>
+<li><a href="#orgb8ff9f6">22.2. El diagrama de la dreta: Adaptació a l'entorn</a></li>
+</ul>
+</li>
+<li><a href="#org8d26db5">23. Modulació sense fil (diapositives 3-19)</a>
+<ul>
+<li><a href="#orga4af9f2">23.1. Conceptes Bàsics de la Modulació (Diapositives 3-5)</a>
+<ul>
+<li><a href="#org839e065">23.1.1. Què és la modulació?</a></li>
+<li><a href="#org9f51ade">23.1.2. La Idea de la Modulació</a></li>
+<li><a href="#org9df8eb7">23.1.3. Tècniques Bàsiques de Modulació Digital</a></li>
+</ul>
+</li>
+<li><a href="#org9cbf891">23.2. Modulació per Desplaçament d'Amplitud (ASK)</a></li>
+<li><a href="#org68e6199">23.3. Modulació per Desplaçament de Freqüència (FSK)</a>
+<ul>
+<li><a href="#org2e886ed">23.3.1. BFSK (Binary Frequency-Shift Keying)</a></li>
+<li><a href="#orgdaf6bb2">23.3.2. MFSK (Multiple Frequency-Shift Keying)</a></li>
+</ul>
+</li>
+<li><a href="#org93678ee">23.4. Modulació per Desplaçament de Fase (PSK) i Constel·lacions</a>
+<ul>
+<li><a href="#orgb10374c">23.4.1. BPSK (Binary Phase-Shift Keying)</a></li>
+<li><a href="#org66eada5">23.4.2. Representació Polar i Diagrames de Constel·lació</a></li>
+<li><a href="#org19ede81">23.4.3. BPSK i Diagrames de Constel·lació</a></li>
+</ul>
+</li>
+<li><a href="#orgd37dfb0">23.5. QPSK i Codificació Intel·ligent</a>
+<ul>
+<li><a href="#orga98bbfa">23.5.1. QPSK (Quadrature Phase-Shift Keying)</a></li>
+<li><a href="#org3105418">23.5.2. Constel·lacions Dolentes vs. Bones</a></li>
+<li><a href="#org1146099">23.5.3. Codificació de Bits Intel·ligent: Codi Gray</a></li>
+</ul>
+</li>
+<li><a href="#org7fe3545">23.6. Modulació per Amplitud en Quadratura (QAM)</a>
+<ul>
+<li><a href="#org70cf5c4">23.6.1. QAM (Quadrature Amplitude Modulation)</a></li>
+<li><a href="#orgdfc8b60">23.6.2. QAM és Popular</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb9197e0">26. Channel Coding</a>
+<li><a href="#orgee49c3e">24. Codificació de dades (EDC, ECC i ARQ/HARQ)</a></li>
+<li><a href="#org912e2b9">25. Source Coding</a>
 <ul>
-<li><a href="#org4f910b6">26.1. Funcions principals</a>
+<li><a href="#orgbede3e7">25.1. Funcions principals</a>
 <ul>
-<li><a href="#org080598b">26.1.1. Afegir redundància controlada</a></li>
-<li><a href="#org954348c">26.1.2. Tipus de redundància</a></li>
-<li><a href="#org976c224">26.1.3. ARQ (Automatic Repeat reQuest)</a></li>
-<li><a href="#orgf0d8192">26.1.4. HARQ (Hybrid ARQ)</a></li>
+<li><a href="#org94872e4">25.1.1. Digitalització (si la font és analògica)</a></li>
+<li><a href="#orgbd01514">25.1.2. Compressió</a></li>
+<li><a href="#org01a6a33">25.1.3. Representació i format</a></li>
+<li><a href="#org6ad03b1">25.1.4. Xifrat (opcional, sovint a prop)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7a590af">27. Resum i diferències</a>
+<li><a href="#org35802bc">26. Channel Coding</a>
 <ul>
-<li><a href="#org735202c">27.1. Codis de detecció d'errors (EDC – Error Detection Codes)</a></li>
-<li><a href="#orgdde7b31">27.2. Codis de correcció d'errors (ECC – Error Correction Codes/ FEC - Forward Error Correction)</a>
+<li><a href="#org9216574">26.1. Funcions principals</a>
 <ul>
-<li><a href="#orgd9caf06">27.2.1. Codis de bloc (Block Error Correction Codes)</a></li>
-<li><a href="#org39ca82f">27.2.2. Codis convolucionals</a></li>
+<li><a href="#org58ecd25">26.1.1. Afegir redundància controlada</a></li>
+<li><a href="#orge409e46">26.1.2. Tipus de redundància</a></li>
+<li><a href="#orgc2d10dd">26.1.3. ARQ (Automatic Repeat reQuest)</a></li>
+<li><a href="#orgcb0bec1">26.1.4. HARQ (Hybrid ARQ)</a></li>
 </ul>
 </li>
-<li><a href="#org6bd1a72">27.3. ARQ i HARQ (Automatic Repeat reQuest i Hybrid Automatic Repeat reQuest)</a></li>
-<li><a href="#org9cb4831">27.4. Notes sobre codificació a la capa física</a></li>
 </ul>
 </li>
-<li><a href="#orga5368bd">28. Data rate: per què el cabal real és menor que l'esperat</a></li>
-<li><a href="#org68d0784">29. Protocols MAC (Medium Access Control)</a></li>
-<li><a href="#orgc85f230">30. Accés al medi: Wi-Fi, xarxes mòbils i ALOHA</a>
+<li><a href="#org15af7a9">27. Resum i diferències</a>
 <ul>
-<li><a href="#org758e16e">30.1. Per què Wi-Fi usa CSMA/CA i no CSMA/CD?</a></li>
-<li><a href="#org418a3f7">30.2. Xarxes mòbils: TDMA + CSMA</a></li>
-<li><a href="#orgace2548">30.3. Finestra de connexió / accés aleatori</a></li>
-<li><a href="#org6017e23">30.4. Idees clau</a></li>
-<li><a href="#orgf76ee48">30.5. Quan pot ALOHA superar CSMA?</a></li>
-</ul>
-</li>
-<li><a href="#org1cc5fc3">31. Problemes d'accés al medi: terminal ocult i terminal exposat</a>
+<li><a href="#org46cfd47">27.1. Codis de detecció d'errors (EDC – Error Detection Codes)</a></li>
+<li><a href="#orgb9535f8">27.2. Codis de correcció d'errors (ECC – Error Correction Codes/ FEC - Forward Error Correction)</a>
 <ul>
-<li><a href="#orge231519">31.1. Terminal ocult: l'escenari dels tres nodes</a></li>
-<li><a href="#orgcfb0d06">31.2. Terminal ocult: com resoldre'l (RTS/CTS)</a></li>
-<li><a href="#orged585a9">31.3. Terminal exposat (exposed terminal problem)</a>
+<li><a href="#org99f3427">27.2.1. Codis de bloc (Block Error Correction Codes)</a></li>
+<li><a href="#orgf189706">27.2.2. Codis convolucionals</a></li>
+</ul>
+</li>
+<li><a href="#org2b61db5">27.3. ARQ i HARQ (Automatic Repeat reQuest i Hybrid Automatic Repeat reQuest)</a></li>
+<li><a href="#org9321fa8">27.4. Notes sobre codificació a la capa física</a></li>
+</ul>
+</li>
+<li><a href="#org86ea8d8">28. Data rate: per què el cabal real és menor que l'esperat</a></li>
+<li><a href="#org0a26785">29. Protocols MAC (Medium Access Control)</a></li>
+<li><a href="#orgb255099">30. Accés al medi: Wi-Fi, xarxes mòbils i ALOHA</a>
 <ul>
-<li><a href="#orgc14e6e2">31.3.1. Exemple clàssic</a></li>
-<li><a href="#org9883859">31.3.2. Per què passa?</a></li>
-<li><a href="#org3ec30f3">31.3.3. Conseqüència</a></li>
-<li><a href="#org7ae4d7a">31.3.4. Diferència amb el terminal ocult</a></li>
-<li><a href="#orga0e2918">31.3.5. Com es pot mitigar?</a></li>
+<li><a href="#orge28eac9">30.1. Per què Wi-Fi usa CSMA/CA i no CSMA/CD?</a></li>
+<li><a href="#org038fe71">30.2. Xarxes mòbils: TDMA + CSMA</a></li>
+<li><a href="#orgf3ef530">30.3. Finestra de connexió / accés aleatori</a></li>
+<li><a href="#org0967a63">30.4. Idees clau</a></li>
+<li><a href="#orgf6b2d83">30.5. Quan pot ALOHA superar CSMA?</a></li>
 </ul>
 </li>
-<li><a href="#orga203432">31.4. Virtual CS (portadora virtual)</a>
+<li><a href="#org91dc20d">31. Problemes d'accés al medi: terminal ocult i terminal exposat</a>
 <ul>
-<li><a href="#org7eaa93a">31.4.1. Com funciona?</a></li>
-<li><a href="#org3bb6fa7">31.4.2. Per què serveix?</a></li>
-<li><a href="#orgad41812">31.4.3. Diferència amb el CS físic</a></li>
-<li><a href="#orgece7a12">31.4.4. Limitacions</a></li>
-</ul>
-</li>
-<li><a href="#org0d9df64">31.5. CSMA persistent vs non-persistent</a>
+<li><a href="#org7335449">31.1. Terminal ocult: l'escenari dels tres nodes&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></a></li>
+<li><a href="#org67b41bf">31.2. Terminal ocult: com resoldre'l (RTS/CTS)</a></li>
+<li><a href="#orgc32aee6">31.3. Terminal exposat (exposed terminal problem)</a>
 <ul>
-<li><a href="#orgf7f37b8">31.5.1. El problema: tothom espera el mateix moment</a></li>
-<li><a href="#orgb764a1e">31.5.2. La solució: Non-persistent CSMA + backoff</a></li>
-<li><a href="#org8b35cc7">31.5.3. Per què això resol el problema?</a></li>
-<li><a href="#orgea4f653">31.5.4. Exemple</a></li>
-<li><a href="#orgfa60dc3">31.5.5. Idea clau</a></li>
+<li><a href="#orge91bebb">31.3.1. Exemple clàssic</a></li>
+<li><a href="#orgd9de80e">31.3.2. Per què passa?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></a></li>
+<li><a href="#orgd6c1b26">31.3.3. Conseqüència</a></li>
+<li><a href="#org954a7ca">31.3.4. Diferència amb el terminal ocult</a></li>
+<li><a href="#org4d71784">31.3.5. Com es pot mitigar?</a></li>
 </ul>
 </li>
-<li><a href="#org015424a">31.6. Col·lisió per temps de propagació en CSMA (+ backoff)</a>
+<li><a href="#orgba5b06d">31.4. Virtual CS (portadora virtual)</a>
 <ul>
-<li><a href="#orgfa937bd">31.6.1. Backoff time</a></li>
+<li><a href="#org9f1aaa4">31.4.1. Com funciona?</a></li>
+<li><a href="#org437eb51">31.4.2. Per què serveix?</a></li>
+<li><a href="#orgeba7d21">31.4.3. Diferència amb el CS físic</a></li>
+<li><a href="#org39b1a48">31.4.4. Limitacions</a></li>
 </ul>
 </li>
-<li><a href="#orgef9f42b">31.7. Versió millorada: RTS/CTS i SIFS/DIFS</a></li>
-<li><a href="#org6a00bfa">31.8. A torna a enviar RTS immediatament?</a></li>
-<li><a href="#org2163400">31.9. RTS i fairness</a></li>
-<li><a href="#org9d75ff9">31.10. Quan RTS no és necessari?</a></li>
-</ul>
-</li>
-<li><a href="#orgcd4824b">32. Mecanisme d'Accés al Canal (CSMA/CA amb RTS/CTS)</a>
+<li><a href="#org1bbbe31">31.5. CSMA persistent vs non-persistent</a>
 <ul>
-<li><a href="#org4fbbfa6">32.1. Cronograma temporal del canal</a></li>
-<li><a href="#org8da9303">32.2. Seqüència temporal d'intercanvi</a></li>
-<li><a href="#org983bd95">32.3. Gestió de la contesa i Equitat (<i>Fairness</i>)</a></li>
+<li><a href="#orgb2e9901">31.5.1. El problema: tothom espera el mateix moment</a></li>
+<li><a href="#org61401e2">31.5.2. La solució: Non-persistent CSMA + backoff</a></li>
+<li><a href="#orgd24dc72">31.5.3. Per què això resol el problema?</a></li>
+<li><a href="#org409d29b">31.5.4. Exemple</a></li>
+<li><a href="#orge2cb777">31.5.5. Idea clau</a></li>
 </ul>
 </li>
-<li><a href="#org40114e7">33. Problema: Ineficiència del Canal (Massa Overhead)</a></li>
-<li><a href="#org410a99a">34. Solució: Agregació de Trames (<i>Frame Aggregation</i>)</a>
+<li><a href="#org2947fbc">31.6. Col·lisió per temps de propagació en CSMA (+ backoff)</a>
 <ul>
-<li><a href="#org534a1ce">34.1. Opcions d'Estructura</a>
+<li><a href="#org67d89bd">31.6.1. Backoff time</a></li>
+</ul>
+</li>
+<li><a href="#org02525a4">31.7. Versió millorada: RTS/CTS i SIFS/DIFS</a></li>
+<li><a href="#orgc83a277">31.8. A torna a enviar RTS immediatament?</a></li>
+<li><a href="#org64f5a7c">31.9. RTS i fairness</a></li>
+<li><a href="#org8574818">31.10. Quan RTS no és necessari?</a></li>
+</ul>
+</li>
+<li><a href="#orgf0c44bc">32. Mecanisme d'Accés al Canal (CSMA/CA amb RTS/CTS)</a>
 <ul>
-<li><a href="#org7913a13">34.1.1. Opció 1: Agregació amb verificació individual (A-MPDU)</a></li>
-<li><a href="#orgda3f5d3">34.1.2. Opció 2: Agregació conjunta amb cua única (A-MSDU)</a></li>
-<li><a href="#orge5537f5">34.1.3. Opció 3: Enfocament híbrid</a></li>
+<li><a href="#orge60ae37">32.1. Cronograma temporal del canal</a></li>
+<li><a href="#org50c267d">32.2. Seqüència temporal d'intercanvi</a></li>
+<li><a href="#org488ef2a">32.3. Gestió de la contesa i Equitat (<i>Fairness</i>)</a></li>
 </ul>
 </li>
-<li><a href="#org73da7d3">34.2. Taula comparativa</a></li>
-</ul>
-</li>
-<li><a href="#orgd91872a">35. Modificació del Mecanisme de Confirmació: Block ACK</a></li>
-<li><a href="#org894a52f">36. Què és l'IEEE i la Família 802?</a>
+<li><a href="#org992e1a4">33. Problema: Ineficiència del Canal (Massa Overhead)</a></li>
+<li><a href="#org25c7a03">34. Solució: Agregació de Trames (<i>Frame Aggregation</i>)</a>
 <ul>
-<li><a href="#orgdc100e9">36.1. L'organització IEEE</a></li>
-<li><a href="#orgdda2970">36.2. El comitè IEEE 802</a></li>
-<li><a href="#org8e8e5a2">36.3. Què representen les lletres (a, b, g, n, ac, ax&#x2026;)?</a></li>
-</ul>
-</li>
-<li><a href="#org15f5cf8">37. Classificació de Xarxes per Abast</a></li>
-<li><a href="#org98344eb">38. Components d'una WLAN (Capa 2)</a>
+<li><a href="#org2cfccb0">34.1. Opcions d'Estructura</a>
 <ul>
-<li><a href="#org290ddc2">38.1. Estació (<i>Station</i> - STA)</a></li>
-<li><a href="#org0395727">38.2. Punt d'Accés (<i>Access Point</i> - AP)</a></li>
+<li><a href="#orgcc09512">34.1.1. Opció 1: Agregació amb verificació individual (A-MPDU)</a></li>
+<li><a href="#orgc7933d9">34.1.2. Opció 2: Agregació conjunta amb cua única (A-MSDU)</a></li>
+<li><a href="#org85c5d57">34.1.3. Opció 3: Enfocament híbrid</a></li>
 </ul>
 </li>
-<li><a href="#org38873d4">39. Topologies 802.11: BSS, ESS i DS</a>
+<li><a href="#orgf2a8759">34.2. Taula comparativa</a></li>
+</ul>
+</li>
+<li><a href="#orgeb4e8e6">35. Modificació del Mecanisme de Confirmació: Block ACK</a></li>
+<li><a href="#org7e3de00">36. Què és l'IEEE i la Família 802?</a>
 <ul>
-<li><a href="#orgdb46280">39.1. BSS (<i>Basic Service Set</i>)</a></li>
-<li><a href="#orgcfd66b5">39.2. DS (<i>Distribution System</i>)</a></li>
-<li><a href="#org1b823a4">39.3. ESS (<i>Extended Service Set</i>)</a></li>
-<li><a href="#org1c286ab">39.4. Esquema d'un ESS</a></li>
+<li><a href="#orgf7a5851">36.1. L'organització IEEE</a></li>
+<li><a href="#orgafa5d0d">36.2. El comitè IEEE 802</a></li>
+<li><a href="#org4ab833a">36.3. Què representen les lletres (a, b, g, n, ac, ax&#x2026;)?</a></li>
 </ul>
 </li>
-<li><a href="#orgcd89189">40. Seguretat: L'atac d'AP Maliciós (<i>Evil Twin / Rogue AP</i>)</a></li>
-<li><a href="#org6374a0f">41. Les 4 Adreces MAC (Adreçament en el Medi Ràdio)</a>
+<li><a href="#org5d0b13c">37. Classificació de Xarxes per Abast</a></li>
+<li><a href="#org0c3b31a">38. Components d'una WLAN (Capa 2)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></a>
 <ul>
-<li><a href="#org53193c9">41.1. Exemple pràctic (El teu mòbil enviant dades a un servidor web):</a></li>
+<li><a href="#org6c4f232">38.1. Estació (<i>Station</i> - STA)</a></li>
+<li><a href="#org14a32f4">38.2. Punt d'Accés (<i>Access Point</i> - AP)</a></li>
 </ul>
 </li>
-<li><a href="#org1a7fd69">42. Tipus de Trama (<i>Frame Type</i>)</a>
+<li><a href="#org5f716f5">39. Topologies 802.11: BSS, ESS i DS</a>
 <ul>
-<li><a href="#org684ff0f">42.1. 1. Trames de DADES (<i>Data Frames</i>)</a></li>
-<li><a href="#orge18872d">42.2. 2. Trames de CONTROL (<i>Control Frames</i>)</a></li>
-<li><a href="#orgbd09353">42.3. 3. Trames de GESTIÓ (<i>Management Frames</i>)</a></li>
+<li><a href="#orgcf84c3a">39.1. BSS (<i>Basic Service Set</i>)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></a></li>
+<li><a href="#org8275126">39.2. DS (<i>Distribution System</i>)</a></li>
+<li><a href="#org765ab31">39.3. ESS (<i>Extended Service Set</i>)</a></li>
+<li><a href="#org782ade2">39.4. Esquema d'un ESS</a></li>
 </ul>
 </li>
-<li><a href="#orge24997d">43. Durada de l'Intercanvi i Reserva del Medi (<code>Duration/ID</code>)</a></li>
-<li><a href="#orgda02ca9">44. Mida de les Dades (<i>Data Size</i>)</a></li>
+<li><a href="#orgc795977">40. Seguretat: L'atac d'AP Maliciós (<i>Evil Twin / Rogue AP</i>)</a></li>
+<li><a href="#orgcc27154">41. Les 4 Adreces MAC (Adreçament en el Medi Ràdio)</a>
+<ul>
+<li><a href="#orgc9ba5c0">41.1. Exemple pràctic (El teu mòbil enviant dades a un servidor web):</a></li>
+</ul>
+</li>
+<li><a href="#org947af48">42. Tipus de Trama (<i>Frame Type</i>)</a>
+<ul>
+<li><a href="#org5e94498">42.1. 1. Trames de DADES (<i>Data Frames</i>)</a></li>
+<li><a href="#org57e263d">42.2. 2. Trames de CONTROL (<i>Control Frames</i>)</a></li>
+<li><a href="#org32df250">42.3. 3. Trames de GESTIÓ (<i>Management Frames</i>)</a></li>
+</ul>
+</li>
+<li><a href="#orgd23a6aa">43. Durada de l'Intercanvi i Reserva del Medi (<code>Duration/ID</code>)</a></li>
+<li><a href="#orgb3a01fb">44. Mida de les Dades (<i>Data Size</i>)</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0249d1b" class="outline-2">
-<h2 id="org0249d1b"><span class="section-number-2">1.</span> Introducció: Què és la comunicació sense fil?</h2>
+<div id="outline-container-org12913cf" class="outline-2">
+<h2 id="org12913cf"><span class="section-number-2">1.</span> Introducció: Què és la comunicació sense fil?</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7d094dd" class="outline-3">
-<h3 id="org7d094dd"><span class="section-number-3">1.1.</span> Definició</h3>
+<div id="outline-container-orgc214628" class="outline-3">
+<h3 id="orgc214628"><span class="section-number-3">1.1.</span> Definició</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Communication that does not require the transmitter and reciever to be in physical contact or communicating through a guided media.</li>
@@ -556,8 +556,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org0c29010" class="outline-3">
-<h3 id="org0c29010"><span class="section-number-3">1.2.</span> Formes primerenques</h3>
+<div id="outline-container-orga3763cc" class="outline-3">
+<h3 id="orga3763cc"><span class="section-number-3">1.2.</span> Formes primerenques</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Sound: beating drums&#x2026;</li>
@@ -566,8 +566,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org67c6078" class="outline-3">
-<h3 id="org67c6078"><span class="section-number-3">1.3.</span> Per què comunicació sense fils?</h3>
+<div id="outline-container-org79e1c54" class="outline-3">
+<h3 id="org79e1c54"><span class="section-number-3">1.3.</span> Per què comunicació sense fils?</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Supports mobility of the end systems</li>
@@ -580,27 +580,27 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org4d0754c" class="outline-3">
-<h3 id="org4d0754c"><span class="section-number-3">1.4.</span> Reptes de la comunicació sense fils</h3>
+<div id="outline-container-org060bc23" class="outline-3">
+<h3 id="org060bc23"><span class="section-number-3">1.4.</span> Reptes de la comunicació sense fils</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org067a385" class="outline-4">
-<h4 id="org067a385"><span class="section-number-4">1.4.1.</span> Canal sorollós i variant en el temps</h4>
+<div id="outline-container-org19ac977" class="outline-4">
+<h4 id="org19ac977"><span class="section-number-4">1.4.1.</span> Canal sorollós i variant en el temps</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ul class="org-ul">
 <li>Noisy, time-varying channel: you can get the signal in different times because of colissions/interferences etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfeca5ea" class="outline-4">
-<h4 id="orgfeca5ea"><span class="section-number-4">1.4.2.</span> Medi compartit</h4>
+<div id="outline-container-orgeb40352" class="outline-4">
+<h4 id="orgeb40352"><span class="section-number-4">1.4.2.</span> Medi compartit</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <ul class="org-ul">
 <li>Shared medium: The signals travel through an open medium (canal comu compartit). en aquest canal hi pot haber mes usuaris creant interferencies i s'ha de trobar alguna manera per poder compartir aquest canal.</li>
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgaf2cce8"></a>Multiplexió<br />
+<li><a id="orgb2d2e46"></a>Multiplexió<br />
 <div class="outline-text-5" id="text-1-4-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -647,9 +647,9 @@
 </table>
 </div>
 </li>
-<li><a id="org5fd646f"></a>Control d'accés al medi (MAC – Medium Access Control)<br />
+<li><a id="org311bfc9"></a>Control d'accés al medi (MAC – Medium Access Control)<br />
 <ol class="org-ol">
-<li><a id="org44ed085"></a>A) Accés aleatori (competitiu)<br />
+<li><a id="org4898506"></a>A) Accés aleatori (competitiu)<br />
 <div class="outline-text-6" id="text-1-4-2-2-1">
 <ul class="org-ul">
 <li>Els usuaris competeixen pel canal quan el necessiten.</li>
@@ -660,7 +660,7 @@
 </ul>
 </div>
 </li>
-<li><a id="orgf16b567"></a>B) Accés controlat (sense col·lisions)<br />
+<li><a id="org5218791"></a>B) Accés controlat (sense col·lisions)<br />
 <div class="outline-text-6" id="text-1-4-2-2-2">
 <ul class="org-ul">
 <li>Un mecanisme central o un torn decideix qui transmet.</li>
@@ -670,7 +670,7 @@
 </ul>
 </div>
 </li>
-<li><a id="org928c700"></a>C) Accés per contenció amb prioritat<br />
+<li><a id="orga977df2"></a>C) Accés per contenció amb prioritat<br />
 <div class="outline-text-6" id="text-1-4-2-2-3">
 <ul class="org-ul">
 <li>CSMA/CA amb backoff exponencial → Wi-Fi.</li>
@@ -682,8 +682,8 @@
 </li>
 </ol>
 </div>
-<div id="outline-container-org575cee5" class="outline-4">
-<h4 id="org575cee5"><span class="section-number-4">1.4.3.</span> Ample de banda limitat</h4>
+<div id="outline-container-orgd9d87db" class="outline-4">
+<h4 id="orgd9d87db"><span class="section-number-4">1.4.3.</span> Ample de banda limitat</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <ul class="org-ul">
 <li>Limited bandwidth: The bandwidth is limited. You can not use unlimited bandwidth because of physical phenomenons that happen at high frequencies. Apart from that there are rules to transmit certain frequencies if these rules didnt exist there would be to many interferences in the medium to read the correct signal for the reciever</li>
@@ -735,12 +735,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orga6b4054" class="outline-2">
-<h2 id="orga6b4054"><span class="section-number-2">2.</span> Rutes de connexió a la xarxa</h2>
+<div id="outline-container-org6bafd1f" class="outline-2">
+<h2 id="org6bafd1f"><span class="section-number-2">2.</span> Rutes de connexió a la xarxa</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc9cabd0" class="outline-3">
-<h3 id="orgc9cabd0"><span class="section-number-3">2.1.</span> Opció A: Connexió via Wi-Fi (a casa o oficines)</h3>
+<div id="outline-container-orge4427c5" class="outline-3">
+<h3 id="orge4427c5"><span class="section-number-3">2.1.</span> Opció A: Connexió via Wi-Fi (a casa o oficines)</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Tram 1 (Sense fils Wireless): El mòbil es connecta al router Wi-Fi mitjançant radiofreqüència local.</li>
@@ -764,8 +764,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org8c0290b" class="outline-3">
-<h3 id="org8c0290b"><span class="section-number-3">2.2.</span> Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</h3>
+<div id="outline-container-org3ae0b8a" class="outline-3">
+<h3 id="org3ae0b8a"><span class="section-number-3">2.2.</span> Opció B: Connexió via Dades Mòbils (4G / 5G al carrer)</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Tram 1 (Sense fils Wireless): El mòbil es connecta a l'antena o estació base (Base Station eNodeB / gNodeB) mitjançant la xarxa cel·lular.</li>
@@ -790,12 +790,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1514232" class="outline-2">
-<h2 id="org1514232"><span class="section-number-2">3.</span> Models de referència (OSI i TCP/IP)</h2>
+<div id="outline-container-org3566eb3" class="outline-2">
+<h2 id="org3566eb3"><span class="section-number-2">3.</span> Models de referència (OSI i TCP/IP)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgb4114e1" class="outline-3">
-<h3 id="orgb4114e1"><span class="section-number-3">3.1.</span> Model OSI (7 capes)</h3>
+<div id="outline-container-org82a1650" class="outline-3">
+<h3 id="org82a1650"><span class="section-number-3">3.1.</span> Model OSI (7 capes)</h3>
 <div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>Física – senyals</li>
@@ -808,8 +808,8 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org9eee4c1" class="outline-3">
-<h3 id="org9eee4c1"><span class="section-number-3">3.2.</span> Model TCP/IP</h3>
+<div id="outline-container-org73e09b3" class="outline-3">
+<h3 id="org73e09b3"><span class="section-number-3">3.2.</span> Model TCP/IP</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Aplicació (OSI 5-7)</li>
@@ -820,8 +820,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf4af2b1" class="outline-3">
-<h3 id="orgf4af2b1"><span class="section-number-3">3.3.</span> Correspondència entre models</h3>
+<div id="outline-container-orgbcc6404" class="outline-3">
+<h3 id="orgbcc6404"><span class="section-number-3">3.3.</span> Correspondència entre models</h3>
 <div class="outline-text-3" id="text-3-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -883,8 +883,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org8ef150d" class="outline-2">
-<h2 id="org8ef150d"><span class="section-number-2">4.</span> Encapsulament i desencapsulament</h2>
+<div id="outline-container-org1e5a084" class="outline-2">
+<h2 id="org1e5a084"><span class="section-number-2">4.</span> Encapsulament i desencapsulament</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Encapsulament: baixant capes, cada capa afegeix la seva capçalera (i de vegades tràiler per exemple CRC bits d'ack etc.).</li>
@@ -893,12 +893,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf538bee" class="outline-2">
-<h2 id="orgf538bee"><span class="section-number-2">5.</span> Baixant capes: enviament des del mòbil d'en Josep</h2>
+<div id="outline-container-orgf2fa87f" class="outline-2">
+<h2 id="orgf2fa87f"><span class="section-number-2">5.</span> Baixant capes: enviament des del mòbil d'en Josep</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgc6dc68f" class="outline-3">
-<h3 id="orgc6dc68f"><span class="section-number-3">5.1.</span> Capa d'aplicació</h3>
+<div id="outline-container-org31f778d" class="outline-3">
+<h3 id="org31f778d"><span class="section-number-3">5.1.</span> Capa d'aplicació</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>WhatsApp genera el missatge.</li>
@@ -908,12 +908,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orge69dcf3" class="outline-3">
-<h3 id="orge69dcf3"><span class="section-number-3">5.2.</span> Capa de transport (TCP) — Apunts complets</h3>
+<div id="outline-container-orge30ebc2" class="outline-3">
+<h3 id="orge30ebc2"><span class="section-number-3">5.2.</span> Capa de transport (TCP) — Apunts complets</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-orgbe40305" class="outline-4">
-<h4 id="orgbe40305"><span class="section-number-4">5.2.1.</span> Índex</h4>
+<div id="outline-container-org9542d11" class="outline-4">
+<h4 id="org9542d11"><span class="section-number-4">5.2.1.</span> Índex</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ol class="org-ol">
 <li>Context: on som dins l'enviament del missatge</li>
@@ -929,8 +929,8 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf92900e" class="outline-4">
-<h4 id="orgf92900e"><span class="section-number-4">5.2.2.</span> Context: on som dins l'enviament del missatge</h4>
+<div id="outline-container-org7e9ba28" class="outline-4">
+<h4 id="org7e9ba28"><span class="section-number-4">5.2.2.</span> Context: on som dins l'enviament del missatge</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <ul class="org-ul">
 <li>En Josep envia un missatge per WhatsApp. El missatge ja s'ha generat a la capa d'aplicació (WhatsApp, xifrat E2E amb el protocol Signal). Ara baixa a la capa de transport, on entra en joc TCP (Transmission Control Protocol).</li>
@@ -982,8 +982,8 @@
 </table>
 </div>
 </div>
-<div id="outline-container-org539b948" class="outline-4">
-<h4 id="org539b948"><span class="section-number-4">5.2.3.</span> TCP segmenta les dades en segments</h4>
+<div id="outline-container-orgada930b" class="outline-4">
+<h4 id="orgada930b"><span class="section-number-4">5.2.3.</span> TCP segmenta les dades en segments</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <ul class="org-ul">
 <li>Què vol dir "segmentar"? El missatge de WhatsApp (o qualsevol dada) pot ser més gran que el que la xarxa pot transportar d'una sola vegada. Cada xarxa té una mida màxima de paquet anomenada MTU (Maximum Transmission Unit), típicament 1500 bytes a Ethernet.</li>
@@ -1005,12 +1005,12 @@ TCP el divideix en segments:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d7387d" class="outline-4">
-<h4 id="org2d7387d"><span class="section-number-4">5.2.4.</span> Afegeix ports d'origen i destí</h4>
+<div id="outline-container-org9f9aeb6" class="outline-4">
+<h4 id="org9f9aeb6"><span class="section-number-4">5.2.4.</span> Afegeix ports d'origen i destí</h4>
 <div class="outline-text-4" id="text-5-2-4">
 </div>
 <ol class="org-ol">
-<li><a id="org73d4e06"></a>Què és un port?<br />
+<li><a id="orgea494b7"></a>Què és un port?<br />
 <div class="outline-text-5" id="text-5-2-4-1">
 <ul class="org-ul">
 <li>Una adreça IP identifica un dispositiu a la xarxa (el mòbil d'en Josep, el servidor de WhatsApp&#x2026;).</li>
@@ -1019,7 +1019,7 @@ TCP el divideix en segments:
 </ul>
 </div>
 </li>
-<li><a id="org75fd10f"></a>Estructura d'un segment TCP<br />
+<li><a id="orgcb2c12d"></a>Estructura d'un segment TCP<br />
 <div class="outline-text-5" id="text-5-2-4-2">
 <div class="org-src-container">
 <pre class="src src-text">┌─────────────────────────────────────┐
@@ -1039,7 +1039,7 @@ TCP el divideix en segments:
 </div>
 </div>
 </li>
-<li><a id="orgf838d57"></a>Exemple pràctic<br />
+<li><a id="orgf863dc9"></a>Exemple pràctic<br />
 <div class="outline-text-5" id="text-5-2-4-3">
 <ul class="org-ul">
 <li>En Josep envia un missatge a WhatsApp:</li>
@@ -1094,7 +1094,7 @@ TCP el divideix en segments:
 </ul>
 </div>
 </li>
-<li><a id="orgaa8baaa"></a>Port d'origen vs port de destí<br />
+<li><a id="org08fe7ea"></a>Port d'origen vs port de destí<br />
 <div class="outline-text-5" id="text-5-2-4-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1134,7 +1134,7 @@ TCP el divideix en segments:
 </table>
 </div>
 </li>
-<li><a id="orgf91f96d"></a>Com es pot saber el port de destí?<br />
+<li><a id="org80082bb"></a>Com es pot saber el port de destí?<br />
 <div class="outline-text-5" id="text-5-2-4-5">
 <ul class="org-ul">
 <li>El port de destí ve determinat pel protocol o servei al qual et vols connectar. No és aleatori.</li>
@@ -1221,15 +1221,15 @@ TCP el divideix en segments:
 </li>
 </ol>
 </div>
-<div id="outline-container-orge964cff" class="outline-4">
-<h4 id="orge964cff"><span class="section-number-4">5.2.5.</span> Gestiona control de flux, control de congestió i retransmissió</h4>
+<div id="outline-container-orgc2f5989" class="outline-4">
+<h4 id="orgc2f5989"><span class="section-number-4">5.2.5.</span> Gestiona control de flux, control de congestió i retransmissió</h4>
 <div class="outline-text-4" id="text-5-2-5">
 <ul class="org-ul">
 <li>TCP té tres mecanismes per garantir que les dades arribin bé:</li>
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgff9f9a0"></a>Control de flux (Flow Control)<br />
+<li><a id="org2b8167f"></a>Control de flux (Flow Control)<br />
 <div class="outline-text-5" id="text-5-2-5-1">
 <ul class="org-ul">
 <li>Problema: El receptor pot ser més lent que l'emissor. Si l'emissor envia massa ràpid, el receptor no pot processar-ho i es perd informació.</li>
@@ -1246,7 +1246,7 @@ Emissor: "OK, n'enviaré 3 i esperaré confirmació"
 </ul>
 </div>
 </li>
-<li><a id="org466eb4c"></a>Control de congestió (Congestion Control)<br />
+<li><a id="org302de26"></a>Control de congestió (Congestion Control)<br />
 <div class="outline-text-5" id="text-5-2-5-2">
 <ul class="org-ul">
 <li>Problema: La xarxa (routers, enllaços) pot estar saturada. Si tothom envia paquets alhora, es produeixen cues, retards i pèrdues.</li>
@@ -1280,7 +1280,7 @@ Emissor: "OK, n'enviaré 3 i esperaré confirmació"
 </ul>
 </div>
 </li>
-<li><a id="orged1d0b1"></a>Retransmissió (Retransmission)<br />
+<li><a id="orgeace5ab"></a>Retransmissió (Retransmission)<br />
 <div class="outline-text-5" id="text-5-2-5-3">
 <ul class="org-ul">
 <li>Problema: Els paquets IP es poden perdre pel camí (IP és best-effort, no garanteix res).</li>
@@ -1304,8 +1304,8 @@ Emissor  ◄─── ACK 2 ────────  Receptor
 </li>
 </ol>
 </div>
-<div id="outline-container-org1db853a" class="outline-4">
-<h4 id="org1db853a"><span class="section-number-4">5.2.6.</span> ACKs: si un segment no arriba, es retransmet només aquell segment</h4>
+<div id="outline-container-orgc89bb15" class="outline-4">
+<h4 id="orgc89bb15"><span class="section-number-4">5.2.6.</span> ACKs: si un segment no arriba, es retransmet només aquell segment</h4>
 <div class="outline-text-4" id="text-5-2-6">
 <ul class="org-ul">
 <li>Com funciona? Cada segment té un número de seqüència (per saber l'ordre) i el receptor envia ACKs per confirmar què ha rebut.</li>
@@ -1376,7 +1376,7 @@ Receptor: ACK 3 (he rebut fins al byte 3999)
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgf01d6cb"></a>Detecció d'error: checksum<br />
+<li><a id="orge91a87d"></a>Detecció d'error: checksum<br />
 <div class="outline-text-5" id="text-5-2-6-1">
 <ul class="org-ul">
 <li>Si el segment arriba però amb bits corromputs:</li>
@@ -1389,8 +1389,8 @@ Receptor: ACK 3 (he rebut fins al byte 3999)
 </li>
 </ol>
 </div>
-<div id="outline-container-orgd558a83" class="outline-4">
-<h4 id="orgd558a83"><span class="section-number-4">5.2.7.</span> Qui retransmet realment? Extrem a extrem vs salt a salt</h4>
+<div id="outline-container-org36a6967" class="outline-4">
+<h4 id="org36a6967"><span class="section-number-4">5.2.7.</span> Qui retransmet realment? Extrem a extrem vs salt a salt</h4>
 <div class="outline-text-4" id="text-5-2-7">
 <ul class="org-ul">
 <li>Resposta curta: El mòbil d'en Josep (l'emissor original) és qui retransmet el segment perdut.</li>
@@ -1398,7 +1398,7 @@ Receptor: ACK 3 (he rebut fins al byte 3999)
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orge5ff23b"></a>Els routers NO retransmeten<br />
+<li><a id="org9ddaa70"></a>Els routers NO retransmeten<br />
 <div class="outline-text-5" id="text-5-2-7-1">
 <ul class="org-ul">
 <li>Els routers treballen a la capa de xarxa (IP), i IP és best-effort:
@@ -1412,7 +1412,7 @@ Receptor: ACK 3 (he rebut fins al byte 3999)
 </ul>
 </div>
 </li>
-<li><a id="org2502e55"></a>Escenari amb 5 routers: 20 segments, el 6 s'ha perdut<br />
+<li><a id="orgb1389f4"></a>Escenari amb 5 routers: 20 segments, el 6 s'ha perdut<br />
 <div class="outline-text-5" id="text-5-2-7-2">
 <div class="org-src-container">
 <pre class="src src-text">[Mòbil Josep]
@@ -1505,7 +1505,7 @@ Segment 20 ✅ arriba
 </ul>
 </div>
 </li>
-<li><a id="org70ea967"></a>Per què els routers no retransmeten?<br />
+<li><a id="orgf016723"></a>Per què els routers no retransmeten?<br />
 <div class="outline-text-5" id="text-5-2-7-3">
 <ul class="org-ul">
 <li>Perquè no és la seva feina. La divisió de responsabilitats és:</li>
@@ -1552,7 +1552,7 @@ Segment 20 ✅ arriba
 </ul>
 </div>
 </li>
-<li><a id="orgcc6d2cd"></a>Principi de disseny d'extrem a extrem<br />
+<li><a id="org6c399b7"></a>Principi de disseny d'extrem a extrem<br />
 <div class="outline-text-5" id="text-5-2-7-4">
 <ul class="org-ul">
 <li>Internet va adoptar des del principi el principi de disseny d'extrem a extrem, col·locant la funcionalitat de fiabilitat (confirmació, retransmissió, ordenació) als sistemes terminals, en lloc de a la xarxa intermèdia. Els routers no necessiten mantenir informació d'estat de les connexions TCP, la qual cosa simplifica enormement el disseny de la xarxa.</li>
@@ -1563,8 +1563,8 @@ Segment 20 ✅ arriba
 </li>
 </ol>
 </div>
-<div id="outline-container-orgb40f156" class="outline-4">
-<h4 id="orgb40f156"><span class="section-number-4">5.2.8.</span> ARQ de capa 2 vs TCP</h4>
+<div id="outline-container-org87b22e2" class="outline-4">
+<h4 id="org87b22e2"><span class="section-number-4">5.2.8.</span> ARQ de capa 2 vs TCP</h4>
 <div class="outline-text-4" id="text-5-2-8">
 <ul class="org-ul">
 <li>L'ARQ de capa 2 SÍ que té temporitzador. ARQ (Automatic Repeat reQuest) és el mecanisme de retransmissió de la capa d'enllaç. Quan un node envia una trama i no rep l'ACK corresponent dins del temps límit, retransmet la trama.</li>
@@ -1580,7 +1580,7 @@ Segment 20 ✅ arriba
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org2490015"></a>L'ARQ de capa 2 només cobreix UN salt<br />
+<li><a id="org2aae1e8"></a>L'ARQ de capa 2 només cobreix UN salt<br />
 <div class="outline-text-5" id="text-5-2-8-1">
 <div class="org-src-container">
 <pre class="src src-text">[Mòbil Josep] ←── Wi-Fi (ARQ aquí) ──► [Router 1]
@@ -1595,7 +1595,7 @@ Segment 20 ✅ arriba
 </ul>
 </div>
 </li>
-<li><a id="org60d8363"></a>Diferència clau: error de transmissió vs descart per congestió<br />
+<li><a id="org346350a"></a>Diferència clau: error de transmissió vs descart per congestió<br />
 <div class="outline-text-5" id="text-5-2-8-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1672,7 +1672,7 @@ Segment 20 ✅ arriba
 </table>
 </div>
 </li>
-<li><a id="org94c1bad"></a>Per què la congestió NO es detecta a capa 2?<br />
+<li><a id="org0a62550"></a>Per què la congestió NO es detecta a capa 2?<br />
 <div class="outline-text-5" id="text-5-2-8-3">
 <ul class="org-ul">
 <li>Quan el Router 3 rep una trama del Router 2:
@@ -1693,7 +1693,7 @@ Segment 20 ✅ arriba
 </ul>
 </div>
 </li>
-<li><a id="orgfcab449"></a>Taula comparativa: ARQ local vs TCP<br />
+<li><a id="org61a719f"></a>Taula comparativa: ARQ local vs TCP<br />
 <div class="outline-text-5" id="text-5-2-8-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1760,12 +1760,12 @@ Segment 20 ✅ arriba
 </li>
 </ol>
 </div>
-<div id="outline-container-org3f41dbd" class="outline-4">
-<h4 id="org3f41dbd"><span class="section-number-4">5.2.9.</span> Casos pràctics: quan actua cada mecanisme</h4>
+<div id="outline-container-org5101f4e" class="outline-4">
+<h4 id="org5101f4e"><span class="section-number-4">5.2.9.</span> Casos pràctics: quan actua cada mecanisme</h4>
 <div class="outline-text-4" id="text-5-2-9">
 </div>
 <ol class="org-ol">
-<li><a id="orgcf97f8a"></a>Casos en què l'ARQ de capa 2 SÍ que detecta i retransmet<br />
+<li><a id="org6d71c6b"></a>Casos en què l'ARQ de capa 2 SÍ que detecta i retransmet<br />
 <div class="outline-text-5" id="text-5-2-9-1">
 <ul class="org-ul">
 <li>Cas A: Error de bits al medi físic</li>
@@ -1825,7 +1825,7 @@ Mòbil: timeout → retransmet
 </div>
 </div>
 </li>
-<li><a id="org237a279"></a>Casos en què NOMÉS TCP detecta i retransmet<br />
+<li><a id="orga08bb5d"></a>Casos en què NOMÉS TCP detecta i retransmet<br />
 <div class="outline-text-5" id="text-5-2-9-2">
 <ul class="org-ul">
 <li>Cas E: Pèrdua entre dos routers</li>
@@ -1908,7 +1908,7 @@ Mòbil: timeout → retransmet
 </ul>
 </div>
 </li>
-<li><a id="orgfcdb2a7"></a>Comparació visual: on actua cada mecanisme<br />
+<li><a id="orga8eca96"></a>Comparació visual: on actua cada mecanisme<br />
 <div class="outline-text-5" id="text-5-2-9-3">
 <div class="org-src-container">
 <pre class="src src-text">[Mòbil] ──Wi-Fi──► [R1] ──Ethernet──► [R2] ──Fibra──► [R3] ──Fibra──► [R4] ──Ethernet──► [Servidor]
@@ -1935,8 +1935,8 @@ Mòbil: timeout → retransmet
 </li>
 </ol>
 </div>
-<div id="outline-container-orgdf0b39e" class="outline-4">
-<h4 id="orgdf0b39e"><span class="section-number-4">5.2.10.</span> PDU: segment TCP</h4>
+<div id="outline-container-org3e3dca0" class="outline-4">
+<h4 id="org3e3dca0"><span class="section-number-4">5.2.10.</span> PDU: segment TCP</h4>
 <div class="outline-text-4" id="text-5-2-10">
 <ul class="org-ul">
 <li>Com hem vist, la PDU (Protocol Data Unit) de la capa de transport quan el protocol és TCP s'anomena segment TCP.</li>
@@ -2019,7 +2019,7 @@ Mòbil: timeout → retransmet
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org676c217"></a>Notes sobre l'ACK dins del segment TCP<br />
+<li><a id="org0fdc258"></a>Notes sobre l'ACK dins del segment TCP<br />
 <div class="outline-text-5" id="text-5-2-10-1">
 <ul class="org-ul">
 <li>L'ACK flag (1 bit) i el Acknowledgment Number (32 bits) formen part de la capçalera TCP.</li>
@@ -2030,8 +2030,8 @@ Mòbil: timeout → retransmet
 </li>
 </ol>
 </div>
-<div id="outline-container-orga1b161f" class="outline-4">
-<h4 id="orga1b161f"><span class="section-number-4">5.2.11.</span> Resum final</h4>
+<div id="outline-container-org328f401" class="outline-4">
+<h4 id="org328f401"><span class="section-number-4">5.2.11.</span> Resum final</h4>
 <div class="outline-text-4" id="text-5-2-11">
 <ul class="org-ul">
 <li>Què fa TCP en aquest pas?</li>
@@ -2215,7 +2215,7 @@ Mòbil: timeout → retransmet
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgb1d7c9f"></a>Diagrama final del procés complet<br />
+<li><a id="orgd5757f4"></a>Diagrama final del procés complet<br />
 <div class="outline-text-5" id="text-5-2-11-1">
 <div class="org-src-container">
 <pre class="src src-text">┌──────────────────────────────────────────────────────────┐
@@ -2254,8 +2254,8 @@ Si es perd un segment:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf4e8775" class="outline-3">
-<h3 id="orgf4e8775"><span class="section-number-3">5.3.</span> Capa de xarxa (IP)</h3>
+<div id="outline-container-orgc629aff" class="outline-3">
+<h3 id="orgc629aff"><span class="section-number-3">5.3.</span> Capa de xarxa (IP)</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>IP decideix la ruta fins al servidor de WhatsApp.</li>
@@ -2264,8 +2264,8 @@ Si es perd un segment:
 <li>PDU: paquet IP.</li>
 </ul>
 </div>
-<div id="outline-container-org83d31c8" class="outline-4">
-<h4 id="org83d31c8"><span class="section-number-4">5.3.1.</span> Passos que fa el router</h4>
+<div id="outline-container-orgb58ece4" class="outline-4">
+<h4 id="orgb58ece4"><span class="section-number-4">5.3.1.</span> Passos que fa el router</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ol class="org-ol">
 <li>Rep el paquet i llegeix la IP destí de la capçalera IP.</li>
@@ -2289,8 +2289,8 @@ Si es perd un segment:
 </ol>
 </div>
 </div>
-<div id="outline-container-org9d121a3" class="outline-4">
-<h4 id="org9d121a3"><span class="section-number-4">5.3.2.</span> Exemple amb la taula dels apunts</h4>
+<div id="outline-container-org411cac8" class="outline-4">
+<h4 id="org411cac8"><span class="section-number-4">5.3.2.</span> Exemple amb la taula dels apunts</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2344,8 +2344,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb41460b" class="outline-4">
-<h4 id="orgb41460b"><span class="section-number-4">5.3.3.</span> Idea clau</h4>
+<div id="outline-container-orgafed4fb" class="outline-4">
+<h4 id="orgafed4fb"><span class="section-number-4">5.3.3.</span> Idea clau</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <ul class="org-ul">
 <li>El router no decideix la ruta completa, només el següent salt. Aquesta decisió es basa en:
@@ -2365,8 +2365,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org6f1eb20" class="outline-3">
-<h3 id="org6f1eb20"><span class="section-number-3">5.4.</span> Capa d'enllaç de dades</h3>
+<div id="outline-container-org1be0dc5" class="outline-3">
+<h3 id="org1be0dc5"><span class="section-number-3">5.4.</span> Capa d'enllaç de dades</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>Subcapa MAC (Medium Access Control): controla l'accés al medi.</li>
@@ -2378,8 +2378,8 @@ Si es perd un segment:
 <li>PDU: trama.</li>
 </ul>
 </div>
-<div id="outline-container-orgbfaab9f" class="outline-4">
-<h4 id="orgbfaab9f"><span class="section-number-4">5.4.1.</span> Capa d'enllaç de dades detallada</h4>
+<div id="outline-container-orga276f07" class="outline-4">
+<h4 id="orga276f07"><span class="section-number-4">5.4.1.</span> Capa d'enllaç de dades detallada</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <ul class="org-ul">
 <li>La capa d'enllaç de dades (capa 2 OSI) transmet trames entre nodes directament connectats (mateix enllaç físic: Wi-Fi, Ethernet, fibra…). No encamina per Internet; això ho fa IP (capa 3). Es divideix en dues subcapes:
@@ -2390,7 +2390,7 @@ Si es perd un segment:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org45b7dc9"></a>Subcapa MAC<br />
+<li><a id="org29721ac"></a>Subcapa MAC<br />
 <div class="outline-text-5" id="text-5-4-1-1">
 <ul class="org-ul">
 <li>S'encarrega de:
@@ -2452,7 +2452,7 @@ Si es perd un segment:
 </ul>
 </div>
 </li>
-<li><a id="org81e1d62"></a>Adreces MAC<br />
+<li><a id="org394d0c7"></a>Adreces MAC<br />
 <div class="outline-text-5" id="text-5-4-1-2">
 <ul class="org-ul">
 <li>48 bits (6 bytes), hexadecimal: 00:1A:2B:3C:4D:5E.</li>
@@ -2464,7 +2464,7 @@ Si es perd un segment:
 </ul>
 </div>
 </li>
-<li><a id="org910dde6"></a>CRC (detecció d'errors)<br />
+<li><a id="orgffa3ebd"></a>CRC (detecció d'errors)<br />
 <div class="outline-text-5" id="text-5-4-1-3">
 <ul class="org-ul">
 <li>S'afegeix un CRC/FCS al final de la trama.</li>
@@ -2474,7 +2474,7 @@ Si es perd un segment:
 </ul>
 </div>
 </li>
-<li><a id="org6eca001"></a>Wi-Fi: ACK i retransmissió<br />
+<li><a id="org11462ca"></a>Wi-Fi: ACK i retransmissió<br />
 <div class="outline-text-5" id="text-5-4-1-4">
 <ul class="org-ul">
 <li>Cada trama unicast s'ACKja.</li>
@@ -2485,7 +2485,7 @@ Si es perd un segment:
 </ul>
 </div>
 </li>
-<li><a id="org9294da1"></a>Wi-Fi: encriptació WPA2/WPA3<br />
+<li><a id="org48f8d93"></a>Wi-Fi: encriptació WPA2/WPA3<br />
 <div class="outline-text-5" id="text-5-4-1-5">
 <ul class="org-ul">
 <li>Encripta l'enllaç de ràdio entre dispositiu i AP.</li>
@@ -2495,7 +2495,7 @@ Si es perd un segment:
 </ul>
 </div>
 </li>
-<li><a id="orgb3b45f4"></a>PDU: trama<br />
+<li><a id="org99a2aef"></a>PDU: trama<br />
 <div class="outline-text-5" id="text-5-4-1-6">
 <ul class="org-ul">
 <li>La PDU de la capa d'enllaç és la trama (frame).</li>
@@ -2515,7 +2515,7 @@ Si es perd un segment:
 </div>
 </div>
 </li>
-<li><a id="org4c2cd82"></a>Resum<br />
+<li><a id="orgcd39aa0"></a>Resum<br />
 <div class="outline-text-5" id="text-5-4-1-7">
 <ul class="org-ul">
 <li>Capa d'enllaç = trames entre nodes directament connectats.</li>
@@ -2533,8 +2533,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org2911904" class="outline-2">
-<h2 id="org2911904"><span class="section-number-2">6.</span> Xarxes sense fils amb diferents propòsits</h2>
+<div id="outline-container-org573674c" class="outline-2">
+<h2 id="org573674c"><span class="section-number-2">6.</span> Xarxes sense fils amb diferents propòsits</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Què diu: Wireless networks with different purposes: e.g., GSM, WiFi, ZigBee, Bluetooth, RFID, Radio, TV.</li>
@@ -2549,8 +2549,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea1730d" class="outline-2">
-<h2 id="orgea1730d"><span class="section-number-2">7.</span> Requisits diversos de les aplicacions</h2>
+<div id="outline-container-org22aa5d6" class="outline-2">
+<h2 id="org22aa5d6"><span class="section-number-2">7.</span> Requisits diversos de les aplicacions</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Què diu: Diverse application requirements: Reliability, delay, &#x2026;</li>
@@ -2559,8 +2559,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf71b8db" class="outline-2">
-<h2 id="orgf71b8db"><span class="section-number-2">8.</span> Condicions de l'entorn i del canal</h2>
+<div id="outline-container-orge25c56c" class="outline-2">
+<h2 id="orge25c56c"><span class="section-number-2">8.</span> Condicions de l'entorn i del canal</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Què diu: Different environment/channel conditions: ISM vs. Licensed channels.</li>
@@ -2570,8 +2570,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4b7fc9f" class="outline-2">
-<h2 id="org4b7fc9f"><span class="section-number-2">9.</span> Propietats del maquinari</h2>
+<div id="outline-container-org0fc5f55" class="outline-2">
+<h2 id="org0fc5f55"><span class="section-number-2">9.</span> Propietats del maquinari</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Què diu: Dissimilar communication hardware properties: Power, range, &#x2026;</li>
@@ -2581,8 +2581,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge42d9e8" class="outline-2">
-<h2 id="orge42d9e8"><span class="section-number-2">10.</span> Modes de comunicació</h2>
+<div id="outline-container-org497765e" class="outline-2">
+<h2 id="org497765e"><span class="section-number-2">10.</span> Modes de comunicació</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Simplex: one way communication, radio, TV, GPS etc.</li>
@@ -2592,8 +2592,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1cc5730" class="outline-2">
-<h2 id="org1cc5730"><span class="section-number-2">11.</span> Mitjans guiats vs. no guiats</h2>
+<div id="outline-container-orgf8e49be" class="outline-2">
+<h2 id="orgf8e49be"><span class="section-number-2">11.</span> Mitjans guiats vs. no guiats</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>Guided: the waves are guided along a physical path: coaxial cable, optical fiber, twisted pair</li>
@@ -2601,8 +2601,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b506aa" class="outline-2">
-<h2 id="org1b506aa"><span class="section-number-2">12.</span> Senyal analògic vs. digital</h2>
+<div id="outline-container-orgaae9b62" class="outline-2">
+<h2 id="orgaae9b62"><span class="section-number-2">12.</span> Senyal analògic vs. digital</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>Analog signal: signal intensity varies in a smooth way over time. There are no braks or discontinuitites in the signal</li>
@@ -2610,8 +2610,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org11cdca5" class="outline-2">
-<h2 id="org11cdca5"><span class="section-number-2">13.</span> Dades digitals vs. senyals analògics</h2>
+<div id="outline-container-org84097e3" class="outline-2">
+<h2 id="org84097e3"><span class="section-number-2">13.</span> Dades digitals vs. senyals analògics</h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>Digital data: Enables compression, error protection, encryption, low-cost/smaller processors</li>
@@ -2619,8 +2619,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd1098de" class="outline-2">
-<h2 id="orgd1098de"><span class="section-number-2">14.</span> Diagrama del sistema de comunicació</h2>
+<div id="outline-container-org0c0dd1a" class="outline-2">
+<h2 id="org0c0dd1a"><span class="section-number-2">14.</span> Diagrama del sistema de comunicació</h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>El diagrama il·lustra el viatge de la informació en un sistema de comunicació, dividit en 5 blocs i 6 etapes:</li>
@@ -2638,12 +2638,12 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3d4eacd" class="outline-2">
-<h2 id="org3d4eacd"><span class="section-number-2">15.</span> Antenes</h2>
+<div id="outline-container-orga515f92" class="outline-2">
+<h2 id="orga515f92"><span class="section-number-2">15.</span> Antenes</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-org52712a8" class="outline-3">
-<h3 id="org52712a8"><span class="section-number-3">15.1.</span> Definició i funcions</h3>
+<div id="outline-container-org9ce5bac" class="outline-3">
+<h3 id="org9ce5bac"><span class="section-number-3">15.1.</span> Definició i funcions</h3>
 <div class="outline-text-3" id="text-15-1">
 <ul class="org-ul">
 <li>Segons el document, una antena és un conductor elèctric o un sistema de conductors. La seva funció principal és actuar com a interfície entre el món de l'electrònica (els circuits) i el món de les ones electromagnètiques (l'espai).</li>
@@ -2656,8 +2656,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgad66e1f" class="outline-3">
-<h3 id="orgad66e1f"><span class="section-number-3">15.2.</span> Conceptes clau de les antenes</h3>
+<div id="outline-container-org3ae9c60" class="outline-3">
+<h3 id="org3ae9c60"><span class="section-number-3">15.2.</span> Conceptes clau de les antenes</h3>
 <div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li>Patró de radiació: És la representació gràfica (en 3D o en tall transversal 2D) de com l'antena distribueix l'energia. Mostra els "lòbuls" (on hi ha més senyal) i els "nuls" (on no n'hi ha).</li>
@@ -2666,8 +2666,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2121c9f" class="outline-3">
-<h3 id="org2121c9f"><span class="section-number-3">15.3.</span> Tipus d'antenes (segons la seva radiació)</h3>
+<div id="outline-container-org9b8915b" class="outline-3">
+<h3 id="org9b8915b"><span class="section-number-3">15.3.</span> Tipus d'antenes (segons la seva radiació)</h3>
 <div class="outline-text-3" id="text-15-3">
 <ul class="org-ul">
 <li>Isotròpica (0 dBi): Idealitzada. Radiaria energia per igual en totes direccions (com una esfera perfecta). No existeix a la realitat, serveix com a referència.</li>
@@ -2677,8 +2677,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb857f4" class="outline-2">
-<h2 id="orgeb857f4"><span class="section-number-2">16.</span> Propagació d'ones de ràdio</h2>
+<div id="outline-container-orgaa27541" class="outline-2">
+<h2 id="orgaa27541"><span class="section-number-2">16.</span> Propagació d'ones de ràdio</h2>
 <div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li>Ground-wave propagation: The signal contours the curvature of the earth, Only frequencies up to 2 Mhz. It can propagate considerable distances. This only happends during the day. Example AM radio during the day</li>
@@ -2687,12 +2687,12 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b2893a" class="outline-2">
-<h2 id="org3b2893a"><span class="section-number-2">17.</span> Pèrdues de propagació i models</h2>
+<div id="outline-container-orge1f101c" class="outline-2">
+<h2 id="orge1f101c"><span class="section-number-2">17.</span> Pèrdues de propagació i models</h2>
 <div class="outline-text-2" id="text-17">
 </div>
-<div id="outline-container-orgc76027f" class="outline-3">
-<h3 id="orgc76027f"><span class="section-number-3">17.1.</span> Wireless Transmission impairments</h3>
+<div id="outline-container-org66829ea" class="outline-3">
+<h3 id="org66829ea"><span class="section-number-3">17.1.</span> Wireless Transmission impairments</h3>
 <div class="outline-text-3" id="text-17-1">
 <ul class="org-ul">
 <li>Path loss (attenuation): Greater at higher frequencies</li>
@@ -2701,20 +2701,20 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org0e0810b" class="outline-3">
-<h3 id="org0e0810b"><span class="section-number-3">17.2.</span> Path loss</h3>
+<div id="outline-container-org0fccb08" class="outline-3">
+<h3 id="org0fccb08"><span class="section-number-3">17.2.</span> Path loss</h3>
 <div class="outline-text-3" id="text-17-2">
 <ul class="org-ul">
 <li>\[ P_{rx}(dBm) = P_{tx}(dBm) + G(dB) - L(dB) \]</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga914feb" class="outline-3">
-<h3 id="orga914feb"><span class="section-number-3">17.3.</span> Càlculs analítics de path loss</h3>
+<div id="outline-container-orgc3a8845" class="outline-3">
+<h3 id="orgc3a8845"><span class="section-number-3">17.3.</span> Càlculs analítics de path loss</h3>
 <div class="outline-text-3" id="text-17-3">
 </div>
-<div id="outline-container-org9175091" class="outline-4">
-<h4 id="org9175091"><span class="section-number-4">17.3.1.</span> Friis free-space model (serveix per espais oberts)</h4>
+<div id="outline-container-orga68cf2a" class="outline-4">
+<h4 id="orga68cf2a"><span class="section-number-4">17.3.1.</span> Friis free-space model (serveix per espais oberts)</h4>
 <div class="outline-text-4" id="text-17-3-1">
 <ul class="org-ul">
 <li>L'Equació de Friis uneix els dos conceptes anteriors:</li>
@@ -2745,16 +2745,16 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9c3cb7a" class="outline-4">
-<h4 id="org9c3cb7a"><span class="section-number-4">17.3.2.</span> Two-ray ground propagation model</h4>
+<div id="outline-container-orgf230b0b" class="outline-4">
+<h4 id="orgf230b0b"><span class="section-number-4">17.3.2.</span> Two-ray ground propagation model</h4>
 <div class="outline-text-4" id="text-17-3-2">
 <ul class="org-ul">
 <li>considera line of sight path i considera una reflexio del terra</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7b398dc" class="outline-4">
-<h4 id="org7b398dc"><span class="section-number-4">17.3.3.</span> Empirical propagation models</h4>
+<div id="outline-container-org9964425" class="outline-4">
+<h4 id="org9964425"><span class="section-number-4">17.3.3.</span> Empirical propagation models</h4>
 <div class="outline-text-4" id="text-17-3-3">
 <ul class="org-ul">
 <li>Okumura model: Very accurate for urban areas. Not that accurate for rural areas</li>
@@ -2768,8 +2768,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf09b0c4" class="outline-2">
-<h2 id="orgf09b0c4"><span class="section-number-2">18.</span> Soroll i interferència</h2>
+<div id="outline-container-org62d120b" class="outline-2">
+<h2 id="org62d120b"><span class="section-number-2">18.</span> Soroll i interferència</h2>
 <div class="outline-text-2" id="text-18">
 <ul class="org-ul">
 <li>Intrinsic noise: Thermal noise</li>
@@ -2781,22 +2781,22 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6ff36b4" class="outline-2">
-<h2 id="org6ff36b4"><span class="section-number-2">19.</span> Efectes dels obstacles</h2>
+<div id="outline-container-org8c4b682" class="outline-2">
+<h2 id="org8c4b682"><span class="section-number-2">19.</span> Efectes dels obstacles</h2>
 <div class="outline-text-2" id="text-19">
 <ul class="org-ul">
 <li>Els obstacles entre el transmissor i el receptor són una de les tres causes principals d'empitjorament del senyal (juntament amb la pèrdua de trajecte i el soroll). El seu impacte depèn directament de la mida de l'obstacle en comparació amb la longitud d'ona (\( \lambda \)) del senyal.</li>
 </ul>
 </div>
-<div id="outline-container-orga477545" class="outline-3">
-<h3 id="orga477545"><span class="section-number-3">19.1.</span> Mecanismes Físics d'Interacció</h3>
+<div id="outline-container-orgacab930" class="outline-3">
+<h3 id="orgacab930"><span class="section-number-3">19.1.</span> Mecanismes Físics d'Interacció</h3>
 <div class="outline-text-3" id="text-19-1">
 <ul class="org-ul">
 <li>Quan una ona de ràdio xoca amb un obstacle, es produeixen quatre fenòmens principals:</li>
 </ul>
 </div>
-<div id="outline-container-org112b8ef" class="outline-4">
-<h4 id="org112b8ef"><span class="section-number-4">19.1.1.</span> Reflexió (Reflection)</h4>
+<div id="outline-container-org48ee921" class="outline-4">
+<h4 id="org48ee921"><span class="section-number-4">19.1.1.</span> Reflexió (Reflection)</h4>
 <div class="outline-text-4" id="text-19-1-1">
 <ul class="org-ul">
 <li>Què passa: L'ona rebota contra l'objecte.</li>
@@ -2805,8 +2805,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9985f48" class="outline-4">
-<h4 id="org9985f48"><span class="section-number-4">19.1.2.</span> Difracció (Diffraction)</h4>
+<div id="outline-container-org33804fe" class="outline-4">
+<h4 id="org33804fe"><span class="section-number-4">19.1.2.</span> Difracció (Diffraction)</h4>
 <div class="outline-text-4" id="text-19-1-2">
 <ul class="org-ul">
 <li>Què passa: L'ona es "corba" o doblega al voltant d'objectes esmolats o cantonades.</li>
@@ -2815,8 +2815,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org37ca80c" class="outline-4">
-<h4 id="org37ca80c"><span class="section-number-4">19.1.3.</span> Dispersió (Scattering)</h4>
+<div id="outline-container-org0e09f3e" class="outline-4">
+<h4 id="org0e09f3e"><span class="section-number-4">19.1.3.</span> Dispersió (Scattering)</h4>
 <div class="outline-text-4" id="text-19-1-3">
 <ul class="org-ul">
 <li>Què passa: L'ona es fragmenta i es dispersa en múltiples direccions.</li>
@@ -2825,8 +2825,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org0386ccc" class="outline-4">
-<h4 id="org0386ccc"><span class="section-number-4">19.1.4.</span> Ombrejat (Shadowing)</h4>
+<div id="outline-container-orgb99be8f" class="outline-4">
+<h4 id="orgb99be8f"><span class="section-number-4">19.1.4.</span> Ombrejat (Shadowing)</h4>
 <div class="outline-text-4" id="text-19-1-4">
 <ul class="org-ul">
 <li>Què passa: La recepció del senyal es suprimeix o s'atenua dràsticament perquè un objecte bloqueja el camí directe.</li>
@@ -2835,8 +2835,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org59f0aae" class="outline-3">
-<h3 id="org59f0aae"><span class="section-number-3">19.2.</span> Atenuació de Materials</h3>
+<div id="outline-container-org42d63b1" class="outline-3">
+<h3 id="org42d63b1"><span class="section-number-3">19.2.</span> Atenuació de Materials</h3>
 <div class="outline-text-3" id="text-19-2">
 <ul class="org-ul">
 <li>No tots els obstacles bloquegen el senyal de la mateixa manera. El document mostra mesures reals de com diferents materials atenuen les ones de ràdio (comparat amb l'espai obert):</li>
@@ -2847,8 +2847,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf7b7e6f" class="outline-3">
-<h3 id="orgf7b7e6f"><span class="section-number-3">19.3.</span> Efecte Multitrayecte (Multipath Effect)</h3>
+<div id="outline-container-org2b19e1f" class="outline-3">
+<h3 id="org2b19e1f"><span class="section-number-3">19.3.</span> Efecte Multitrayecte (Multipath Effect)</h3>
 <div class="outline-text-3" id="text-19-3">
 <ul class="org-ul">
 <li>Aquest és el resultat directe de la reflexió, difracció i dispersió. Quan hi ha obstacles, el receptor no rep una sola còpia del senyal, sinó múltiples còpies que han arribat per camins diferents:</li>
@@ -2863,8 +2863,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orga54a2d4" class="outline-3">
-<h3 id="orga54a2d4"><span class="section-number-3">19.4.</span> Conclusió per al Disseny del Sistema</h3>
+<div id="outline-container-org0822e1a" class="outline-3">
+<h3 id="org0822e1a"><span class="section-number-3">19.4.</span> Conclusió per al Disseny del Sistema</h3>
 <div class="outline-text-3" id="text-19-4">
 <ul class="org-ul">
 <li>Els efectes dels obstacles fan que el món real sigui molt més complex que el model de Friis (espai lliure). Els enginyers han de:
@@ -2878,20 +2878,20 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org01ed768" class="outline-2">
-<h2 id="org01ed768"><span class="section-number-2">20.</span> Modulació de portadora</h2>
+<div id="outline-container-org0d34c16" class="outline-2">
+<h2 id="org0d34c16"><span class="section-number-2">20.</span> Modulació de portadora</h2>
 <div class="outline-text-2" id="text-20">
 <ul class="org-ul">
 <li>To transmit a signal we take a data signal modulate a frequency (carrier frequency) this way multiple systems with different carrier frequencies can communicate at the same time</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2451335" class="outline-2">
-<h2 id="org2451335"><span class="section-number-2">21.</span> Regulació de l'espectre</h2>
+<div id="outline-container-org3002ecd" class="outline-2">
+<h2 id="org3002ecd"><span class="section-number-2">21.</span> Regulació de l'espectre</h2>
 <div class="outline-text-2" id="text-21">
 </div>
-<div id="outline-container-org8b4d5fd" class="outline-3">
-<h3 id="org8b4d5fd"><span class="section-number-3">21.1.</span> Regulacio del espectre de frequencies</h3>
+<div id="outline-container-org103cc98" class="outline-3">
+<h3 id="org103cc98"><span class="section-number-3">21.1.</span> Regulacio del espectre de frequencies</h3>
 <div class="outline-text-3" id="text-21-1">
 <ul class="org-ul">
 <li>L'espectre radioelèctric (el conjunt de totes les freqüències de ràdio) és un recurs natural, finit i limitat. No es pot fabricar més espectre. Com que és un bé escàs, els governs de cada país (i organismes internacionals com la ITU) s'encarreguen de regular-lo i repartir-lo.</li>
@@ -2905,8 +2905,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org39a5434" class="outline-3">
-<h3 id="org39a5434"><span class="section-number-3">21.2.</span> Per què es fa? (Els objectius)</h3>
+<div id="outline-container-org29b5b62" class="outline-3">
+<h3 id="org29b5b62"><span class="section-number-3">21.2.</span> Per què es fa? (Els objectius)</h3>
 <div class="outline-text-3" id="text-21-2">
 <ul class="org-ul">
 <li>Evitar el caos i les interferències: Sense regulació, tothom podria emetre a qualsevol freqüència i amb qualsevol potència. Això faria que els senyals xoquessin entre ells i cap comunicació funcionés. És com posar-se a cridar tothom alhora en una sala petita.</li>
@@ -2916,8 +2916,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org13e917e" class="outline-3">
-<h3 id="org13e917e"><span class="section-number-3">21.3.</span> Com es regula? Tipus de Bandes</h3>
+<div id="outline-container-org61d97d9" class="outline-3">
+<h3 id="org61d97d9"><span class="section-number-3">21.3.</span> Com es regula? Tipus de Bandes</h3>
 <div class="outline-text-3" id="text-21-3">
 <ul class="org-ul">
 <li>El document distingeix dos grans tipus de regulació:</li>
@@ -2939,8 +2939,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4c87d0f" class="outline-3">
-<h3 id="org4c87d0f"><span class="section-number-3">21.4.</span> La "Fam d'Espectre" (Spectrum Crunch)</h3>
+<div id="outline-container-org5603e7a" class="outline-3">
+<h3 id="org5603e7a"><span class="section-number-3">21.4.</span> La "Fam d'Espectre" (Spectrum Crunch)</h3>
 <div class="outline-text-3" id="text-21-4">
 <ul class="org-ul">
 <li>Cada cop hi ha més dispositius (mòbils, IoT, cotxes connectats) i necessitem més velocitat de dades. Això fa que l'espectre disponible sigui insuficient.</li>
@@ -2954,12 +2954,12 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org1307960" class="outline-2">
-<h2 id="org1307960"><span class="section-number-2">22.</span> Modulació sense fil (MCS i AMC)</h2>
+<div id="outline-container-orgfde7a24" class="outline-2">
+<h2 id="orgfde7a24"><span class="section-number-2">22.</span> Modulació sense fil (MCS i AMC)</h2>
 <div class="outline-text-2" id="text-22">
 </div>
-<div id="outline-container-org2e96534" class="outline-3">
-<h3 id="org2e96534"><span class="section-number-3">22.1.</span> La taula central: Esquema de Modulació i Codificació (MCS)</h3>
+<div id="outline-container-orgcaf2e33" class="outline-3">
+<h3 id="orgcaf2e33"><span class="section-number-3">22.1.</span> La taula central: Esquema de Modulació i Codificació (MCS)</h3>
 <div class="outline-text-3" id="text-22-1">
 <ul class="org-ul">
 <li>Aquesta taula relaciona el CQI (Channel Quality Indicator o Indicador de Qualitat del Canal) amb el tipus de modulació i la velocitat de codi.</li>
@@ -2975,8 +2975,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4728812" class="outline-3">
-<h3 id="org4728812"><span class="section-number-3">22.2.</span> El diagrama de la dreta: Adaptació a l'entorn</h3>
+<div id="outline-container-orgb8ff9f6" class="outline-3">
+<h3 id="orgb8ff9f6"><span class="section-number-3">22.2.</span> El diagrama de la dreta: Adaptació a l'entorn</h3>
 <div class="outline-text-3" id="text-22-2">
 <ul class="org-ul">
 <li>Aquest gràfic mostra una estació base (eNB) al centre i diferents zones de cobertura.</li>
@@ -2992,16 +2992,16 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd9bf410" class="outline-2">
-<h2 id="orgd9bf410"><span class="section-number-2">23.</span> Modulació sense fil (diapositives 3-19)</h2>
+<div id="outline-container-org8d26db5" class="outline-2">
+<h2 id="org8d26db5"><span class="section-number-2">23.</span> Modulació sense fil (diapositives 3-19)</h2>
 <div class="outline-text-2" id="text-23">
 </div>
-<div id="outline-container-org0c1f8ef" class="outline-3">
-<h3 id="org0c1f8ef"><span class="section-number-3">23.1.</span> Conceptes Bàsics de la Modulació (Diapositives 3-5)</h3>
+<div id="outline-container-orga4af9f2" class="outline-3">
+<h3 id="orga4af9f2"><span class="section-number-3">23.1.</span> Conceptes Bàsics de la Modulació (Diapositives 3-5)</h3>
 <div class="outline-text-3" id="text-23-1">
 </div>
-<div id="outline-container-orga7bf96e" class="outline-4">
-<h4 id="orga7bf96e"><span class="section-number-4">23.1.1.</span> Què és la modulació?</h4>
+<div id="outline-container-org839e065" class="outline-4">
+<h4 id="org839e065"><span class="section-number-4">23.1.1.</span> Què és la modulació?</h4>
 <div class="outline-text-4" id="text-23-1-1">
 <ul class="org-ul">
 <li>És el procés d'encodar dades d'origen (informació) sobre un senyal portadora amb una freqüència \(f_c\).</li>
@@ -3012,8 +3012,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1a51617" class="outline-4">
-<h4 id="org1a51617"><span class="section-number-4">23.1.2.</span> La Idea de la Modulació</h4>
+<div id="outline-container-org9f51ade" class="outline-4">
+<h4 id="org9f51ade"><span class="section-number-4">23.1.2.</span> La Idea de la Modulació</h4>
 <div class="outline-text-4" id="text-23-1-2">
 <ul class="org-ul">
 <li>L'equació general d'un senyal portadora és:</li>
@@ -3032,8 +3032,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3f1a406" class="outline-4">
-<h4 id="org3f1a406"><span class="section-number-4">23.1.3.</span> Tècniques Bàsiques de Modulació Digital</h4>
+<div id="outline-container-org9df8eb7" class="outline-4">
+<h4 id="org9df8eb7"><span class="section-number-4">23.1.3.</span> Tècniques Bàsiques de Modulació Digital</h4>
 <div class="outline-text-4" id="text-23-1-3">
 <ul class="org-ul">
 <li>ASK (Amplitude-Shift Keying): Es varia l'amplitud de la portadora.</li>
@@ -3043,8 +3043,8 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org15b55fa" class="outline-3">
-<h3 id="org15b55fa"><span class="section-number-3">23.2.</span> Modulació per Desplaçament d'Amplitud (ASK)</h3>
+<div id="outline-container-org9cbf891" class="outline-3">
+<h3 id="org9cbf891"><span class="section-number-3">23.2.</span> Modulació per Desplaçament d'Amplitud (ASK)</h3>
 <div class="outline-text-3" id="text-23-2">
 <ul class="org-ul">
 <li>Dos valors binaris es representen mitjançant dues amplituds diferents de la freqüència portadora.</li>
@@ -3060,12 +3060,12 @@ Si es perd un segment:
 </p>
 </div>
 </div>
-<div id="outline-container-org5beb3a2" class="outline-3">
-<h3 id="org5beb3a2"><span class="section-number-3">23.3.</span> Modulació per Desplaçament de Freqüència (FSK)</h3>
+<div id="outline-container-org68e6199" class="outline-3">
+<h3 id="org68e6199"><span class="section-number-3">23.3.</span> Modulació per Desplaçament de Freqüència (FSK)</h3>
 <div class="outline-text-3" id="text-23-3">
 </div>
-<div id="outline-container-orgb7e0996" class="outline-4">
-<h4 id="orgb7e0996"><span class="section-number-4">23.3.1.</span> BFSK (Binary Frequency-Shift Keying)</h4>
+<div id="outline-container-org2e886ed" class="outline-4">
+<h4 id="org2e886ed"><span class="section-number-4">23.3.1.</span> BFSK (Binary Frequency-Shift Keying)</h4>
 <div class="outline-text-4" id="text-23-3-1">
 <ul class="org-ul">
 <li>Dos dígits binaris es representen mitjançant dues freqüències diferents properes a la freqüència portadora.</li>
@@ -3078,8 +3078,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org48f8904" class="outline-4">
-<h4 id="org48f8904"><span class="section-number-4">23.3.2.</span> MFSK (Multiple Frequency-Shift Keying)</h4>
+<div id="outline-container-orgdaf6bb2" class="outline-4">
+<h4 id="orgdaf6bb2"><span class="section-number-4">23.3.2.</span> MFSK (Multiple Frequency-Shift Keying)</h4>
 <div class="outline-text-4" id="text-23-3-2">
 <ul class="org-ul">
 <li>S'utilitzen més de dues freqüències.</li>
@@ -3109,12 +3109,12 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org1fcdefc" class="outline-3">
-<h3 id="org1fcdefc"><span class="section-number-3">23.4.</span> Modulació per Desplaçament de Fase (PSK) i Constel·lacions</h3>
+<div id="outline-container-org93678ee" class="outline-3">
+<h3 id="org93678ee"><span class="section-number-3">23.4.</span> Modulació per Desplaçament de Fase (PSK) i Constel·lacions</h3>
 <div class="outline-text-3" id="text-23-4">
 </div>
-<div id="outline-container-org6ad6cb6" class="outline-4">
-<h4 id="org6ad6cb6"><span class="section-number-4">23.4.1.</span> BPSK (Binary Phase-Shift Keying)</h4>
+<div id="outline-container-orgb10374c" class="outline-4">
+<h4 id="orgb10374c"><span class="section-number-4">23.4.1.</span> BPSK (Binary Phase-Shift Keying)</h4>
 <div class="outline-text-4" id="text-23-4-1">
 <ul class="org-ul">
 <li>Utilitza dues fases per representar els dígits binaris.</li>
@@ -3123,8 +3123,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org88dba81" class="outline-4">
-<h4 id="org88dba81"><span class="section-number-4">23.4.2.</span> Representació Polar i Diagrames de Constel·lació</h4>
+<div id="outline-container-org66eada5" class="outline-4">
+<h4 id="org66eada5"><span class="section-number-4">23.4.2.</span> Representació Polar i Diagrames de Constel·lació</h4>
 <div class="outline-text-4" id="text-23-4-2">
 <ul class="org-ul">
 <li>El senyal es pot representar de forma polar:</li>
@@ -3139,8 +3139,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org64e03b6" class="outline-4">
-<h4 id="org64e03b6"><span class="section-number-4">23.4.3.</span> BPSK i Diagrames de Constel·lació</h4>
+<div id="outline-container-org19ede81" class="outline-4">
+<h4 id="org19ede81"><span class="section-number-4">23.4.3.</span> BPSK i Diagrames de Constel·lació</h4>
 <div class="outline-text-4" id="text-23-4-3">
 <ul class="org-ul">
 <li>El diagrama de constel·lació de BPSK té només dos punts, situats en els extrems de l'eix I (In-phase), separats per 180°.</li>
@@ -3149,12 +3149,12 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org237db7e" class="outline-3">
-<h3 id="org237db7e"><span class="section-number-3">23.5.</span> QPSK i Codificació Intel·ligent</h3>
+<div id="outline-container-orgd37dfb0" class="outline-3">
+<h3 id="orgd37dfb0"><span class="section-number-3">23.5.</span> QPSK i Codificació Intel·ligent</h3>
 <div class="outline-text-3" id="text-23-5">
 </div>
-<div id="outline-container-orgc0d0357" class="outline-4">
-<h4 id="orgc0d0357"><span class="section-number-4">23.5.1.</span> QPSK (Quadrature Phase-Shift Keying)</h4>
+<div id="outline-container-orga98bbfa" class="outline-4">
+<h4 id="orga98bbfa"><span class="section-number-4">23.5.1.</span> QPSK (Quadrature Phase-Shift Keying)</h4>
 <div class="outline-text-4" id="text-23-5-1">
 <ul class="org-ul">
 <li>És una PSK de quatre nivells.</li>
@@ -3171,8 +3171,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5a85c3" class="outline-4">
-<h4 id="orgd5a85c3"><span class="section-number-4">23.5.2.</span> Constel·lacions Dolentes vs. Bones</h4>
+<div id="outline-container-org3105418" class="outline-4">
+<h4 id="org3105418"><span class="section-number-4">23.5.2.</span> Constel·lacions Dolentes vs. Bones</h4>
 <div class="outline-text-4" id="text-23-5-2">
 <ul class="org-ul">
 <li>Una constel·lació "dolenta" mostra els núvols de punts molt dispersos (molt soroll).</li>
@@ -3180,8 +3180,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org5bdf4dd" class="outline-4">
-<h4 id="org5bdf4dd"><span class="section-number-4">23.5.3.</span> Codificació de Bits Intel·ligent: Codi Gray</h4>
+<div id="outline-container-org1146099" class="outline-4">
+<h4 id="org1146099"><span class="section-number-4">23.5.3.</span> Codificació de Bits Intel·ligent: Codi Gray</h4>
 <div class="outline-text-4" id="text-23-5-3">
 <ul class="org-ul">
 <li>En lloc d'assignar bits arbitràriament, s'utilitza una codificació que asseguri que els punts adjacents a la constel·lació només difereixin en 1 bit.</li>
@@ -3190,12 +3190,12 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-org1e34063" class="outline-3">
-<h3 id="org1e34063"><span class="section-number-3">23.6.</span> Modulació per Amplitud en Quadratura (QAM)</h3>
+<div id="outline-container-org7fe3545" class="outline-3">
+<h3 id="org7fe3545"><span class="section-number-3">23.6.</span> Modulació per Amplitud en Quadratura (QAM)</h3>
 <div class="outline-text-3" id="text-23-6">
 </div>
-<div id="outline-container-orga73f25e" class="outline-4">
-<h4 id="orga73f25e"><span class="section-number-4">23.6.1.</span> QAM (Quadrature Amplitude Modulation)</h4>
+<div id="outline-container-org70cf5c4" class="outline-4">
+<h4 id="org70cf5c4"><span class="section-number-4">23.6.1.</span> QAM (Quadrature Amplitude Modulation)</h4>
 <div class="outline-text-4" id="text-23-6-1">
 <ul class="org-ul">
 <li>És una combinació d'ASK i PSK. S'utilitza tant l'amplitud com la fase per representar les dades.</li>
@@ -3208,8 +3208,8 @@ Si es perd un segment:
 </ul>
 </div>
 </div>
-<div id="outline-container-org66e5f45" class="outline-4">
-<h4 id="org66e5f45"><span class="section-number-4">23.6.2.</span> QAM és Popular</h4>
+<div id="outline-container-orgdfc8b60" class="outline-4">
+<h4 id="orgdfc8b60"><span class="section-number-4">23.6.2.</span> QAM és Popular</h4>
 <div class="outline-text-4" id="text-23-6-2">
 <ul class="org-ul">
 <li>S'utilitza en tecnologies actuals:
@@ -3223,23 +3223,23 @@ Si es perd un segment:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfacfb49" class="outline-2">
-<h2 id="orgfacfb49"><span class="section-number-2">24.</span> Codificació de dades (EDC, ECC i ARQ/HARQ)</h2>
+<div id="outline-container-orgee49c3e" class="outline-2">
+<h2 id="orgee49c3e"><span class="section-number-2">24.</span> Codificació de dades (EDC, ECC i ARQ/HARQ)</h2>
 </div>
 
-<div id="outline-container-org7c5533a" class="outline-2">
-<h2 id="org7c5533a"><span class="section-number-2">25.</span> Source Coding</h2>
+<div id="outline-container-org912e2b9" class="outline-2">
+<h2 id="org912e2b9"><span class="section-number-2">25.</span> Source Coding</h2>
 <div class="outline-text-2" id="text-25">
 <p>
 El <b>source coding</b> (codificació de font) prepara la informació original per ser transmesa de la manera més eficient possible. Treballa amb el contingut (text, veu, imatge, etc.) i la seva sortida són bits.
 </p>
 </div>
-<div id="outline-container-orge9fecf0" class="outline-3">
-<h3 id="orge9fecf0"><span class="section-number-3">25.1.</span> Funcions principals</h3>
+<div id="outline-container-orgbede3e7" class="outline-3">
+<h3 id="orgbede3e7"><span class="section-number-3">25.1.</span> Funcions principals</h3>
 <div class="outline-text-3" id="text-25-1">
 </div>
-<div id="outline-container-orgbb80d9c" class="outline-4">
-<h4 id="orgbb80d9c"><span class="section-number-4">25.1.1.</span> Digitalització (si la font és analògica)</h4>
+<div id="outline-container-org94872e4" class="outline-4">
+<h4 id="org94872e4"><span class="section-number-4">25.1.1.</span> Digitalització (si la font és analògica)</h4>
 <div class="outline-text-4" id="text-25-1-1">
 <ul class="org-ul">
 <li>Converteix senyals continus (so, imatge, vídeo) en una seqüència de bits.</li>
@@ -3247,8 +3247,8 @@ El <b>source coding</b> (codificació de font) prepara la informació original p
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf7337de" class="outline-4">
-<h4 id="orgf7337de"><span class="section-number-4">25.1.2.</span> Compressió</h4>
+<div id="outline-container-orgbd01514" class="outline-4">
+<h4 id="orgbd01514"><span class="section-number-4">25.1.2.</span> Compressió</h4>
 <div class="outline-text-4" id="text-25-1-2">
 <ul class="org-ul">
 <li>Elimina la redundància natural de la font.</li>
@@ -3257,8 +3257,8 @@ El <b>source coding</b> (codificació de font) prepara la informació original p
 </ul>
 </div>
 </div>
-<div id="outline-container-orga1c376b" class="outline-4">
-<h4 id="orga1c376b"><span class="section-number-4">25.1.3.</span> Representació i format</h4>
+<div id="outline-container-org01a6a33" class="outline-4">
+<h4 id="org01a6a33"><span class="section-number-4">25.1.3.</span> Representació i format</h4>
 <div class="outline-text-4" id="text-25-1-3">
 <ul class="org-ul">
 <li>Assigna codis binaris als símbols (ASCII, UTF-8, PCM, etc.).</li>
@@ -3266,8 +3266,8 @@ El <b>source coding</b> (codificació de font) prepara la informació original p
 </ul>
 </div>
 </div>
-<div id="outline-container-org35f268c" class="outline-4">
-<h4 id="org35f268c"><span class="section-number-4">25.1.4.</span> Xifrat (opcional, sovint a prop)</h4>
+<div id="outline-container-org6ad03b1" class="outline-4">
+<h4 id="org6ad03b1"><span class="section-number-4">25.1.4.</span> Xifrat (opcional, sovint a prop)</h4>
 <div class="outline-text-4" id="text-25-1-4">
 <ul class="org-ul">
 <li>No és una funció estricta del source coding, però habitualment s'aplica aquí o a les capes superiors (presentació/aplicació) per protegir la confidencialitat.</li>
@@ -3276,19 +3276,19 @@ El <b>source coding</b> (codificació de font) prepara la informació original p
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9197e0" class="outline-2">
-<h2 id="orgb9197e0"><span class="section-number-2">26.</span> Channel Coding</h2>
+<div id="outline-container-org35802bc" class="outline-2">
+<h2 id="org35802bc"><span class="section-number-2">26.</span> Channel Coding</h2>
 <div class="outline-text-2" id="text-26">
 <p>
 El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobrevisquin als errors del canal (soroll, fading, interferència). Treballa amb bits i afegeix redundància controlada.
 </p>
 </div>
-<div id="outline-container-org4f910b6" class="outline-3">
-<h3 id="org4f910b6"><span class="section-number-3">26.1.</span> Funcions principals</h3>
+<div id="outline-container-org9216574" class="outline-3">
+<h3 id="org9216574"><span class="section-number-3">26.1.</span> Funcions principals</h3>
 <div class="outline-text-3" id="text-26-1">
 </div>
-<div id="outline-container-org080598b" class="outline-4">
-<h4 id="org080598b"><span class="section-number-4">26.1.1.</span> Afegir redundància controlada</h4>
+<div id="outline-container-org58ecd25" class="outline-4">
+<h4 id="org58ecd25"><span class="section-number-4">26.1.1.</span> Afegir redundància controlada</h4>
 <div class="outline-text-4" id="text-26-1-1">
 <ul class="org-ul">
 <li>Transforma un bloc de \(k\) bits útils en un bloc de \(n\) bits (\(n > k\)).</li>
@@ -3301,12 +3301,12 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org954348c" class="outline-4">
-<h4 id="org954348c"><span class="section-number-4">26.1.2.</span> Tipus de redundància</h4>
+<div id="outline-container-orge409e46" class="outline-4">
+<h4 id="orge409e46"><span class="section-number-4">26.1.2.</span> Tipus de redundància</h4>
 <div class="outline-text-4" id="text-26-1-2">
 </div>
 <ol class="org-ol">
-<li><a id="org8542f3c"></a>EDC (Error Detection Codes)<br />
+<li><a id="org451d37d"></a>EDC (Error Detection Codes)<br />
 <div class="outline-text-5" id="text-26-1-2-1">
 <ul class="org-ul">
 <li>Només <b>detecten</b> errors, no els corregeixen.</li>
@@ -3315,7 +3315,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="org5adeb75"></a>ECC / FEC (Error Correction Codes / Forward Error Correction)<br />
+<li><a id="orgca88c89"></a>ECC / FEC (Error Correction Codes / Forward Error Correction)<br />
 <div class="outline-text-5" id="text-26-1-2-2">
 <ul class="org-ul">
 <li>Detecten i <b>corregeixen</b> errors fins a un límit.</li>
@@ -3329,7 +3329,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="orga038a2f"></a>Suport per ARQ i HARQ<br />
+<li><a id="org1acc533"></a>Suport per ARQ i HARQ<br />
 <div class="outline-text-5" id="text-26-1-2-3">
 <ul class="org-ul">
 <li>L'ARQ i l'HARQ no són exactament tipus de redundància, sinó mecanismes que <b>utilitzen</b> la detecció/correcció d'errors.</li>
@@ -3338,8 +3338,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </li>
 </ol>
 </div>
-<div id="outline-container-org976c224" class="outline-4">
-<h4 id="org976c224"><span class="section-number-4">26.1.3.</span> ARQ (Automatic Repeat reQuest)</h4>
+<div id="outline-container-orgc2d10dd" class="outline-4">
+<h4 id="orgc2d10dd"><span class="section-number-4">26.1.3.</span> ARQ (Automatic Repeat reQuest)</h4>
 <div class="outline-text-4" id="text-26-1-3">
 <ul class="org-ul">
 <li>Si el receptor detecta un error (via EDC/CRC) que no pot corregir, descarta el paquet i demana al transmissor que el retransmeti (NACK o timeout).</li>
@@ -3347,8 +3347,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf0d8192" class="outline-4">
-<h4 id="orgf0d8192"><span class="section-number-4">26.1.4.</span> HARQ (Hybrid ARQ)</h4>
+<div id="outline-container-orgcb0bec1" class="outline-4">
+<h4 id="orgcb0bec1"><span class="section-number-4">26.1.4.</span> HARQ (Hybrid ARQ)</h4>
 <div class="outline-text-4" id="text-26-1-4">
 <ul class="org-ul">
 <li>Combina ECC i ARQ.</li>
@@ -3361,8 +3361,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-org7a590af" class="outline-2">
-<h2 id="org7a590af"><span class="section-number-2">27.</span> Resum i diferències</h2>
+<div id="outline-container-org15af7a9" class="outline-2">
+<h2 id="org15af7a9"><span class="section-number-2">27.</span> Resum i diferències</h2>
 <div class="outline-text-2" id="text-27">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3414,8 +3414,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </tbody>
 </table>
 </div>
-<div id="outline-container-org735202c" class="outline-3">
-<h3 id="org735202c"><span class="section-number-3">27.1.</span> Codis de detecció d'errors (EDC – Error Detection Codes)</h3>
+<div id="outline-container-org46cfd47" class="outline-3">
+<h3 id="org46cfd47"><span class="section-number-3">27.1.</span> Codis de detecció d'errors (EDC – Error Detection Codes)</h3>
 <div class="outline-text-3" id="text-27-1">
 <ul class="org-ul">
 <li>Error detection codes: CRC, bit de paritat&#x2026;</li>
@@ -3429,12 +3429,12 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdde7b31" class="outline-3">
-<h3 id="orgdde7b31"><span class="section-number-3">27.2.</span> Codis de correcció d'errors (ECC – Error Correction Codes/ FEC - Forward Error Correction)</h3>
+<div id="outline-container-orgb9535f8" class="outline-3">
+<h3 id="orgb9535f8"><span class="section-number-3">27.2.</span> Codis de correcció d'errors (ECC – Error Correction Codes/ FEC - Forward Error Correction)</h3>
 <div class="outline-text-3" id="text-27-2">
 </div>
-<div id="outline-container-orgd9caf06" class="outline-4">
-<h4 id="orgd9caf06"><span class="section-number-4">27.2.1.</span> Codis de bloc (Block Error Correction Codes)</h4>
+<div id="outline-container-org99f3427" class="outline-4">
+<h4 id="org99f3427"><span class="section-number-4">27.2.1.</span> Codis de bloc (Block Error Correction Codes)</h4>
 <div class="outline-text-4" id="text-27-2-1">
 <ul class="org-ul">
 <li>Per cada bit s'envien varis bits, així el receptor pot saber que segurament és el valor que més surt.</li>
@@ -3488,8 +3488,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org39ca82f" class="outline-4">
-<h4 id="org39ca82f"><span class="section-number-4">27.2.2.</span> Codis convolucionals</h4>
+<div id="outline-container-orgf189706" class="outline-4">
+<h4 id="orgf189706"><span class="section-number-4">27.2.2.</span> Codis convolucionals</h4>
 <div class="outline-text-4" id="text-27-2-2">
 <ul class="org-ul">
 <li>Un codi convolucional és un codi lineal <b>amb memòria</b>: no codifica blocs independents, sinó que la sortida en cada instant depèn dels bits d'entrada actuals i de varis bits anteriors.</li>
@@ -3504,7 +3504,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgc4b2e16"></a>La idea fàcil<br />
+<li><a id="org2120594"></a>La idea fàcil<br />
 <div class="outline-text-5" id="text-27-2-2-1">
 <ul class="org-ul">
 <li>Imagina que vols enviar un bit. En un codi normal (de bloc), aquell bit només afecta el seu bloc. Si el canal el corromp, has perdut aquell bit.</li>
@@ -3512,7 +3512,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="orgdeaf8b5"></a>El que mostres amb els guions baixos<br />
+<li><a id="org5bcece2"></a>El que mostres amb els guions baixos<br />
 <div class="outline-text-5" id="text-27-2-2-2">
 <ul class="org-ul">
 <li>Quan escrius coses com:</li>
@@ -3527,7 +3527,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="org818fb5d"></a>Exemple concret<br />
+<li><a id="org8a5a567"></a>Exemple concret<br />
 <div class="outline-text-5" id="text-27-2-2-3">
 <ul class="org-ul">
 <li>Agafem el codi de l'altre dia: 1 bit d'entrada, 2 de sortida, memòria 2.</li>
@@ -3602,7 +3602,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="org087a687"></a>Com ajuda això a corregir errors?<br />
+<li><a id="org2d76d2f"></a>Com ajuda això a corregir errors?<br />
 <div class="outline-text-5" id="text-27-2-2-4">
 <ul class="org-ul">
 <li>Imagina que el canal corromp un bit. Per exemple, reps 11 00 11 00 00 en comptes de 11 10 11 00 00. Hi ha un error al segon parell (10 → 00).</li>
@@ -3611,7 +3611,7 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </li>
-<li><a id="org0d7fc11"></a>Per què funciona?<br />
+<li><a id="orgb017bde"></a>Per què funciona?<br />
 <div class="outline-text-5" id="text-27-2-2-5">
 <ul class="org-ul">
 <li>Perquè les seqüències codificades vàlides estan molt separades entre elles (tenen una distància lliure gran). Un error de bit en una posició no és suficient per confondre una seqüència vàlida amb una altra. El decodificador tria la seqüència vàlida més propera a la rebuda, i així corregeix l'error.</li>
@@ -3623,8 +3623,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ol>
 </div>
 </div>
-<div id="outline-container-org6bd1a72" class="outline-3">
-<h3 id="org6bd1a72"><span class="section-number-3">27.3.</span> ARQ i HARQ (Automatic Repeat reQuest i Hybrid Automatic Repeat reQuest)</h3>
+<div id="outline-container-org2b61db5" class="outline-3">
+<h3 id="org2b61db5"><span class="section-number-3">27.3.</span> ARQ i HARQ (Automatic Repeat reQuest i Hybrid Automatic Repeat reQuest)</h3>
 <div class="outline-text-3" id="text-27-3">
 <ul class="org-ul">
 <li>Hybrid Automatic Repeat reQuest (HARQ) combina ECC i ARQ (que a l'ARQ ja porta EDC).</li>
@@ -3634,8 +3634,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org9cb4831" class="outline-3">
-<h3 id="org9cb4831"><span class="section-number-3">27.4.</span> Notes sobre codificació a la capa física</h3>
+<div id="outline-container-org9321fa8" class="outline-3">
+<h3 id="org9321fa8"><span class="section-number-3">27.4.</span> Notes sobre codificació a la capa física</h3>
 <div class="outline-text-3" id="text-27-4">
 <ul class="org-ul">
 <li>Physical layer adds parity bits in <i>channel coding</i> to protect the data, etc.</li>
@@ -3644,8 +3644,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-orga5368bd" class="outline-2">
-<h2 id="orga5368bd"><span class="section-number-2">28.</span> Data rate: per què el cabal real és menor que l'esperat</h2>
+<div id="outline-container-org86ea8d8" class="outline-2">
+<h2 id="org86ea8d8"><span class="section-number-2">28.</span> Data rate: per què el cabal real és menor que l'esperat</h2>
 <div class="outline-text-2" id="text-28">
 <ul class="org-ul">
 <li>El "data" del data rate es refereix a les dades de la capa física, amb totes les capçaleres i tràilers, etc.; en realitat n'obtens menys.</li>
@@ -3664,8 +3664,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org68d0784" class="outline-2">
-<h2 id="org68d0784"><span class="section-number-2">29.</span> Protocols MAC (Medium Access Control)</h2>
+<div id="outline-container-org0a26785" class="outline-2">
+<h2 id="org0a26785"><span class="section-number-2">29.</span> Protocols MAC (Medium Access Control)</h2>
 <div class="outline-text-2" id="text-29">
 <ul class="org-ul">
 <li>Decideixen qui/quan i quin dispositiu pot accedir al medi (who/when which device can access the medium).</li>
@@ -3683,12 +3683,12 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc85f230" class="outline-2">
-<h2 id="orgc85f230"><span class="section-number-2">30.</span> Accés al medi: Wi-Fi, xarxes mòbils i ALOHA</h2>
+<div id="outline-container-orgb255099" class="outline-2">
+<h2 id="orgb255099"><span class="section-number-2">30.</span> Accés al medi: Wi-Fi, xarxes mòbils i ALOHA</h2>
 <div class="outline-text-2" id="text-30">
 </div>
-<div id="outline-container-org758e16e" class="outline-3">
-<h3 id="org758e16e"><span class="section-number-3">30.1.</span> Per què Wi-Fi usa CSMA/CA i no CSMA/CD?</h3>
+<div id="outline-container-orge28eac9" class="outline-3">
+<h3 id="orge28eac9"><span class="section-number-3">30.1.</span> Per què Wi-Fi usa CSMA/CA i no CSMA/CD?</h3>
 <div class="outline-text-3" id="text-30-1">
 <ul class="org-ul">
 <li>El medi ràdio és compartit i half-duplex: mentre un dispositiu transmet, no pot escoltar el canal.</li>
@@ -3706,8 +3706,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org418a3f7" class="outline-3">
-<h3 id="org418a3f7"><span class="section-number-3">30.2.</span> Xarxes mòbils: TDMA + CSMA</h3>
+<div id="outline-container-org038fe71" class="outline-3">
+<h3 id="org038fe71"><span class="section-number-3">30.2.</span> Xarxes mòbils: TDMA + CSMA</h3>
 <div class="outline-text-3" id="text-30-2">
 <ul class="org-ul">
 <li>És un esquema híbrid d'accés al medi.</li>
@@ -3730,8 +3730,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgace2548" class="outline-3">
-<h3 id="orgace2548"><span class="section-number-3">30.3.</span> Finestra de connexió / accés aleatori</h3>
+<div id="outline-container-orgf3ef530" class="outline-3">
+<h3 id="orgf3ef530"><span class="section-number-3">30.3.</span> Finestra de connexió / accés aleatori</h3>
 <div class="outline-text-3" id="text-30-3">
 <ul class="org-ul">
 <li>La xarxa reserva periòdicament oportunitats d'accés aleatori (access slots / RA slots).</li>
@@ -3746,8 +3746,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org6017e23" class="outline-3">
-<h3 id="org6017e23"><span class="section-number-3">30.4.</span> Idees clau</h3>
+<div id="outline-container-org0967a63" class="outline-3">
+<h3 id="org0967a63"><span class="section-number-3">30.4.</span> Idees clau</h3>
 <div class="outline-text-3" id="text-30-4">
 <ul class="org-ul">
 <li>Wi-Fi: usa CSMA/CA perquè al ràdio no es poden detectar col·lisions mentre es transmet.</li>
@@ -3759,8 +3759,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf76ee48" class="outline-3">
-<h3 id="orgf76ee48"><span class="section-number-3">30.5.</span> Quan pot ALOHA superar CSMA?</h3>
+<div id="outline-container-orgf6b2d83" class="outline-3">
+<h3 id="orgf6b2d83"><span class="section-number-3">30.5.</span> Quan pot ALOHA superar CSMA?</h3>
 <div class="outline-text-3" id="text-30-5">
 <ul class="org-ul">
 <li>ALOHA pot ser millor que CSMA quan el cost d'escoltar el canal no compensa o quan escoltar dóna informació poc fiable:
@@ -3775,12 +3775,12 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-org1cc5fc3" class="outline-2">
-<h2 id="org1cc5fc3"><span class="section-number-2">31.</span> Problemes d'accés al medi: terminal ocult i terminal exposat</h2>
+<div id="outline-container-org91dc20d" class="outline-2">
+<h2 id="org91dc20d"><span class="section-number-2">31.</span> Problemes d'accés al medi: terminal ocult i terminal exposat</h2>
 <div class="outline-text-2" id="text-31">
 </div>
-<div id="outline-container-orge231519" class="outline-3">
-<h3 id="orge231519"><span class="section-number-3">31.1.</span> Terminal ocult: l'escenari dels tres nodes</h3>
+<div id="outline-container-org7335449" class="outline-3">
+<h3 id="org7335449"><span class="section-number-3">31.1.</span> Terminal ocult: l'escenari dels tres nodes&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
 <div class="outline-text-3" id="text-31-1">
 <ul class="org-ul">
 <li>Escenari amb 3 nodes (Oscar, Ivan i Lucas):
@@ -3792,10 +3792,15 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 <li>Si Oscar i Lucas volen comunicar amb Ivan alhora, es poden produir col·lisions a Ivan.</li>
 <li>This is the classic <b>hiddenº-terminal problem</b>: Oscar and Lucas are "hidden" from each other, but both can reach Ivan, so CSMA alone fails — both may sense the channel as idle and transmit to Ivan at the same time, causing a collision at Ivan.</li>
 </ul>
+
+<div id="orgce09387" class="figure">
+<p><img src="file:///home/joaquim/uni/q7/SCq7/data/34/c07089-8e89-4ae7-b74d-b65156f873d9/Captura desde 2026-10-31 17-18-58.png" alt="Captura desde 2026-10-31 17-18-58.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-orgcfb0d06" class="outline-3">
-<h3 id="orgcfb0d06"><span class="section-number-3">31.2.</span> Terminal ocult: com resoldre'l (RTS/CTS)</h3>
+</div>
+<div id="outline-container-org67b41bf" class="outline-3">
+<h3 id="org67b41bf"><span class="section-number-3">31.2.</span> Terminal ocult: com resoldre'l (RTS/CTS)</h3>
 <div class="outline-text-3" id="text-31-2">
 <ul class="org-ul">
 <li>Solució: RTS/CTS handshake (MACA / 802.11 CSMA/CA).</li>
@@ -3808,15 +3813,15 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orged585a9" class="outline-3">
-<h3 id="orged585a9"><span class="section-number-3">31.3.</span> Terminal exposat (exposed terminal problem)</h3>
+<div id="outline-container-orgc32aee6" class="outline-3">
+<h3 id="orgc32aee6"><span class="section-number-3">31.3.</span> Terminal exposat (exposed terminal problem)</h3>
 <div class="outline-text-3" id="text-31-3">
 <ul class="org-ul">
 <li>El problema del terminal exposat és el cas contrari al del terminal ocult: un node deixa de transmetre quan sí que podria fer-ho, perquè sent una transmissió que no li faria nosa.</li>
 </ul>
 </div>
-<div id="outline-container-orgc14e6e2" class="outline-4">
-<h4 id="orgc14e6e2"><span class="section-number-4">31.3.1.</span> Exemple clàssic</h4>
+<div id="outline-container-orge91bebb" class="outline-4">
+<h4 id="orge91bebb"><span class="section-number-4">31.3.1.</span> Exemple clàssic</h4>
 <div class="outline-text-4" id="text-31-3-1">
 <ul class="org-ul">
 <li>Tenim quatre nodes: A, B, C i D.</li>
@@ -3828,16 +3833,21 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org9883859" class="outline-4">
-<h4 id="org9883859"><span class="section-number-4">31.3.2.</span> Per què passa?</h4>
+<div id="outline-container-orgd9de80e" class="outline-4">
+<h4 id="orgd9de80e"><span class="section-number-4">31.3.2.</span> Per què passa?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h4>
 <div class="outline-text-4" id="text-31-3-2">
 <ul class="org-ul">
 <li>CSMA només mira si el canal està ocupat localment. No sap si la transmissió que sent afecta realment el seu receptor. És una escolta massa conservadora.</li>
 </ul>
+
+<div id="orgba69646" class="figure">
+<p><img src="file:///home/joaquim/uni/q7/SCq7/data/b7/b22797-9d54-4b27-90a3-b9ac7e4f7178/Captura desde 2026-11-01 10-31-14.png" alt="Captura desde 2026-11-01 10-31-14.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-org3ec30f3" class="outline-4">
-<h4 id="org3ec30f3"><span class="section-number-4">31.3.3.</span> Conseqüència</h4>
+</div>
+<div id="outline-container-orgd6c1b26" class="outline-4">
+<h4 id="orgd6c1b26"><span class="section-number-4">31.3.3.</span> Conseqüència</h4>
 <div class="outline-text-4" id="text-31-3-3">
 <ul class="org-ul">
 <li>No hi ha col·lisió, però sí pèrdua d'eficiència.</li>
@@ -3847,8 +3857,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org7ae4d7a" class="outline-4">
-<h4 id="org7ae4d7a"><span class="section-number-4">31.3.4.</span> Diferència amb el terminal ocult</h4>
+<div id="outline-container-org954a7ca" class="outline-4">
+<h4 id="org954a7ca"><span class="section-number-4">31.3.4.</span> Diferència amb el terminal ocult</h4>
 <div class="outline-text-4" id="text-31-3-4">
 <ul class="org-ul">
 <li>Terminal ocult: no sento una transmissió que sí que em pot fer col·lisió → transmeto i col·lisiono.</li>
@@ -3856,8 +3866,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orga0e2918" class="outline-4">
-<h4 id="orga0e2918"><span class="section-number-4">31.3.5.</span> Com es pot mitigar?</h4>
+<div id="outline-container-org4d71784" class="outline-4">
+<h4 id="org4d71784"><span class="section-number-4">31.3.5.</span> Com es pot mitigar?</h4>
 <div class="outline-text-4" id="text-31-3-5">
 <ul class="org-ul">
 <li>Amb RTS/CTS (ajuda sobretot al terminal ocult), antenes direccionals, control de potència, busy tones, o planificació/TDMA que assigni torns de transmissió tenint en compte la topologia.</li>
@@ -3865,15 +3875,15 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-orga203432" class="outline-3">
-<h3 id="orga203432"><span class="section-number-3">31.4.</span> Virtual CS (portadora virtual)</h3>
+<div id="outline-container-orgba5b06d" class="outline-3">
+<h3 id="orgba5b06d"><span class="section-number-3">31.4.</span> Virtual CS (portadora virtual)</h3>
 <div class="outline-text-3" id="text-31-4">
 <ul class="org-ul">
 <li>El virtual CS (virtual carrier sense, o portadora virtual) és un mecanisme de les xarxes Wi-Fi (802.11) que permet a una estació marcar el medi com a ocupat sense escoltar-lo físicament, només a partir de la informació de durada que hi ha als frames.</li>
 </ul>
 </div>
-<div id="outline-container-org7eaa93a" class="outline-4">
-<h4 id="org7eaa93a"><span class="section-number-4">31.4.1.</span> Com funciona?</h4>
+<div id="outline-container-org9f1aaa4" class="outline-4">
+<h4 id="org9f1aaa4"><span class="section-number-4">31.4.1.</span> Com funciona?</h4>
 <div class="outline-text-4" id="text-31-4-1">
 <ul class="org-ul">
 <li>Quan una estació sent un frame (per exemple un RTS, un CTS o un Data) que no va adreçat a ella, llegeix el camp Duration/ID.</li>
@@ -3882,8 +3892,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bb6fa7" class="outline-4">
-<h4 id="org3bb6fa7"><span class="section-number-4">31.4.2.</span> Per què serveix?</h4>
+<div id="outline-container-org437eb51" class="outline-4">
+<h4 id="org437eb51"><span class="section-number-4">31.4.2.</span> Per què serveix?</h4>
 <div class="outline-text-4" id="text-31-4-2">
 <ul class="org-ul">
 <li>És especialment útil per al terminal ocult:
@@ -3896,8 +3906,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgad41812" class="outline-4">
-<h4 id="orgad41812"><span class="section-number-4">31.4.3.</span> Diferència amb el CS físic</h4>
+<div id="outline-container-orgeba7d21" class="outline-4">
+<h4 id="orgeba7d21"><span class="section-number-4">31.4.3.</span> Diferència amb el CS físic</h4>
 <div class="outline-text-4" id="text-31-4-3">
 <ul class="org-ul">
 <li>Physical CS: l'estació escolta el medi (energia o preamble) i detecta si hi ha senyal.</li>
@@ -3905,8 +3915,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgece7a12" class="outline-4">
-<h4 id="orgece7a12"><span class="section-number-4">31.4.4.</span> Limitacions</h4>
+<div id="outline-container-org39b1a48" class="outline-4">
+<h4 id="org39b1a48"><span class="section-number-4">31.4.4.</span> Limitacions</h4>
 <div class="outline-text-4" id="text-31-4-4">
 <ul class="org-ul">
 <li>Depèn que els frames portin durades correctes.</li>
@@ -3917,12 +3927,12 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-org0d9df64" class="outline-3">
-<h3 id="org0d9df64"><span class="section-number-3">31.5.</span> CSMA persistent vs non-persistent</h3>
+<div id="outline-container-org1bbbe31" class="outline-3">
+<h3 id="org1bbbe31"><span class="section-number-3">31.5.</span> CSMA persistent vs non-persistent</h3>
 <div class="outline-text-3" id="text-31-5">
 </div>
-<div id="outline-container-orgf7f37b8" class="outline-4">
-<h4 id="orgf7f37b8"><span class="section-number-4">31.5.1.</span> El problema: tothom espera el mateix moment</h4>
+<div id="outline-container-orgb2e9901" class="outline-4">
+<h4 id="orgb2e9901"><span class="section-number-4">31.5.1.</span> El problema: tothom espera el mateix moment</h4>
 <div class="outline-text-4" id="text-31-5-1">
 <ul class="org-ul">
 <li>Tenim Oscar, Ivan i Lucas. Oscar comença a enviar un missatge molt llarg. Els altres senten el canal ocupat i esperen.</li>
@@ -3936,8 +3946,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb764a1e" class="outline-4">
-<h4 id="orgb764a1e"><span class="section-number-4">31.5.2.</span> La solució: Non-persistent CSMA + backoff</h4>
+<div id="outline-container-org61401e2" class="outline-4">
+<h4 id="org61401e2"><span class="section-number-4">31.5.2.</span> La solució: Non-persistent CSMA + backoff</h4>
 <div class="outline-text-4" id="text-31-5-2">
 <ul class="org-ul">
 <li>Amb CSMA non-persistent:
@@ -3953,8 +3963,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org8b35cc7" class="outline-4">
-<h4 id="org8b35cc7"><span class="section-number-4">31.5.3.</span> Per què això resol el problema?</h4>
+<div id="outline-container-orgd24dc72" class="outline-4">
+<h4 id="orgd24dc72"><span class="section-number-4">31.5.3.</span> Per què això resol el problema?</h4>
 <div class="outline-text-4" id="text-31-5-3">
 <ul class="org-ul">
 <li>Perquè trenca la sincronització:
@@ -3968,8 +3978,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea4f653" class="outline-4">
-<h4 id="orgea4f653"><span class="section-number-4">31.5.4.</span> Exemple</h4>
+<div id="outline-container-org409d29b" class="outline-4">
+<h4 id="org409d29b"><span class="section-number-4">31.5.4.</span> Exemple</h4>
 <div class="outline-text-4" id="text-31-5-4">
 <ul class="org-ul">
 <li>Oscar acaba el missatge llarg.</li>
@@ -3980,8 +3990,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfa60dc3" class="outline-4">
-<h4 id="orgfa60dc3"><span class="section-number-4">31.5.5.</span> Idea clau</h4>
+<div id="outline-container-orge2cb777" class="outline-4">
+<h4 id="orge2cb777"><span class="section-number-4">31.5.5.</span> Idea clau</h4>
 <div class="outline-text-4" id="text-31-5-5">
 <ul class="org-ul">
 <li>CSMA persistent: quan el canal queda lliure, tothom hi va de cop → col·lisions.</li>
@@ -3991,8 +4001,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-org015424a" class="outline-3">
-<h3 id="org015424a"><span class="section-number-3">31.6.</span> Col·lisió per temps de propagació en CSMA (+ backoff)</h3>
+<div id="outline-container-org2947fbc" class="outline-3">
+<h3 id="org2947fbc"><span class="section-number-3">31.6.</span> Col·lisió per temps de propagació en CSMA (+ backoff)</h3>
 <div class="outline-text-3" id="text-31-6">
 <ul class="org-ul">
 <li>CSMA escolta abans de transmetre, però l'escolta només és fiable si el senyal de l'altra estació ja ha arribat.</li>
@@ -4008,8 +4018,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 <li><b>No és terminal ocult:</b> hi ha abast, però el senyal encara no ha arribat.</li>
 </ul>
 </div>
-<div id="outline-container-orgfa937bd" class="outline-4">
-<h4 id="orgfa937bd"><span class="section-number-4">31.6.1.</span> Backoff time</h4>
+<div id="outline-container-org67d89bd" class="outline-4">
+<h4 id="org67d89bd"><span class="section-number-4">31.6.1.</span> Backoff time</h4>
 <div class="outline-text-4" id="text-31-6-1">
 <ul class="org-ul">
 <li>Quan hi ha una col·lisió, l'estació no retransmet immediatament.</li>
@@ -4022,8 +4032,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </div>
 </div>
 </div>
-<div id="outline-container-orgef9f42b" class="outline-3">
-<h3 id="orgef9f42b"><span class="section-number-3">31.7.</span> Versió millorada: RTS/CTS i SIFS/DIFS</h3>
+<div id="outline-container-org02525a4" class="outline-3">
+<h3 id="org02525a4"><span class="section-number-3">31.7.</span> Versió millorada: RTS/CTS i SIFS/DIFS</h3>
 <div class="outline-text-3" id="text-31-7">
 <ul class="org-ul">
 <li><b>A vol enviar dades a B.</b> L'intercanvi és:
@@ -4047,8 +4057,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org6a00bfa" class="outline-3">
-<h3 id="org6a00bfa"><span class="section-number-3">31.8.</span> A torna a enviar RTS immediatament?</h3>
+<div id="outline-container-orgc83a277" class="outline-3">
+<h3 id="orgc83a277"><span class="section-number-3">31.8.</span> A torna a enviar RTS immediatament?</h3>
 <div class="outline-text-3" id="text-31-8">
 <ul class="org-ul">
 <li><b>En DCF normal, no.</b> Després de rebre l'ACK, A ha de tornar a fer <b>carrier sense</b>, esperar <b>DIFS</b> i un <b>backoff aleatori</b> abans de tornar a enviar un RTS.</li>
@@ -4057,8 +4067,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org2163400" class="outline-3">
-<h3 id="org2163400"><span class="section-number-3">31.9.</span> RTS i fairness</h3>
+<div id="outline-container-org64f5a7c" class="outline-3">
+<h3 id="org64f5a7c"><span class="section-number-3">31.9.</span> RTS i fairness</h3>
 <div class="outline-text-3" id="text-31-9">
 <ul class="org-ul">
 <li>RTS és necessari per fairness.</li>
@@ -4066,8 +4076,8 @@ El <b>channel coding</b> (codificació de canal) protegeix els bits perquè sobr
 </ul>
 </div>
 </div>
-<div id="outline-container-org9d75ff9" class="outline-3">
-<h3 id="org9d75ff9"><span class="section-number-3">31.10.</span> Quan RTS no és necessari?</h3>
+<div id="outline-container-org8574818" class="outline-3">
+<h3 id="org8574818"><span class="section-number-3">31.10.</span> Quan RTS no és necessari?</h3>
 <div class="outline-text-3" id="text-31-10">
 <ul class="org-ul">
 <li>Quan les dades són molt curtes, és a dir, quan la mida és comparable amb length(RTS).</li>
@@ -4127,14 +4137,14 @@ the vulnerable period of Slotted aloha is T<sub>data</sub>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd4824b" class="outline-2">
-<h2 id="orgcd4824b"><span class="section-number-2">32.</span> Mecanisme d'Accés al Canal (CSMA/CA amb RTS/CTS)</h2>
+<div id="outline-container-orgf0c44bc" class="outline-2">
+<h2 id="orgf0c44bc"><span class="section-number-2">32.</span> Mecanisme d'Accés al Canal (CSMA/CA amb RTS/CTS)</h2>
 <div class="outline-text-2" id="text-32">
 </div>
-<div id="outline-container-org4fbbfa6" class="outline-3">
-<h3 id="org4fbbfa6"><span class="section-number-3">32.1.</span> Cronograma temporal del canal</h3>
+<div id="outline-container-orge60ae37" class="outline-3">
+<h3 id="orge60ae37"><span class="section-number-3">32.1.</span> Cronograma temporal del canal</h3>
 <div class="outline-text-3" id="text-32-1">
-<pre class="example" id="org3eca0a5">
+<pre class="example" id="org6a7922f">
 Temps ─────────────────────────────────────────────────────────────────────────────────────────────►
 
 Qui transmet:
@@ -4147,8 +4157,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </pre>
 </div>
 </div>
-<div id="outline-container-org8da9303" class="outline-3">
-<h3 id="org8da9303"><span class="section-number-3">32.2.</span> Seqüència temporal d'intercanvi</h3>
+<div id="outline-container-org50c267d" class="outline-3">
+<h3 id="org50c267d"><span class="section-number-3">32.2.</span> Seqüència temporal d'intercanvi</h3>
 <div class="outline-text-3" id="text-32-2">
 <ol class="org-ol">
 <li><b>Transmissió inicial:</b> El Mario envia una trama de dades a l'Oriol.</li>
@@ -4161,8 +4171,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </ol>
 </div>
 </div>
-<div id="outline-container-org983bd95" class="outline-3">
-<h3 id="org983bd95"><span class="section-number-3">32.3.</span> Gestió de la contesa i Equitat (<i>Fairness</i>)</h3>
+<div id="outline-container-org488ef2a" class="outline-3">
+<h3 id="org488ef2a"><span class="section-number-3">32.3.</span> Gestió de la contesa i Equitat (<i>Fairness</i>)</h3>
 <div class="outline-text-3" id="text-32-3">
 <ul class="org-ul">
 <li>Després de cada cicle complet o quan el canal s'allibera, els nodes no transmeten a l'instant.</li>
@@ -4172,8 +4182,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </div>
 </div>
 </div>
-<div id="outline-container-org40114e7" class="outline-2">
-<h2 id="org40114e7"><span class="section-number-2">33.</span> Problema: Ineficiència del Canal (Massa Overhead)</h2>
+<div id="outline-container-org992e1a4" class="outline-2">
+<h2 id="org992e1a4"><span class="section-number-2">33.</span> Problema: Ineficiència del Canal (Massa Overhead)</h2>
 <div class="outline-text-2" id="text-33">
 <p>
 \[T_{exec} = T_d + T_{overhead}\]
@@ -4189,16 +4199,16 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </ul>
 </div>
 </div>
-<div id="outline-container-org410a99a" class="outline-2">
-<h2 id="org410a99a"><span class="section-number-2">34.</span> Solució: Agregació de Trames (<i>Frame Aggregation</i>)</h2>
+<div id="outline-container-org25c7a03" class="outline-2">
+<h2 id="org25c7a03"><span class="section-number-2">34.</span> Solució: Agregació de Trames (<i>Frame Aggregation</i>)</h2>
 <div class="outline-text-2" id="text-34">
 </div>
-<div id="outline-container-org534a1ce" class="outline-3">
-<h3 id="org534a1ce"><span class="section-number-3">34.1.</span> Opcions d'Estructura</h3>
+<div id="outline-container-org2cfccb0" class="outline-3">
+<h3 id="org2cfccb0"><span class="section-number-3">34.1.</span> Opcions d'Estructura</h3>
 <div class="outline-text-3" id="text-34-1">
 </div>
-<div id="outline-container-org7913a13" class="outline-4">
-<h4 id="org7913a13"><span class="section-number-4">34.1.1.</span> Opció 1: Agregació amb verificació individual (A-MPDU)</h4>
+<div id="outline-container-orgcc09512" class="outline-4">
+<h4 id="orgcc09512"><span class="section-number-4">34.1.1.</span> Opció 1: Agregació amb verificació individual (A-MPDU)</h4>
 <div class="outline-text-4" id="text-34-1-1">
 <ul class="org-ul">
 <li><b>Format:</b> <code>[H1 · D1 · T1] [H2 · D2 · T2]</code></li>
@@ -4207,8 +4217,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </ul>
 </div>
 </div>
-<div id="outline-container-orgda3f5d3" class="outline-4">
-<h4 id="orgda3f5d3"><span class="section-number-4">34.1.2.</span> Opció 2: Agregació conjunta amb cua única (A-MSDU)</h4>
+<div id="outline-container-orgc7933d9" class="outline-4">
+<h4 id="orgc7933d9"><span class="section-number-4">34.1.2.</span> Opció 2: Agregació conjunta amb cua única (A-MSDU)</h4>
 <div class="outline-text-4" id="text-34-1-2">
 <ul class="org-ul">
 <li><b>Format:</b> <code>[H1 · D1] [H2 · D2] [T*]</code></li>
@@ -4217,8 +4227,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </ul>
 </div>
 </div>
-<div id="outline-container-orge5537f5" class="outline-4">
-<h4 id="orge5537f5"><span class="section-number-4">34.1.3.</span> Opció 3: Enfocament híbrid</h4>
+<div id="outline-container-org85c5d57" class="outline-4">
+<h4 id="org85c5d57"><span class="section-number-4">34.1.3.</span> Opció 3: Enfocament híbrid</h4>
 <div class="outline-text-4" id="text-34-1-3">
 <ul class="org-ul">
 <li><b>Format:</b> <code>[H1 · D1 · H2 · D2 · T12] [H3 · D3 · H4 · D4 · T34]</code></li>
@@ -4227,8 +4237,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </div>
 </div>
 </div>
-<div id="outline-container-org73da7d3" class="outline-3">
-<h3 id="org73da7d3"><span class="section-number-3">34.2.</span> Taula comparativa</h3>
+<div id="outline-container-orgf2a8759" class="outline-3">
+<h3 id="orgf2a8759"><span class="section-number-3">34.2.</span> Taula comparativa</h3>
 <div class="outline-text-3" id="text-34-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -4282,8 +4292,8 @@ Espais:     SIFS        DIFS + BACKOFF (espera)     SIFS          SIFS          
 </div>
 </div>
 </div>
-<div id="outline-container-orgd91872a" class="outline-2">
-<h2 id="orgd91872a"><span class="section-number-2">35.</span> Modificació del Mecanisme de Confirmació: Block ACK</h2>
+<div id="outline-container-orgeb4e8e6" class="outline-2">
+<h2 id="orgeb4e8e6"><span class="section-number-2">35.</span> Modificació del Mecanisme de Confirmació: Block ACK</h2>
 <div class="outline-text-2" id="text-35">
 <p>
 Per a les <b><b>Opcions 1 i 3</b></b>:
@@ -4298,12 +4308,12 @@ Per a les <b><b>Opcions 1 i 3</b></b>:
 </ul>
 </div>
 </div>
-<div id="outline-container-org894a52f" class="outline-2">
-<h2 id="org894a52f"><span class="section-number-2">36.</span> Què és l'IEEE i la Família 802?</h2>
+<div id="outline-container-org7e3de00" class="outline-2">
+<h2 id="org7e3de00"><span class="section-number-2">36.</span> Què és l'IEEE i la Família 802?</h2>
 <div class="outline-text-2" id="text-36">
 </div>
-<div id="outline-container-orgdc100e9" class="outline-3">
-<h3 id="orgdc100e9"><span class="section-number-3">36.1.</span> L'organització IEEE</h3>
+<div id="outline-container-orgf7a5851" class="outline-3">
+<h3 id="orgf7a5851"><span class="section-number-3">36.1.</span> L'organització IEEE</h3>
 <div class="outline-text-3" id="text-36-1">
 <p>
 <b>IEEE</b> (<b>Institute of Electrical and Electronics Engineers</b>): la major associació professional tècnica del món dedicada a l'avanç de la tecnologia.
@@ -4319,8 +4329,8 @@ Les seves funcions principals són:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdda2970" class="outline-3">
-<h3 id="orgdda2970"><span class="section-number-3">36.2.</span> El comitè IEEE 802</h3>
+<div id="outline-container-orgafa5d0d" class="outline-3">
+<h3 id="orgafa5d0d"><span class="section-number-3">36.2.</span> El comitè IEEE 802</h3>
 <div class="outline-text-3" id="text-36-2">
 <p>
 Dins de l'IEEE, el <b><b>Comitè 802</b></b> és l'encarregat d'estandarditzar les xarxes d'àrea local (<b>LAN</b>) i metropolitana (<b>MAN</b>).
@@ -4333,8 +4343,8 @@ Dins de l'IEEE, el <b><b>Comitè 802</b></b> és l'encarregat d'estandarditzar l
 </ul>
 </div>
 </div>
-<div id="outline-container-org8e8e5a2" class="outline-3">
-<h3 id="org8e8e5a2"><span class="section-number-3">36.3.</span> Què representen les lletres (a, b, g, n, ac, ax&#x2026;)?</h3>
+<div id="outline-container-org4ab833a" class="outline-3">
+<h3 id="org4ab833a"><span class="section-number-3">36.3.</span> Què representen les lletres (a, b, g, n, ac, ax&#x2026;)?</h3>
 <div class="outline-text-3" id="text-36-3">
 <p>
 Són <b><b>esmenes (<i>amendments</i>)</b></b> que s'aproven al llarg dels anys sobre l'estàndard base 802.11 per incorporar:
@@ -4347,8 +4357,8 @@ Són <b><b>esmenes (<i>amendments</i>)</b></b> que s'aproven al llarg dels anys 
 </div>
 </div>
 </div>
-<div id="outline-container-org15f5cf8" class="outline-2">
-<h2 id="org15f5cf8"><span class="section-number-2">37.</span> Classificació de Xarxes per Abast</h2>
+<div id="outline-container-org5d0b13c" class="outline-2">
+<h2 id="org5d0b13c"><span class="section-number-2">37.</span> Classificació de Xarxes per Abast</h2>
 <div class="outline-text-2" id="text-37">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -4389,23 +4399,24 @@ Són <b><b>esmenes (<i>amendments</i>)</b></b> que s'aproven al llarg dels anys 
 </table>
 </div>
 </div>
-<div id="outline-container-org98344eb" class="outline-2">
-<h2 id="org98344eb"><span class="section-number-2">38.</span> Components d'una WLAN (Capa 2)</h2>
+<div id="outline-container-org0c3b31a" class="outline-2">
+<h2 id="org0c3b31a"><span class="section-number-2">38.</span> Components d'una WLAN (Capa 2)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
 <div class="outline-text-2" id="text-38">
 <p>
 Una xarxa WLAN funciona principalment en la <b><b>Capa 2 (Enllaç de dades / MAC)</b></b> i la <b><b>Capa 1 (Física)</b></b>:
+<img src="file:///home/joaquim/uni/q7/SCq7/data/67/3c1087-cd11-4829-86c3-9d4cab806537/Captura desde 2026-11-01 10-43-54.png" alt="Captura desde 2026-11-01 10-43-54.png" />
 </p>
 </div>
-<div id="outline-container-org290ddc2" class="outline-3">
-<h3 id="org290ddc2"><span class="section-number-3">38.1.</span> Estació (<i>Station</i> - STA)</h3>
+<div id="outline-container-org6c4f232" class="outline-3">
+<h3 id="org6c4f232"><span class="section-number-3">38.1.</span> Estació (<i>Station</i> - STA)</h3>
 <div class="outline-text-3" id="text-38-1">
 <p>
 Qualsevol dispositiu final que disposi d'una interfície de xarxa sense fils compatible amb 802.11 (ordinadors portàtils, telèfons mòbils, dispositius IoT, impressores).
 </p>
 </div>
 </div>
-<div id="outline-container-org0395727" class="outline-3">
-<h3 id="org0395727"><span class="section-number-3">38.2.</span> Punt d'Accés (<i>Access Point</i> - AP)</h3>
+<div id="outline-container-org14a32f4" class="outline-3">
+<h3 id="org14a32f4"><span class="section-number-3">38.2.</span> Punt d'Accés (<i>Access Point</i> - AP)</h3>
 <div class="outline-text-3" id="text-38-2">
 <p>
 Dispositiu de xarxa que actua com a coordinador de la comunicació per ràdio:
@@ -4422,12 +4433,12 @@ Dispositiu de xarxa que actua com a coordinador de la comunicació per ràdio:
 </div>
 </div>
 </div>
-<div id="outline-container-org38873d4" class="outline-2">
-<h2 id="org38873d4"><span class="section-number-2">39.</span> Topologies 802.11: BSS, ESS i DS</h2>
+<div id="outline-container-org5f716f5" class="outline-2">
+<h2 id="org5f716f5"><span class="section-number-2">39.</span> Topologies 802.11: BSS, ESS i DS</h2>
 <div class="outline-text-2" id="text-39">
 </div>
-<div id="outline-container-orgdb46280" class="outline-3">
-<h3 id="orgdb46280"><span class="section-number-3">39.1.</span> BSS (<i>Basic Service Set</i>)</h3>
+<div id="outline-container-orgcf84c3a" class="outline-3">
+<h3 id="orgcf84c3a"><span class="section-number-3">39.1.</span> BSS (<i>Basic Service Set</i>)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
 <div class="outline-text-3" id="text-39-1">
 <p>
 És el bloc constructiu bàsic d'una xarxa Wi-Fi en mode infraestructura.
@@ -4437,18 +4448,23 @@ Dispositiu de xarxa que actua com a coordinador de la comunicació per ràdio:
 <li>Tots els membres del BSS comparteixen el mateix canal de ràdio (freqüència), esquemes de modulació i configuració de seguretat.</li>
 <li><b>BSSID (<i>Basic Service Set Identifier</i>):</b> És l'identificador físic d'aquell BSS en concret; correspon a l'<b>adreça MAC de la interfície de ràdio de l'AP</b>.</li>
 </ul>
+
+<div id="org4fc0ea2" class="figure">
+<p><img src="file:///home/joaquim/uni/q7/SCq7/data/f5/d0f25c-4a6d-4184-a06e-66e30311285d/Captura desde 2026-11-01 10-50-11.png" alt="Captura desde 2026-11-01 10-50-11.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-orgcfd66b5" class="outline-3">
-<h3 id="orgcfd66b5"><span class="section-number-3">39.2.</span> DS (<i>Distribution System</i>)</h3>
+</div>
+<div id="outline-container-org8275126" class="outline-3">
+<h3 id="org8275126"><span class="section-number-3">39.2.</span> DS (<i>Distribution System</i>)</h3>
 <div class="outline-text-3" id="text-39-2">
 <ul class="org-ul">
 <li>És el mitjà troncal de comunicació (habitualment una xarxa cablejada Ethernet amb switches) que interconnecta els diferents punts d'accés entre si i permet connectar-los amb el router/Internet.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b823a4" class="outline-3">
-<h3 id="org1b823a4"><span class="section-number-3">39.3.</span> ESS (<i>Extended Service Set</i>)</h3>
+<div id="outline-container-org765ab31" class="outline-3">
+<h3 id="org765ab31"><span class="section-number-3">39.3.</span> ESS (<i>Extended Service Set</i>)</h3>
 <div class="outline-text-3" id="text-39-3">
 <p>
 Conjunt de dos o més BSSs interconnectats a través d'un mateix <b>Distribution System (DS)</b> per cobrir una àrea extensa (un campus, un hospital, una empresa):
@@ -4460,10 +4476,10 @@ Conjunt de dos o més BSSs interconnectats a través d'un mateix <b>Distribution
 </ul>
 </div>
 </div>
-<div id="outline-container-org1c286ab" class="outline-3">
-<h3 id="org1c286ab"><span class="section-number-3">39.4.</span> Esquema d'un ESS</h3>
+<div id="outline-container-org782ade2" class="outline-3">
+<h3 id="org782ade2"><span class="section-number-3">39.4.</span> Esquema d'un ESS</h3>
 <div class="outline-text-3" id="text-39-4">
-<pre class="example" id="orgadfb140">
+<pre class="example" id="org70f2b0c">
 [ STA 1 ]     [ STA 2 ]                     [ STA 3 ]     [ STA 4 ]
     \             /                             \             /
    ┌───────────────┐                           ┌───────────────┐
@@ -4483,8 +4499,8 @@ Conjunt de dos o més BSSs interconnectats a través d'un mateix <b>Distribution
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd89189" class="outline-2">
-<h2 id="orgcd89189"><span class="section-number-2">40.</span> Seguretat: L'atac d'AP Maliciós (<i>Evil Twin / Rogue AP</i>)</h2>
+<div id="outline-container-orgc795977" class="outline-2">
+<h2 id="orgc795977"><span class="section-number-2">40.</span> Seguretat: L'atac d'AP Maliciós (<i>Evil Twin / Rogue AP</i>)</h2>
 <div class="outline-text-2" id="text-40">
 <p>
 Com que el nom de la xarxa (<code>SSID</code>) no és secret ni està protegit per defecte:
@@ -4502,8 +4518,8 @@ Com que el nom de la xarxa (<code>SSID</code>) no és secret ni està protegit p
 </ul>
 </div>
 </div>
-<div id="outline-container-org6374a0f" class="outline-2">
-<h2 id="org6374a0f"><span class="section-number-2">41.</span> Les 4 Adreces MAC (Adreçament en el Medi Ràdio)</h2>
+<div id="outline-container-orgcc27154" class="outline-2">
+<h2 id="orgcc27154"><span class="section-number-2">41.</span> Les 4 Adreces MAC (Adreçament en el Medi Ràdio)</h2>
 <div class="outline-text-2" id="text-41">
 <p>
 A diferència d'Ethernet (que només necessita MAC Origen i MAC Destí), el Wi-Fi utilitza fins a <b><b>4 adreces MAC</b></b> perquè el transmissor per ràdio sovint és només un intermediari cap a la xarxa cablejada.
@@ -4553,10 +4569,10 @@ A diferència d'Ethernet (que només necessita MAC Origen i MAC Destí), el Wi-F
 </tbody>
 </table>
 </div>
-<div id="outline-container-org53193c9" class="outline-3">
-<h3 id="org53193c9"><span class="section-number-3">41.1.</span> Exemple pràctic (El teu mòbil enviant dades a un servidor web):</h3>
+<div id="outline-container-orgc9ba5c0" class="outline-3">
+<h3 id="orgc9ba5c0"><span class="section-number-3">41.1.</span> Exemple pràctic (El teu mòbil enviant dades a un servidor web):</h3>
 <div class="outline-text-3" id="text-41-1">
-<pre class="example" id="orge2cad87">
+<pre class="example" id="org308ef93">
 [ Mòbil ] ──────── (ràdio Wi-Fi) ────────► [ Punt d'Accés ] ────── (cable) ──────► [ Router/Internet ]
    │                                              │
    ├── SA: MAC del teu mòbil                      ├── RA: MAC del Punt d'Accés
@@ -4568,23 +4584,23 @@ A diferència d'Ethernet (que només necessita MAC Origen i MAC Destí), el Wi-F
 </div>
 </div>
 </div>
-<div id="outline-container-org1a7fd69" class="outline-2">
-<h2 id="org1a7fd69"><span class="section-number-2">42.</span> Tipus de Trama (<i>Frame Type</i>)</h2>
+<div id="outline-container-org947af48" class="outline-2">
+<h2 id="org947af48"><span class="section-number-2">42.</span> Tipus de Trama (<i>Frame Type</i>)</h2>
 <div class="outline-text-2" id="text-42">
 <p>
 Dins del camp <code>Frame Control</code>, s'especifica el tipus i subtipus de missatge per saber com gestionar-lo:
 </p>
 </div>
-<div id="outline-container-org684ff0f" class="outline-3">
-<h3 id="org684ff0f"><span class="section-number-3">42.1.</span> 1. Trames de DADES (<i>Data Frames</i>)</h3>
+<div id="outline-container-org5e94498" class="outline-3">
+<h3 id="org5e94498"><span class="section-number-3">42.1.</span> 1. Trames de DADES (<i>Data Frames</i>)</h3>
 <div class="outline-text-3" id="text-42-1">
 <ul class="org-ul">
 <li>Porten la informació útil de l'usuari (paquets IP, trànsit web, vídeo, etc.).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge18872d" class="outline-3">
-<h3 id="orge18872d"><span class="section-number-3">42.2.</span> 2. Trames de CONTROL (<i>Control Frames</i>)</h3>
+<div id="outline-container-org57e263d" class="outline-3">
+<h3 id="org57e263d"><span class="section-number-3">42.2.</span> 2. Trames de CONTROL (<i>Control Frames</i>)</h3>
 <div class="outline-text-3" id="text-42-2">
 <ul class="org-ul">
 <li>No porten càrrega útil; coordinen l'accés al canal i eviten col·lisions:
@@ -4596,8 +4612,8 @@ Dins del camp <code>Frame Control</code>, s'especifica el tipus i subtipus de mi
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd09353" class="outline-3">
-<h3 id="orgbd09353"><span class="section-number-3">42.3.</span> 3. Trames de GESTIÓ (<i>Management Frames</i>)</h3>
+<div id="outline-container-org32df250" class="outline-3">
+<h3 id="org32df250"><span class="section-number-3">42.3.</span> 3. Trames de GESTIÓ (<i>Management Frames</i>)</h3>
 <div class="outline-text-3" id="text-42-3">
 <ul class="org-ul">
 <li>Configuració i manteniment de la xarxa (p. ex., <i>Beacons</i> que anuncien el nom de la xarxa, peticions d'associació i autenticació).</li>
@@ -4605,8 +4621,8 @@ Dins del camp <code>Frame Control</code>, s'especifica el tipus i subtipus de mi
 </div>
 </div>
 </div>
-<div id="outline-container-orge24997d" class="outline-2">
-<h2 id="orge24997d"><span class="section-number-2">43.</span> Durada de l'Intercanvi i Reserva del Medi (<code>Duration/ID</code>)</h2>
+<div id="outline-container-orgd23a6aa" class="outline-2">
+<h2 id="orgd23a6aa"><span class="section-number-2">43.</span> Durada de l'Intercanvi i Reserva del Medi (<code>Duration/ID</code>)</h2>
 <div class="outline-text-2" id="text-43">
 <p>
 És el camp que indica <b><b>quant temps cal reservar el medi físic</b></b>:
@@ -4628,8 +4644,8 @@ Dins del camp <code>Frame Control</code>, s'especifica el tipus i subtipus de mi
 </ul>
 </div>
 </div>
-<div id="outline-container-orgda02ca9" class="outline-2">
-<h2 id="orgda02ca9"><span class="section-number-2">44.</span> Mida de les Dades (<i>Data Size</i>)</h2>
+<div id="outline-container-orgb3a01fb" class="outline-2">
+<h2 id="orgb3a01fb"><span class="section-number-2">44.</span> Mida de les Dades (<i>Data Size</i>)</h2>
 <div class="outline-text-2" id="text-44">
 <ul class="org-ul">
 <li>Indica la longitud exacta de la càrrega útil que es transporta.</li>
@@ -4651,7 +4667,7 @@ la ip va a D1 perque si s'ho poses en el header com que estem a capa 2 no ho ent
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor:  Apunts de Xarxes Apunts de Xarxes Apunts de Xarxes</p>
-<p class="date">Created: 2026-10-30 vie 19:48</p>
+<p class="date">Created: 2026-11-01 dom 10:50</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

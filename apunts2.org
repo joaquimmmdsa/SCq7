@@ -1237,13 +1237,17 @@ Paquet IP  →  Trama  →  Bits
   - Xarxes multihop amb terminals ocults: CSMA pot fallar perquè un node no sent el transmissor ocult; ALOHA pot ser competitiu o millor.
 - Idea clau: CSMA guanya en xarxes ben connectades, paquets llargs i càrrega moderada/alta. ALOHA pot guanyar quan l'escolta és cara, inútil o poc fiable.
 * Problemes d'accés al medi: terminal ocult i terminal exposat
-** Terminal ocult: l'escenari dels tres nodes
+** Terminal ocult: l'escenari dels tres nodes                        :ATTACH:
+:PROPERTIES:
+:ID:       34c07089-8e89-4ae7-b74d-b65156f873d9
+:END:
 - Escenari amb 3 nodes (Oscar, Ivan i Lucas):
   - Oscar i Ivan estan dins de l'abast mútuament: es poden comunicar.
   - Lucas i Ivan també es poden comunicar.
   - Lucas i Oscar NO se senten mútuament.
 - Si Oscar i Lucas volen comunicar amb Ivan alhora, es poden produir col·lisions a Ivan.
 - This is the classic *hiddenº-terminal problem*: Oscar and Lucas are "hidden" from each other, but both can reach Ivan, so CSMA alone fails — both may sense the channel as idle and transmit to Ivan at the same time, causing a collision at Ivan.
+[[attachment:Captura desde 2026-10-31 17-18-58.png]]
 ** Terminal ocult: com resoldre'l (RTS/CTS)
 - Solució: RTS/CTS handshake (MACA / 802.11 CSMA/CA).
 - Oscar envia un RTS (Request-to-Send) a Ivan.
@@ -1261,8 +1265,12 @@ Paquet IP  →  Trama  →  Bits
 - Però C no sent B i vol transmetre a D.
 - La transmissió C → D no interferiria en la recepció de B, perquè C és fora de l'abast de B.
 - Tot i així, com que C detecta el canal ocupat per la transmissió d'A, el mecanisme CSMA el fa esperar. Aquesta espera és innecessària: es perd una oportunitat de transmetre en paral·lel.
-*** Per què passa?
-- CSMA només mira si el canal està ocupat localment. No sap si la transmissió que sent afecta realment el seu receptor. És una escolta massa conservadora.
+*** Per què passa?                                                   :ATTACH:
+:PROPERTIES:
+:ID:       b7b22797-9d54-4b27-90a3-b9ac7e4f7178
+:END:
+- CSMA només mira si el canal està ocupat localment. No sap si la transmissió que sent afecta realment el seu receptor. És una escolta massa conservadora.  
+[[attachment:Captura desde 2026-11-01 10-31-14.png]]
 *** Conseqüència
 - No hi ha col·lisió, però sí pèrdua d'eficiència.
 - Es redueix la reutilització espacial del medi: nodes que podrien transmetre alhora no ho fan.
@@ -1519,10 +1527,13 @@ Són **esmenes (/amendments/)** que s'aproven al llarg dels anys sobre l'estànd
 | *WLAN*| /Wireless Local Area Network/         | Extensió sense fils de la LAN; és on opera la tecnologia Wi-Fi.|
 
 
-* Components d'una WLAN (Capa 2)
+* Components d'una WLAN (Capa 2)                                     :ATTACH:
+:PROPERTIES:
+:ID:       673c1087-cd11-4829-86c3-9d4cab806537
+:END:
 
 Una xarxa WLAN funciona principalment en la **Capa 2 (Enllaç de dades / MAC)** i la **Capa 1 (Física)**:
-
+[[attachment:Captura desde 2026-11-01 10-43-54.png]]
 ** Estació (/Station/ - STA)
 Qualsevol dispositiu final que disposi d'una interfície de xarxa sense fils compatible amb 802.11 (ordinadors portàtils, telèfons mòbils, dispositius IoT, impressores).
 
@@ -1537,12 +1548,15 @@ Dispositiu de xarxa que actua com a coordinador de la comunicació per ràdio:
 
 * Topologies 802.11: BSS, ESS i DS
 
-** BSS (/Basic Service Set/)
+** BSS (/Basic Service Set/)                                         :ATTACH:
+:PROPERTIES:
+:ID:       f5d0f25c-4a6d-4184-a06e-66e30311285d
+:END:
 És el bloc constructiu bàsic d'una xarxa Wi-Fi en mode infraestructura.
 - Format per **un únic Punt d'Accés (AP)** i **múltiples Estacions (STA)** associades a ell.
 - Tots els membres del BSS comparteixen el mateix canal de ràdio (freqüència), esquemes de modulació i configuració de seguretat.
 - *BSSID (/Basic Service Set Identifier/):* És l'identificador físic d'aquell BSS en concret; correspon a l'*adreça MAC de la interfície de ràdio de l'AP*.
-
+[[attachment:Captura desde 2026-11-01 10-50-11.png]]
 ** DS (/Distribution System/)
 - És el mitjà troncal de comunicació (habitualment una xarxa cablejada Ethernet amb switches) que interconnecta els diferents punts d'accés entre si i permet connectar-los amb el router/Internet.
 
